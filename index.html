@@ -1,0 +1,42 @@
+---
+layout: default
+title: Trilhos
+---
+<link rel="stylesheet" href="assets/css/index.css">
+
+
+
+
+</head>
+
+<body>
+
+{%include nav_sidebar.html%}
+
+    <!-- init the list -->
+    {% assign headers = "" | split: ',' %}
+
+    <!-- loop and add -->
+    {% for image in site.static_files %} {% if image.path contains '/assets/front/' %}
+
+    <!-- add image -->
+    {% assign headers = headers | push: image.path %} {% endif %} {% endfor %} 
+    
+      
+    {% assign random-header = headers | sample: 4 %} 
+    
+       
+<!-- You can add more ".slideshow-image" elements, but remember to update the "$items" on kenburns.scss  -->
+    <div class="slideshow">
+        <div class="slideshow-image" style="background-image: url('{{ random-header[0] }}')"></div>
+        <div class="slideshow-image" style="background-image: url('{{ random-header[1] }}')"></div>
+        <div class="slideshow-image" style="background-image: url('{{ random-header[2] }}')"></div>
+        <div class="slideshow-image" style="background-image: url('{{ random-header[3] }}')"></div>
+    </div>
+
+
+</section>
+
+
+</body>
+</html>

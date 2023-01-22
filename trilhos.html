@@ -1,0 +1,27 @@
+---
+layout: default
+title: Trilhos
+---
+
+<link rel="stylesheet" href="assets/css/trilhos.css">
+
+
+</head>
+
+<body>
+    <section class="hero_section" style="background-image: url('assets/SpoonGraphics-Topographic-Map-5.png')">
+    <div class="hero">
+        <h1>Trilhos</h1>
+    </div></section>
+
+<section class="contentor_blog">
+    
+    {% for post in site.posts %}
+	  {%include card_post.html %}
+	{% endfor %}
+
+</section>
+        
+
+
+</main>

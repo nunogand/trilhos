@@ -1,0 +1,21 @@
+presets:
+  default:
+    formats: [webp, original]
+    widths: [200, 400, 800]
+    link_source: true
+  my_preset_400:
+    formats: [original]
+    fallback_width: 400
+    markup: direct_url
+  my_preset_600:
+    formats: [original]
+    fallback_width: 600
+    markup: direct_url
+  my_preset_small:
+    formats: [original]
+    fallback_width: 200
+    markup: direct_url
+  only_srcset:
+    markup: naked_srcset
+    widths: [800, 1200, 1600]
+    formats: webp

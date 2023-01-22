@@ -1,0 +1,30 @@
+{% include head.html %}
+<!--
+<link rel="shortcut icon" href="{{ root_url }}/favicon.ico?" type="image/x-icon">
+<link rel="icon" href="{{ root_url }}/favicon.ico?" type="image/x-icon">
+</head>
+-->
+<body>
+
+    
+
+
+
+{% for post in site.posts %}
+
+  {% for file in site.static_files %}
+    {% if file.path contains post.folder %}	
+    {% assign headers = headers | push: image.path %} 
+    {% endif %} 
+  {% endfor %}
+  {% assign random-header = headers | sample %}
+    <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+    {{ random-header | inspect}}
+    <p><small><strong>{{ post.date | date: "%B %e, %Y" }}</strong> . {{ post.category }} . <a href="{{ post.url }}"></a></small></p>			
+    
+{% endfor %}
+
+
+</body>
+
+</html>
