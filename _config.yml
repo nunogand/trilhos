@@ -54,6 +54,8 @@ defaults:
     values:
       author: "Nuno Rodrigues" # change here the global author name
       
+kramdown:  
+  parse_block_html: false
 
 
 # development
