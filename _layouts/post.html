@@ -124,12 +124,13 @@ footer a {
 }
 
 /* hero css*/
-body {
+/* body {
   padding: 0;
   margin: 0;
   background-color: #130d0a;
   color: #fff;
 }
+*/
 
 #hero {
   height: 800px;
@@ -227,6 +228,41 @@ p {
   color: #ede0d5;
 }
 /* end hero css*/
+
+
+/*navegação*/
+.navigation{
+  justify-content: center;
+	align-items: center;
+  display: flex;
+}
+nav {
+  display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	position: relative;
+	width: 500px;
+	height: 60px;
+	padding: 0 15px;
+  margin: 15px 0;
+	border-radius: 15px;
+	background: rgb(0, 255, 0);
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+}
+
+.nav-item {
+  text-decoration: none;
+	font-family: Roboto, sans-serif;
+	font-size: 1em;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	transition-duration: 0.2s;
+	align-items: center;
+	padding: 1rem 1.5rem;
+
+}
+
 </style>
 
 <body>
@@ -265,6 +301,25 @@ p {
   <section  class="store">
   <div id="map" style="height: 500px;"></div>
 </section>
+
+<!--
+  Navegação
+-->
+
+<div class="navigation">
+  <nav class="navbar">
+    <a class="nav-item" style="padding: 1rem 1.5rem 1rem .5rem;" href="#">
+        <img src="https://img.icons8.com/fluency-systems-regular/48/000000/home.png" width="28px" height="28px" />
+      </a>
+      
+      <a class="nav-item" href="#">
+        <img src="https://img.icons8.com/fluency-systems-regular/48/000000/hearts.png" width="28px" height="28px" />
+      </a>
+  </nav>
+  </div>
+
+
+
 
 <section class="galeria">
   <div class="store">
@@ -311,7 +366,7 @@ p {
   <script src="https://unpkg.com/leaflet-ui@0.5.9/dist/leaflet-ui.js"></script>
   <script src="https://unpkg.com/@raruto/leaflet-elevation/dist/leaflet-elevation.js"></script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fslightbox/3.0.9/index.js"></script>
+
   
 
 
