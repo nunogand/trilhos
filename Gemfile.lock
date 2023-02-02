@@ -31,8 +31,6 @@ GEM
       safe_yaml (~> 1.0)
       terminal-table (>= 1.8, < 4.0)
       webrick (~> 1.7)
-    jekyll-feed (0.17.0)
-      jekyll (>= 3.7, < 5.0)
     jekyll-sass-converter (3.0.0)
       sass-embedded (~> 1.54)
     jekyll-watch (2.2.1)
@@ -49,6 +47,8 @@ GEM
     kramdown-parser-gfm (1.1.0)
       kramdown (~> 2.0)
     liquid (4.0.4)
+    liquid-c (4.0.1)
+      liquid (>= 3.0.0)
     listen (3.8.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -70,7 +70,7 @@ GEM
     ruby-vips (2.0.17)
       ffi (~> 1.9)
     safe_yaml (1.0.5)
-    sass-embedded (1.57.1)
+    sass-embedded (1.58.0)
       google-protobuf (~> 3.21)
       rake (>= 10.0.0)
     terminal-table (3.0.2)
@@ -83,8 +83,8 @@ PLATFORMS
 
 DEPENDENCIES
   jekyll (~> 4.3.2)
-  jekyll-feed (~> 0.12)
   jekyll_picture_tag (~> 2.0)
+  liquid-c (~> 4.0)
 
 BUNDLED WITH
    2.4.5

@@ -15,20 +15,19 @@ html, body, #map, #elevation-div { height: 100%; width: 100%; padding: 0; margin
   transform: rotate(-90deg);
   transform-origin: 0 0;
 }
-@media only screen and (max-width: 768px){
-  .vertical {
+
+.horizontal {
     color: rgba(0,0,0,0.5);
     font-size: 12px;
     letter-spacing: 0.025rem;
     position: absolute;
-    bottom: 0;
     left: 0.5rem;
-    transform: none;
-    transform-origin: 0 0;
-    color: rgba(224, 6, 6, 0.5);}
-}
+    color: rgba(224, 6, 6, 0.5);
+    align-self: flex-end;
+  }
 
-.vertical a {
+
+.vertical a, .horizontal a {
   color: inherit;
   text-decoration: none;
   border-bottom: 1px solid transparent;
@@ -37,7 +36,7 @@ html, body, #map, #elevation-div { height: 100%; width: 100%; padding: 0; margin
   transition-duration: 0.25s;
   transition-timing-function: ease;
 }
-.vertical a:hover {
+.vertical a:hover, .horizontal a:hover{
   color: #fc0;
 }
 .vertical a:hover:after {
@@ -48,6 +47,13 @@ html, body, #map, #elevation-div { height: 100%; width: 100%; padding: 0; margin
   padding: 0 0.5rem;
   display: inline-block;
 }
+
+.horizontal a:after{
+  content: '/';
+  padding: 0 0.5rem;
+  display: inline-block;
+}
+
 .vertical span.destination {
   color: #fff;
 }
@@ -243,7 +249,7 @@ footer a {
   }
 
   #hero-mobile {
-    display: block;
+    display: flex;
   }
   .top-title {
     top: 160px;
@@ -319,4 +325,29 @@ nav {
 .author-date {
   color: #6d787a;
   font-size: 16px;
+}
+
+/*divider*/
+.divider {
+  color: rgb(0, 0, 0);
+  font-size: 6vh;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 50px 0;
+}
+.divider::before, .divider::after {
+  content: "";
+  display: block;
+  height: 0.09em;
+  min-width: 30vw;
+}
+.divider::before {
+  background: linear-gradient(to right, rgba(240, 240, 240, 0), rgb(0, 0, 0));
+  margin-right: 4vh;
+}
+.divider::after {
+  background: linear-gradient(to left, rgba(240, 240, 240, 0), rgb(0, 0, 0));
+  margin-left: 4vh;
 }

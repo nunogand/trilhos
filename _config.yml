@@ -31,8 +31,8 @@ description: >- # this means to ignore newlines until "baseurl:"
 
 
 # Build settings
-plugins:
-  - jekyll-feed
+#plugins:
+#  - jekyll-feed
 
 # Exclude from processing.
 # The following items will not be processed, by default.
@@ -45,7 +45,7 @@ plugins:
 exclude:
   - Gemfile
   - Gemfile.lock
-
+  - .jekyll-cache
 
 # Jekyll settings
 sass:
