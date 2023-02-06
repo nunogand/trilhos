@@ -1,6 +1,6 @@
 html, body, #map, #elevation-div { height: 100%; width: 100%; padding: 0; margin: 0; font-family: 'Montserrat', sans-serif;} 
   #map { height: 75%; width:100%; position: relative;} 
-  #elevation-div {font: 12px/1.5 "Northwell, display, serif"; }
+  #elevation-div {font: 12px/1.5 "Montserrat, display, sans-serif"; }
 #map {
   border-radius: 25px 25px 0 0;
 }
@@ -241,6 +241,11 @@ footer a {
 
 .layer-overlay {
   background-image: url("/assets/hero/fog.png");
+}
+
+.layer-4 {
+  background-image: url("/assets/hero/bush.png");
+  background-position: right bottom;
 }
 
 @media only screen and (max-width: 768px) {
