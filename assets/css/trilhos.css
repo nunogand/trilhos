@@ -5,7 +5,7 @@
      font-size: 100%;
      font-weight: 300;
      line-height: 1.5;
-     background: url('/assets/background_trilhos.jpg') no-repeat center center fixed;
+     background: url('/assets/andrei-tanase-1271619.jpg') no-repeat center center fixed;
      -webkit-background-size: cover;
      -moz-background-size: cover;
      -o-background-size: cover;
@@ -18,7 +18,7 @@
      padding: 2.1875em;
 }
  .contentor_blog {
-     margin-top: 150px;
+     margin-top: 100px;
 }
  p {
      font-size: 87.5%;
@@ -31,10 +31,9 @@
      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
      display: flex;
      flex-direction: column;
-     width: 100%;
-     max-width: 800px;
-     margin-left: auto;
-     margin-right: auto;
+     
+     max-width: 600px;
+     
      margin-top: 75px;
 }
  @media screen and (min-width: 700px) {
@@ -154,3 +153,39 @@
      text-shadow: 0 2px 2px #000;
 }
  
+
+
+/* titulo*/
+.site-title {
+	top: 100px;
+	margin-left: 650px;
+	  }
+
+.title {
+ 
+  position: sticky;
+  text-align: center;
+border-top: 1px solid;
+	border-bottom: 1px solid;
+}
+
+@media screen and (min-width: 700px) {
+  .site-title {
+    justify-content: flex-end;
+	  position: -webkit-sticky;
+  position: sticky;
+  margin-top: -150px;
+  
+  }
+	.title {
+		color: black;
+        font-size: 10vh;
+	}
+}
+
+.coluna {
+	backdrop-filter: blur(10px);
+  max-width: fit-content;
+  padding: 10px;
+  margin-top: 50px;
+}
