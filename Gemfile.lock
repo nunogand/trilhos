@@ -69,7 +69,7 @@ GEM
     ruby-vips (2.0.17)
       ffi (~> 1.9)
     safe_yaml (1.0.5)
-    sass-embedded (1.59.3-x86_64-linux-gnu)
+    sass-embedded (1.60.0-x86_64-linux-gnu)
       google-protobuf (~> 3.21)
     terminal-table (3.0.2)
       unicode-display_width (>= 1.1.1, < 3)
