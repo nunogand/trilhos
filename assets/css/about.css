@@ -236,7 +236,10 @@ blockquote {
   max-width: 100%;
   margin: auto;
   display: flex;
+  justify-content: center;
   align-items: center;
+  flex-direction: column;
+
 }
 
 ul {
@@ -360,3 +363,7 @@ footer {
   }
 }
 
+.autor {
+  font-size: 90%;
+  margin-left: auto;
+}
