@@ -4,6 +4,7 @@ html, body, #map, #elevation-div { height: 100%; width: 100%; padding: 0; margin
 #map {
   border-radius: 25px 25px 0 0;
 }
+
 /* vertical nav */
 .vertical {
   background: rgba(244, 254, 220, 0.2);
