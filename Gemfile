@@ -18,4 +18,9 @@ group :jekyll_plugins do
   #gem "jekyll-feed", "~> 0.12"
   gem 'jekyll_picture_tag', '~> 2.0.4'
   gem 'liquid-c', '~> 4.0.1'
+
+# needed to avoid warnings in ruby 3.4  
+  gem 'csv', '~> 3.0'
+  gem 'base64', '~> 0.2.0'
+  gem 'bigdecimal', '~> 3.1', '>= 3.1.5'
 end
