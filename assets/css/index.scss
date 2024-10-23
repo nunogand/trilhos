@@ -4,12 +4,12 @@
 ---
 @charset "UTF-8";
 
-@import "reset";
-@import "kenburns";
-@import "nav-sidebar";
+@use "reset";
+@use "kenburns";
+@use "nav-sidebar";
 
 /*Texto*/
-/*@import "texto";*/
+/*@use "texto";*/
 body{
 font-family: 'Montserrat', sans-serif;
 }

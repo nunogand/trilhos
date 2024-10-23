@@ -1,5 +1,7 @@
 //To add more ".slideshow-image" elements just remember to update the "$items" variable on this file (default 4)
 // updated to avoid deprecation message with jekyll 3.4.2
+@use 'sass:math';
+
 $items: 4;
 
 $animation-time: 4s;
@@ -39,8 +41,8 @@ $scale-base-1: calc(1 + ($scale / 100%));
 
 @for $i from 1 through $items {
   @keyframes kenburns-#{$i} {
-    $animation-time-percent: percentage(calc($animation-time / $total-time));
-    $transition-time-percent: percentage(calc($transition-time / $total-time));
+    $animation-time-percent: math.percentage(calc($animation-time / $total-time));
+    $transition-time-percent: math.percentage(calc($transition-time / $total-time));
     
     $t1: calc($animation-time-percent * ($i - 1) - $transition-time-percent / 2);
     $t2: calc($animation-time-percent * ($i - 1) + $transition-time-percent / 2);

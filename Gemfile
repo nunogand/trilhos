@@ -7,7 +7,7 @@ source "https://rubygems.org"
 #
 # This will help ensure the proper Jekyll version is running.
 # Happy Jekylling!
-gem "jekyll", "~> 4.3.3"
+gem "jekyll", "~> 4.3.4"
 
 # If you want to use GitHub Pages, remove the "gem "jekyll"" above and
 # uncomment the line below. To upgrade, run `bundle update github-pages`.
@@ -16,11 +16,11 @@ gem "jekyll", "~> 4.3.3"
 # If you have any plugins, put them here!
 group :jekyll_plugins do
   #gem "jekyll-feed", "~> 0.12"
-  gem 'jekyll_picture_tag', '~> 2.0.4'
+  gem 'jekyll_picture_tag', '~> 2.1.2'
   gem 'liquid-c', '~> 4.0.1'
 
 # needed to avoid warnings in ruby 3.4  
-  gem 'csv', '~> 3.0'
+  gem 'csv', '~> 3.3.0'
   gem 'base64', '~> 0.2.0'
-  gem 'bigdecimal', '~> 3.1', '>= 3.1.5'
+  gem 'bigdecimal', '~> 3.1', '>= 3.1.8'
 end
