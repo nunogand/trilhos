@@ -2,6 +2,8 @@
 permalink: /about.html
 layout: about
 title: About
+custom_css:
+- about.css
 ---
 
 ## E porque não mais uma caminhada?

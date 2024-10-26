@@ -1,11 +1,10 @@
 ---
 layout: default
+custom_css:
+- trilhos.css
 ---
 
-<link rel="stylesheet" href="assets/css/trilhos.css">
 
-
-</head>
 
 <body>
     <!--
@@ -18,15 +17,16 @@ layout: default
 
 
 
-<div class="coluna">
+    <div class="coluna coluna_1">
     {% for post in site.posts %}
 	  {%include card_post.html %}
 	{% endfor %}
 </div>
 
-<div class="site-title">
+<div class="coluna ordem">
     <h1 class="title">Os meus trilhos</h1>
-</div>
+  </div>
+
 
 </section>
         

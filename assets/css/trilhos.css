@@ -1,9 +1,53 @@
- html {
+
+/* START FLEXBOX LAYOUT */
+.contentor_blog {
+     /*margin-top: 100px;*/
+   display: flex;
+  flex-wrap: wrap;
+  
+  justify-content: center;
+ 
+}
+.coluna {
+  flex: 1 0 50%;
+	
+  max-width: fit-content;
+  padding: 10px;
+  margin-top: 50px;
+  
+  flex-basis: 700px;
+  flex-grow: 1;
+  flex-shrink: 0;
+  
+}
+.coluna_1 {
+  backdrop-filter: blur(3px);
+  margin-top: 100px;
+}
+.ordem {
+ margin-right: auto;
+  margin-left: auto;
+   
+  margin-top: 5px;
+}
+
+@media only screen and (max-width: 1085px) {
+  .coluna {
+    flex: 100%;
+  }
+.ordem {
+    order: -1;
+  }
+ 
+}
+/* END FLEXBOX LAYOUT */
+
+html {
      box-sizing: border-box;
      color: #b9bcbd;
-     font-family: 'Montserrat', sans-serif;
+     font-family: 'Abel', sans-serif;
      font-size: 100%;
-     font-weight: 300;
+     font-weight: 400;
      line-height: 1.5;
      background: url('/assets/andrei-tanase-1271619.jpg') no-repeat center center fixed;
      -webkit-background-size: cover;
@@ -17,11 +61,9 @@
  body {
      padding: 2.1875em;
 }
- .contentor_blog {
-     margin-top: 100px;
-}
+
  p {
-     font-size: 87.5%;
+     font-size: 95%;
      font-weight: 300;
      margin-bottom: 1.375em;
 }
@@ -42,8 +84,6 @@
     }
 }
  .photo-background {
-    /*background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/25776/yosemite.jpg');
-    */
      background-position: center;
      background-size: cover;
      border-top-left-radius: 10px;
@@ -72,24 +112,25 @@
      font-weight: 500;
      margin: 0;
 }
- .photo-details h1 {
-     font-size: 125%;
-     line-height: 1;
-     margin-bottom: 0.35em;
+ .photo-details h1 a {
+   color: #dbd9db;
+   text-decoration: none;
 }
  .photo-details h4 {
-     font-size: 62.5%;
+     font-size: 75%;
      letter-spacing: 0.1em;
      text-transform: uppercase;
 }
+
+
  .photo-author {
      color: #b9bcbd;
      display: block;
-     font-size: 62.5%;
+     font-size: 75%;
      text-transform: uppercase;
 }
  .photo-author a {
-     color: #e37544;
+     color: #b098a4;
 }
  .photo-meta {
      display: flex;
@@ -135,57 +176,34 @@
      top: 0;
      right: 0;
 }
- .hero_section{
-     width:100vw;
-     position: absolute;
-     top: 0;
-     left: 0;
-     margin: 0 auto;
-     background-size: 100%;
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     min-height: 100px;
-}
- .hero_section h1 {
-     color:white;
-     font-size: 250%;
-     text-shadow: 0 2px 2px #000;
-}
  
 
 
 /* titulo*/
-.site-title {
-	top: 100px;
-	margin-left: 650px;
-	  }
+
 
 .title {
- 
+    color: #2d3638;
+    font-size: 12vh;
+    position: sticky;
+    text-align: center;
+	border-bottom: 1px solid #ccc;
+    margin-top: -10px;
+
   position: sticky;
-  text-align: center;
-border-top: 1px solid;
-	border-bottom: 1px solid;
+  top: 0;
 }
 
 @media screen and (min-width: 700px) {
   .site-title {
-    justify-content: flex-end;
+    justify-content: flex-start;
 	  position: -webkit-sticky;
   position: sticky;
   margin-top: -150px;
   
   }
-	.title {
-		color: black;
-        font-size: 10vh;
-	}
+
 }
 
-.coluna {
-	backdrop-filter: blur(10px);
-  max-width: fit-content;
-  padding: 10px;
-  margin-top: 50px;
-}
+
+

@@ -29,16 +29,7 @@
 {%include opengraph.html%}
 
 <!-- custom style -->        
-{% if page.custom_css %}
-  {% for css in page.custom_css %}
-  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/{{ css }}">
-  {% endfor %}
-{%else%}
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
-<link rel="stylesheet" href="https://unpkg.com/@raruto/leaflet-elevation/dist/leaflet-elevation.css">
-<link rel="stylesheet" href="/assets/css/post.css">
-  
-{% endif %}
+<link rel="stylesheet" href="/assets/css/index.css">
 <!-- end custom style -->   
 
 <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>

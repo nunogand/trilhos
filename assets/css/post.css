@@ -1,3 +1,4 @@
+
 html, body, #map, #elevation-div { height: 100%; width: 100%; padding: 0; margin: 0; font-family: 'Montserrat', sans-serif;} 
   #map { height: 75%; width:100%; position: relative;} 
   #elevation-div {font: 12px/1.5 "Montserrat, display, sans-serif"; }
