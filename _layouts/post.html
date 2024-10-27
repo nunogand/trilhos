@@ -52,41 +52,20 @@ layout: default
 /*basic code from https://css-tricks.com/adaptive-photo-layout-with-flexbox/ */
 -->
 <h2 class="divider"> Galeria </h2>
-
 <section class="galeria">
-  
-  <div class="store">
-    
- 
-   <ul>
+    <div class="store">
+      <ul>
  {% for image in site.static_files %} 
  {% if image.path contains page.folder %}
  {% comment %}     <!-- filter to avoid all but image files --> {% endcomment %}
  {% if image.extname == '.jpg' or image.extname == '.jpeg' or image.extname == '.JPG' or image.extname == '.JPEG' %}
- 
- 
- <li><a data-fslightbox href="{{image.path}}">
-   {% picture jpt-webp {{image.path}} %}
-  
- </a></li>
- 
- 
- {% endif %}
- {% endif %} 
- 
- {% endfor %} 
- 
-   
-   
-   
- 
- </ul>
- </div>
- 
+        <li><a data-fslightbox href="{{image.path}}">{% picture jpt-webp {{image.path}} %}</a></li>
+  {% endif %}
+  {% endif %} 
+  {% endfor %} 
+      </ul>
+    </div>
 </section>
-
-
-<!-- page footer -->
 
 <footer>
 	<p>
