@@ -1,0 +1,31 @@
+---
+layout: default
+custom_css:
+- trilhos_beta.css
+---
+
+
+
+<body>
+    <section class="hero">
+        <h1>Mountain Photography</h1>
+        <p>Capturing the majesty of peaks and valleys through the lens</p>
+    </section>
+    
+  <section class="main-section">
+  <div class="post-cards">
+
+    
+    
+    {% for post in site.posts %}
+	  {%include card_post.html %}
+	{% endfor %}
+</div>
+ </section>
+
+  
+<footer>
+        <p>&copy; 2023 Mountain Photography. All rights reserved.</p>
+    </footer>
+</body>
+</html>
