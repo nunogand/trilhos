@@ -19,3 +19,8 @@ presets:
     markup: naked_srcset
     widths: [800, 1200, 1600]
     formats: webp
+  card:
+    formats: [original]
+    fallback_width: 800
+    crop: '6:4'
+    markup: direct_url

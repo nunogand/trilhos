@@ -28,13 +28,13 @@
 
 <article class="post-card">
                 <div class="card-content">
-                    <div class="card-image">
-                        <img src="url({{random-header}}" alt="Storm Approaching">
+                    <div class="card-image" style="background-image: url({% picture card "{{random-header}}"%})">
+                        
                         <div class="date-badge">{{post.date | date: "%d %b %y" }}</div>
                     </div>
                     <div class="card-text">
-                        <h3>When Storms Approach the Summit</h3>
-                        <p>Capturing mountains as weather systems move in reveals their dramatic nature. The interplay of light and shadow during these moments creates some of the most powerful mountain photography opportunities.</p>
+                        <h3>{{post.title}}</h3>
+                        <p>{{post.description}}</p>
                         <div class="tags">
                             <span class="tag">{{ post.tags | sort | join: "</span> <span class="tag">" }}</span>
                             
@@ -113,4 +113,4 @@
       </div>
     </div>
     <!-- ======================== -->
-============ -->
+
