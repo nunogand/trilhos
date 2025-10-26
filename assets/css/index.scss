@@ -1,8 +1,5 @@
----
-# this ensures Jekyll reads the file to be transformed into CSS later
-# only Main files contain this front matter, not partials.
----
-@charset "UTF-8";
+--- # this ensures Jekyll reads the file to be transformed into CSS later # only Main files contain this front matter,
+not partials. --- @charset "UTF-8";
 
 @use "reset";
 @use "kenburns";
@@ -10,9 +7,9 @@
 
 /*Texto*/
 /*@use "texto";*/
-body{
-font-family: 'Abel', sans-serif;
-font-size: 100%;
+body {
+     font-family: 'Abel', sans-serif;
+     font-size: 100%;
      font-weight: 600;
      line-height: 1.5;
 }

@@ -1,5 +1,4 @@
-
-    {% comment %}    
+{% comment %}
 <!-- ======================== -->
 <!-- create list of all images in folder -->
 <!-- init the list -->
@@ -9,70 +8,71 @@
 
 {% comment %} loop and add {% endcomment %}
 
-{% for image in site.static_files %} 
+{% for image in site.static_files %}
 
-    {% if image.path contains post.folder %}
+{% if image.path contains post.folder %}
 
-    {% comment %}     <!-- filter to avoid all but image files --> {% endcomment %}
-    {% if image.extname == '.jpg' or image.extname == '.jpeg' or image.extname == '.JPG' or image.extname == '.JPEG' %}
+{% comment %} <!-- filter to avoid all but image files --> {% endcomment %}
+{% if image.extname == '.jpg' or image.extname == '.jpeg' or image.extname == '.JPG' or image.extname == '.JPEG' %}
 
-         
-    {% comment %} <!-- add image to list--> {% endcomment %}
-    {% assign headers = headers | push: image.path %} 
-    {% endif %}
-{% endif %} 
 
-{% endfor %} 
+{% comment %} <!-- add image to list--> {% endcomment %}
+{% assign headers = headers | push: image.path %}
+{% endif %}
+{% endif %}
 
-  
+{% endfor %}
+
+
 {% assign random-header = headers | sample %}
 
-    <!-- ============ based on https://codepen.io/mtorosian/pen/JWJxRq ============ -->
-    <div class="photo-card">
-	
-	
-      <div class="photo-background" style="background-image: url({{random-header}})">
-      
-        <div class="data">{{post.date | date: "%d %b %y" }}</div>
-        
-      </div>
-    
-      
-      
-      <div class="photo-details">
-        <h1><a href="{{post.url}}">{{post.title}}</a></h1>
-        <span class="photo-author">Por <a href="#" title="Fotos por {{post.author}}" rel="author">{{post.author}}</a></span>
-        <p>{{post.description}}</p>
-        
-        
-        <div class="photo-meta">
-          <div class="equipment">
-            <h4>Conteúdo</h4>
-            <ul>
-              <li>{{headers|size}} fotos</li>
-            </ul>
-          </div>
-          <div class="resolution">
-            <h4>Resolution</h4>
-            <ul>
-              <li>5184x2268 pixels</li>
-            </ul>
-          </div>
-        </div>
-        {% if post.tags.size > 0 %}
-        
-        
-      
+<!-- ============ based on https://codepen.io/mtorosian/pen/JWJxRq ============ -->
+<div class="photo-card">
 
-        <div class="photo-tags">
-          <h4>Tag{% if post.tags.size > 1 %}s{% endif %}:</h4>
-          <ul>
-            <li>{{ post.tags | sort | join: "</li> <li>" }}
-            </li>
-          </ul>
-        
-        </div>
-        {% endif %}
+
+  <div class="photo-background" style="background-image: url({{random-header}})">
+
+    <div class="data">{{post.date | date: "%d %b %y" }}</div>
+
+  </div>
+
+
+
+  <div class="photo-details">
+    <h1><a href="{{post.url}}">{{post.title}}</a></h1>
+    <span class="photo-author">Por <a href="#" title="Fotos por {{post.author}}" rel="author">{{post.author}}</a></span>
+    <p>{{post.description}}</p>
+
+
+    <div class="photo-meta">
+      <div class="equipment">
+        <h4>Conteúdo</h4>
+        <ul>
+          <li>{{headers|size}} fotos</li>
+        </ul>
+      </div>
+      <div class="resolution">
+        <h4>Resolution</h4>
+        <ul>
+          <li>5184x2268 pixels</li>
+        </ul>
       </div>
     </div>
-    <!-- ======================== -->
+    {% if post.tags.size > 0 %}
+
+
+
+
+    <div class="photo-tags">
+      <h4>Tag{% if post.tags.size > 1 %}s{% endif %}:</h4>
+      <ul>
+        <li>{{ post.tags | sort | join: "</li>
+        <li>" }}
+        </li>
+      </ul>
+
+    </div>
+    {% endif %}
+  </div>
+</div>
+<!-- ======================== -->

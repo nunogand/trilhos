@@ -8,7 +8,9 @@ $animation-time: 4s;
 $transition-time: .5s;
 $scale: 20%;
 
-$total-time: ($animation-time * $items);
+$total-time: (
+  $animation-time * $items
+);
 $scale-base-1: calc(1 + ($scale / 100%));
 
 .slideshow {
@@ -43,36 +45,69 @@ $scale-base-1: calc(1 + ($scale / 100%));
   @keyframes kenburns-#{$i} {
     $animation-time-percent: math.percentage(calc($animation-time / $total-time));
     $transition-time-percent: math.percentage(calc($transition-time / $total-time));
-    
+
     $t1: calc($animation-time-percent * ($i - 1) - $transition-time-percent / 2);
     $t2: calc($animation-time-percent * ($i - 1) + $transition-time-percent / 2);
-    @if($t1 < 0%) { $t1: 0%; }
-    @if($t2 < 0%) { $t2: 0%; }
+
+    @if($t1 < 0%) {
+      $t1: 0%;
+    }
+
+    @if($t2 < 0%) {
+      $t2: 0%;
+    }
 
     $t3: calc($animation-time-percent * ($i) - $transition-time-percent / 2);
     $t4: calc($animation-time-percent * ($i) + $transition-time-percent / 2);
-    @if($t3 > 100%) { $t3: 100%; }
-    @if($t4 > 100%) { $t4: 100%; }
+
+    @if($t3 > 100%) {
+      $t3: 100%;
+    }
+
+    @if($t4 > 100%) {
+      $t4: 100%;
+    }
 
     $t5: calc(100% - $transition-time-percent / 2);
     $t6: calc(($t4 - $t1) * 100% / $t5);
 
-    #{$t1} { opacity: 1; transform: scale($scale-base-1); }
-    #{$t2} { opacity: 1; }
-    #{$t3} { opacity: 1; }
-    #{$t4} { opacity: 0; transform: scale(1); }
-    
-    @if($i != $items) {
-      100% { opacity: 0; transform: scale($scale-base-1); }
+    #{$t1} {
+      opacity: 1;
+      transform: scale($scale-base-1);
     }
-    
-    @if($i == 1) {
+
+    #{$t2} {
+      opacity: 1;
+    }
+
+    #{$t3} {
+      opacity: 1;
+    }
+
+    #{$t4} {
+      opacity: 0;
+      transform: scale(1);
+    }
+
+    @if($i !=$items) {
+      100% {
+        opacity: 0;
+        transform: scale($scale-base-1);
+      }
+    }
+
+    @if($i ==1) {
       $scale-plus: calc($scale * (100% - $t5) / $t4);
       $scale-plus-base-1: calc(1 + ($scale + $scale-plus) / 100%);
-    
-      #{$t5} { opacity: 0; transform: scale($scale-plus-base-1); }
-      100% { opacity: 1; }
+
+      #{$t5} {
+        opacity: 0;
+        transform: scale($scale-plus-base-1);
+      }
+
+      100% {
+        opacity: 1;
+      }
     }
   }
 }
-

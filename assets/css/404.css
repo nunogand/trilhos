@@ -1,31 +1,36 @@
 .hero {
-    min-height: 300px;
-    width: 100%;
-    overflow: hidden;
-    background: url(https://s-media-cache-ak0.pinimg.com/originals/11/4a/ae/114aae7aedae0793d141c1864aa31952.jpg);
-    background-size: cover;
-  }
-  body {
-    margin: 0px;
-    color: #585E62;
-    font-family: 'Montserrat', sans-serif;
-  }
-  h1 {
-    padding: 10px;
-    margin: 20px 30px 5px 30px;
-    font-size: 40px;
-  }
-  h2 {
-    padding: 10px;
-    margin: 0px 30px;
-    font-size: 25px;
-  }
-  p {
-    padding: 10px;
-    margin: 0px 30px;
-    font-size: 15px;
-  }
-  a {
-    color : #4466FF;
-    text-decoration: none;
-  }
+  min-height: 300px;
+  width: 100%;
+  overflow: hidden;
+  background: url(https://s-media-cache-ak0.pinimg.com/originals/11/4a/ae/114aae7aedae0793d141c1864aa31952.jpg);
+  background-size: cover;
+}
+
+body {
+  margin: 0px;
+  color: #585E62;
+  font-family: 'Montserrat', sans-serif;
+}
+
+h1 {
+  padding: 10px;
+  margin: 20px 30px 5px 30px;
+  font-size: 40px;
+}
+
+h2 {
+  padding: 10px;
+  margin: 0px 30px;
+  font-size: 25px;
+}
+
+p {
+  padding: 10px;
+  margin: 0px 30px;
+  font-size: 15px;
+}
+
+a {
+  color: #4466FF;
+  text-decoration: none;
+}

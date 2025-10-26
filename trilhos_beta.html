@@ -11,21 +11,22 @@ custom_css:
     <h1>Os meus trilhos</h1>
     <p>Capturing the majesty of peaks and valleys through the lens</p>
   </section>
-    
+
   <section class="main-section">
-  <div class="post-cards">
+    <div class="post-cards">
 
-    
-    
-    {% for post in site.posts %}
-	  {%include card_post_beta.html %}
-	{% endfor %}
-</div>
- </section>
 
-  
-<footer>
-  <p>&copy; 2025 Nuno Rodrigues. No rights reserved.</p>
-</footer>
+
+      {% for post in site.posts %}
+      {%include card_post_beta.html %}
+      {% endfor %}
+    </div>
+  </section>
+
+
+  <footer>
+    <p>&copy; 2025 Nuno Rodrigues. No rights reserved.</p>
+  </footer>
 </body>
+
 </html>

@@ -6,7 +6,7 @@ title: Trilhos
 
 <body>
 
-{%include nav_sidebar.html%}
+    {%include nav_sidebar.html%}
 
     <!-- init the list -->
     {% assign headers = "" | split: ',' %}
@@ -15,13 +15,13 @@ title: Trilhos
     {% for image in site.static_files %} {% if image.path contains '/assets/front/' %}
 
     <!-- add image -->
-    {% assign headers = headers | push: image.path %} {% endif %} {% endfor %} 
-    
-      
-    {% assign random-header = headers | sample: 4 %} 
-    
-       
-<!-- You can add more ".slideshow-image" elements, but remember to update the "$items" on kenburns.scss  -->
+    {% assign headers = headers | push: image.path %} {% endif %} {% endfor %}
+
+
+    {% assign random-header = headers | sample: 4 %}
+
+
+    <!-- You can add more ".slideshow-image" elements, but remember to update the "$items" on kenburns.scss  -->
     <div class="slideshow">
         <div class="slideshow-image" style="background-image: url('{{ random-header[0] }}')"></div>
         <div class="slideshow-image" style="background-image: url('{{ random-header[1] }}')"></div>
@@ -30,8 +30,9 @@ title: Trilhos
     </div>
 
 
-</section>
+    </section>
 
 
 </body>
+
 </html>

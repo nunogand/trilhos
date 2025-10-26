@@ -10,263 +10,266 @@ layout: default
       <div class='layer-1 layer' data-depth='0.20' data-type='parallax'></div>
       <div class='layer-2 layer' data-depth='0.50' data-type='parallax'></div>
       <div class="top-title">{{page.title}}</div>
-      <div class="vertical"> <a href="{{ site.url }}">Entrada</a><a href="/trilhos.html">Trilhos</a><span class="destination">{{page.title}}</span></div>
+      <div class="vertical"> <a href="{{ site.url }}">Entrada</a><a href="/trilhos.html">Trilhos</a><span
+          class="destination">{{page.title}}</span></div>
       <div class='layer-overlay layer' data-depth='0.80' data-type='parallax'></div>
       <div class='layer-3 layer' data-depth='0.85' data-type='parallax'></div>
       <div class='layer-4 layer' data-depth='1.00' data-type='parallax'></div>
     </div>
-    
+
     <div id='hero-mobile'>
-      <div class="horizontal"> <a href="{{ site.url }}">Entrada</a><a href="/trilhos.html">Trilhos</a><span class="destination">{{page.title}}</span></div>
+      <div class="horizontal"> <a href="{{ site.url }}">Entrada</a><a href="/trilhos.html">Trilhos</a><span
+          class="destination">{{page.title}}</span></div>
       <div class="top-title">{{page.title}}</div>
-      
+
     </div>
-<!--End Hero-->
+    <!--End Hero-->
 
-<div id="content">
-  
-<header>  
+    <div id="content">
 
-
-<!--Byline-->
-<div class="author">
-  <img src="/assets/author.png" alt="autor" class="author-img">
-  <h3 class="author-name">{{page.author}}</h3>
-  <p class="author-date">{{ page.date | date: '%d-%m-%Y' }}</p>
-</div>
-<!--End byline-->
-
-</header>
+      <header>
 
 
-  <section  class="store">
-  <div id="map" style="height: 500px;"></div>
-</section>
+        <!--Byline-->
+        <div class="author">
+          <img src="/assets/author.png" alt="autor" class="author-img">
+          <h3 class="author-name">{{page.author}}</h3>
+          <p class="author-date">{{ page.date | date: '%d-%m-%Y' }}</p>
+        </div>
+        <!--End byline-->
 
-<!--
+      </header>
+
+
+      <section class="store">
+        <div id="map" style="height: 500px;"></div>
+      </section>
+
+      <!--
   Navegação
 -->
 
 
-  <!--  /* galeria */
+      <!--  /* galeria */
 /*basic code from https://css-tricks.com/adaptive-photo-layout-with-flexbox/ */
 -->
-<h2 class="divider"> Galeria </h2>
-<section class="galeria">
-    <div class="store">
-      <ul>
- {% for image in site.static_files %} 
- {% if image.path contains page.folder %}
- {% comment %}     <!-- filter to avoid all but image files --> {% endcomment %}
- {% if image.extname == '.jpg' or image.extname == '.jpeg' or image.extname == '.JPG' or image.extname == '.JPEG' %}
-        <li><a data-fslightbox href="{{image.path}}">{% picture jpt-webp {{image.path}} %}</a></li>
-  {% endif %}
-  {% endif %} 
-  {% endfor %} 
-      </ul>
-    </div>
-</section>
+      <h2 class="divider"> Galeria </h2>
+      <section class="galeria">
+        <div class="store">
+          <ul>
+            {% for image in site.static_files %}
+            {% if image.path contains page.folder %}
+            {% comment %} <!-- filter to avoid all but image files --> {% endcomment %}
+            {% if image.extname == '.jpg' or image.extname == '.jpeg' or image.extname == '.JPG' or image.extname ==
+            '.JPEG' %}
+            <li><a data-fslightbox href="{{image.path}}">{% picture jpt-webp {{image.path}} %}</a></li>
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+          </ul>
+        </div>
+      </section>
 
-<footer>
-	<p>
-		Created by 
-		<a href="https://nunogand.com">Nuno Rodrigues</a>
-	</p>
-</footer>
-</div>
-<!-- original versions 
+      <footer>
+        <p>
+          Created by
+          <a href="https://nunogand.com">Nuno Rodrigues</a>
+        </p>
+      </footer>
+    </div>
+    <!-- original versions 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.3/leaflet.js"></script>
   <script src="https://unpkg.com/leaflet-ui@0.5.9/dist/leaflet-ui.js"></script>
   <script src="https://unpkg.com/@raruto/leaflet-elevation/dist/leaflet-elevation.js"></script>
 end original versions -->
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
-<script src="https://unpkg.com/leaflet-ui@latest/dist/leaflet-ui.js"></script>
-<script src="https://unpkg.com/@raruto/leaflet-elevation/dist/leaflet-elevation.js"></script>
-  
-
-
-<script>
-    let mylocale = {
-			"Acceleration"      : "Aceleração",
-			"Altitude"          : "Altitude",
-			"Slope"             : "Inclinação",
-			"Speed"             : "Velocidade",
-			"Total Length: "    : "Distância Percorrida: ",
-			"Max Elevation: "   : "Altitude máxima: ",
-			"Min Elevation: "   : "Altitude mínima: ",
-			"Avg Elevation: "   : "Altitude média: ",
-			"Total Time: "      : "Duração: ",
-			"Total Ascent: "    : "Total subida: ",
-			"Total Descent: "   : "Total descida: ",
-			"Min Slope: "       : "Inclinação Min: ",
-			"Max Slope: "       : "Inclinação Max: ",
-			"Avg Slope: "       : "Inclinação Média: ",
-			"Min Speed: "       : "Velocidade Min: ",
-			"Max Speed: "       : "Velocidade Max: ",
-			"Avg Speed: "       : "Velocidade Média: ",
-			"Min Acceleration: ": "Aceleração Min: ",
-			"Max Acceleration: ": "Aceleração Max: ",
-			"Avg Acceleration: ": "Aceleração Média: ",
-			"y: "				: "Altitude: ",
-			"x: "				: "Distância: ",
-			"t: "				: "Data: ",
-			"T: "				: "Duração: ",
-			"m: "				: "Inclinação: ",
-			"v: "				: "Velocidade: ",
-			"a: "				: "Aceleração: ",
-		};
-
-L.registerLocale('pt', mylocale);
-		L.setLocale('pt');
-
-// Full list options at "leaflet-elevation.js"
-  var elevation_options = {
-   
-    // Default chart colors: theme lime-theme, magenta-theme, ...
-    theme: "lightblue-theme",
-
-    // Chart container outside/inside map container
-    detached: true,
-
-    // if (detached), the elevation chart container
-    elevationDiv: "#elevation-div",
-
-    // if (!detached) autohide chart profile on chart mouseleave
-    autohide: false,
-
-    // if (!detached) initial state of chart profile control
-    collapsed: false,
-    
-    // if (!detached) control position on one of map corners
-    position: "topright",
-    
-    // Toggle close icon visibility
-    closeBtn: true,
-
-    // Autoupdate map center on chart mouseover.
-    followMarker: true,
-
-    // Autoupdate map bounds on chart update.
-    autofitBounds: true,
-
-    // Chart distance/elevation units.
-    imperial: false,
-
-    // [Lat, Long] vs [Long, Lat] points. (leaflet default: [Lat, Long])
-    reverseCoords: false,
-
-    // Acceleration chart profile: true || "summary" || "disabled" || false
-    acceleration: false,
-
-    // Slope chart profile: true || "summary" || "disabled" || false
-    slope: "summary",
-
-    // Speed chart profile: true || "summary" || "disabled" || false
-    speed: true,
-
-    // Altitude chart profile: true || "summary" || "disabled" || false
-    altitude: true,
-
-    // Display time info: true || "summary" || false
-    time: true,
-
-    // Display distance info: true || "summary" || false
-    distance: true,
-
-    // Summary track info style: "inline" || "multiline" || false
-    summary: 'inline',
-
-    // Download link: "link" || false || "modal"
-    downloadLink: "link",
-
-    // Toggle chart ruler filter
-    ruler: true,
-
-    // Toggle chart legend filter
-    legend: true,
-
-    // Toggle "leaflet-almostover" integration
-    almostOver: true,
-
-    // Toggle "leaflet-distance-markers" integration
-    distanceMarkers: false,
-    
-    // Toggle "leaflet-hotline" integration
-    hotline: true,
-
-    // Display track datetimes: true || false
-    timestamps: true,
-
-    // Display track waypoints: true || "markers" || "dots" || false
-    waypoints: true,
-
-    // Toggle custom waypoint icons: true || { associative array of <sym> tags } || false
-    wptIcons: {
-      '': L.divIcon({
-        className: 'elevation-waypoint-marker',
-        html: '<i class="elevation-waypoint-icon"></i>',
-        iconSize: [30, 30],
-        iconAnchor: [8, 30],
-      }),
-    },
-
-    // Toggle waypoint labels: true || "markers" || "dots" || false
-    wptLabels: true,
-
-    // Render chart profiles as Canvas or SVG Paths
-    preferCanvas: true,
-
-  };
-
-  // Instantiate map (leaflet-ui).
-  var map = L.map('map', { mapTypeId: 'terrain', center: [41.4583, 12.7059], zoom: 5 });
-
-  // Instantiate elevation control.
-  var controlElevation = L.control.elevation(elevation_options).addTo(map);
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-ui@latest/dist/leaflet-ui.js"></script>
+    <script src="https://unpkg.com/@raruto/leaflet-elevation/dist/leaflet-elevation.js"></script>
 
 
 
-{% for gpx in site.static_files %} 
+    <script>
+      let mylocale = {
+        "Acceleration": "Aceleração",
+        "Altitude": "Altitude",
+        "Slope": "Inclinação",
+        "Speed": "Velocidade",
+        "Total Length: ": "Distância Percorrida: ",
+        "Max Elevation: ": "Altitude máxima: ",
+        "Min Elevation: ": "Altitude mínima: ",
+        "Avg Elevation: ": "Altitude média: ",
+        "Total Time: ": "Duração: ",
+        "Total Ascent: ": "Total subida: ",
+        "Total Descent: ": "Total descida: ",
+        "Min Slope: ": "Inclinação Min: ",
+        "Max Slope: ": "Inclinação Max: ",
+        "Avg Slope: ": "Inclinação Média: ",
+        "Min Speed: ": "Velocidade Min: ",
+        "Max Speed: ": "Velocidade Max: ",
+        "Avg Speed: ": "Velocidade Média: ",
+        "Min Acceleration: ": "Aceleração Min: ",
+        "Max Acceleration: ": "Aceleração Max: ",
+        "Avg Acceleration: ": "Aceleração Média: ",
+        "y: ": "Altitude: ",
+        "x: ": "Distância: ",
+        "t: ": "Data: ",
+        "T: ": "Duração: ",
+        "m: ": "Inclinação: ",
+        "v: ": "Velocidade: ",
+        "a: ": "Aceleração: ",
+      };
 
-{% if gpx.path contains page.folder %}
+      L.registerLocale('pt', mylocale);
+      L.setLocale('pt');
 
-{% comment %}     <!-- filter to select gpx --> {% endcomment %}
+      // Full list options at "leaflet-elevation.js"
+      var elevation_options = {
 
-{% if gpx.extname == '.gpx' or gpx.extname == '.GPX' %}
+        // Default chart colors: theme lime-theme, magenta-theme, ...
+        theme: "lightblue-theme",
+
+        // Chart container outside/inside map container
+        detached: true,
+
+        // if (detached), the elevation chart container
+        elevationDiv: "#elevation-div",
+
+        // if (!detached) autohide chart profile on chart mouseleave
+        autohide: false,
+
+        // if (!detached) initial state of chart profile control
+        collapsed: false,
+
+        // if (!detached) control position on one of map corners
+        position: "topright",
+
+        // Toggle close icon visibility
+        closeBtn: true,
+
+        // Autoupdate map center on chart mouseover.
+        followMarker: true,
+
+        // Autoupdate map bounds on chart update.
+        autofitBounds: true,
+
+        // Chart distance/elevation units.
+        imperial: false,
+
+        // [Lat, Long] vs [Long, Lat] points. (leaflet default: [Lat, Long])
+        reverseCoords: false,
+
+        // Acceleration chart profile: true || "summary" || "disabled" || false
+        acceleration: false,
+
+        // Slope chart profile: true || "summary" || "disabled" || false
+        slope: "summary",
+
+        // Speed chart profile: true || "summary" || "disabled" || false
+        speed: true,
+
+        // Altitude chart profile: true || "summary" || "disabled" || false
+        altitude: true,
+
+        // Display time info: true || "summary" || false
+        time: true,
+
+        // Display distance info: true || "summary" || false
+        distance: true,
+
+        // Summary track info style: "inline" || "multiline" || false
+        summary: 'inline',
+
+        // Download link: "link" || false || "modal"
+        downloadLink: "link",
+
+        // Toggle chart ruler filter
+        ruler: true,
+
+        // Toggle chart legend filter
+        legend: true,
+
+        // Toggle "leaflet-almostover" integration
+        almostOver: true,
+
+        // Toggle "leaflet-distance-markers" integration
+        distanceMarkers: false,
+
+        // Toggle "leaflet-hotline" integration
+        hotline: true,
+
+        // Display track datetimes: true || false
+        timestamps: true,
+
+        // Display track waypoints: true || "markers" || "dots" || false
+        waypoints: true,
+
+        // Toggle custom waypoint icons: true || { associative array of <sym> tags } || false
+        wptIcons: {
+          '': L.divIcon({
+            className: 'elevation-waypoint-marker',
+            html: '<i class="elevation-waypoint-icon"></i>',
+            iconSize: [30, 30],
+            iconAnchor: [8, 30],
+          }),
+        },
+
+        // Toggle waypoint labels: true || "markers" || "dots" || false
+        wptLabels: true,
+
+        // Render chart profiles as Canvas or SVG Paths
+        preferCanvas: true,
+
+      };
+
+      // Instantiate map (leaflet-ui).
+      var map = L.map('map', { mapTypeId: 'terrain', center: [41.4583, 12.7059], zoom: 5 });
+
+      // Instantiate elevation control.
+      var controlElevation = L.control.elevation(elevation_options).addTo(map);
 
 
-  // Load track from url (allowed data types: "*.geojson", "*.gpx", "*.tcx")
-  controlElevation.load("{{gpx.path}}");
 
-  {% endif %}
-{% endif %} 
+      {% for gpx in site.static_files %}
 
-{% endfor %} 
+      {% if gpx.path contains page.folder %}
+
+      {% comment %}     <!-- filter to select gpx --> {% endcomment %}
+
+      {% if gpx.extname == '.gpx' or gpx.extname == '.GPX' %}
 
 
+      // Load track from url (allowed data types: "*.geojson", "*.gpx", "*.tcx")
+      controlElevation.load("{{gpx.path}}");
 
-(function() {
-  // Tutorial: https://medium.com/@patrickwestwood/how-to-make-multi-layered-parallax-illustration-with-css-javascript-2b56883c3f27
-  window.addEventListener('scroll', function(event) {
-    var depth, i, layer, layers, len, movement, topDistance, translate3d;
-    topDistance = this.pageYOffset;
-    layers = document.querySelectorAll("[data-type='parallax']");
-    for (i = 0, len = layers.length; i < len; i++) {
-      layer = layers[i];
-      depth = layer.getAttribute('data-depth');
-      movement = -(topDistance * depth);
-      translate3d = 'translate3d(0, ' + movement + 'px, 0)';
-      layer.style['-webkit-transform'] = translate3d;
-      layer.style['-moz-transform'] = translate3d;
-      layer.style['-ms-transform'] = translate3d;
-      layer.style['-o-transform'] = translate3d;
-      layer.style.transform = translate3d;
-    }
-  });
+      {% endif %}
+      {% endif %}
 
-}).call(this);
+      {% endfor %}
 
 
 
-</script>
+      (function () {
+        // Tutorial: https://medium.com/@patrickwestwood/how-to-make-multi-layered-parallax-illustration-with-css-javascript-2b56883c3f27
+        window.addEventListener('scroll', function (event) {
+          var depth, i, layer, layers, len, movement, topDistance, translate3d;
+          topDistance = this.pageYOffset;
+          layers = document.querySelectorAll("[data-type='parallax']");
+          for (i = 0, len = layers.length; i < len; i++) {
+            layer = layers[i];
+            depth = layer.getAttribute('data-depth');
+            movement = -(topDistance * depth);
+            translate3d = 'translate3d(0, ' + movement + 'px, 0)';
+            layer.style['-webkit-transform'] = translate3d;
+            layer.style['-moz-transform'] = translate3d;
+            layer.style['-ms-transform'] = translate3d;
+            layer.style['-o-transform'] = translate3d;
+            layer.style.transform = translate3d;
+          }
+        });
+
+      }).call(this);
+
+
+
+    </script>

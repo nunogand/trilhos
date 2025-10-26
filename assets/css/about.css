@@ -4,7 +4,8 @@
   margin: auto;
   padding: 0 1rem;
   max-width: 71.25rem;
-  width: 100%; }
+  width: 100%;
+}
 
 .grid {
   display: -webkit-box;
@@ -15,120 +16,59 @@
   -ms-flex-direction: column;
   flex-direction: column;
   -ms-flex-flow: row wrap;
-  flex-flow: row wrap; }
-  .grid > [class*="column-"] {
-    display: block; }
+  flex-flow: row wrap;
+}
+
+.grid>[class*="column-"] {
+  display: block;
+}
 
 .column-xs-12 {
   -ms-flex-preferred-size: 100%;
   flex-basis: 100%;
-  max-width: 100%; }
+  max-width: 100%;
+}
 
 @media (min-width: 62rem) {
   .column-md-1 {
     -ms-flex-preferred-size: 8.33333%;
     flex-basis: 8.33333%;
-    max-width: 8.33333%; }
+    max-width: 8.33333%;
+  }
+
   .column-md-4 {
     -ms-flex-preferred-size: 33.33333%;
     flex-basis: 33.33333%;
-    max-width: 33.33333%; }
+    max-width: 33.33333%;
+  }
+
   .column-md-5 {
     -ms-flex-preferred-size: 41.66667%;
     flex-basis: 41.66667%;
-    max-width: 41.66667%; }
+    max-width: 41.66667%;
+  }
+
   .column-md-7 {
     -ms-flex-preferred-size: 58.33333%;
     flex-basis: 58.33333%;
-    max-width: 58.33333%; }
+    max-width: 58.33333%;
+  }
+
   .column-md-8 {
     -ms-flex-preferred-size: 66.66667%;
     flex-basis: 66.66667%;
-    max-width: 66.66667%; } }
-
-@supports (display: grid) {
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: auto; }
-    .grid > [class*="column-"] {
-      margin: 0;
-      max-width: 100%; }
-  .column-xs-12 {
-    grid-column-start: span 12;
-    grid-column-end: span 12; }
-  @media (min-width: 62rem) {
-    .column-md-1 {
-      grid-column-start: span 1;
-      grid-column-end: span 1; }
-    .column-md-4 {
-      grid-column-start: span 4;
-      grid-column-end: span 4; }
-    .column-md-5 {
-      grid-column-start: span 5;
-      grid-column-end: span 5; }
-    .column-md-7 {
-      grid-column-start: span 7;
-      grid-column-end: span 7; }
-    .column-md-8 {
-      grid-column-start: span 8;
-      grid-column-end: span 8; } } }
-
-
-
-      .container {
-  margin: auto;
-  padding: 0 1rem;
-  max-width: 71.25rem;
-  width: 100%;
-}
-
-.grid {
-  display: flex;
-  flex-direction: column;
-  flex-flow: row wrap;
-}
-.grid > [class*=column-] {
-  display: block;
-}
-
-.column-xs-12 {
-  flex-basis: 100%;
-  max-width: 100%;
-}
-@media (min-width: 62rem) {
-  .column-md-1 {
-    flex-basis: 8.3333333333%;
-    max-width: 8.3333333333%;
-  }
-
-  .column-md-4 {
-    flex-basis: 33.3333333333%;
-    max-width: 33.3333333333%;
-  }
-
-  .column-md-5 {
-    flex-basis: 41.6666666667%;
-    max-width: 41.6666666667%;
-  }
-
-  .column-md-7 {
-    flex-basis: 58.3333333333%;
-    max-width: 58.3333333333%;
-  }
-
-  .column-md-8 {
-    flex-basis: 66.6666666667%;
-    max-width: 66.6666666667%;
+    max-width: 66.66667%;
   }
 }
+
 @supports (display: grid) {
   .grid {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: auto;
   }
-  .grid > [class*=column-] {
+
+  .grid>[class*="column-"] {
     margin: 0;
     max-width: 100%;
   }
@@ -137,6 +77,7 @@
     grid-column-start: span 12;
     grid-column-end: span 12;
   }
+
   @media (min-width: 62rem) {
     .column-md-1 {
       grid-column-start: span 1;
@@ -164,10 +105,109 @@
     }
   }
 }
+
+
+
+.container {
+  margin: auto;
+  padding: 0 1rem;
+  max-width: 71.25rem;
+  width: 100%;
+}
+
+.grid {
+  display: flex;
+  flex-direction: column;
+  flex-flow: row wrap;
+}
+
+.grid>[class*=column-] {
+  display: block;
+}
+
+.column-xs-12 {
+  flex-basis: 100%;
+  max-width: 100%;
+}
+
+@media (min-width: 62rem) {
+  .column-md-1 {
+    flex-basis: 8.3333333333%;
+    max-width: 8.3333333333%;
+  }
+
+  .column-md-4 {
+    flex-basis: 33.3333333333%;
+    max-width: 33.3333333333%;
+  }
+
+  .column-md-5 {
+    flex-basis: 41.6666666667%;
+    max-width: 41.6666666667%;
+  }
+
+  .column-md-7 {
+    flex-basis: 58.3333333333%;
+    max-width: 58.3333333333%;
+  }
+
+  .column-md-8 {
+    flex-basis: 66.6666666667%;
+    max-width: 66.6666666667%;
+  }
+}
+
+@supports (display: grid) {
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: auto;
+  }
+
+  .grid>[class*=column-] {
+    margin: 0;
+    max-width: 100%;
+  }
+
+  .column-xs-12 {
+    grid-column-start: span 12;
+    grid-column-end: span 12;
+  }
+
+  @media (min-width: 62rem) {
+    .column-md-1 {
+      grid-column-start: span 1;
+      grid-column-end: span 1;
+    }
+
+    .column-md-4 {
+      grid-column-start: span 4;
+      grid-column-end: span 4;
+    }
+
+    .column-md-5 {
+      grid-column-start: span 5;
+      grid-column-end: span 5;
+    }
+
+    .column-md-7 {
+      grid-column-start: span 7;
+      grid-column-end: span 7;
+    }
+
+    .column-md-8 {
+      grid-column-start: span 8;
+      grid-column-end: span 8;
+    }
+  }
+}
+
 * {
   box-sizing: border-box;
 }
-*::before, *::after {
+
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -215,6 +255,7 @@ h3 {
 p {
   margin: 0 0 1.5rem;
 }
+
 p.copyright {
   margin: 1.5rem 0;
 }
@@ -223,6 +264,7 @@ a {
   color: #a5a5a5;
   text-decoration: none;
 }
+
 a:hover {
   color: #322c2c;
 }
@@ -246,6 +288,7 @@ ul {
   margin: 0;
   padding: 0;
 }
+
 ul li {
   margin: 0 1.5rem 0 0;
 }
@@ -260,10 +303,12 @@ nav {
   position: relative;
   padding: 1.25rem 0 1.25rem 0;
 }
+
 nav ul {
   display: flex;
   justify-content: flex-start;
 }
+
 nav ul li {
   font-size: 1.25rem;
   font-weight: 700;
@@ -271,11 +316,12 @@ nav ul li {
   text-transform: uppercase;
   margin: 0 1.5rem 0 0;
 }
+
 nav ul li:nth-child(3) {
   margin: 0;
 }
 
-nav .grid > [class*=column-] {
+nav .grid>[class*=column-] {
   padding: 0.25rem 1rem;
 }
 
@@ -299,7 +345,7 @@ main {
   padding: 2rem 0;
 }
 
-.grid > [class*=column-] {
+.grid>[class*=column-] {
   padding: 1rem;
 }
 
@@ -311,7 +357,7 @@ img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 
 footer {
@@ -326,6 +372,7 @@ footer {
   nav {
     padding: 2.5rem 0 2.5rem 0;
   }
+
   nav ul {
     justify-content: flex-end;
   }

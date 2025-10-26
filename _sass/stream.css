@@ -1,5 +1,5 @@
 body {
-  margin: 0;
+	margin: 0;
 	padding: 0;
 	background-image: radial-gradient(rgba(255, 0, 0, 0.3), rgba(255, 0, 0, 0) 40vw), radial-gradient(rgba(0, 128, 0, 0.3), rgba(0, 128, 0, 0) 40vw), radial-gradient(rgba(0, 0, 255, 0.3), rgba(0, 0, 255, 0) 40vw), radial-gradient(rgba(255, 255, 0, 0.3), rgba(255, 255, 0, 0) 40vw), radial-gradient(rgba(255, 0, 0, 0.3), rgba(255, 0, 0, 0) 40vw);
 	background-position: -40vw 14rem, 50% 10rem, 60vw 14rem, -10vw calc(14rem + 20vw), 30vw calc(14rem + 20vw);
@@ -7,11 +7,11 @@ body {
 	background-repeat: no-repeat;
 	background-repeat: repeat-x;
 	background-position: center bottom;
-  }
+}
 
 /*--GPX--*/
 .gpx {
-  border-radius: 5px;
+	border-radius: 5px;
 	width: 100%;
 	margin: 0em auto;
 	flex: 1 1 20em;
@@ -68,8 +68,5 @@ body {
 .gpx ul.info li span {
 	color: black;
 }
+
 /*--end GPX --*/
-
-
-
-

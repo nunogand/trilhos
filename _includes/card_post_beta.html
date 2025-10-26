@@ -1,4 +1,4 @@
-    {% comment %}    
+{% comment %}
 <!-- ======================== -->
 <!-- create list of all images in folder -->
 <!-- init the list -->
@@ -8,63 +8,63 @@
 
 {% comment %} loop and add {% endcomment %}
 
-{% for image in site.static_files %} 
+{% for image in site.static_files %}
 
-    {% if image.path contains post.folder %}
+{% if image.path contains post.folder %}
 
-    {% comment %}     <!-- filter to avoid all but image files --> {% endcomment %}
-    {% if image.extname == '.jpg' or image.extname == '.jpeg' or image.extname == '.JPG' or image.extname == '.JPEG' %}
+{% comment %} <!-- filter to avoid all but image files --> {% endcomment %}
+{% if image.extname == '.jpg' or image.extname == '.jpeg' or image.extname == '.JPG' or image.extname == '.JPEG' %}
 
-         
-    {% comment %} <!-- add image to list--> {% endcomment %}
-    {% assign headers = headers | push: image.path %} 
-    {% endif %}
-{% endif %} 
 
-{% endfor %} 
+{% comment %} <!-- add image to list--> {% endcomment %}
+{% assign headers = headers | push: image.path %}
+{% endif %}
+{% endif %}
 
-  
+{% endfor %}
+
+
 {% assign random-header = headers | sample %}
 
 <article class="post-card">
-                <div class="card-content">
-                    <div class="card-image" style="background-image: url({% picture card "{{random-header}}"%})">
-                        
-                        <div class="date-badge">{{post.date | date: "%d %b %y" }}</div>
-                    </div>
-                    <div class="card-text">
-                        <h3>{{post.title}}</h3>
-                        <p>{{post.description}}</p>
-                        <div class="tags">
-                            <span class="tag">{{ post.tags | sort | join: "</span> <span class="tag">" }}</span>
-                            
+  <div class="card-content">
+    <div class="card-image" style="background-image: url({% picture card " {{random-header}}"%})">
 
-                        </div>
-                        <!-- Integrated Statistics -->
-                        <div class="card-stats">
-                            <div class="stat-item">
-                                <i class="fas fa-camera"></i>
-                                <span class="count">1,762</span>
-                            </div>
-                            <div class="stat-item">
-                                <i class="fas fa-image"></i>
-                                <span class="count">{{headers|size}} fotos</span>
-                            </div>
-                            <div class="stat-item">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span class="count">37</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
+      <div class="date-badge">{{post.date | date: "%d %b %y" }}</div>
+    </div>
+    <div class="card-text">
+      <h3>{{post.title}}</h3>
+      <p>{{post.description}}</p>
+      <div class="tags">
+        <span class="tag">{{ post.tags | sort | join: "</span> <span class="tag">" }}</span>
 
 
+      </div>
+      <!-- Integrated Statistics -->
+      <div class="card-stats">
+        <div class="stat-item">
+          <i class="fas fa-camera"></i>
+          <span class="count">1,762</span>
+        </div>
+        <div class="stat-item">
+          <i class="fas fa-image"></i>
+          <span class="count">{{headers|size}} fotos</span>
+        </div>
+        <div class="stat-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <span class="count">37</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
 
 
 
 
-    <!-- ============ based on https://codepen.io/mtorosian/pen/JWJxRq 
+
+
+<!-- ============ based on https://codepen.io/mtorosian/pen/JWJxRq 
     <div class="photo-card">
 	
 	
@@ -113,4 +113,3 @@
       </div>
     </div>
     <!-- ======================== -->
-

@@ -1,7 +1,24 @@
+html,
+body,
+#map,
+#elevation-div {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+}
 
-html, body, #map, #elevation-div { height: 100%; width: 100%; padding: 0; margin: 0; font-family: 'Montserrat', sans-serif;} 
-  #map { height: 75%; width:100%; position: relative;} 
-  #elevation-div {font: 12px/1.5 "Montserrat, display, sans-serif"; }
+#map {
+  height: 75%;
+  width: 100%;
+  position: relative;
+}
+
+#elevation-div {
+  font: 12px/1.5 "Montserrat, display, sans-serif";
+}
+
 #map {
   border-radius: 25px 25px 0 0;
 }
@@ -9,8 +26,8 @@ html, body, #map, #elevation-div { height: 100%; width: 100%; padding: 0; margin
 /* vertical nav */
 .vertical {
   background: rgba(244, 254, 220, 0.2);
-	box-shadow: 0 2px 16px #333;
-	padding: 20px;
+  box-shadow: 0 2px 16px #333;
+  padding: 20px;
   font-size: 14px;
   letter-spacing: 0.025rem;
   color: #fff;
@@ -22,20 +39,21 @@ html, body, #map, #elevation-div { height: 100%; width: 100%; padding: 0; margin
 }
 
 .horizontal {
-    background: rgba(244, 254, 220, 0.2);
-	box-shadow: 0 2px 16px #333;
-	padding: 20px;
-    color: rgba(0,0,0,0.5);
-    font-size: 12px;
-    letter-spacing: 0.025rem;
-    position: absolute;
-    left: 0.5rem;
-    color: rgba(224, 6, 6, 0.5);
-    align-self: flex-end;
-  }
+  background: rgba(244, 254, 220, 0.2);
+  box-shadow: 0 2px 16px #333;
+  padding: 20px;
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 12px;
+  letter-spacing: 0.025rem;
+  position: absolute;
+  left: 0.5rem;
+  color: rgba(224, 6, 6, 0.5);
+  align-self: flex-end;
+}
 
 
-.vertical a, .horizontal a {
+.vertical a,
+.horizontal a {
   color: inherit;
   text-decoration: none;
   border-bottom: 1px solid transparent;
@@ -44,19 +62,23 @@ html, body, #map, #elevation-div { height: 100%; width: 100%; padding: 0; margin
   transition-duration: 0.25s;
   transition-timing-function: ease;
 }
-.vertical a:hover, .horizontal a:hover{
+
+.vertical a:hover,
+.horizontal a:hover {
   color: #fc0;
 }
+
 .vertical a:hover:after {
-  color: rgba(255,255,255,0.5);
+  color: rgba(255, 255, 255, 0.5);
 }
+
 .vertical a:after {
   content: '/';
   padding: 0 0.5rem;
   display: inline-block;
 }
 
-.horizontal a:after{
+.horizontal a:after {
   content: '/';
   padding: 0 0.5rem;
   display: inline-block;
@@ -65,13 +87,15 @@ html, body, #map, #elevation-div { height: 100%; width: 100%; padding: 0; margin
 .vertical span.destination {
   color: #fff;
 }
-  /* end vertical nav*/
- 
+
+/* end vertical nav*/
+
 /* galeria*/
 ul {
   display: flex;
   flex-wrap: wrap;
 }
+
 ul:after {
   content: "";
   display: block;
@@ -95,11 +119,13 @@ img {
     height: 30vh;
   }
 }
+
 @media (max-height: 480px) {
   li {
     height: 80vh;
   }
 }
+
 @media (max-aspect-ratio: 1/1) and (max-width: 480px) {
   ul {
     flex-direction: row;
@@ -116,12 +142,14 @@ img {
     min-width: 0;
   }
 }
+
 .store {
   width: 80vw;
   border-radius: 25px;
   margin: 10px auto;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
+
 /* header */
 
 .top-title {
@@ -135,6 +163,7 @@ img {
   width: 100%;
   left: 2rem;
 }
+
 @media (max-width: 677px) {
   .top-title {
     font-size: 5vmax;
@@ -144,33 +173,33 @@ img {
 
 
 header {
-    text-align: center;
-    margin-bottom: 50px;
+  text-align: center;
+  margin-bottom: 50px;
 }
 
 /* footer */
 footer {
-    background-color: #222;
-    color: #fff;
-    font-size: 14px;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    text-align: center;
-    line-height: 40px;
-    margin-top: 20px;
+  background-color: #222;
+  color: #fff;
+  font-size: 14px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  line-height: 40px;
+  margin-top: 20px;
 }
 
 
 
 
 footer i {
-    color: red;
+  color: red;
 }
 
 footer a {
-    color: #3c97bf;
-    text-decoration: none;
+  color: #3c97bf;
+  text-decoration: none;
 }
 
 /* hero css*/
@@ -264,52 +293,57 @@ footer a {
   #hero-mobile {
     display: flex;
   }
+
   .top-title {
     top: 160px;
     left: 2rem;
   }
 }
+
 .tutorial-link {
   color: #fff;
   font-size: 18px;
   text-decoration: underline;
 }
+
 .tutorial-link:hover {
   color: #ede0d5;
 }
+
 /* end hero css*/
 
 
 /*navegação*/
-.navigation{
+.navigation {
   justify-content: center;
-	align-items: center;
+  align-items: center;
   display: flex;
 }
+
 nav {
   display: flex;
-	justify-content: space-evenly;
-	align-items: center;
-	position: relative;
-	width: 500px;
-	height: 60px;
-	padding: 0 15px;
+  justify-content: space-evenly;
+  align-items: center;
+  position: relative;
+  width: 500px;
+  height: 60px;
+  padding: 0 15px;
   margin: 15px 0;
-	border-radius: 15px;
-	background: rgb(0, 255, 0);
-	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  background: rgb(0, 255, 0);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
 }
 
 .nav-item {
   text-decoration: none;
-	font-family: 'Montserrat', sans-serif;
-	font-size: 1em;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	transition-duration: 0.2s;
-	align-items: center;
-	padding: 1rem 1.5rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition-duration: 0.2s;
+  align-items: center;
+  padding: 1rem 1.5rem;
 
 }
 
@@ -319,19 +353,19 @@ nav {
   max-width: 250px;
   margin: auto;
   text-align: center;
-	padding-top:20px;
+  padding-top: 20px;
   padding-bottom: 20px;
 }
 
-.author-img{
-  width:64px;
+.author-img {
+  width: 64px;
   min-width: 64px;
   border-radius: 50%;
 }
 
 .author-name {
   color: #111;
-	font-size:16px;
+  font-size: 16px;
   margin: 8px 0;
 }
 
@@ -350,16 +384,20 @@ nav {
   align-items: center;
   margin: 50px 0;
 }
-.divider::before, .divider::after {
+
+.divider::before,
+.divider::after {
   content: "";
   display: block;
   height: 0.09em;
   min-width: 30vw;
 }
+
 .divider::before {
   background: linear-gradient(to right, rgba(240, 240, 240, 0), rgb(0, 0, 0));
   margin-right: 4vh;
 }
+
 .divider::after {
   background: linear-gradient(to left, rgba(240, 240, 240, 0), rgb(0, 0, 0));
   margin-left: 4vh;
