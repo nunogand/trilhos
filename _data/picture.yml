@@ -24,3 +24,15 @@ presets:
     fallback_width: 800
     crop: '6:4'
     markup: direct_url
+  s:
+    formats: [original]
+    fallback_width: 576
+    markup: direct_url
+  m:
+    formats: [original]
+    fallback_width: 768
+    markup: direct_url
+  l:
+    formats: [original]
+    fallback_width: 1200
+    markup: direct_url
