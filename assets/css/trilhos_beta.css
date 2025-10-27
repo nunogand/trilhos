@@ -29,7 +29,14 @@ body {
     text-align: center;
     color: white;
 }
-
+.hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 90%;
+            width: 100%;
+            padding: 0 20px;
+    
+/* teste
 @media screen and (max-width: 1200px) {
     .hero {
         background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
@@ -72,7 +79,7 @@ body {
 }
 
 
-
+Fim do teste */
 
 
 .hero p {
@@ -394,3 +401,95 @@ footer {
 .post-card:nth-child(6) {
     animation-delay: 0.6s;
 }
+
+
+/* Responsive Design */
+        /* Large Desktop */
+        @media (min-width: 1921px) {
+            .hero {
+                background-size: 100% auto;
+                background-position: center center;
+            }
+        }
+
+        /* Desktop */
+        @media (min-width: 1200px) and (max-width: 1920px) {
+            .hero {
+                background-size: cover;
+                background-position: center center;
+            }
+        }
+
+        /* Tablet Landscape */
+        @media (min-width: 768px) and (max-width: 1199px) {
+            .hero {
+                background-size: cover;
+                background-position: center 30%;
+            }
+        }
+
+        /* Tablet Portrait */
+        @media (min-width: 576px) and (max-width: 767px) {
+            .hero {
+                background-size: cover;
+                background-position: center 25%;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero p {
+                font-size: 1.3rem;
+            }
+        }
+
+        /* Mobile */
+        @media (max-width: 575px) {
+            .hero {
+                background-size: cover;
+                background-position: center 20%;
+                min-height: 100vh;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+                margin-bottom: 0.8rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+                padding: 0 10px;
+            }
+            
+            .post-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .card-content {
+                flex-direction: column;
+            }
+
+            .card-image {
+                min-height: 200px;
+            }
+
+            .post-card:hover {
+                transform: translateY(-5px) scale(1);
+            }
+        }
+
+        /* Small Mobile */
+        @media (max-width: 375px) {
+            .hero {
+                background-position: center 15%;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+        }
