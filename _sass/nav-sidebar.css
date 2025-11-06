@@ -1,3 +1,188 @@
+/*AI*/
+/* Optimized CSS for better performance and maintainability */
+
+/* CSS Custom Properties for consistency */
+:root {
+  --color-white: #fff;
+  --color-gray: #898989;
+  --color-text: #000;
+  --sidebar-bg: rgba(255, 255, 255, 0.85);
+  --menu-item-hover-bg: rgba(255, 255, 255, 0.95);
+  --hamburger-bg: rgba(255, 255, 255, 0.75);
+  --shadow: 0 0 20px 20px rgba(0, 0, 0, 0.03);
+  --transition: transform 0.4s ease-in-out;
+  --transition-delay: 0.4s ease-in-out;
+  --border-radius: 50%;
+  --close-button-size: 60px;
+}
+
+/* Base banner styles */
+.banner {
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  padding: 60px;
+  color: var(--color-text);
+  position: absolute;
+  z-index: 99;
+}
+
+/* Hamburger menu */
+.caminheiro {
+  background-color: var(--hamburger-bg);
+  padding: 10px;
+  border-radius: 10px;
+  position: absolute;
+  left: 30px;
+  top: 30px;
+  display: flex;
+  height: 24px;
+  width: 32px;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  user-select: none;
+  z-index: 1;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+/* Sidebar container */
+.sidebar {
+  height: 100vh;
+  width: 45vw;
+  background-color: var(--sidebar-bg);
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0 60px;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(-100vw);
+  transition: var(--transition);
+  overflow: hidden; /* Add for better performance */
+}
+
+/* Close button */
+.sidebar__close {
+  position: absolute;
+  top: 50%;
+  right: -30px;
+  background: var(--menu-item-hover-bg);
+  height: var(--close-button-size);
+  width: var(--close-button-size);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateX(-100%);
+  cursor: pointer;
+  transition: var(--transition);
+  transition-delay: 0.2s;
+}
+
+/* Close button X icon */
+.sidebar__close::before,
+.sidebar__close::after {
+  content: "";
+  height: 2px;
+  background: var(--color-gray);
+  width: 24px;
+  display: block;
+  position: absolute;
+}
+
+.sidebar__close::after {
+  transform: rotate(90deg);
+}
+
+/* Menu items */
+.sidebar__menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  justify-content: space-evenly;
+  font-size: 36px;
+  margin: 80px 0;
+  color: var(--color-gray);
+}
+
+.sidebar__menu a {
+  color: currentColor;
+  text-decoration: none;
+  transform: translateX(-80%);
+  transition: var(--transition);
+  position: relative;
+}
+
+/* Menu item hover underline */
+.sidebar__menu a::before {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--color-gray);
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: transform var(--transition), opacity 0.4s linear;
+}
+
+.sidebar__menu a:hover::before {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* Staggered animation delays */
+.sidebar__menu a:nth-child(1) { transition-delay: 0.05s; }
+.sidebar__menu a:nth-child(2) { transition-delay: 0.1s; }
+.sidebar__menu a:nth-child(3) { transition-delay: 0.15s; }
+.sidebar__menu a:nth-child(4) { transition-delay: 0.2s; }
+.sidebar__menu a:nth-child(5) { transition-delay: 0.25s; }
+
+/* Social links */
+.sidebar__social {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding-bottom: 20px;
+  margin: 0;
+}
+
+.sidebar__social li {
+  margin: 4px;
+}
+
+.sidebar__social a,
+.sidebar__social svg {
+  display: inline-block;
+  height: 28px;
+  width: 28px;
+}
+
+/* Menu control */
+.menu-control {
+  display: none;
+}
+
+/* Active states */
+.menu-control:checked + .sidebar {
+  transform: translateX(0);
+}
+
+.menu-control:checked + .sidebar .sidebar__close {
+  transform: translateX(0) rotate(45deg);
+}
+
+.menu-control:checked + .sidebar .sidebar__menu a {
+  transform: translateX(0);
+}
+
+/*ORIGINAL*/
 .banner {
   background-size: cover;
   display: flex;
