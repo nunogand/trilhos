@@ -31,11 +31,17 @@ description: >- # this means to ignore newlines until "baseurl:"
   Google search results) and in your feed.xml site description.
 
 locale: "pt-PT"  # or your language
-default_og_image: "/assets/images/og-default.jpg"
-default_twitter_image: "/assets/images/twitter-default.jpg"
-#facebook_app_id: "your_facebook_app_id"
-twitter_username: "nunogand"
-#twitter_author: "author_twitter_handle"
+# Social media configuration
+twitter: "@nunogand"
+#facebook: "https://facebook.com/yourpage"
+#linkedin: "https://linkedin.com/in/yourprofile"
+instagram: "https://instagram.com/nunogand"
+
+# Default images
+og_image: "/images/default-og-image.jpg"
+twitter_image: "/images/default-twitter-image.jpg"
+
+
 
 # Build settings
 plugins:
