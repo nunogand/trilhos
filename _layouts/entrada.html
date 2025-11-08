@@ -1,45 +1,44 @@
 <!DOCTYPE html>
 <html lang="pt">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  <meta property="og:locale" content="pt_PT">
-  <meta name="generator" content="Jekyll 4.3.4" />
-  <meta name="ROBOTS" CONTENT="INDEX, FOLLOW">
-
-  <!--font-->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Abel&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
-    rel="stylesheet">
-
-  <!--favicons: https://evilmartians.com/chronicles/how-to-favicon-in-2021-six-files-that-fit-most-needs-->
-  <link rel="icon" href="/favicon.ico" sizes="any"><!-- 32×32 -->
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png"><!-- 180×180 -->
-  <link rel="manifest" href="/site.webmanifest">
-
-  <!-- description-->
-  <meta name="description"
-    content="{{ page.description | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">
-  <link rel="canonical" href="{{ page.url | replace:'index.html', '' | absolute_url }}">
-  <link rel="alternate" type="application/rss+xml" title="{{ site.title | escape }} Feed"
-    href="{{ '/feed.xml' | absolute_url }}">
-
-  {%include opengraph.html%}
-
-  <!-- custom style -->
-  <link rel="stylesheet" href="/assets/css/index.css">
-  <!-- end custom style -->
-
-  <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
-</head>
-{{content}}
-
-
-</body>
-
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta property="og:locale" content="pt_PT">
+      <meta name="generator" content="Jekyll 4.3.4" />
+      <meta name="ROBOTS" CONTENT="INDEX, FOLLOW">
+     
+     <!--font-->
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link
+         href="https://fonts.googleapis.com/css2?family=Abel&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+         rel="stylesheet">
+     
+     <!--favicons: https://evilmartians.com/chronicles/how-to-favicon-in-2021-six-files-that-fit-most-needs-->
+      <link rel="icon" href="/favicon.ico" sizes="any">
+      <!-- 32×32 -->
+      <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+      <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+      <!-- 180×180 -->
+      <link rel="manifest" href="/site.webmanifest">
+     
+     <!-- description-->
+      <meta name="description"
+         content="{{ page.description | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">
+      <link rel="canonical" href="{{ page.url | replace:'index.html', '' | absolute_url }}">
+      <link rel="alternate" type="application/rss+xml" title="{{ site.title | escape }} Feed"
+         href="{{ '/feed.xml' | absolute_url }}">
+     
+     {%include opengraph.html%}
+     
+     <!-- custom style -->
+      <link rel="stylesheet" href="/assets/css/index.css">
+      <!-- end custom style -->
+     
+     <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
+   
+   </head>
+   </body>
+   {{content}}
+   </body>
 </html>
