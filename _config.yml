@@ -83,4 +83,5 @@ kramdown:
 #incremental: true # When working locally to avoid rebuilding everything on change 
 
 # Jekyll Picture Tag's global configuration
-
+picture:
+  ignore_missing_images: true
