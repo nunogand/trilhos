@@ -1,30 +1,18 @@
-{% comment %}
-<!-- ======================== -->
-<!-- create list of all images in folder -->
-<!-- init the list -->
-{% endcomment %}
-{% assign headers = "" | split: ',' %}
-
-
-{% comment %} loop and add {% endcomment %}
-
+{% assign headers = '' | split: '' %}
 {% for image in site.static_files %}
-
-{% if image.path contains post.folder %}
-
-{% comment %} <!-- filter to avoid all but image files --> {% endcomment %}
-{% if image.extname == '.jpg' or image.extname == '.jpeg' or image.extname == '.JPG' or image.extname == '.JPEG' %}
-
-
-{% comment %} <!-- add image to list--> {% endcomment %}
-{% assign headers = headers | push: image.path %}
-{% endif %}
-{% endif %}
-
+  {% if image.path contains post.folder %}
+    {% assign ext = image.extname | downcase %}
+    {% if ext == '.jpg' or ext == '.jpeg' or ext == '.png' or ext == '.gif' %}
+      {% assign headers = headers | push: image.path %}
+    {% endif %}
+  {% endif %}
 {% endfor %}
+{% if headers.size > 0 %}
+  {% assign random-header = headers | sample %}
+{% else %}
+  {% assign random-header = '/assets/img/default-card.jpg' %}
+{% endif %}
 
-
-{% assign random-header = headers | sample %}
 
 <article class="post-card">
   <div class="card-content">
