@@ -182,7 +182,7 @@
   transform: translateX(0);
 }
 
-/*ORIGINAL*/
+/*ORIGINAL
 .banner {
   background-size: cover;
   display: flex;
@@ -349,3 +349,4 @@
 .menu-control:checked+.sidebar .sidebar__menu a {
   transform: translatex(0);
 }
+*/
