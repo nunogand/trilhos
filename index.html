@@ -8,18 +8,14 @@ title: Trilhos
 
     {%include nav_sidebar.html%}
 
-    <!-- init the list -->
-    {% assign headers = "" | split: ',' %}
 
-    <!-- loop and add -->
-    {% for image in site.static_files %} {% if image.path contains '/assets/front/' %}
+<!-- init the list with filtered images -->
+{% assign headers = site.static_files | where_exp: "item", "item.path contains '/assets/front/'" | map: "path" %}
 
-    <!-- add image -->
-    {% assign headers = headers | push: image.path %} {% endif %} {% endfor %}
+<!-- get 4 random headers -->
+{% assign random-header = headers | sample: 4 %}
 
-
-    {% assign random-header = headers | sample: 4 %}
-
+    
 
     <!-- You can add more ".slideshow-image" elements, but remember to update the "$items" on kenburns.scss  -->
     <div class="slideshow">
