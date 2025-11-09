@@ -18,7 +18,7 @@
             position: relative;
             height: 100vh;
             background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
-                        url('https://picsum.photos/seed/mountain-landscape/1920/1080.jpg');
+                        url('/assets/andrei-tanase-1271619.jpg');
             background-size: cover;
             background-position: center;
             display: flex;
