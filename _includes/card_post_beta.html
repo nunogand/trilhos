@@ -13,36 +13,40 @@
   {% assign random-header = '/assets/img/default-card.jpg' %}
 {% endif %}
 
+            <article class="post-card">
+                <div class="card-content">
+                    <div class="card-image">
+                        <img src="{{random-header}}" alt="{{random-header}}">
+                        <div class="date-badge">{{post.date | date: "%d %b %y" }}</div>
+                    </div>
+                    <div class="card-text">
+                        <h3>{{post.title}}</h3>
+                        <p>{{post.description}}</p>
 
-<article class="post-card">
-  <div class="card-content">
-    <div class="card-image" style="background-image: url({% picture card " {{random-header}}"%})">
-
-      <div class="date-badge">{{post.date | date: "%d %b %y" }}</div>
-    </div>
-    <div class="card-text">
-      <h3>{{post.title}}</h3>
-      <p>{{post.description}}</p>
-      <div class="tags">
-        <span class="tag">{{ post.tags | sort | join: "</span> <span class="tag">" }}</span>
-
-
-      </div>
-      <!-- Integrated Statistics -->
-      <div class="card-stats">
-        <div class="stat-item">
-          <i class="fas fa-camera"></i>
-          <span class="count">1,762</span>
-        </div>
-        <div class="stat-item">
-          <i class="fas fa-image"></i>
-          <span class="count">{{headers|size}} fotos</span>
-        </div>
-        <div class="stat-item">
-          <i class="fas fa-map-marker-alt"></i>
-          <span class="count">37</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</article>
+                        <div class="tags">
+{% if post.tags.size > 0 %}
+        <span class="tag">{{ post.tags | sort | join: "</span>
+        <span class="tag">" }}
+        </span>
+      
+    {% endif %}
+                        
+                          </div>
+                        <!-- Integrated Statistics -->
+                        <div class="card-stats">
+                            <div class="stat-item">
+                                <i class="fas fa-camera"></i>
+                                <span class="count">1,762</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-image"></i>
+                                <span class="count">{{headers|size}}</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span class="count">37</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>

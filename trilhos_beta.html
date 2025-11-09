@@ -3,22 +3,13 @@ layout: blog
 custom_css:
 - trilhos_beta.css
 ---
-
-
-
 <body>
-  <section class="hero">
-    <div class="hero-content">
-      <h1>Mountain Vistas</h1>
-      <p>Capturing the majesty of mountain landscapes through the lens</p>
-    </div>
-  </section>
-
-  <section class="main-section">
-    <div class="post-cards">
-
-
-
+    <section class="hero">
+        <h1>Mountain Photography</h1>
+        <p>Capturing the majesty of peaks and valleys through the lens</p>
+    </section>
+    <section class="main-section">
+              <div class="post-cards">
       {% for post in site.posts %}
       {%include card_post_beta.html %}
       {% endfor %}
