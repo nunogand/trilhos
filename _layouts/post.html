@@ -57,15 +57,17 @@ layout: default
       <section class="galeria">
         <div class="store">
           <ul>
-            {% for image in site.static_files %}
-            {% if image.path contains page.folder %}
-            {% comment %} <!-- filter to avoid all but image files --> {% endcomment %}
-            {% if image.extname == '.jpg' or image.extname == '.jpeg' or image.extname == '.JPG' or image.extname ==
-            '.JPEG' %}
-            <li><a data-fslightbox href="{{image.path}}">{% picture jpt-webp {{image.path}} %}</a></li>
-            {% endif %}
-            {% endif %}
-            {% endfor %}
+
+{% for image in site.static_files %}
+{% if image.path contains page.folder %}
+{{ image.name }}
+{% comment %} <!-- filter to avoid all but image files --> {% endcomment %}
+{% if image.extname == '.jpg' or image.extname == '.jpeg' or image.extname == '.JPG' or image.extname == '.JPEG' or image.extname == '.png' or image.extname == '.PNG' or image.extname == '.webp' or image.extname == '.WEBP' or image.extname == '.gif' or image.extname == '.GIF' or image.extname == '.bmp' or image.extname == '.BMP' or image.extname == '.tiff' or image.extname == '.TIFF' or image.extname == '.svg' or image.extname == '.SVG' %}
+
+<li><a data-fslightbox href="{{ image.path }}">{% picture jpt-webp {{ image.path }} %}</a></li>
+{% endif %}
+{% endif %}
+{% endfor %}
           </ul>
         </div>
       </section>
