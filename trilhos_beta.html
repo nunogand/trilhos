@@ -36,3 +36,24 @@ custom_css:
 </body>
 
 </html>
+
+// Pass data to JavaScript for continuous scrolling
+window.blogData = {
+    totalPosts: {{ site.posts.size }},
+    initialPosts: 10,
+    posts: [
+        {% for post in site.posts %}
+        {
+            "id": {{ forloop.index0 }},
+            "title": {{ post.title | jsonify }},
+            "url": {{ post.url | jsonify }},
+            "date": {{ post.date | jsonify }},
+            "excerpt": {{ post.excerpt | jsonify }},
+            "content": {{ post.content | jsonify }},
+            "tags": {{ post.tags | jsonify }},
+            "image": {{ post.image | jsonify }},
+            "card_html": {% include card_post_beta.html post=post %}
+        }{% unless forloop.last %},{% endunless %}
+        {% endfor %}
+    ]
+};
