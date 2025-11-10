@@ -9,10 +9,23 @@ custom_css:
         <p>Capturing the majesty of peaks and valleys through the lens</p>
     </section>
     <section class="main-section">
-              <div class="post-cards">
-      {% for post in site.posts %}
+              <div class="post-cards" id="posts-container">
+              <!-- Initial server-side rendered posts (first 7) -->
+      {% for post in site.posts limit: 7 %}
       {%include card_post_beta.html %}
       {% endfor %}
+
+       <!-- Loading indicator -->
+        <div id="loading-indicator" class="loading hidden">
+            <div class="spinner"></div>
+            <p>Carregando mais posts...</p>
+        </div>
+        
+        <!-- End of posts message -->
+        <div id="end-message" class="end-message hidden">
+            <p>Você chegou ao fim! 🎉</p>
+        </div>
+                  
     </div>
   </section>
 
