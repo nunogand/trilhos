@@ -1,14 +1,132 @@
 ---
-layout: default
+layout: blog
 title: Tags
 ---
 
-<h1>Tags</h1>
+<!-- Hero Section -->
+<header class="hero">
+    <h1>Tags</h1>
+    <p>Explore all topics and discover content organized by tags. Find exactly what you're looking for.</p>
+</header>
 
-<ul>
-  {% for tag in site.tags %}
-    <li>
-      {{ tag | first }} <span>({{ tag | last | size }})</span>
-    </li>
-  {% endfor %}
-</ul>
+<!-- Main Content -->
+<main class="main-section">
+    <div class="main-content">
+        <!-- Filter Section -->
+        <!-- Note: The functionality for these elements would require JavaScript. -->
+        <section class="filter-section">
+            <div class="filter-search">
+                <input type="text" placeholder="Search tags..." aria-label="Search tags">
+                <i class="fas fa-search"></i>
+            </div>
+            <div class="filter-buttons">
+                <button class="filter-btn active">All</button>
+                <button class="filter-btn">Popular</button>
+                <button class="filter-btn">Recent</button>
+            </div>
+        </section>
+
+        <!-- Stats Bar -->
+        <section class="stats-bar">
+            <div class="stats-info">
+                <div class="stat-item">
+                    <i class="fas fa-tags"></i>
+                    <span>Total Tags: <span class="stat-number">{{ site.tags | size }}</span></span>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Total Posts: <span class="stat-number">{{ site.posts | size }}</span></span>
+                </div>
+            </div>
+            <!-- Note: Sorting functionality would require JavaScript. -->
+            <select class="sort-dropdown" aria-label="Sort tags">
+                <option value="name">Sort by Name</option>
+                <option value="popularity">Sort by Popularity</option>
+            </select>
+        </section>
+
+        <!-- Tags Grid -->
+        <section class="tags-grid">
+            {% comment %}
+              This loop iterates through each tag on the site.
+              - tag[0] is the tag name (e.g., "Jekyll")
+              - tag[1] is the array of posts with that tag
+            {% endcomment %}
+            {% for tag in site.tags %}
+                <div class="tag-card">
+                    <div class="tag-icon">
+                        <i class="fas fa-tag"></i>
+                    </div>
+                    <h3 class="tag-name">{{ tag[0] }}</h3>
+                    <p class="tag-count">{{ tag[1] | size }} posts</p>
+                    <p class="tag-description">
+                        {% comment %}
+                          Jekyll doesn't have a built-in "description" for tags.
+                          This is placeholder text. You could use a data file for descriptions.
+                        {% endcomment %}
+                        Explore all posts related to {{ tag[0] }}.
+                    </p>
+                </div>
+            {% endfor %}
+        </section>
+
+        <!-- Popular Tags Section -->
+        <section class="popular-tags-section">
+            <h2>Popular Tags</h2>
+            <div class="popular-tags">
+                {% comment %}
+                  This sorts tags by the number of posts (popularity) and displays the top 5.
+                {% endcomment %}
+                {% assign sorted_tags = site.tags | sort: 'last' | reverse %}
+                {% for tag in sorted_tags limit:5 %}
+                    <a href="#" class="popular-tag">
+                        {{ tag[0] }}
+                        <span class="count">{{ tag[1] | size }}</span>
+                    </a>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+</main>
+
+<!-- Scroll to Top Button -->
+<!-- Note: The visibility toggle and scroll functionality would require JavaScript. -->
+<button class="scroll-top" aria-label="Scroll to top">
+    <i class="fas fa-arrow-up"></i>
+</button>
+
+<!-- Footer -->
+<footer>
+    <div class="footer-content">
+        <div class="footer-section">
+            <h4>About This Site</h4>
+            <p>A curated collection of thoughts, tutorials, and projects. Explore the tags to find content that interests you.</p>
+            <div class="social-links">
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+        <div class="footer-section">
+            <h4>Quick Links</h4>
+            <ul class="footer-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/about/">About</a></li>
+                <li><a href="/blog/">Blog</a></li>
+                <li><a href="/contact/">Contact</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h4>Categories</h4>
+            <ul class="footer-links">
+                <li><a href="#">Web Development</a></li>
+                <li><a href="#">Jekyll</a></li>
+                <li><a href="#">Tutorials</a></li>
+                <li><a href="#">Photography</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; {{ 'now' | date: "%Y" }} Your Site Name. All rights reserved.</p>
+    </div>
+</footer>
