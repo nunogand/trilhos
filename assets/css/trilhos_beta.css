@@ -1,5 +1,14 @@
 --- 
 --- 
+/* abel-regular - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Abel';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../assets/fonts/abel-v18-latin-regular.woff2') format('woff2');
+}
+
 * {
     margin: 0;
     padding: 0;
