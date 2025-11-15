@@ -20,9 +20,17 @@ presets:
     widths: [800, 1200, 1600]
     formats: webp
   card:
-    formats: [original]
-    fallback_width: 800
+    formats: [webp, jpg]
     crop: '6:4'
+    widths: [400, 600, 800, 1000, 1200, 1600]
+    sizes:
+      mobile: 100vw
+      tablet: 90vw
+      desktop: 70vw
+    fallback_width: 800
+    fallback_format: jpg
+    attributes:
+      img: 'loading="lazy"'
     markup: direct_url
   s:
     formats: [original]
@@ -38,275 +46,259 @@ presets:
     markup: direct_url
 
 
-    # Jekyll Picture Tag Configuration
-# Documentation: https://rbuchberger.github.io/jekyll_picture_tag/
-
-# Media queries for responsive breakpoints
-media_queries:
-  mobile: 'max-width: 576px'
-  tablet: 'max-width: 768px'
-  desktop: 'max-width: 1200px'
-  wide: 'min-width: 1201px'
-
-# Global settings
-markup: 'picture'
-cdn_url: false
-nomarkdown: false
-fast_build: development
-
-# Image output formats and quality
-formats: [webp, jpg]
-quality:
-  webp: 85
-  jpg: 85
-
+#
 # ===========================
 # GENERAL RESPONSIVE PRESETS
 # ===========================
-
-presets:
-  # Default responsive preset
-  default:
-    formats: [webp, jpg]
-    widths: [400, 600, 800, 1000, 1200, 1600]
-    sizes:
-      mobile: 100vw
-      tablet: 100vw
-      desktop: 90vw
-    fallback_width: 800
-    fallback_format: jpg
-    attributes:
-      picture: 'class="responsive-image"'
-      img: 'loading="lazy"'
-
-  # Hero/Banner images - full width
-  hero:
-    formats: [webp, jpg]
-    widths: [600, 900, 1200, 1600, 2000, 2400]
-    sizes:
-      mobile: 100vw
-      tablet: 100vw
-      desktop: 100vw
-    quality:
-      webp: 90
-      jpg: 90
-    fallback_width: 1600
-    fallback_format: jpg
-    attributes:
-      picture: 'class="hero-image"'
-      img: 'loading="eager"'
-
-  # Content images - within text
-  content:
-    formats: [webp, jpg]
-    widths: [400, 600, 800, 1000]
-    sizes:
-      mobile: 100vw
-      tablet: 90vw
-      desktop: 70vw
-    fallback_width: 800
-    fallback_format: jpg
-    attributes:
-      picture: 'class="content-image"'
-      img: 'loading="lazy"'
-
-  # Thumbnail images - small
-  thumbnail:
-    formats: [webp, jpg]
-    widths: [150, 200, 300, 400]
-    sizes:
-      mobile: 150px
-      tablet: 200px
-      desktop: 300px
-    fallback_width: 300
-    fallback_format: jpg
-    attributes:
-      picture: 'class="thumbnail"'
-      img: 'loading="lazy"'
-
-  # Gallery images - grid layout
-  gallery:
-    formats: [webp, jpg]
-    widths: [300, 400, 600, 800, 1000]
-    sizes:
-      mobile: 50vw
-      tablet: 33vw
-      desktop: 25vw
-    fallback_width: 600
-    fallback_format: jpg
-    attributes:
-      picture: 'class="gallery-image"'
-      img: 'loading="lazy"'
-
-  # ===========================
-  # ASPECT RATIO PRESETS (3:2)
-  # ===========================
-
-  # 3:2 Responsive with crop
-  crop_3x2:
-    formats: [webp, jpg]
-    crop: '3:2'
-    widths: [400, 600, 800, 1000, 1200, 1600]
-    sizes:
-      mobile: 100vw
-      tablet: 90vw
-      desktop: 70vw
-    fallback_width: 800
-    fallback_format: jpg
-    attributes:
-      picture: 'class="aspect-3x2"'
-      img: 'loading="lazy"'
-
-  # 3:2 Hero/Featured image
-  hero_3x2:
-    formats: [webp, jpg]
-    crop: '3:2'
-    widths: [600, 900, 1200, 1600, 2000]
-    sizes:
-      mobile: 100vw
-      tablet: 100vw
-      desktop: 100vw
-    quality:
-      webp: 90
-      jpg: 90
-    fallback_width: 1600
-    fallback_format: jpg
-    attributes:
-      picture: 'class="hero-3x2"'
-      img: 'loading="eager"'
-
-  # 3:2 Card/Preview images
-  card_3x2:
-    formats: [webp, jpg]
-    crop: '3:2'
-    widths: [300, 400, 600, 800]
-    sizes:
-      mobile: 100vw
-      tablet: 50vw
-      desktop: 33vw
-    fallback_width: 600
-    fallback_format: jpg
-    attributes:
-      picture: 'class="card-image-3x2"'
-      img: 'loading="lazy"'
-
-  # 3:2 Thumbnail
-  thumb_3x2:
-    formats: [webp, jpg]
-    crop: '3:2'
-    widths: [200, 300, 400, 600]
-    sizes:
-      mobile: 200px
-      tablet: 250px
-      desktop: 300px
-    fallback_width: 400
-    fallback_format: jpg
-    attributes:
-      picture: 'class="thumbnail-3x2"'
-      img: 'loading="lazy"'
-
-  # ===========================
-  # OTHER ASPECT RATIOS
-  # ===========================
-
-  # Square images (1:1)
-  square:
-    formats: [webp, jpg]
-    crop: '1:1'
-    widths: [200, 300, 400, 600, 800, 1000]
-    sizes:
-      mobile: 50vw
-      tablet: 33vw
-      desktop: 25vw
-    fallback_width: 600
-    fallback_format: jpg
-    attributes:
-      picture: 'class="square-image"'
-      img: 'loading="lazy"'
-
-  # Portrait images (2:3)
-  portrait:
-    formats: [webp, jpg]
-    crop: '2:3'
-    widths: [300, 400, 600, 800, 1000]
-    sizes:
-      mobile: 100vw
-      tablet: 50vw
-      desktop: 33vw
-    fallback_width: 600
-    fallback_format: jpg
-    attributes:
-      picture: 'class="portrait-image"'
-      img: 'loading="lazy"'
-
-  # Wide images (16:9)
-  wide:
-    formats: [webp, jpg]
-    crop: '16:9'
-    widths: [600, 800, 1000, 1200, 1600, 1920]
-    sizes:
-      mobile: 100vw
-      tablet: 100vw
-      desktop: 90vw
-    fallback_width: 1200
-    fallback_format: jpg
-    attributes:
-      picture: 'class="wide-image"'
-      img: 'loading="lazy"'
-
-  # ===========================
-  # SPECIALIZED PRESETS
-  # ===========================
-
-  # Avatar/Profile pictures
-  avatar:
-    formats: [webp, jpg]
-    crop: '1:1'
-    widths: [80, 120, 160, 240]
-    sizes:
-      mobile: 80px
-      tablet: 120px
-      desktop: 160px
-    quality:
-      webp: 90
-      jpg: 90
-    fallback_width: 160
-    fallback_format: jpg
-    attributes:
-      picture: 'class="avatar"'
-      img: 'loading="lazy"'
-
-  # Blog post featured image
-  post_featured:
-    formats: [webp, jpg]
-    crop: '3:2'
-    widths: [600, 800, 1000, 1200, 1600]
-    sizes:
-      mobile: 100vw
-      tablet: 100vw
-      desktop: 800px
-    quality:
-      webp: 88
-      jpg: 88
-    fallback_width: 1200
-    fallback_format: jpg
-    attributes:
-      picture: 'class="post-featured-image"'
-      img: 'loading="eager"'
-
-  # High quality for photography
-  photography:
-    formats: [webp, jpg]
-    widths: [800, 1200, 1600, 2000, 2400]
-    sizes:
-      mobile: 100vw
-      tablet: 100vw
-      desktop: 100vw
-    quality:
-      webp: 95
-      jpg: 95
-    fallback_width: 1600
-    fallback_format: jpg
-    attributes:
-      picture: 'class="photography"'
-      img: 'loading="lazy"'
+#
+#presets:
+#  # Default responsive preset
+#  default:
+#    formats: [webp, jpg]
+#    widths: [400, 600, 800, 1000, 1200, 1600]
+#    sizes:
+#      mobile: 100vw
+#      tablet: 100vw
+#      desktop: 90vw
+#    fallback_width: 800
+#    fallback_format: jpg
+#    attributes:
+#      picture: 'class="responsive-image"'
+#      img: 'loading="lazy"'
+#  card:
+#    formats: [original]
+#    fallback_width: 800
+#    crop: '6:4'
+#    markup: direct_url
+#
+#  # Hero/Banner images - full width
+#  hero:
+#    formats: [webp, jpg]
+#    widths: [600, 900, 1200, 1600, 2000, 2400]
+#    sizes:
+#      mobile: 100vw
+#      tablet: 100vw
+#      desktop: 100vw
+#    quality:
+#      webp: 90
+#      jpg: 90
+#    fallback_width: 1600
+#    fallback_format: jpg
+#    attributes:
+#      picture: 'class="hero-image"'
+#      img: 'loading="eager"'
+#
+#  # Content images - within text
+#  content:
+#    formats: [webp, jpg]
+#    widths: [400, 600, 800, 1000]
+#    sizes:
+#      mobile: 100vw
+#      tablet: 90vw
+#      desktop: 70vw
+#    fallback_width: 800
+#    fallback_format: jpg
+#    attributes:
+#      picture: 'class="content-image"'
+#      img: 'loading="lazy"'
+#
+#  # Thumbnail images - small
+#  thumbnail:
+#    formats: [webp, jpg]
+#    widths: [150, 200, 300, 400]
+#    sizes:
+#      mobile: 150px
+#      tablet: 200px
+#      desktop: 300px
+#    fallback_width: 300
+#    fallback_format: jpg
+#    attributes:
+#      picture: 'class="thumbnail"'
+#      img: 'loading="lazy"'
+#
+#  # Gallery images - grid layout
+#  gallery:
+#    formats: [webp, jpg]
+#    widths: [300, 400, 600, 800, 1000]
+#    sizes:
+#      mobile: 50vw
+#      tablet: 33vw
+#      desktop: 25vw
+#    fallback_width: 600
+#    fallback_format: jpg
+#    attributes:
+#      picture: 'class="gallery-image"'
+#      img: 'loading="lazy"'
+#
+#  # ===========================
+#  # ASPECT RATIO PRESETS (3:2)
+#  # ===========================
+#
+#  # 3:2 Responsive with crop
+#  crop_3x2:
+#    formats: [webp, jpg]
+#    crop: '3:2'
+#    widths: [400, 600, 800, 1000, 1200, 1600]
+#    sizes:
+#      mobile: 100vw
+#      tablet: 90vw
+#      desktop: 70vw
+#    fallback_width: 800
+#    fallback_format: jpg
+#    attributes:
+#      picture: 'class="aspect-3x2"'
+#      img: 'loading="lazy"'
+#
+#  # 3:2 Hero/Featured image
+#  hero_3x2:
+#    formats: [webp, jpg]
+#    crop: '3:2'
+#    widths: [600, 900, 1200, 1600, 2000]
+#    sizes:
+#      mobile: 100vw
+#      tablet: 100vw
+#      desktop: 100vw
+#    quality:
+#      webp: 90
+#      jpg: 90
+#    fallback_width: 1600
+#    fallback_format: jpg
+#    attributes:
+#      picture: 'class="hero-3x2"'
+#      img: 'loading="eager"'
+#
+#  # 3:2 Card/Preview images
+#  card_3x2:
+#    formats: [webp, jpg]
+#    crop: '3:2'
+#    widths: [300, 400, 600, 800]
+#    sizes:
+#      mobile: 100vw
+#      tablet: 50vw
+#      desktop: 33vw
+#    fallback_width: 600
+#    fallback_format: jpg
+#    attributes:
+#      picture: 'class="card-image-3x2"'
+#      img: 'loading="lazy"'
+#
+#  # 3:2 Thumbnail
+#  thumb_3x2:
+#    formats: [webp, jpg]
+#    crop: '3:2'
+#    widths: [200, 300, 400, 600]
+#    sizes:
+#      mobile: 200px
+#      tablet: 250px
+#      desktop: 300px
+#    fallback_width: 400
+#    fallback_format: jpg
+#    attributes:
+#      picture: 'class="thumbnail-3x2"'
+#      img: 'loading="lazy"'
+#
+#  # ===========================
+#  # OTHER ASPECT RATIOS
+#  # ===========================
+#
+#  # Square images (1:1)
+#  square:
+#    formats: [webp, jpg]
+#    crop: '1:1'
+#    widths: [200, 300, 400, 600, 800, 1000]
+#    sizes:
+#      mobile: 50vw
+#      tablet: 33vw
+#      desktop: 25vw
+#    fallback_width: 600
+#    fallback_format: jpg
+#    attributes:
+#      picture: 'class="square-image"'
+#      img: 'loading="lazy"'
+#
+#  # Portrait images (2:3)
+#  portrait:
+#    formats: [webp, jpg]
+#    crop: '2:3'
+#    widths: [300, 400, 600, 800, 1000]
+#    sizes:
+#      mobile: 100vw
+#      tablet: 50vw
+#      desktop: 33vw
+#    fallback_width: 600
+#    fallback_format: jpg
+#    attributes:
+#      picture: 'class="portrait-image"'
+#      img: 'loading="lazy"'
+#
+#  # Wide images (16:9)
+#  wide:
+#    formats: [webp, jpg]
+#    crop: '16:9'
+#    widths: [600, 800, 1000, 1200, 1600, 1920]
+#    sizes:
+#      mobile: 100vw
+#      tablet: 100vw
+#      desktop: 90vw
+#    fallback_width: 1200
+#    fallback_format: jpg
+#    attributes:
+#      picture: 'class="wide-image"'
+#      img: 'loading="lazy"'
+#
+#  # ===========================
+#  # SPECIALIZED PRESETS
+#  # ===========================
+#
+#  # Avatar/Profile pictures
+#  avatar:
+#    formats: [webp, jpg]
+#    crop: '1:1'
+#    widths: [80, 120, 160, 240]
+#    sizes:
+#      mobile: 80px
+#      tablet: 120px
+#      desktop: 160px
+#    quality:
+#      webp: 90
+#      jpg: 90
+#    fallback_width: 160
+#    fallback_format: jpg
+#    attributes:
+#      picture: 'class="avatar"'
+#      img: 'loading="lazy"'
+#
+#  # Blog post featured image
+#  post_featured:
+#    formats: [webp, jpg]
+#    crop: '3:2'
+#    widths: [600, 800, 1000, 1200, 1600]
+#    sizes:
+#      mobile: 100vw
+#      tablet: 100vw
+#      desktop: 800px
+#    quality:
+#      webp: 88
+#      jpg: 88
+#    fallback_width: 1200
+#    fallback_format: jpg
+#    attributes:
+#      picture: 'class="post-featured-image"'
+#      img: 'loading="eager"'
+#
+#  # High quality for photography
+#  photography:
+#    formats: [webp, jpg]
+#    widths: [800, 1200, 1600, 2000, 2400]
+#    sizes:
+#      mobile: 100vw
+#      tablet: 100vw
+#      desktop: 100vw
+#    quality:
+#      webp: 95
+#      jpg: 95
+#    fallback_width: 1600
+#    fallback_format: jpg
+#    attributes:
+#      picture: 'class="photography"'
+#      img: 'loading="lazy"'
