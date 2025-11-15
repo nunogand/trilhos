@@ -1,0 +1,85 @@
+---
+layout: default
+custom_css:
+- trilhos_beta.css
+---
+
+<!-- Hero Section -->
+<header class="hero">
+    <h1>Tags</h1>
+    <p>Explore all topics and discover content organized by tags. Find exactly what you're looking for.</p>
+</header>
+
+<!-- Main Content -->
+<main class="main-section">
+    <div class="main-content">
+        <!-- Filter Section -->
+        <!-- Note: The functionality for these elements would require JavaScript. -->
+        <section class="filter-section">
+            <div class="filter-search">
+                <input type="text" placeholder="Search tags..." aria-label="Search tags">
+                <i class="fas fa-search"></i>
+            </div>
+            <div class="filter-buttons">
+                <button class="filter-btn active">All</button>
+                <button class="filter-btn">Popular</button>
+                <button class="filter-btn">Recent</button>
+            </div>
+        </section>
+
+        <!-- Stats Bar -->
+        <section class="stats-bar">
+            <div class="stats-info">
+                <div class="stat-item">
+                    <i class="fas fa-tags"></i>
+                    <span>Total Tags: <span class="stat-number">{{ site.tags | size }}</span></span>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Total Posts: <span class="stat-number">{{ site.posts | size }}</span></span>
+                </div>
+            </div>
+            <!-- Note: Sorting functionality would require JavaScript. -->
+            <select class="sort-dropdown" aria-label="Sort tags">
+                <option value="name">Sort by Name</option>
+                <option value="popularity">Sort by Popularity</option>
+            </select>
+        </section>
+
+        <!-- Tags Grid -->
+        <section class="tags-grid">
+            {% comment %}
+              This loop iterates through each tag on the site.
+              - tag[0] is the tag name (e.g., "Jekyll")
+              - tag[1] is the array of posts with that tag
+            {% endcomment %}
+            {% for tag in site.tags %}
+                <div class="tag-card">
+                    <div class="tag-icon">
+                        <i class="fas fa-tag"></i>
+                    </div>
+                    <h3 class="tag-name">{{ tag }}</h3>
+                    <p class="tag-count">{{ tag | size }} posts</p>
+                    <p class="tag-description">
+                        {% comment %}
+                          Jekyll doesn't have a built-in "description" for tags.
+                          This is placeholder text. You could use a data file for descriptions.
+                        {% endcomment %}
+                        Explore all posts related to {{ tag }}.
+                    </p>
+                </div>
+            {% endfor %}
+        </section>
+
+
+
+    </div>
+</main>
+
+<!-- Scroll to Top Button -->
+<!-- Note: The visibility toggle and scroll functionality would require JavaScript. -->
+<button class="scroll-top" aria-label="Scroll to top">
+    <i class="fas fa-arrow-up"></i>
+</button>
+
+<!-- Footer -->

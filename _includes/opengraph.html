@@ -31,14 +31,6 @@
 <meta property="article:tag" content="{{ tag }}" />
 {% endfor %}
 
-<!-- Business/Organization specific -->
-<meta property="og:street-address" content="{{ site.street_address | default: '' }}" />
-<meta property="og:locality" content="{{ site.locality | default: '' }}" />
-<meta property="og:region" content="{{ site.region | default: '' }}" />
-<meta property="og:postal-code" content="{{ site.postal_code | default: '' }}" />
-<meta property="og:country-name" content="{{ site.country | default: '' }}" />
-<meta property="og:phone_number" content="{{ site.phone | default: '' }}" />
-
 <!-- Twitter Card properties -->
 <meta name="twitter:card" content="{{ page.twitter_card | default: 'summary_large_image' }}" />
 <meta name="twitter:title" content="{{ page.title | default: site.title }}" />
@@ -57,21 +49,60 @@
 <meta name="twitter:data2" content="{{ page.date | date: '%b %d, %Y' }}" />
 {% endif %}
 
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "{% if page.layout == 'post' %}BlogPosting{% elsif page.schema_type %}{{ page.schema_type }}{% else %}WebSite{% endif %}",
+    "headline": "{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}",
+    "description": "{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}",
+    "url": "{{ page.url | absolute_url }}",
+    {% if page.image %}"image": "{{ page.image | absolute_url }}",{% elsif site.image %}"image": "{{ site.image | absolute_url }}",{% endif %}
+    {% if page.date %}"datePublished": "{{ page.date | date_to_xmlschema }}",{% endif %}
+    {% if page.modified_date %}"dateModified": "{{ page.modified_date | date_to_xmlschema }}",{% elsif page.last_modified_at %}"dateModified": "{{ page.last_modified_at | date_to_xmlschema }}",{% endif %}
+    "author": {
+      "@type": "Person",
+      "name": "{% if page.author %}{{ page.author }}{% elsif site.author %}{{ site.author }}{% endif %}"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "{{ site.title }}",
+      {% if site.logo %}"logo": {
+        "@type": "ImageObject",
+        "url": "{{ site.logo | absolute_url }}"
+      },{% endif %}
+      "url": "{{ site.url }}"
+    }
+  }
+  </script>
 
+  <!-- Dublin Core -->
+  {% if site.enable_dublin_core %}
+  <meta name="DC.title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
+  <meta name="DC.creator" content="{% if page.author %}{{ page.author }}{% elsif site.author %}{{ site.author }}{% endif %}">
+  <meta name="DC.subject" content="{% if page.keywords %}{{ page.keywords }}{% endif %}">
+  <meta name="DC.description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+  <meta name="DC.publisher" content="{{ site.title }}">
+  <meta name="DC.contributor" content="{% if page.author %}{{ page.author }}{% elsif site.author %}{{ site.author }}{% endif %}">
+  {% if page.date %}<meta name="DC.date" content="{{ page.date | date_to_xmlschema }}">{% endif %}
+  <meta name="DC.type" content="Text">
+  <meta name="DC.format" content="text/html">
+  <meta name="DC.identifier" content="{{ page.url | absolute_url }}">
+  <meta name="DC.language" content="{% if page.lang %}{{ page.lang }}{% elsif site.lang %}{{ site.lang }}{% else %}en{% endif %}">
+  {% if site.dc_rights %}<meta name="DC.rights" content="{{ site.dc_rights }}">{% endif %}
+  {% endif %}
 
-<!-- OpenGraph
-<meta property="og:title" content="{{site.title}}" />
-<meta property="og:description" content="[{{site.description}}]" />
-<meta property="og:url" content="{{page.url}}" />
-<meta property="og:image" content="http://www.yoursite.com/yourimage.jpg" />
-<meta property="og:site_name" content="The Name Of Your Site" />
-<meta property="og:locale" content="en_US" />
-<meta property="og:type" content="article" />
-
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Title Of Your Content Here" />
-<meta name="twitter:description" content="Description of your content here" />
-<meta name="twitter:site" content="@yourusername" />
-<meta name="twitter:image" content="http://www.yoursite.com/yourimage.jpg" />
-<meta name="twitter:creator" content="@yourusername" />
+<!-- To be deployed
+  RSS Feed 
+  % feed_meta %
+  <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | absolute_url }}">
+  {% if site.atom_feed %}<link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="{{ site.atom_feed | absolute_url }}">{% endif %}
+  {% if site.json_feed %}<link rel="alternate" type="application/json" title="{{ site.title }}" href="{{ site.json_feed | absolute_url }}">{% endif %}
+  
+   Sitemap
+  {% if site.url %}<link rel="sitemap" type="application/xml" title="Sitemap" href="{{ '/sitemap.xml' | absolute_url }}">{% endif %}
 -->
+  <!-- Author & Copyright -->
+  {% if page.author_link %}<link rel="author" href="{{ page.author_link }}">{% elsif site.author_link %}<link rel="author" href="{{ site.author_link }}">{% endif %}
+  {% if site.license %}<link rel="license" href="{{ site.license }}">{% endif %}
+  {% if site.copyright %}<meta name="copyright" content="{{ site.copyright }}">{% endif %}

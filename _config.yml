@@ -85,3 +85,22 @@ kramdown:
 # Jekyll Picture Tag's global configuration
 picture:
   ignore_missing_images: true
+
+
+# Site Verification
+#google_site_verification: "your-code"
+#bing_site_verification: "your-code"
+#yandex_site_verification: "your-code"
+#pinterest_site_verification: "your-code"
+
+# Analytics
+#google_analytics: "G-XXXXXXXXXX"
+#google_tag_manager: "GTM-XXXXXXX"
+
+# Performance
+preload_fonts:
+  - "/assets/fonts/abel-v18-latin-regular.woff2"
+#dns_prefetch:
+#  - "//cdnjs.cloudflare.com"
+#preconnect:
+#  - "https://cdn.example.com"

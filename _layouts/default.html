@@ -9,18 +9,28 @@
   <meta name="generator" content="Jekyll 4.3.4" />
   <meta name="ROBOTS" CONTENT="INDEX, FOLLOW">
 
-  <!--font
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Abel&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
-    rel="stylesheet">-->
+  <!-- Primary Meta Tags -->
+  <title>{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+  <meta name="title" content="{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}">
+  <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+  {% if page.keywords %}<meta name="keywords" content="{{ page.keywords }}">{% endif %}
+  {% if page.author %}<meta name="author" content="{{ page.author }}">{% elsif site.author %}<meta name="author" content="{{ site.author }}">{% endif %}
+  
+  {% if site.google_site_verification %}<meta name="google-site-verification" content="{{ site.google_site_verification }}">{% endif %}
+  {% if site.bing_site_verification %}<meta name="msvalidate.01" content="{{ site.bing_site_verification }}">{% endif %}
+  {% if site.yandex_site_verification %}<meta name="yandex-verification" content="{{ site.yandex_site_verification }}">{% endif %}
 
+  <!-- Canonical URL -->
+  <link rel="canonical" href="{{ page.url | absolute_url }}">
+  
+  
   <!--favicons: https://evilmartians.com/chronicles/how-to-favicon-in-2021-six-files-that-fit-most-needs-->
   <link rel="icon" href="/favicon.ico" sizes="any"><!-- 32×32 -->
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png"><!-- 180×180 -->
   <link rel="manifest" href="/site.webmanifest">
+
+
 
   <!-- description-->
   <meta name="description"
@@ -31,20 +41,38 @@
 
   {%include opengraph.html%}
 
+
+<!--Fonts - Preload Critical Resources -->
+  {% if site.preload_fonts %}
+  {% for font in site.preload_fonts %}
+  <link rel="preload" href="{{ font }}" as="font" type="font/woff2" crossorigin>
+  {% endfor %}
+  {% endif %}
+  {% if page.preload_images %}
+  {% for image in page.preload_images %}
+  <link rel="preload" href="{{ image }}" as="image">
+  {% endfor %}
+  {% endif %}
+
   <!-- custom style -->
   {% if page.custom_css %}
   {% for css in page.custom_css %}
   <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/{{ css }}">
   {% endfor %}
-  {%else%}
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
-  <link rel="stylesheet" href="https://unpkg.com/@raruto/leaflet-elevation/dist/leaflet-elevation.css">
-  <link rel="stylesheet" href="/assets/css/post.css">
-
   {% endif %}
   <!-- end custom style -->
 
-  <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
+<!-- Security Headers -->
+  {% if site.csp %}<meta http-equiv="Content-Security-Policy" content="{{ site.csp }}">{% endif %}
+  {% if site.feature_policy %}<meta http-equiv="Feature-Policy" content="{{ site.feature_policy }}">{% endif %}
+  {% if site.permissions_policy %}<meta http-equiv="Permissions-Policy" content="{{ site.permissions_policy }}">{% endif %}
+  
+  <!-- Cache Control -->
+  {% if page.cache_control %}<meta http-equiv="Cache-Control" content="{{ page.cache_control }}">{% endif %}
+  {% if page.pragma %}<meta http-equiv="Pragma" content="{{ page.pragma }}">{% endif %}
+  {% if page.expires %}<meta http-equiv="Expires" content="{{ page.expires }}">{% endif %}
+
+  
 </head>
 {{content}}
 
