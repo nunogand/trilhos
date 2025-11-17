@@ -147,7 +147,7 @@ body {
     }
 
 /* Hero Section */
-.hero {
+/*.hero {
 	position: relative;
 	height: 60vh;
 	margin-top: 60px;
@@ -162,6 +162,64 @@ body {
 	align-items: center;
 	text-align: center;
 	color: white;
+}*/
+
+/* Hero Section - Responsive Images for Performance */
+.hero {
+	position: relative;
+	height: 60vh;
+	margin-top: 60px;
+	/* Mobile First: Load smallest image by default */
+	background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+		url('/assets/images/hero-mobile-480.jpg');
+	background-size: cover;
+	background-position: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	color: white;
+}
+
+/* Load progressively larger images for bigger screens */
+@media (min-width: 481px) and (max-width: 768px) {
+	.hero {
+		background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+			url('/assets/images/hero-mobile-768.jpg');
+	}
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+	.hero {
+		background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+			url('/assets/images/hero-tablet-1024.jpg');
+		background-attachment: fixed;
+	}
+}
+
+@media (min-width: 1025px) and (max-width: 1920px) {
+	.hero {
+		background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+			url('/assets/images/hero-desktop-1920.jpg');
+		background-attachment: fixed;
+	}
+}
+
+@media (min-width: 1921px) {
+	.hero {
+		background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+			url('/assets/images/hero-desktop-2560.jpg');
+		background-attachment: fixed;
+	}
+}
+
+/* Fallback: If optimized images are not available yet, use original */
+@supports not (background: url('/assets/images/hero-mobile-480.jpg')) {
+	.hero {
+		background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+			url('/assets/andrei-tanase-1271619.jpg');
+	}
 }
 
 .hero h1 {
