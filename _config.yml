@@ -82,8 +82,12 @@ kramdown:
 # development
 #incremental: true # When working locally to avoid rebuilding everything on change 
 
-# Jekyll Picture Tag's global configuration
+# Jekyll Picture Tag Configuration
 picture:
+  # Source and output directories
+  #source: "fotos"
+  #output: "generated/fotos"
+# prevent errors onmissing images
   ignore_missing_images: true
 
 
