@@ -13,14 +13,15 @@
   {% assign random-header = '/assets/img/default-card.jpg' %}
 {% endif %}
 
-            <article class="post-card">
-                <div class="card-content">
-                    <div class="card-image">
-                        <img src= {% picture card {{random-header}} %} alt="{{random-header}}">
+            <article class="post-card" role="article" aria-labelledby="card1-title">
+            <div class="card-content">
+                <div class="card-image">
+                  <img src="https://picsum.photos/seed/storm-approaching/600/400.jpg" alt="Storm Approaching">
+                       <!--  <img src= {% picture card {{random-header}} %} alt="{{random-header}}">-->
                         <div class="date-badge">{{post.date | date: "%d %b %y" }}</div>
                     </div>
                     <div class="card-text">
-                        <h3>{{post.title}}</h3>
+                        <h3 id="card1-title">{{post.title}}</h3>
                         <p>{{post.description}}</p>
 
                         <div class="tags">
@@ -33,20 +34,21 @@
                      
                           </div>
                         <!-- Integrated Statistics -->
-                        <div class="card-stats">
-                            <div class="stat-item">
-                                <i class="fas fa-camera"></i>
-                                <span class="count">1,762</span>
-                            </div>
-                            <div class="stat-item">
-                                <i class="fas fa-image"></i>
-                                <span class="count">{{headers|size}}</span>
-                            </div>
-                            <div class="stat-item">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span class="count">37</span>
-                            </div>
+<div class="card-stats">
+                        <div class="stat-item">
+                            <i class="fas fa-camera"></i>
+                            <span class="count">1,762</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-image"></i>
+                            <span class="count">645</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span class="count">37</span>
                         </div>
                     </div>
                 </div>
-            </article>
+            </div>
+        </article>
+                    

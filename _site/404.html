@@ -147,7 +147,8 @@
 
   
 </head>
-    <!-- Navigation Bar -->
+<body>
+    <!-- Navigation Bar 
      <nav class="navbar" id="navbar">
     <div class="nav-container">
       <a href="#" class="nav-logo">
@@ -170,7 +171,7 @@
         <li><a href="tags.html" class="active">Tags</a></li>
       </ul>
     </div>
-  </nav>
+  </nav>-->
 
 <!-- from https://codepen.io/davedehaan/pen/DMPqMj -->
 
@@ -397,47 +398,6 @@
 	}
 </script>
 
-    <script>
-    // Mobile menu toggle functionality
-    const mobileToggle = document.getElementById('mobileToggle');
-    const navMenu = document.getElementById('navMenu');
-    const body = document.body;
-
-    mobileToggle.addEventListener('click', () => {
-      mobileToggle.classList.toggle('active');
-      navMenu.classList.toggle('active');
-      body.classList.toggle('menu-open');
-    });
-
-    // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
-      if (!navMenu.contains(e.target) && !mobileToggle.contains(e.target)) {
-        mobileToggle.classList.remove('active');
-        navMenu.classList.remove('active');
-        body.classList.remove('menu-open');
-      }
-    });
-
-    // Close menu when clicking on a link
-    const navLinks = navMenu.querySelectorAll('a');
-    navLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        mobileToggle.classList.remove('active');
-        navMenu.classList.remove('active');
-        body.classList.remove('menu-open');
-      });
-    });
-
-    // Navbar scroll effect
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
-      }
-    });
-  </script> 
 </body>
 
 </html>

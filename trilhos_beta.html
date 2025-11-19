@@ -3,23 +3,30 @@ layout: default
 custom_css:
 - trilhos_beta.css
 ---
+{%include navigation.html%}
 
-<!-- Hero Section -->
-    <section class="hero" id="home">
-        <h1>Mountain Photography</h1>
-        <p>Capturing the majesty of peaks and valleys through the lens</p>
-    </section>
+<section class="hero" aria-labelledby="hero-heading">
+    <h1 id="hero-heading">Os meus trilhos</h1>
+    <p>Capturing the majesty of peaks and valleys through the lens</p>
+</section>
 
    <!-- Main Section -->    
-    <section class="main-section" id="gallery">
-      <div class="main-content">
-      <div class="post-cards" id="post-container">
+<section class="main-section" role="main" aria-label="Blog posts">
+    <div class="post-cards" id="post-container">
         <!-- Posts will be loaded here -->
       </div>
       <div id="loading" style="display: none; text-align: center; padding: 20px;">
         <p>Loading more posts...</p>
       </div>
     </section>
+
+<!-- Floating Scroll-to-Top Button -->
+<button id="scrollToTop" class="scroll-to-top" aria-label="Scroll to top" title="Scroll to top">
+    <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+        <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+    </svg>
+</button>
+
     <footer>
       <p id="footer">&copy; 2025 Nuno Rodrigues. No rights reserved_made by </p>
     </footer>

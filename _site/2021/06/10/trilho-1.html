@@ -159,7 +159,8 @@
 
   
 </head>
-    <!-- Navigation Bar -->
+<body>
+    <!-- Navigation Bar 
      <nav class="navbar" id="navbar">
     <div class="nav-container">
       <a href="#" class="nav-logo">
@@ -182,7 +183,7 @@
         <li><a href="tags.html" class="active">Tags</a></li>
       </ul>
     </div>
-  </nav>
+  </nav>-->
 
 <body>
   <!--Hero-->
@@ -454,7 +455,7 @@ image_01_808x1212.jpg
 
 
 
-<li><a data-fslightbox href="/fotos/folder_001/image_01_808x1212.jpg"><picture><source srcset="/generated/fotos/folder_001/image_01_808x1212-400-5aba9f2d0.webp 400w, /generated/fotos/folder_001/image_01_808x1212-600-5aba9f2d0.webp 600w, /generated/fotos/folder_001/image_01_808x1212-800-5aba9f2d0.webp 800w, /generated/fotos/folder_001/image_01_808x1212-1000-5aba9f2d0.webp 1000w" type="image/webp"><source srcset="/generated/fotos/folder_001/image_01_808x1212-400-39c9ad5be.jpg 400w, /generated/fotos/folder_001/image_01_808x1212-600-39c9ad5be.jpg 600w, /generated/fotos/folder_001/image_01_808x1212-800-39c9ad5be.jpg 800w, /generated/fotos/folder_001/image_01_808x1212-1000-39c9ad5be.jpg 1000w" type="image/jpeg"><img src="/generated/fotos/folder_001/image_01_808x1212-800-39c9ad5be.jpg"></picture>
+<li><a data-fslightbox href="/fotos/folder_001/image_01_808x1212.jpg"><picture><source srcset="/generated/fotos/folder_001/image_01_808x1212-400-5aba9f2d0.webp 400w, /generated/fotos/folder_001/image_01_808x1212-600-5aba9f2d0.webp 600w, /generated/fotos/folder_001/image_01_808x1212-800-5aba9f2d0.webp 800w, /generated/fotos/folder_001/image_01_808x1212-808-5aba9f2d0.webp 808w" type="image/webp"><source srcset="/generated/fotos/folder_001/image_01_808x1212-400-39c9ad5be.jpg 400w, /generated/fotos/folder_001/image_01_808x1212-600-39c9ad5be.jpg 600w, /generated/fotos/folder_001/image_01_808x1212-800-39c9ad5be.jpg 800w, /generated/fotos/folder_001/image_01_808x1212-808-39c9ad5be.jpg 808w" type="image/jpeg"><img src="/generated/fotos/folder_001/image_01_808x1212-800-39c9ad5be.jpg"></picture>
 </a></li>
 
 
@@ -1335,47 +1336,6 @@ end original versions -->
 
     </script>
 
-    <script>
-    // Mobile menu toggle functionality
-    const mobileToggle = document.getElementById('mobileToggle');
-    const navMenu = document.getElementById('navMenu');
-    const body = document.body;
-
-    mobileToggle.addEventListener('click', () => {
-      mobileToggle.classList.toggle('active');
-      navMenu.classList.toggle('active');
-      body.classList.toggle('menu-open');
-    });
-
-    // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
-      if (!navMenu.contains(e.target) && !mobileToggle.contains(e.target)) {
-        mobileToggle.classList.remove('active');
-        navMenu.classList.remove('active');
-        body.classList.remove('menu-open');
-      }
-    });
-
-    // Close menu when clicking on a link
-    const navLinks = navMenu.querySelectorAll('a');
-    navLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        mobileToggle.classList.remove('active');
-        navMenu.classList.remove('active');
-        body.classList.remove('menu-open');
-      });
-    });
-
-    // Navbar scroll effect
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
-      }
-    });
-  </script> 
 </body>
 
 </html>
