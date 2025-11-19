@@ -602,7 +602,7 @@ body{
 		grid-template-columns:1fr;
 		gap:30px;
 		padding:0 20px;
-		max-width:800px;
+		max-width:600px;
 	}
 }
 
@@ -996,7 +996,6 @@ body{
 	color:var(--color-primary);
 }
 
-
 /* ========================================
    SCROLL TO TOP BUTTON
    ======================================== */
@@ -1304,6 +1303,71 @@ footer p{
 
 
 
+/*tags*/
+/* ========================================
+   TAG INDEX LAYOUT STYLES
+   Extension CSS for tag-index.html
+   ======================================== */
+
+/* Tag Grid Container */
+.tag-grid{
+	display:grid;
+	grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+	gap:25px;
+	position:relative;
+	z-index:1;
+	max-width:1400px;
+	margin:0 auto;
+	padding:20px;
+	
+	/* Performance optimization */
+	contain:layout style paint;
+}
+
+/* Individual Tag Card */
+.tag-card{
+	background:var(--color-bg-white);
+	border-radius:16px;
+	padding:24px;
+	box-shadow:var(--shadow-md);
+	transition:var(--ease-cubic);
+	cursor:pointer;
+	display:flex;
+	align-items:center;
+	gap:20px;
+	position:relative;
+	
+	/* Hardware acceleration for smooth animations */
+	transform:translateY(0) translate3d(0,0,0);
+	
+	border:1px solid var(--color-border-light);
+	contain:layout style paint;
+	will-change:transform,box-shadow;
+	
+	/* Staggered loading animation */
+	animation:slideIn .6s ease forwards;
+}
+
+.tag-card:hover{
+	transform:translateY(-8px);
+	box-shadow:var(--shadow-xl);
+}
+
+.tag-card:hover::before{
+	transform:scaleX(1);
+}
+
+/* Top border gradient effect for tag cards */
+.tag-card::before{
+	content:'';
+	position:absolute;
+	top:0;left:0;right:0;
+	height:4px;
+	background:linear-gradient(90deg,var(--color-primary),var(--color-secondary));
+	transform:scaleX(0);
+	transform-origin:left;
+	transition:var(--ease-cubic);
+}
 
 /* Tag Icon Container */
 .tag-icon{
