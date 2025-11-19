@@ -16,13 +16,12 @@
             <article class="post-card" role="article" aria-labelledby="card1-title">
             <div class="card-content">
                 <div class="card-image">
-                  <img src="https://picsum.photos/seed/storm-approaching/600/400.jpg" alt="Storm Approaching">
-                       <!--  <img src= {% picture card {{random-header}} %} alt="{{random-header}}">-->
+                  <img src= {% picture card {{random-header}} %} alt="{{random-header}}">
                         <div class="date-badge">{{post.date | date: "%d %b %y" }}</div>
                     </div>
                     <div class="card-text">
                         <h3 id="card1-title">{{post.title}}</h3>
-                        <p>{{post.description}}</p>
+                        <p>{{post.description | | truncate: 120}}</p>
 
                         <div class="tags">
 
