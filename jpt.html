@@ -1,0 +1,624 @@
+---
+layout: null
+title: Jekyll Picture Tag Demo
+description: Comprehensive demonstration of jekyll_picture_tag options and presets available in this site
+---
+<style>
+  /* Demo styles for jpt.html gallery */
+
+.gallery-demo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.gallery-item-demo {
+  text-align: center;
+  background: #f5f5f5;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.gallery-item-demo img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+.gallery-item-demo figcaption {
+  font-size: 0.9em;
+  color: #666;
+  font-family: monospace;
+}
+
+/* Table styling for preset comparison */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 0.9em;
+}
+
+table th,
+table td {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+table th {
+  background-color: #f8f9fa;
+  font-weight: bold;
+}
+
+/* Code block styling */
+pre {
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 4px;
+  padding: 12px;
+  overflow-x: auto;
+  font-size: 0.85em;
+}
+
+/* Image comparison section */
+.comparison-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  margin: 20px 0;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
+.comparison-item {
+  text-align: center;
+  font-size: 0.8em;
+}
+
+.comparison-item img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  margin-bottom: 5px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .gallery-demo {
+    grid-template-columns: 1fr;
+  }
+  
+  table {
+    font-size: 0.8em;
+  }
+  
+  table th,
+  table td {
+    padding: 6px 8px;
+  }
+}
+</style>
+
+{% comment %}
+=================================================================
+JEKYLL PICTURE TAG COMPREHENSIVE DEMO
+=================================================================
+
+This page demonstrates all available jekyll_picture_tag options
+in the trilhos Jekyll site. The site uses jekyll_picture_tag gem
+for responsive image handling with multiple presets and formats.
+
+Configuration File: _data/picture.yml
+Gem Version: ~> 2.1.3
+Available Presets: 9 different presets with various options
+
+=================================================================
+JEKYLL PICTURE TAG BASICS
+=================================================================
+
+The jekyll_picture_tag syntax is:
+{% picture preset_name "path/to/image.ext" [options] %}
+
+Key Features:
+- Multiple formats (webp, original)
+- Responsive widths
+- Different markup styles
+- Cropping options
+- Fallback behavior
+
+=================================================================
+CONFIGURED PRESETS OVERVIEW
+=================================================================
+{% endcomment %}
+
+# Jekyll Picture Tag Presets Configuration
+
+## Available Presets in `_data/picture.yml`
+
+{% assign presets = site.data.picture.presets %}
+
+| Preset Name | Formats | Widths | Fallback | Crop | Markup |
+|-------------|---------|--------|----------|------|--------|
+{% for preset in presets %}
+| `{{ preset[0] }}` | `{{ preset[1].formats | join: ", " }}` | `{{ preset[1].widths | default: "N/A" | join: ", " }}` | `{{ preset[1].fallback_width | default: "N/A" }}` | `{{ preset[1].crop | default: "none" }}` | `{{ preset[1].markup | default: "default" }}` |
+{% endfor %}
+
+=================================================================
+DEMONSTRATION IMAGES
+=================================================================
+
+We'll use these sample images throughout the demo:
+
+{% assign demo_images = "/assets/about.jpg,/assets/background_trilhos.jpg,/assets/front/DSC_1868.jpg" | split: "," %}
+
+{% for img in demo_images %}
+- **{{ img | replace: "/assets/", "" }}**: `{{ img }}`
+{% endfor %}
+
+=================================================================
+PRESET: DEFAULT
+=================================================================
+
+### Description
+Default preset with WebP + original formats, responsive widths, and source linking.
+
+### Configuration
+```yaml
+default:
+  formats: [webp, original]
+  widths: [350, 700, 1200]
+  link_source: true
+```
+
+### Usage
+```liquid
+{% picture default "/assets/about.jpg" %}
+```
+
+### Result
+{% picture default "/assets/about.jpg" %}
+
+### Generated HTML
+The default preset creates a picture element with:
+- WebP source with responsive srcset
+- JPEG source with responsive srcset
+- img tag as fallback
+- Link to original image
+
+=================================================================
+PRESET: MY_PRESET_400
+=================================================================
+
+### Description
+Fixed width preset (400px) with direct URL markup, original format only.
+
+### Configuration
+```yaml
+my_preset_400:
+  formats: [original]
+  fallback_width: 400
+  markup: direct_url
+```
+
+### Usage
+```liquid
+{% picture my_preset_400 "/assets/background_trilhos.jpg" %}
+```
+
+### Result
+{% picture my_preset_400 "/assets/background_trilhos.jpg" %}
+
+### Generated HTML
+Returns direct URL: `/assets/background_trilhos.jpg`
+
+=================================================================
+PRESET: MY_PRESET_600
+=================================================================
+
+### Description
+Fixed width preset (600px) with direct URL markup, original format only.
+
+### Configuration
+```yaml
+my_preset_600:
+  formats: [original]
+  fallback_width: 600
+  markup: direct_url
+```
+
+### Usage
+```liquid
+{% picture my_preset_600 "/assets/front/DSC_1868.jpg" %}
+```
+
+### Result
+{% picture my_preset_600 "/assets/front/DSC_1868.jpg" %}
+
+=================================================================
+PRESET: MY_PRESET_SMALL
+=================================================================
+
+### Description
+Small preset (200px fallback) with direct URL markup, original format only.
+
+### Configuration
+```yaml
+my_preset_small:
+  formats: [original]
+  fallback_width: 200
+  markup: direct_url
+```
+
+### Usage
+```liquid
+{% picture my_preset_small "/assets/about.jpg" %}
+```
+
+### Result
+{% picture my_preset_small "/assets/about.jpg" %}
+
+=================================================================
+PRESET: ONLY_SRCET
+=================================================================
+
+### Description
+WebP only with naked srcset markup, responsive widths.
+
+### Configuration
+```yaml
+only_srcset:
+  markup: naked_srcset
+  widths: [800, 1200, 1600]
+  formats: webp
+```
+
+### Usage
+```liquid
+{% picture only_srcset "/assets/background_trilhos.jpg" %}
+```
+
+### Result
+{% picture only_srcset "/assets/background_trilhos.jpg" %}
+
+### Generated HTML
+Returns only the srcset attribute value for WebP sources.
+
+=================================================================
+PRESET: CARD
+=================================================================
+
+### Description
+Card-sized preset (800px fallback) with 6:4 aspect ratio cropping.
+
+### Configuration
+```yaml
+card:
+  formats: [original]
+  fallback_width: 800
+  crop: '6:4'
+  markup: direct_url
+```
+
+### Usage
+```liquid
+{% picture card "/assets/front/DSC_1868.jpg" %}
+```
+
+### Result
+{% picture card "/assets/front/DSC_1868.jpg" %}
+
+### Generated HTML
+Returns direct URL with 6:4 crop applied.
+
+=================================================================
+PRESET: S (SMALL)
+=================================================================
+
+### Description
+Small responsive preset (576px fallback) with direct URL markup.
+
+### Configuration
+```yaml
+s:
+  formats: [original]
+  fallback_width: 576
+  markup: direct_url
+```
+
+### Usage
+```liquid
+{% picture s "/assets/about.jpg" %}
+```
+
+### Result
+{% picture s "/assets/about.jpg" %}
+
+=================================================================
+PRESET: M (MEDIUM)
+=================================================================
+
+### Description
+Medium responsive preset (768px fallback) with direct URL markup.
+
+### Configuration
+```yaml
+m:
+  formats: [original]
+  fallback_width: 768
+  markup: direct_url
+```
+
+### Usage
+```liquid
+{% picture m "/assets/background_trilhos.jpg" %}
+```
+
+### Result
+{% picture m "/assets/background_trilhos.jpg" %}
+
+=================================================================
+PRESET: L (LARGE)
+=================================================================
+
+### Description
+Large responsive preset (1200px fallback) with direct URL markup.
+
+### Configuration
+```yaml
+l:
+  formats: [original]
+  fallback_width: 1200
+  markup: direct_url
+```
+
+### Usage
+```liquid
+{% picture l "/assets/front/DSC_1868.jpg" %}
+```
+
+### Result
+{% picture l "/assets/front/DSC_1868.jpg" %}
+
+=================================================================
+ADVANCED USAGE PATTERNS
+=================================================================
+
+### Dynamic Image Selection
+```liquid
+{% assign random_image = site.static_files | where_exp: "file", "file.extname == '.jpg'" | where_exp: "file", "file.path contains '/assets/front/'" | sample %}
+Random front image: {% picture default random_image.path %}
+```
+
+### With Variables
+```liquid
+{% assign image_path = "/assets/about.jpg" %}
+{% assign preset_name = "card" %}
+{% picture preset_name image_path %}
+```
+
+### Responsive Gallery Example
+```liquid
+<div class="gallery">
+  {% for file in site.static_files | where_exp: "file", "file.path contains '/assets/front/'" | where_exp: "file", "file.extname == '.jpg'" | limit: 3 %}
+    <figure class="gallery-item">
+      {% picture card file.path %}
+      <figcaption>{{ file.basename }}</figcaption>
+    </figure>
+  {% endfor %}
+</div>
+```
+
+### Result (Live Gallery)
+<div class="gallery-demo">
+{% assign front_images = site.static_files | where_exp: "file", "file.path contains '/assets/front/'" | where_exp: "file", "file.extname == '.jpg'" %}
+{% for file in front_images limit: 3 %}
+  <figure class="gallery-item-demo">
+    {% picture card file.path %}
+    <figcaption>{{ file.basename }}</figcaption>
+  </figure>
+{% endfor %}
+</div>
+
+=================================================================
+COMPARISON: PRESET OUTPUTS
+=================================================================
+
+Same image with different presets for comparison:
+
+### Original Image
+![Original](/assets/about.jpg)
+
+### Default Preset
+{% picture default "/assets/about.jpg" %}
+
+### Card Preset (6:4 crop)
+{% picture card "/assets/about.jpg" %}
+
+### Small Preset (200px)
+{% picture my_preset_small "/assets/about.jpg" %}
+
+### Medium Preset (768px)
+{% picture m "/assets/about.jpg" %}
+
+### Large Preset (1200px)
+{% picture l "/assets/about.jpg" %}
+
+=================================================================
+TECHNICAL DETAILS
+=================================================================
+
+### Markup Options
+
+1. **default** (default)
+   - Creates complete picture element
+   - Multiple source elements for different formats
+   - Fallback img element
+   - Supports link_source option
+
+2. **direct_url**
+   - Returns direct URL to processed image
+   - No picture element
+   - Best for CSS backgrounds, inline styles
+
+3. **naked_srcset**
+   - Returns only srcset attribute value
+   - Useful for custom picture implementations
+   - Requires manual img tag
+
+### Format Options
+
+- **webp**: WebP format for modern browsers
+- **original**: Original format (JPEG, PNG, etc.)
+- **Both**: [webp, original] for maximum compatibility
+
+### Cropping
+
+- **Aspect Ratios**: '6:4', '16:9', '1:1', etc.
+- **Position**: Automatic center crop
+- **Smart Cropping**: Intelligent focal point detection
+
+### Width Handling
+
+- **Fixed Widths**: Specific pixel values like [350, 700, 1200]
+- **Responsive**: Generates srcset for different screen sizes
+- **Fallback**: Default size when JavaScript is disabled
+
+### Performance Benefits
+
+1. **WebP Support**: Modern browsers get smaller WebP files
+2. **Responsive Images**: Right-sized images for device capabilities
+3. **Lazy Loading**: Built-in support for lazy loading
+4. **CDN Ready**: Generated filenames work with CDN caching
+
+=================================================================
+CUSTOM PRESETS CREATION
+=================================================================
+
+To create a new preset, add it to `_data/picture.yml`:
+
+```yaml
+presets:
+  custom_preset:
+    formats: [webp, original]
+    widths: [400, 800, 1200]
+    fallback_width: 800
+    crop: '16:9'
+    markup: default
+    link_source: true
+```
+
+Usage:
+```liquid
+{% picture custom_preset "/path/to/image.jpg" %}
+```
+
+### Preset Options Reference
+
+| Option | Values | Description |
+|--------|--------|-------------|
+| formats | [webp, original] | Output formats |
+| widths | [array] | Responsive breakpoints |
+| fallback_width | number | Default width |
+| crop | 'WxH' | Aspect ratio crop |
+| markup | default/direct_url/naked_srcset | Output style |
+| link_source | true/false | Link to original |
+
+=================================================================
+USAGE IN EXISTING TEMPLATES
+=================================================================
+
+### In _includes/card_post_beta.html
+```liquid
+{% picture card " {{random-header}}"%}
+```
+
+### In _layouts/post.html  
+```liquid
+{% picture jpt-webp {{image.path}} %}
+```
+
+Note: 'jpt-webp' appears to be a custom preset not in the current configuration.
+
+=================================================================
+BEST PRACTICES
+=================================================================
+
+### When to Use Each Preset
+
+1. **default**: General content images, blog posts
+2. **card**: Thumbnail grids, photo cards
+3. **s, m, l**: Responsive breakpoints for layouts
+4. **my_preset_400/600**: Fixed-size requirements
+5. **my_preset_small**: Small icons, avatars
+6. **only_srcset**: Custom implementations
+
+### Performance Tips
+
+1. Use WebP + original for best compatibility
+2. Specify appropriate widths for your use case
+3. Use direct_url for CSS backgrounds
+4. Enable link_source for image attribution
+5. Test on various devices and browsers
+
+### Accessibility
+
+1. Add alt attributes to generated images
+2. Use descriptive captions
+3. Consider link_source for image credits
+4. Test with screen readers
+
+=================================================================
+DEBUGGING AND TROUBLESHOOTING
+=================================================================
+
+### Common Issues
+
+1. **Image not found**: Check file path exists
+2. **Preset not found**: Verify name in picture.yml
+3. **Wrong format**: Check formats configuration
+4. **Cropping issues**: Verify aspect ratio syntax
+
+### Debug Commands
+
+```liquid
+<!-- Check available presets -->
+Available presets: {{ site.data.picture.presets | map: 0 | join: ", " }}
+
+<!-- Check image files -->
+Images in /assets/front/: {{ site.static_files | where_exp: "file", "file.path contains '/assets/front/'" | size }}
+
+<!-- Test preset configuration -->
+Default preset formats: {{ site.data.picture.presets.default.formats | join: ", " }}
+```
+
+=================================================================
+CONCLUSION
+=================================================================
+
+The jekyll_picture_tag gem provides powerful responsive image handling
+for your trilhos site. With 9 configured presets, you can handle:
+
+- Responsive galleries
+- Thumbnail cards  
+- Fixed-size requirements
+- Format optimization (WebP + fallback)
+- Custom aspect ratios
+- Direct URL and markup options
+
+Choose the appropriate preset based on:
+- Image usage context
+- Required dimensions
+- Format preferences
+- Markup style needed
+
+For more information, visit the jekyll_picture_tag documentation:
+https://github.com/envygeeks/jekyll-picture-tag
+
+---
+
+*Generated on {{ "now" | date: "%d %B %Y at %H:%M" }} for site: {{ site.title }}*
