@@ -1,8 +1,4 @@
----
-layout: null
-title: Jekyll Picture Tag Demo
-description: Comprehensive demonstration of jekyll_picture_tag options and presets available in this site
----
+
 <style>
   /* Demo styles for jpt.html gallery */
 
@@ -401,17 +397,7 @@ Random front image: {% picture default random_image.path %}
 {% picture preset_name image_path %}
 ```
 
-### Responsive Gallery Example
-```liquid
-<div class="gallery">
-  {% for file in site.static_files | where_exp: "file", "file.path contains '/assets/front/'" | where_exp: "file", "file.extname == '.jpg'" | limit: 3 %}
-    <figure class="gallery-item">
-      {% picture card file.path %}
-      <figcaption>{{ file.basename }}</figcaption>
-    </figure>
-  {% endfor %}
-</div>
-```
+
 
 ### Result (Live Gallery)
 <div class="gallery-demo">
