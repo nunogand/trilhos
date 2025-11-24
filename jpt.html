@@ -164,17 +164,16 @@ PRESET: DEFAULT
 Default preset with WebP + original formats, responsive widths, and source linking.
 
 ### Configuration
-```yaml
+-yaml-
 default:
   formats: [webp, original]
   widths: [350, 700, 1200]
   link_source: true
-```
+
 
 ### Usage
-```liquid
 {% picture default "/assets/about.jpg" %}
-```
+
 
 ### Result
 {% picture default "/assets/about.jpg" %}
@@ -194,17 +193,16 @@ PRESET: MY_PRESET_400
 Fixed width preset (400px) with direct URL markup, original format only.
 
 ### Configuration
-```yaml
+-yaml-
 my_preset_400:
   formats: [original]
   fallback_width: 400
   markup: direct_url
-```
+
 
 ### Usage
-```liquid
 {% picture my_preset_400 "/assets/background_trilhos.jpg" %}
-```
+
 
 ### Result
 {% picture my_preset_400 "/assets/background_trilhos.jpg" %}
@@ -220,17 +218,16 @@ PRESET: MY_PRESET_600
 Fixed width preset (600px) with direct URL markup, original format only.
 
 ### Configuration
-```yaml
+-yaml-
 my_preset_600:
   formats: [original]
   fallback_width: 600
   markup: direct_url
-```
+
 
 ### Usage
-```liquid
 {% picture my_preset_600 "/assets/front/DSC_1868.jpg" %}
-```
+
 
 ### Result
 {% picture my_preset_600 "/assets/front/DSC_1868.jpg" %}
@@ -243,17 +240,16 @@ PRESET: MY_PRESET_SMALL
 Small preset (200px fallback) with direct URL markup, original format only.
 
 ### Configuration
-```yaml
+-yaml-
 my_preset_small:
   formats: [original]
   fallback_width: 200
   markup: direct_url
-```
+
 
 ### Usage
-```liquid
 {% picture my_preset_small "/assets/about.jpg" %}
-```
+
 
 ### Result
 {% picture my_preset_small "/assets/about.jpg" %}
@@ -266,17 +262,16 @@ PRESET: ONLY_SRCET
 WebP only with naked srcset markup, responsive widths.
 
 ### Configuration
-```yaml
+-yaml-
 only_srcset:
   markup: naked_srcset
   widths: [800, 1200, 1600]
   formats: webp
-```
+
 
 ### Usage
-```liquid
 {% picture only_srcset "/assets/background_trilhos.jpg" %}
-```
+
 
 ### Result
 {% picture only_srcset "/assets/background_trilhos.jpg" %}
@@ -292,18 +287,17 @@ PRESET: CARD
 Card-sized preset (800px fallback) with 6:4 aspect ratio cropping.
 
 ### Configuration
-```yaml
+-yaml-
 card:
   formats: [original]
   fallback_width: 800
   crop: '6:4'
   markup: direct_url
-```
+
 
 ### Usage
-```liquid
 {% picture card "/assets/front/DSC_1868.jpg" %}
-```
+
 
 ### Result
 {% picture card "/assets/front/DSC_1868.jpg" %}
@@ -319,17 +313,16 @@ PRESET: S (SMALL)
 Small responsive preset (576px fallback) with direct URL markup.
 
 ### Configuration
-```yaml
+-yaml-
 s:
   formats: [original]
   fallback_width: 576
   markup: direct_url
-```
+
 
 ### Usage
-```liquid
 {% picture s "/assets/about.jpg" %}
-```
+
 
 ### Result
 {% picture s "/assets/about.jpg" %}
@@ -342,17 +335,16 @@ PRESET: M (MEDIUM)
 Medium responsive preset (768px fallback) with direct URL markup.
 
 ### Configuration
-```yaml
+-yaml-
 m:
   formats: [original]
   fallback_width: 768
   markup: direct_url
-```
+
 
 ### Usage
-```liquid
 {% picture m "/assets/background_trilhos.jpg" %}
-```
+
 
 ### Result
 {% picture m "/assets/background_trilhos.jpg" %}
@@ -365,17 +357,16 @@ PRESET: L (LARGE)
 Large responsive preset (1200px fallback) with direct URL markup.
 
 ### Configuration
-```yaml
+-yaml-
 l:
   formats: [original]
   fallback_width: 1200
   markup: direct_url
-```
+
 
 ### Usage
-```liquid
 {% picture l "/assets/front/DSC_1868.jpg" %}
-```
+
 
 ### Result
 {% picture l "/assets/front/DSC_1868.jpg" %}
@@ -385,17 +376,15 @@ ADVANCED USAGE PATTERNS
 =================================================================
 
 ### Dynamic Image Selection
-```liquid
 {% assign random_image = site.static_files | where_exp: "file", "file.extname == '.jpg'" | where_exp: "file", "file.path contains '/assets/front/'" | sample %}
 Random front image: {% picture default random_image.path %}
-```
+
 
 ### With Variables
-```liquid
 {% assign image_path = "/assets/about.jpg" %}
 {% assign preset_name = "card" %}
 {% picture preset_name image_path %}
-```
+
 
 
 
@@ -487,7 +476,7 @@ CUSTOM PRESETS CREATION
 
 To create a new preset, add it to `_data/picture.yml`:
 
-```yaml
+-yaml-
 presets:
   custom_preset:
     formats: [webp, original]
@@ -496,12 +485,11 @@ presets:
     crop: '16:9'
     markup: default
     link_source: true
-```
+
 
 Usage:
-```liquid
 {% picture custom_preset "/path/to/image.jpg" %}
-```
+
 
 ### Preset Options Reference
 
@@ -519,14 +507,12 @@ USAGE IN EXISTING TEMPLATES
 =================================================================
 
 ### In _includes/card_post_beta.html
-```liquid
 {% picture card " {{random-header}}"%}
-```
+
 
 ### In _layouts/post.html  
-```liquid
 {% picture jpt-webp {{image.path}} %}
-```
+
 
 Note: 'jpt-webp' appears to be a custom preset not in the current configuration.
 
@@ -571,7 +557,6 @@ DEBUGGING AND TROUBLESHOOTING
 
 ### Debug Commands
 
-```liquid
 <!-- Check available presets -->
 Available presets: {{ site.data.picture.presets | map: 0 | join: ", " }}
 
@@ -580,7 +565,7 @@ Images in /assets/front/: {{ site.static_files | where_exp: "file", "file.path c
 
 <!-- Test preset configuration -->
 Default preset formats: {{ site.data.picture.presets.default.formats | join: ", " }}
-```
+
 
 =================================================================
 CONCLUSION

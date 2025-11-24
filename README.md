@@ -20,7 +20,7 @@ A responsive web gallery showcasing mountain trail photography with interactive 
 
 ## Project Structure
 
-```
+
 trilhos/
 ├── assets/
 │   ├── about.jpg
@@ -31,7 +31,7 @@ trilhos/
 ├── gallery.html
 ├── about.html
 └── README.md
-```
+
 
 ## Pages
 
@@ -82,14 +82,14 @@ On screens smaller than 62rem, elements with IDs "4" and "5" in the about page a
 ## Installation
 
 1. Clone the repository:
-   ```bash
+   bash
    git clone https://github.com/nunogand/trilhos.git
-   ```
+   
 
 2. Navigate to the project directory:
-   ```bash
+   bash
    cd trilhos
-   ```
+   
 
 3. Open `index.html` in your browser to view the project.
 
