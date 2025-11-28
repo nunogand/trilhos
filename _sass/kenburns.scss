@@ -11,7 +11,10 @@ $scale: 20%;
 $total-time: (
   $animation-time * $items
 );
-$scale-base-1: calc(1 + ($scale / 100%));
+// potencial error
+//$scale-base-1: calc(1 + ($scale / 100%));
+// convert to
+$scale-base-1: 1 + ($scale * 0.01);
 
 .slideshow {
   position: absolute;
@@ -32,6 +35,8 @@ $scale-base-1: calc(1 + ($scale / 100%));
   animation-duration: $total-time;
   opacity: 1;
   transform: scale($scale-base-1);
+  transform: translate3d(0, 0, 0); // Force hardware acceleration
+  will-change: transform, opacity;  // Hint to browser
 
   @for $i from 1 through $items {
     &:nth-child(#{$i}) {
@@ -109,5 +114,12 @@ $scale-base-1: calc(1 + ($scale / 100%));
         opacity: 1;
       }
     }
+  }
+}
+
+// Consider reducing animation complexity for mobile
+@media (max-width: 768px) {
+  .slideshow-image {
+    animation-duration: #{$total-time * 2}; // Slower animations on mobile
   }
 }
