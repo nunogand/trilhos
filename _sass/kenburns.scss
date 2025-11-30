@@ -12,9 +12,7 @@ $total-time: (
   $animation-time * $items
 );
 // potencial error
-//$scale-base-1: calc(1 + ($scale / 100%));
-// convert to
-$scale-base-1: 1 + ($scale * 0.01);
+$scale-base-1: calc(1 + ($scale / 100%));
 
 .slideshow {
   position: absolute;
