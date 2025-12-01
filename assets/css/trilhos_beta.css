@@ -827,3 +827,25 @@ footer p{
 .tag-card:focus-visible{
 	box-shadow:var(--shadow-xl),0 0 0 4px rgba(45,80,22,0.2);
 }
+
+.photo-tags ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 87.5%;
+  margin-top: 0.35em;
+  text-transform: lowercase;
+}
+
+.photo-tags li {
+  margin: 0 0.35em 0.35em 0;
+  background-color: #191e20;
+  border-radius: 50px;
+  color: #fff;
+  display: block;
+  padding: 0.3125em 1.25em;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}

@@ -23,15 +23,26 @@
                         <h3 id="card1-title">{{post.title}}</h3>
                         <p>{{post.description | | truncate: 120}}</p>
 
-                        <div class="tags">
+ {% if post.places.size > 0 %}
 
-{% if post.places.size > 0 %}
-  {% for tag in post.places | sort %}
-    <span class="tag">{{ tag }}</span>
-  {% endfor %}
-{% endif %}                          
-                     
-                          </div>
+
+
+
+    <div class="photo-tags">
+{% if post.places.size > 1 %}<h4>Locais:</h4>
+{%else%}
+<h4>Local:</h4>
+{% endif %}
+
+      
+      <ul>
+        <li>{{ post.places | sort | join: "</li>
+        <li>" }}
+        </li>
+      </ul>
+
+    </div>
+    {% endif %}
                         <!-- Integrated Statistics -->
 <div class="card-stats">
                         <div class="stat-item">
