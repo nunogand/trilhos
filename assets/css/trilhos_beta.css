@@ -215,6 +215,7 @@ body{
 .nav-menu a.active{
 	color:var(--color-primary);
 	background:rgba(45,80,22,.1);
+	font-weight: 600;
 }
 
 .nav-menu a.active::after{width:80%}

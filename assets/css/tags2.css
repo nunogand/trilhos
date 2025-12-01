@@ -1,61 +1,110 @@
+/*
+=================================================================
+CSS VARIABLES & CUSTOM PROPERTIES
+=================================================================
+Centralized design system with color palette, typography, spacing,
+shadows, transitions, and layout measurements
+*/
 :root {
+  /* === COLOR PALETTE === */
+  /* Primary brand colors */
   --color-primary: #1a4d2e;
   --color-primary-light: #2d7a4c;
   --color-primary-dark: #0f3620;
+  
+  /* Accent colors */
   --color-accent: #ff8c42;
   --color-accent-light: #ffa566;
   --color-accent-dark: #e67329;
+  
+  /* Text colors */
   --color-text-primary: #1a1a1a;
   --color-text-secondary: #4a4a4a;
   --color-text-tertiary: #6b6b6b;
   --color-text-light: #8a8a8a;
+  
+  /* Background colors */
   --color-bg-primary: #fafafa;
   --color-bg-secondary: #ffffff;
   --color-bg-tertiary: #f5f5f5;
+  --color-bg-navbar: rgba(255,255,255,.95);  
+  
+  /* Border colors */
   --color-border: #e0e0e0;
   --color-border-light: #eeeeee;
+  
+--color-black: #000;                       /* Pure black for logo */
+--ease-fast: .15s ease;                    /* Quick transitions */
+--ease-normal: .3s ease;                   /* Standard transitions (longer than File 1's 0.25s) */
+--ease-slow: .5s ease;                     /* Slow transitions */
+--ease-cubic: cubic-bezier(.25,.46,.45,.94); /* Custom easing */
+  
+  /* Status colors */
   --color-success: #22c55e;
   --color-info: #3b82f6;
   --color-warning: #f59e0b;
+
+  /* === TYPOGRAPHY === */
   --font-heading: 'Montserrat', sans-serif;
   --font-body: 'Inter', sans-serif;
-  --space-2xs: 0.25rem;
-  --space-xs: 0.5rem;
-  --space-sm: 1rem;
-  --space-md: 1.5rem;
-  --space-lg: 2.5rem;
-  --space-xl: 4rem;
-  --space-2xl: 6rem;
+
+  /* === SPACING SYSTEM === */
+  --space-2xs: 0.25rem;    /* 4px */
+  --space-xs: 0.5rem;      /* 8px */
+  --space-sm: 1rem;        /* 16px */
+  --space-md: 1.5rem;      /* 24px */
+  --space-lg: 2.5rem;      /* 40px */
+  --space-xl: 4rem;        /* 64px */
+  --space-2xl: 6rem;       /* 96px */
+
+  /* === SHADOWS === */
   --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
   --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
   --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
+
+  /* === TRANSITIONS === */
   --transition-fast: 0.15s ease;
   --transition-normal: 0.25s ease;
   --transition-slow: 0.4s ease;
+
+  /* === LAYOUT DIMENSIONS === */
   --sidebar-width: 320px;
   --header-height: 70px;
 }
 
-@font-face{
-
-      font-display: swap;
-      font-family: 'Abel';
-      font-style: normal;
-      font-weight: 400;
-      src: url('../fonts/abel-v18-latin-regular.woff2') format('woff2');
-    
+/*
+=================================================================
+FONT FACE DECLARATIONS
+=================================================================
+Custom web font loading with proper font-display settings
+*/
+@font-face {
+  font-display: swap;              /* Prevents invisible text during font load */
+  font-family: 'Abel';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/abel-v18-latin-regular.woff2') format('woff2');
 }
 
+/*
+=================================================================
+GLOBAL RESET & BASE STYLES
+=================================================================
+Normalize browser defaults and establish base styling
+*/
+/* Reset box model and remove default margins/padding */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* Smooth scrolling behavior */
 html {
   scroll-behavior: smooth;
 }
 
+/* Body base styling */
 body {
   font-family: 'Abel', sans-serif;
   line-height: 1.6;
@@ -65,21 +114,28 @@ body {
   letter-spacing: 0.5px;
 }
 
+/*
+=================================================================
+NAVIGATION COMPONENT
+=================================================================
+Fixed header with responsive navigation menu
+*/
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  background: var(--color-bg-navbar);
+  background: var(--color-bg-navbar);        /* Fixed reference to undefined variable */
   backdrop-filter: blur(10px);
   box-shadow: 0 2px 20px rgba(0,0,0,.1);
   z-index: 1000;
-  transition: var(--ease-normal);
+  transition: var(--ease-normal);        /* Updated to use defined transition */
   border-bottom: 1px solid var(--color-border-light);
   contain: layout style paint;
-  height: var(--header-height);
+  /*height: var(--header-height);*/
 }
 
+/* Container for navigation content */
 .nav-container {
   max-width: 1400px;
   margin: 0 auto;
@@ -90,6 +146,7 @@ body {
   height: 100%;
 }
 
+/* Brand/logo styling */
 .nav-logo {
   font-size: 1.8rem;
   font-weight: 400;
@@ -101,15 +158,16 @@ body {
   gap: 10px;
   z-index: 1001;
   will-change: transform;
-  font-family: var(--font-heading);
+  /*font-family: var(--font-heading);*/
 }
 
 .nav-logo svg {
-  fill: var(--color-black);
+  fill: var(--color-black);             /* Fixed undefined --color-black */
   width: 2.2em;
   height: 2.2em;
 }
 
+/* Navigation menu */
 .nav-menu {
   display: flex;
   gap: 30px;
@@ -117,20 +175,21 @@ body {
   align-items: center;
 }
 
+/* Navigation links */
 .nav-menu a {
   color: var(--color-text-secondary);
   text-decoration: none;
   font-size: 1.2rem;
   letter-spacing: 1px;
-  transition: var(--ease-normal);
+  transition: var(--ease-normal);        /* Updated to use defined transition */
   position: relative;
   padding: 8px 12px;
   border-radius: 8px;
-  will-change: transform,color,background;
+  will-change: transform, color, background;
   contain: layout style paint;
-  font-weight: 500;
 }
 
+/* Underline animation for navigation links */
 .nav-menu a::after {
   content: '';
   position: absolute;
@@ -139,24 +198,26 @@ body {
   transform: translateX(-50%);
   width: 0;
   height: 3px;
-  background: linear-gradient(90deg,var(--color-primary),var(--color-secondary));
-  transition: width var(--ease-normal);
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent)); /* Fixed secondary color */
+  transition: width var(--ease-normal);                                /* Updated transition */
   border-radius: 2px;
 }
 
+/* Navigation link hover state */
 .nav-menu a:hover {
   color: var(--color-primary);
-  background: rgba(45,80,22,.05);
-  transform: translate3d(0,0,0);
+  background: rgba(45, 80, 22, .05);
+  transform: translate3d(0, 0, 0);
 }
 
 .nav-menu a:hover::after {
   width: 80%;
 }
 
+/* Active navigation link state */
 .nav-menu a.active {
   color: var(--color-primary);
-  background: rgba(45,80,22,.1);
+  background: rgba(45, 80, 22, .1);
   font-weight: 600;
 }
 
@@ -164,6 +225,7 @@ body {
   width: 80%;
 }
 
+/* Mobile menu toggle button */
 .mobile-toggle {
   display: none;
   flex-direction: column;
@@ -181,10 +243,16 @@ body {
   height: 3px;
   background: var(--color-text-primary);
   border-radius: 3px;
-  transition: var(--ease-normal);
+  transition: var(--ease-normal);        /* Updated transition */
   will-change: transform;
 }
 
+/*
+=================================================================
+MAIN LAYOUT STRUCTURE
+=================================================================
+Flexbox layout with sidebar and content area
+*/
 .main-wrapper {
   display: flex;
   max-width: 1400px;
@@ -193,6 +261,12 @@ body {
   min-height: 100vh;
 }
 
+/*
+=================================================================
+SIDEBAR COMPONENT
+=================================================================
+Sticky sidebar with search and filter controls
+*/
 .sidebar {
   width: var(--sidebar-width);
   background: var(--color-bg-secondary);
@@ -204,6 +278,7 @@ body {
   padding: var(--space-lg);
 }
 
+/* Sidebar header section */
 .sidebar-header {
   margin-bottom: var(--space-lg);
 }
@@ -222,6 +297,7 @@ body {
   line-height: 1.5;
 }
 
+/* === SEARCH COMPONENT === */
 .search-box {
   margin-bottom: var(--space-lg);
   position: relative;
@@ -253,6 +329,7 @@ body {
   pointer-events: none;
 }
 
+/* === FILTER CONTROLS === */
 .filter-controls {
   margin-bottom: var(--space-lg);
   padding-bottom: var(--space-md);
@@ -296,6 +373,7 @@ body {
   background: rgba(255, 140, 66, 0.1);
 }
 
+/* === TAG LIST COMPONENT === */
 .tag-list {
   display: flex;
   flex-direction: column;
@@ -326,6 +404,7 @@ body {
   box-shadow: 0 2px 8px rgba(26, 77, 46, 0.15);
 }
 
+/* Tag icon styling */
 .tag-icon-small {
   width: 36px;
   height: 36px;
@@ -335,21 +414,21 @@ body {
   border-radius: 8px;
   flex-shrink: 0;
   background: linear-gradient(135deg, #90e0ef, #caf0f8);
-  border: 1px solid rgba(0,150,199,0.2);
+  border: 1px solid rgba(0, 150, 199, 0.2);
   transition: var(--transition-fast);
-  box-shadow: 0 2px 4px rgba(0,150,199,0.1);
+  box-shadow: 0 2px 4px rgba(0, 150, 199, 0.1);
 }
 
 .tag-item:hover .tag-icon-small {
   background: linear-gradient(135deg, #0096c7, #00b4d8);
-  border-color: rgba(0,150,199,0.4);
-  box-shadow: 0 4px 8px rgba(0,150,199,0.2);
+  border-color: rgba(0, 150, 199, 0.4);
+  box-shadow: 0 4px 8px rgba(0, 150, 199, 0.2);
 }
 
 .tag-item.active .tag-icon-small {
   background: linear-gradient(135deg, #ffd500, #fdc500);
-  border-color: rgba(255,213,0,0.6);
-  box-shadow: 0 4px 8px rgba(255,213,0,0.3);
+  border-color: rgba(255, 213, 0, 0.6);
+  box-shadow: 0 4px 8px rgba(255, 213, 0, 0.3);
 }
 
 .tag-icon-small svg {
@@ -367,9 +446,10 @@ body {
 
 .tag-item.active .tag-icon-small svg {
   fill: var(--color-primary-dark);
-  filter: drop-shadow(0 1px 2px rgba(255,213,0,0.3));
+  filter: drop-shadow(0 1px 2px rgba(255, 213, 0, 0.3));
 }
 
+/* Tag information text */
 .tag-info {
   flex: 1;
   min-width: 0;
@@ -387,12 +467,19 @@ body {
   color: var(--color-text-tertiary);
 }
 
+/*
+=================================================================
+CONTENT AREA
+=================================================================
+Main content container with header and controls
+*/
 .content-area {
   flex: 1;
   padding: var(--space-xl) var(--space-lg);
   background: var(--color-bg-primary);
 }
 
+/* Content header with title and controls */
 .content-header {
   margin-bottom: var(--space-lg);
   display: flex;
@@ -415,6 +502,7 @@ body {
   color: var(--color-text-primary);
 }
 
+/* Results count badge */
 .results-count {
   font-size: 0.95rem;
   color: var(--color-text-tertiary);
@@ -424,6 +512,7 @@ body {
   font-weight: 500;
 }
 
+/* === SORT CONTROLS === */
 .sort-controls {
   display: flex;
   align-items: center;
@@ -457,6 +546,7 @@ body {
   border-color: var(--color-primary);
 }
 
+/* === ACTIVE FILTERS DISPLAY === */
 .active-filters {
   display: flex;
   flex-wrap: wrap;
@@ -499,18 +589,25 @@ body {
   background: rgba(255, 255, 255, 0.2);
 }
 
+/*
+=================================================================
+POST GRID & CARDS
+=================================================================
+Responsive grid layout and post card component
+*/
 .posts-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   gap: var(--space-lg);
 }
 
+/* === POST CARD COMPONENT === */
 .post-card {
   background: var(--color-bg-secondary);
   border-radius: 16px;
   overflow: hidden;
   box-shadow: var(--shadow-sm);
-  transition: var(--transition-normal);
+  transition: var(--ease-normal);
   cursor: pointer;
   border: 1px solid var(--color-border-light);
   display: flex;
@@ -565,6 +662,7 @@ body {
   color: var(--color-primary);
 }
 
+/* === POST TAGS === */
 .post-tags-list {
   display: flex;
   flex-wrap: wrap;
@@ -587,6 +685,7 @@ body {
   color: white;
 }
 
+/* Post description text */
 .post-description {
   color: var(--color-text-tertiary);
   font-size: 0.95rem;
@@ -595,6 +694,7 @@ body {
   flex: 1;
 }
 
+/* === POST FOOTER === */
 .post-footer {
   display: flex;
   justify-content: space-between;
@@ -620,6 +720,7 @@ body {
   font-size: 0.95rem;
 }
 
+/* Read more link */
 .read-more {
   color: var(--color-primary);
   font-weight: 600;
@@ -634,6 +735,12 @@ body {
   gap: 0.6rem;
 }
 
+/*
+=================================================================
+UTILITY COMPONENTS
+=================================================================
+Reusable UI components for empty states and interactions
+*/
 .empty-state {
   text-align: center;
   padding: var(--space-2xl) var(--space-lg);
@@ -676,6 +783,7 @@ body {
   background: var(--color-primary-dark);
 }
 
+/* === SCROLL TO TOP BUTTON === */
 .scroll-to-top {
   position: fixed;
   bottom: 30px;
@@ -688,7 +796,7 @@ body {
   border-radius: 50%;
   cursor: pointer;
   box-shadow: var(--shadow-md);
-  transition: var(--transition-normal);
+  transition: var(--ease-normal);
   display: none;
   align-items: center;
   justify-content: center;
@@ -707,6 +815,12 @@ body {
   fill: currentColor;
 }
 
+/*
+=================================================================
+FOOTER
+=================================================================
+Site footer with gradient background
+*/
 footer {
   background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
   color: white;
@@ -715,18 +829,42 @@ footer {
   font-size: 0.9rem;
 }
 
-@media (max-width:768px) {
+/*
+=================================================================
+RESPONSIVE DESIGN - TABLET (≤1024px)
+=================================================================
+Adjustments for tablet devices
+*/
+@media (max-width: 1024px) {
+  :root {
+    --sidebar-width: 280px;
+  }
+  
+  .posts-grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+}
+
+/*
+=================================================================
+RESPONSIVE DESIGN - MOBILE (≤768px)
+=================================================================
+Mobile navigation, layout changes, and component adjustments
+*/
+@media (max-width: 768px) {
+  /* Show mobile menu toggle */
   .mobile-toggle {
     display: flex;
   }
   
+  /* Mobile navigation menu */
   .nav-menu {
     position: fixed;
     top: 0;
     right: -100%;
     width: 280px;
     height: 100vh;
-    background: var(--color-bg-white);
+    background: var(--color-bg-secondary);           /* Fixed undefined variable */
     backdrop-filter: blur(10px);
     flex-direction: column;
     justify-content: flex-start;
@@ -734,15 +872,19 @@ footer {
     padding: 80px 30px 30px;
     gap: 0;
     box-shadow: -5px 0 20px rgba(0,0,0,.1);
-    transition: right var(--ease-normal);
+    transition: right var(--ease-normal);      /* Updated transition */
     will-change: right;
     contain: layout style;
+  }
+  
+  .nav-menu.active {
+    right: 0;
   }
   
   .nav-menu li {
     width: 100%;
     padding: 15px 0;
-    border-bottom: 1px solid var(--color-border-subtle);
+    border-bottom: 1px solid var(--color-border-light);
   }
   
   .nav-menu li:last-child {
@@ -760,6 +902,7 @@ footer {
     bottom: -15px;
   }
   
+  /* Mobile logo sizing */
   .nav-logo {
     font-size: 1.4rem;
   }
@@ -768,65 +911,13 @@ footer {
     width: 1.5em;
     height: 1.5em;
   }
-}
 
-@media (max-width:480px) {
-  .nav-container {
-    padding: 12px 15px;
-  }
-  
-  .nav-logo {
-    font-size: 1.2rem;
-  }
-  
-  .nav-menu {
-    width: 250px;
-    padding: 70px 25px 25px;
-  }
-  
-  .nav-menu a {
-    font-size: 1.1rem;
-  }
-}
-
-@media (max-width: 1024px) {
-  :root {
-    --sidebar-width: 280px;
-  }
-  
-  .posts-grid {
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  }
-}
-
-@media (max-width: 768px) {
-  .mobile-toggle {
-    display: flex;
-  }
-  
-  .nav-menu {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 280px;
-    height: 100vh;
-    background: white;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: calc(var(--header-height) + var(--space-md)) var(--space-lg);
-    box-shadow: -4px 0 20px rgba(0,0,0,0.1);
-    transition: right var(--transition-normal);
-    z-index: 999;
-  }
-  
-  .nav-menu.active {
-    right: 0;
-  }
-  
+  /* Stack layout vertically on mobile */
   .main-wrapper {
     flex-direction: column;
   }
   
+  /* Sidebar becomes full-width at top */
   .sidebar {
     position: static;
     width: 100%;
@@ -835,6 +926,7 @@ footer {
     border-bottom: 1px solid var(--color-border-light);
   }
   
+  /* Content area adjustments */
   .content-area {
     padding: var(--space-lg) var(--space-md);
   }
@@ -844,11 +936,13 @@ footer {
     align-items: flex-start;
   }
   
+  /* Single column grid on mobile */
   .posts-grid {
     grid-template-columns: 1fr;
     gap: var(--space-md);
   }
   
+  /* Smaller scroll-to-top button */
   .scroll-to-top {
     bottom: 20px;
     right: 20px;
@@ -857,30 +951,56 @@ footer {
   }
 }
 
+/*
+=================================================================
+RESPONSIVE DESIGN - SMALL MOBILE (≤480px)
+=================================================================
+Fine-tuned adjustments for small mobile devices
+*/
 @media (max-width: 480px) {
+  /* Container padding adjustments */
+  .nav-container {
+    padding: 12px 15px;
+  }
+  
+  /* Smaller logo */
   .nav-logo {
-    font-size: 1.25rem;
+    font-size: 1.2rem;
   }
   
-  .nav-logo svg {
-    width: 28px;
-    height: 28px;
+  /* Smaller mobile menu */
+  .nav-menu {
+    width: 250px;
+    padding: 70px 25px 25px;
   }
   
+  .nav-menu a {
+    font-size: 1.1rem;
+  }
+
+  /* Sidebar padding reduction */
   .sidebar {
     padding: var(--space-md);
   }
   
+  /* Content title sizing */
   .content-title h1 {
     font-size: 1.5rem;
   }
   
+  /* Full-width sort controls */
   .sort-controls {
     width: 100%;
     justify-content: space-between;
   }
 }
 
+/*
+=================================================================
+ACCESSIBILITY - REDUCED MOTION
+=================================================================
+Respect user preferences for reduced motion
+*/
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;
