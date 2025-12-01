@@ -120,9 +120,9 @@ class BlogContinuousScroll {
             html += `<p class="post-excerpt">${this.truncateText(post.excerpt, 25)}</p>`;
         }
         
-        if (post.tags && post.tags.length > 0) {
+        if (post.places && post.places.length > 0) {
             html += `<div class="post-tags">`;
-            post.tags.forEach(tag => {
+            post.places.forEach(tag => {
                 html += `<span class="tag">${tag}</span>`;
             });
             html += `</div>`;

@@ -92,7 +92,7 @@ Posts Collection
 <br>Description: {{ post.description | truncate: 120}}
 <br>Category: {{ post.categories | first }}
 <br>Folder: {{ post.folder }}
-<br>Tags: {{ post.tags | join: ", " }}
+<br>Tags: {{ post.places | join: ", " }}
 <br>Layout: {{ post.layout }}
 <br>Content Length: {{ post.content | size }}
 <br>Excerpt: {{ post.excerpt }}</p>
@@ -126,7 +126,7 @@ Tags Collection
 
 {% assign all_tags = "" %}
 {% for post in site.posts %}
-  {% assign post_tags = post.tags | join: "," %}
+  {% assign post_tags = post.places | join: "," %}
   {% assign all_tags = all_tags | append: post_tags | append: "," %}
 {% endfor %}
 {% assign unique_tags = all_tags | split: "," | uniq %}
@@ -366,8 +366,8 @@ Posts without description: {{ posts_without_description.size }}<br>
 <br>### Conditional Logic Examples
 <br>Posts with tags: 
 {% for post in site.posts %}
-{% if post.tags and post.tags.size > 0 %}
-<br>- {{ post.title }} ({{ post.tags | size }} tags)
+{% if post.places and post.places.size > 0 %}
+<br>- {{ post.title }} ({{ post.places | size }} tags)
 {% endif %}
 {% endfor %}
 
@@ -384,8 +384,8 @@ Posts without description: {{ posts_without_description.size }}<br>
 ### Array and Collection Operations<br>
 {% assign all_tags_array = "" %}
 {% for post in site.posts %}
-  {% if post.tags %}
-    {% assign all_tags_array = all_tags_array | concat: post.tags %}
+  {% if post.places %}
+    {% assign all_tags_array = all_tags_array | concat: post.places %}
   {% endif %}
 {% endfor %}
 <br>All tags: {{ all_tags_array | sort | uniq | join: ", " }}<br>

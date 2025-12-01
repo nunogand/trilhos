@@ -36,7 +36,7 @@ custom_css:
     <!-- Sidebar -->
     <aside class="sidebar">
       <div class="sidebar-header">
-        <h2>Filter by Tags</h2>
+        <h2>Filter by Places</h2>
         <p>Select tags to filter photography posts</p>
       </div>
       
@@ -114,7 +114,7 @@ custom_css:
 const tags = [
   {% assign tag_counts = '' %}
   {% for post in site.posts %}
-    {% for tag in post.tags %}
+    {% for tag in post.places %}
       {% unless tag_counts contains tag %}
         {% if tag_counts == '' %}
           {% assign tag_counts = tag_counts | append: tag %}
@@ -128,7 +128,7 @@ const tags = [
   {% for tag in unique_tags %}
     {% assign count = 0 %}
     {% for post in site.posts %}
-      {% if post.tags contains tag %}
+      {% if post.places contains tag %}
         {% assign count = count | plus: 1 %}
       {% endif %}
     {% endfor %}
@@ -141,7 +141,6 @@ id: '{{ tag }}', name: '{{ tag | title }}', count: {{ count }}, icon: 'map-pin'
 const posts = [
       {% for post in site.posts %}
   {
-
 {% assign headers = '' | split: '' %}
 {% for image in site.static_files %}
   {% if image.path contains post.folder %}
@@ -153,14 +152,12 @@ const posts = [
 {% endfor %}
 {% assign random-header = headers | sample %}
 
-
-
     id: {{ forloop.index }},
     title: '{{ post.title | escape }}',
     description: '{{ post.description | default: post.excerpt | strip_html | truncatewords: 25 | escape }}',
     date: '{{ post.date | date: "%b %d, %Y" }}',
     dateValue: new Date('{{ post.date | date: "%Y-%m-%d" }}'),
-    tags: {{ post.tags | default: empty | jsonify }},
+    tags: {{ post.places | default: empty | jsonify }},
     views: {{ post.stats.views | default: 0 }},
     likes: {{ post.stats.likes | default: 0 }},
     image: '{{ random-header.path | default: "https://picsum.photos/seed/default/800/600" | relative_url }}'

@@ -58,15 +58,15 @@
         </ul>
       </div>
     </div>
-    {% if post.tags.size > 0 %}
+    {% if post.places.size > 0 %}
 
 
 
 
     <div class="photo-tags">
-      <h4>Tag{% if post.tags.size > 1 %}s{% endif %}:</h4>
+      <h4>Tag{% if post.places.size > 1 %}s{% endif %}:</h4>
       <ul>
-        <li>{{ post.tags | sort | join: "</li>
+        <li>{{ post.places | sort | join: "</li>
         <li>" }}
         </li>
       </ul>

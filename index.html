@@ -12,7 +12,6 @@ custom_css: index.css
 
 <!-- init the list with filtered images -->
 {% assign headers = site.static_files | where_exp: "item", "item.path contains '/assets/front/'" | map: "path" %}
-
 <!-- get 4 random headers -->
 {% assign random-header = headers | sample: 4 %}
 
