@@ -44,12 +44,13 @@ custom_css:
       </div>
     </section>
 
-<!-- Floating Scroll-to-Top Button -->
-<button id="scrollToTop" class="scroll-to-top" aria-label="Scroll to top" title="Scroll to top">
-    <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
-        <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+  <!-- Scroll to Top Button -->
+  <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
+    <svg viewBox="0 0 24 24">
+      <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
     </svg>
-</button>
+  </button>
+
 
     <footer>
       <p id="footer">&copy; 2025 Nuno Rodrigues. No rights reserved_made by </p>
@@ -131,11 +132,29 @@ custom_css:
         const navMenu = document.getElementById('navMenu');
         const body = document.body;
 
+        const scrollToTopBtn = document.getElementById('scrollToTop');
+
+
         mobileToggle.addEventListener('click', function() {
             this.classList.toggle('active');
             navMenu.classList.toggle('active');
             body.classList.toggle('menu-open');
         });
+
+        window.addEventListener('scroll', function() {
+    if (window.pageYOffset > 300) {
+      scrollToTopBtn.style.display = 'flex';
+    } else {
+      scrollToTopBtn.style.display = 'none';
+    }
+  });
+  
+  scrollToTopBtn.addEventListener('click', function() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
 
         // Close menu when clicking on a link
         const navLinks = document.querySelectorAll('.nav-menu a');
@@ -165,6 +184,9 @@ custom_css:
                 navbar.classList.remove('scrolled');
             }
         });
+
+
+
     </script>
 
  

@@ -87,7 +87,7 @@ picture:
   # Source and output directories
   #source: "fotos"
   #output: "generated/fotos"
-# prevent errors onmissing images
+# prevent errors on missing images
   ignore_missing_images: true
 
 

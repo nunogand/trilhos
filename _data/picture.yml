@@ -1,29 +1,29 @@
 presets:
-  default:
-#    formats: [webp, original]
-    formats: [original]
-    widths: [350, 700, 1200]
-    link_source: true
-  my_preset_400:
-    formats: [original]
-    fallback_width: 400
-    markup: direct_url
-  my_preset_600:
-    formats: [original]
-    fallback_width: 600
-    markup: direct_url
-  my_preset_small:
-    formats: [original]
-    fallback_width: 200
-    markup: direct_url
-  only_srcset:
-    markup: naked_srcset
-    widths: [800, 1200, 1600]
-    formats: webp
+#  default:
+##    formats: [webp, original]
+#    formats: [original]
+#    widths: [350, 700, 1200]
+#    link_source: true
+#  my_preset_400:
+#    formats: [original]
+#    fallback_width: 400
+#    markup: direct_url
+#  my_preset_600:
+#    formats: [original]
+#    fallback_width: 600
+#    markup: direct_url
+#  my_preset_small:
+#    formats: [original]
+#    fallback_width: 200
+#    markup: direct_url
+#  only_srcset:
+#    markup: naked_srcset
+#    widths: [800, 1200, 1600]
+#    formats: webp
   card:
-    formats: [webp, jpg]
+    formats: [jpg]
     crop: '6:4'
-    widths: [400, 600, 800, 1000, 1200, 1600]
+    widths: [600]
     sizes:
       mobile: 100vw
       tablet: 90vw
@@ -33,20 +33,34 @@ presets:
     attributes:
       img: 'loading="lazy"'
     markup: direct_url
-  s:
-    formats: [original]
-    fallback_width: 576
-    markup: direct_url
-  m:
-    formats: [original]
-    fallback_width: 768
-    markup: direct_url
-  l:
-    formats: [original]
-    fallback_width: 1200
-    markup: direct_url
 
-
+#    card:
+#    formats: [webp, jpg]
+#    crop: '6:4'
+#    widths: [400, 600, 800, 1000, 1200, 1600]
+#    sizes:
+#      mobile: 100vw
+#      tablet: 90vw
+#      desktop: 70vw
+#    fallback_width: 800
+#    fallback_format: jpg
+#    attributes:
+#      img: 'loading="lazy"'
+#    markup: direct_url
+#  s:
+#    formats: [original]
+#    fallback_width: 576
+#    markup: direct_url
+#  m:
+#    formats: [original]
+#    fallback_width: 768
+#    markup: direct_url
+#  l:
+#    formats: [original]
+#    fallback_width: 1200
+#    markup: direct_url
+#
+#
 #
 # ===========================
 # GENERAL RESPONSIVE PRESETS
