@@ -7,7 +7,7 @@
    FONTS & EXTERNAL RESOURCES
    ======================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Abel:wght@400&display=swap');
+
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
 
 /* ========================================
@@ -79,6 +79,15 @@
 html{scroll-behavior:smooth}
 
 /* Base Body Styling */
+/* abel-regular - latin */
+    @font-face {
+      font-display: swap;
+      font-family: 'Abel';
+      font-style: normal;
+      font-weight: 400;
+      src: url('../fonts/abel-v18-latin-regular.woff2') format('woff2');
+    }
+
 body{
 	font-family:"Abel",sans-serif;
 	line-height:1.6;
@@ -91,9 +100,8 @@ body{
 	-webkit-font-smoothing:antialiased;
 	-moz-osx-font-smoothing:grayscale;
 	text-rendering:optimizeLegibility;
-}
 
-/* Skip Link for Accessibility */
+
 
 /* ========================================
    NAVIGATION COMPONENT
