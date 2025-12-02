@@ -1,0 +1,18 @@
+/* ========================================
+   FOOTER SECTION
+   ======================================== */
+
+footer {
+	background: linear-gradient(135deg, var(--color-footer-start), var(--color-footer-end));
+	color: var(--color-text-white);
+	padding: 30px 20px;
+	text-align: center;
+	font-family: 'Abel', sans-serif;
+	letter-spacing: 1px;
+	contain: layout style;
+}
+
+footer p {
+	margin: 0;
+	color: rgba(255, 255, 255, .9);
+}
