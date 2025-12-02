@@ -1,0 +1,248 @@
+/* ========================================
+   NAVIGATION COMPONENT
+   ======================================== */
+
+/* Main navigation bar */
+.navbar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	background: var(--color-bg-navbar);
+	backdrop-filter: blur(10px);
+	box-shadow: 0 2px 20px rgba(0, 0, 0, .1);
+	z-index: 1000;
+	transition: var(--ease-normal);
+	border-bottom: 1px solid var(--color-border-light);
+
+	/* Performance optimization - contain layout changes */
+	contain: layout style paint;
+}
+
+/* Scrolled state for enhanced visual depth */
+
+/* Navigation container */
+.nav-container {
+	max-width: 1400px;
+	margin: 0 auto;
+	padding: 15px 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+/* Brand logo styling */
+.nav-logo {
+	font-size: 1.8rem;
+	font-weight: 400;
+	color: var(--color-text-primary);
+	text-decoration: none;
+	letter-spacing: 2px;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	z-index: 1001;
+
+	/* Performance hint for animated transforms */
+	will-change: transform;
+}
+
+/* Logo SVG icon */
+.nav-logo svg {
+	fill: var(--color-black);
+	width: 2.2em;
+	height: 2.2em;
+}
+
+/* Logo text styling */
+
+/* Navigation menu */
+.nav-menu {
+	display: flex;
+	gap: 30px;
+	list-style: none;
+	align-items: center;
+}
+
+/* Navigation links */
+.nav-menu a {
+	color: var(--color-text-secondary);
+	text-decoration: none;
+	font-size: 1.2rem;
+	letter-spacing: 1px;
+	transition: var(--ease-normal);
+	position: relative;
+	padding: 8px 12px;
+	border-radius: 8px;
+
+	/* Performance hints for frequently animated properties */
+	will-change: transform, color, background;
+
+	/* Optimization for layout containment */
+	contain: layout style paint;
+}
+
+/* Underline effect */
+.nav-menu a::after {
+	content: '';
+	position: absolute;
+	bottom: -2px;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 0;
+	height: 3px;
+	background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+	transition: width var(--ease-normal);
+	border-radius: 2px;
+}
+
+/* Hover state for navigation links */
+.nav-menu a:hover {
+	color: var(--color-primary);
+	background: rgba(45, 80, 22, .05);
+
+	/* Hardware acceleration for smooth animation */
+	transform: translate3d(0, 0, 0);
+}
+
+/* Animated underline on hover */
+.nav-menu a:hover::after {
+	width: 80%
+}
+
+/* Active state styling */
+.nav-menu a.active {
+	color: var(--color-primary);
+	background: rgba(45, 80, 22, .1);
+	font-weight: 600;
+}
+
+.nav-menu a.active::after {
+	width: 80%
+}
+
+/* Mobile menu toggle button */
+.mobile-toggle {
+	display: none;
+	flex-direction: column;
+	gap: 5px;
+	background: none;
+	border: none;
+	cursor: pointer;
+	padding: 5px;
+	z-index: 1001;
+
+	/* Performance optimization */
+	will-change: transform;
+}
+
+/* Hamburger menu lines */
+.mobile-toggle span {
+	width: 28px;
+	height: 3px;
+	background: var(--color-text-primary);
+	border-radius: 3px;
+	transition: var(--ease-normal);
+
+	/* Performance hint for animation */
+	will-change: transform;
+}
+
+/* Animated hamburger to X transformation */
+
+/* ========================================
+   MOBILE NAVIGATION RESPONSIVE STYLES
+   ======================================== */
+
+@media (max-width:768px) {
+
+	/* Show mobile toggle button */
+	.mobile-toggle {
+		display: flex
+	}
+
+	/* Full-screen slide menu */
+	.nav-menu {
+		position: fixed;
+		top: 0;
+		right: -100%;
+		width: 280px;
+		height: 100vh;
+		background: var(--color-bg-white);
+		backdrop-filter: blur(10px);
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: flex-start;
+		padding: 80px 30px 30px;
+		gap: 0;
+		box-shadow: -5px 0 20px rgba(0, 0, 0, .1);
+		transition: right var(--ease-normal);
+
+		/* Performance optimizations */
+		will-change: right;
+		contain: layout style;
+	}
+
+	/* Active state to show menu */
+
+	/* Menu item styling */
+
+	.nav-menu.active {
+		right: 0;
+	}
+
+	.nav-menu li {
+		width: 100%;
+		padding: 15px 0;
+		border-bottom: 1px solid var(--color-border-subtle);
+	}
+
+	.nav-menu li:last-child {
+		border-bottom: none
+	}
+
+	.nav-menu a {
+		display: block;
+		font-size: 1.3rem;
+		width: 100%;
+		padding: 15px 12px;
+	}
+
+	/* Adjust underline position for mobile */
+	.nav-menu a::after {
+		bottom: -15px
+	}
+
+	/* Responsive logo sizing */
+	.nav-logo {
+		font-size: 1.4rem
+	}
+
+	.nav-logo svg {
+		width: 1.5em;
+		height: 1.5em;
+	}
+
+	/* Overlay for menu background */
+}
+
+@media (max-width:480px) {
+
+	/* Extra small screen adjustments */
+	.nav-container {
+		padding: 12px 15px;
+	}
+
+	.nav-logo {
+		font-size: 1.2rem
+	}
+
+	.nav-menu {
+		width: 250px;
+		padding: 70px 25px 25px;
+	}
+
+	.nav-menu a {
+		font-size: 1.1rem
+	}
+}
