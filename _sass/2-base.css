@@ -1,0 +1,60 @@
+/* ========================================
+   BASE STYLES & RESET
+   ======================================== */
+
+/* Universal Reset - Modern Box Model */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+/* Enable keyword animations */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    interpolate-size: allow-keywords;
+  }
+}
+
+/* Smooth scrolling for anchor links */
+html {
+	scroll-behavior: smooth
+}
+
+/* Base Body Styling */
+/* abel-regular - latin */
+@font-face {
+	font-display: swap;
+	font-family: 'Abel';
+	font-style: normal;
+	font-weight: 400;
+	src: url('../fonts/abel-v18-latin-regular.woff2') format('woff2');
+}
+
+body {
+	font-family: "Abel", sans-serif;
+	line-height: 1.6;
+	color: var(--color-text-body);
+	background: var(--color-bg-primary);
+	font-size: 16px;
+	letter-spacing: .5px;
+	/* Font rendering optimization for better readability */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-rendering: optimizeLegibility;
+}
+
+/* Avoid text overflows */
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+/* Improve line wrapping */
+p {
+  text-wrap: pretty;
+}
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+}
