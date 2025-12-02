@@ -1,0 +1,57 @@
+/* ========================================
+   CSS CUSTOM PROPERTIES (CSS Variables)
+   ======================================== */
+
+:root {
+	/* Text Colors */
+	--color-text-primary: #2c2c2c;
+	--color-text-secondary: #555;
+	--color-text-tertiary: #666;
+	--color-text-light: #444;
+	--color-text-body: #333;
+	--color-text-white: #fff;
+
+
+	/* Brand Colors */
+	--color-primary: #2d5016;
+	--color-primary-light: #3a6b1f;
+	--color-primary-dark: #1a3a10;
+	--color-secondary: #8b4513;
+	--color-secondary-light: #a0521a;
+	--color-secondary-dark: #6d3510;
+
+	/* Background Colors */
+	--color-bg-primary: #f5f7f0;
+	--color-bg-secondary: #f0f4e8;
+	--color-bg-white: #fff;
+	--color-bg-navbar: rgba(255, 255, 255, .95);
+	--color-footer-start: #2c3e50;
+	--color-footer-end: #34495e;
+	--color-black: #000;
+
+	/* Border Colors */
+	--color-border-light: rgba(0, 0, 0, .05);
+	--color-border-subtle: #f0f4e8;
+
+	/* Interactive States */
+	--color-hover-primary: var(--color-primary);
+	--color-hover-overlay: rgba(0, 0, 0, .5);
+
+	/* Timing & Animation Variables */
+	--ease-fast: .15s ease;
+	--ease-normal: .3s ease;
+	--ease-slow: .5s ease;
+	--ease-cubic: cubic-bezier(.25, .46, .45, .94);
+
+	/* Spacing Scale */
+	--space-xs: .5rem;
+	--space-sm: 1rem;
+	--space-md: 1.5rem;
+	--space-lg: 2rem;
+
+	/* Shadow System */
+	--shadow-sm: 0 1px 2px rgba(0, 0, 0, .05);
+	--shadow-md: 0 4px 12px rgba(0, 0, 0, .1);
+	--shadow-lg: 0 8px 25px rgba(0, 0, 0, .08);
+	--shadow-xl: 0 15px 35px rgba(45, 80, 22, .15);
+}
