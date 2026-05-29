@@ -4,15 +4,15 @@ presets:
     widths: [350, 700, 1200]
     link_source: true
   my_preset_400:
-    formats: [original]
+    formats: [webp, original]
     fallback_width: 400
     markup: direct_url
   my_preset_600:
-    formats: [original]
+    formats: [webp, original]
     fallback_width: 600
     markup: direct_url
   my_preset_small:
-    formats: [original]
+    formats: [webp, original]
     fallback_width: 200
     markup: direct_url
   only_srcset:
@@ -20,19 +20,19 @@ presets:
     widths: [800, 1200, 1600]
     formats: webp
   card:
-    formats: [original]
+    formats: [webp, original]
     fallback_width: 800
     crop: '6:4'
     markup: direct_url
   s:
-    formats: [original]
+    formats: [webp, original]
     fallback_width: 576
     markup: direct_url
   m:
-    formats: [original]
+    formats: [webp, original]
     fallback_width: 768
     markup: direct_url
   l:
-    formats: [original]
+    formats: [webp, original]
     fallback_width: 1200
     markup: direct_url
