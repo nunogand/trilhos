@@ -1,0 +1,660 @@
+<head>
+  <!-- Character Encoding & Viewport -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <!-- Primary Meta Tags -->
+  <title>{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+  <meta name="title" content="{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}">
+  <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+  {% if page.keywords %}<meta name="keywords" content="{{ page.keywords }}">{% endif %}
+  {% if page.author %}<meta name="author" content="{{ page.author }}">{% elsif site.author %}<meta name="author" content="{{ site.author }}">{% endif %}
+  {% if site.generator %}<meta name="generator" content="{{ site.generator }}">{% else %}<meta name="generator" content="Jekyll {{ jekyll.version }}">{% endif %}
+  {% if page.robots %}<meta name="robots" content="{{ page.robots }}">{% elsif site.robots %}<meta name="robots" content="{{ site.robots }}">{% endif %}
+  {% if site.google_site_verification %}<meta name="google-site-verification" content="{{ site.google_site_verification }}">{% endif %}
+  {% if site.bing_site_verification %}<meta name="msvalidate.01" content="{{ site.bing_site_verification }}">{% endif %}
+  {% if site.yandex_site_verification %}<meta name="yandex-verification" content="{{ site.yandex_site_verification }}">{% endif %}
+  {% if site.pinterest_site_verification %}<meta name="p:domain_verify" content="{{ site.pinterest_site_verification }}">{% endif %}
+  
+  <!-- Geo Tags -->
+  {% if site.geo_position %}<meta name="geo.position" content="{{ site.geo_position }}">{% endif %}
+  {% if site.geo_placename %}<meta name="geo.placename" content="{{ site.geo_placename }}">{% endif %}
+  {% if site.geo_region %}<meta name="geo.region" content="{{ site.geo_region }}">{% endif %}
+  {% if site.icbm %}<meta name="ICBM" content="{{ site.icbm }}">{% endif %}
+  
+  <!-- Referrer Policy -->
+  <meta name="referrer" content="{% if page.referrer %}{{ page.referrer }}{% elsif site.referrer %}{{ site.referrer }}{% else %}no-referrer-when-downgrade{% endif %}">
+  
+  <!-- Color Scheme -->
+  <meta name="color-scheme" content="{% if site.color_scheme %}{{ site.color_scheme }}{% else %}light dark{% endif %}">
+  
+  <!-- Format Detection -->
+  <meta name="format-detection" content="telephone=no">
+  <meta name="format-detection" content="date=no">
+  <meta name="format-detection" content="address=no">
+  <meta name="format-detection" content="email=no">
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="{{ page.url | absolute_url }}">
+  
+  <!-- Alternate URLs -->
+  {% if page.canonical_url %}<link rel="canonical" href="{{ page.canonical_url }}">{% endif %}
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
+  <meta property="og:url" content="{{ page.url | absolute_url }}">
+  <meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
+  <meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+  <meta property="og:image" content="{% if page.image %}{{ page.image | absolute_url }}{% else %}{{ site.image | absolute_url }}{% endif %}">
+  {% if page.image_width %}<meta property="og:image:width" content="{{ page.image_width }}">{% endif %}
+  {% if page.image_height %}<meta property="og:image:height" content="{{ page.image_height }}">{% endif %}
+  {% if page.image_alt %}<meta property="og:image:alt" content="{{ page.image_alt }}">{% endif %}
+  {% if site.og_locale %}<meta property="og:locale" content="{{ site.og_locale }}">{% endif %}
+  {% if site.og_locale_alternate %}{% for locale in site.og_locale_alternate %}<meta property="og:locale:alternate" content="{{ locale }}">{% endfor %}{% endif %}
+  <meta property="og:site_name" content="{{ site.title }}">
+  {% if site.facebook_app_id %}<meta property="fb:app_id" content="{{ site.facebook_app_id }}">{% endif %}
+  {% if site.facebook_admins %}<meta property="fb:admins" content="{{ site.facebook_admins }}">{% endif %}
+  {% if page.layout == 'post' %}
+  <meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}">
+  {% if page.modified_date %}<meta property="article:modified_time" content="{{ page.modified_date | date_to_xmlschema }}">{% elsif page.last_modified_at %}<meta property="article:modified_time" content="{{ page.last_modified_at | date_to_xmlschema }}">{% endif %}
+  {% if page.author %}<meta property="article:author" content="{{ page.author }}">{% endif %}
+  {% if page.categories %}{% for category in page.categories %}<meta property="article:section" content="{{ category }}">{% endfor %}{% endif %}
+  {% if page.tags %}{% for tag in page.tags %}<meta property="article:tag" content="{{ tag }}">{% endfor %}{% endif %}
+  {% if page.expiration_time %}<meta property="article:expiration_time" content="{{ page.expiration_time | date_to_xmlschema }}">{% endif %}
+  {% endif %}
+  {% if page.video %}<meta property="og:video" content="{{ page.video }}">{% endif %}
+  {% if page.audio %}<meta property="og:audio" content="{{ page.audio }}">{% endif %}
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="{% if page.twitter_card %}{{ page.twitter_card }}{% else %}summary_large_image{% endif %}">
+  <meta name="twitter:url" content="{{ page.url | absolute_url }}">
+  <meta name="twitter:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
+  <meta name="twitter:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+  <meta name="twitter:image" content="{% if page.image %}{{ page.image | absolute_url }}{% else %}{{ site.image | absolute_url }}{% endif %}">
+  {% if page.image_alt %}<meta name="twitter:image:alt" content="{{ page.image_alt }}">{% endif %}
+  {% if site.twitter_username %}<meta name="twitter:site" content="@{{ site.twitter_username }}">{% endif %}
+  {% if page.twitter_creator %}<meta name="twitter:creator" content="@{{ page.twitter_creator }}">{% elsif site.twitter_creator %}<meta name="twitter:creator" content="@{{ site.twitter_creator }}">{% endif %}
+  {% if site.twitter_app_id_iphone %}<meta name="twitter:app:id:iphone" content="{{ site.twitter_app_id_iphone }}">{% endif %}
+  {% if site.twitter_app_id_ipad %}<meta name="twitter:app:id:ipad" content="{{ site.twitter_app_id_ipad }}">{% endif %}
+  {% if site.twitter_app_id_googleplay %}<meta name="twitter:app:id:googleplay" content="{{ site.twitter_app_id_googleplay }}">{% endif %}
+  
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "{% if page.layout == 'post' %}BlogPosting{% elsif page.schema_type %}{{ page.schema_type }}{% else %}WebSite{% endif %}",
+    "headline": "{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}",
+    "description": "{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}",
+    "url": "{{ page.url | absolute_url }}",
+    {% if page.image %}"image": "{{ page.image | absolute_url }}",{% elsif site.image %}"image": "{{ site.image | absolute_url }}",{% endif %}
+    {% if page.date %}"datePublished": "{{ page.date | date_to_xmlschema }}",{% endif %}
+    {% if page.modified_date %}"dateModified": "{{ page.modified_date | date_to_xmlschema }}",{% elsif page.last_modified_at %}"dateModified": "{{ page.last_modified_at | date_to_xmlschema }}",{% endif %}
+    "author": {
+      "@type": "Person",
+      "name": "{% if page.author %}{{ page.author }}{% elsif site.author %}{{ site.author }}{% endif %}"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "{{ site.title }}",
+      {% if site.logo %}"logo": {
+        "@type": "ImageObject",
+        "url": "{{ site.logo | absolute_url }}"
+      },{% endif %}
+      "url": "{{ site.url }}"
+    }
+  }
+  </script>
+  
+  <!-- Dublin Core -->
+  {% if site.enable_dublin_core %}
+  <meta name="DC.title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
+  <meta name="DC.creator" content="{% if page.author %}{{ page.author }}{% elsif site.author %}{{ site.author }}{% endif %}">
+  <meta name="DC.subject" content="{% if page.keywords %}{{ page.keywords }}{% endif %}">
+  <meta name="DC.description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+  <meta name="DC.publisher" content="{{ site.title }}">
+  <meta name="DC.contributor" content="{% if page.author %}{{ page.author }}{% elsif site.author %}{{ site.author }}{% endif %}">
+  {% if page.date %}<meta name="DC.date" content="{{ page.date | date_to_xmlschema }}">{% endif %}
+  <meta name="DC.type" content="Text">
+  <meta name="DC.format" content="text/html">
+  <meta name="DC.identifier" content="{{ page.url | absolute_url }}">
+  <meta name="DC.language" content="{% if page.lang %}{{ page.lang }}{% elsif site.lang %}{{ site.lang }}{% else %}en{% endif %}">
+  {% if site.dc_rights %}<meta name="DC.rights" content="{{ site.dc_rights }}">{% endif %}
+  {% endif %}
+  
+  <!-- Apple iOS Meta Tags -->
+  <meta name="apple-mobile-web-app-capable" content="{% if site.apple_mobile_web_app_capable %}{{ site.apple_mobile_web_app_capable }}{% else %}yes{% endif %}">
+  <meta name="apple-mobile-web-app-status-bar-style" content="{% if site.apple_status_bar_style %}{{ site.apple_status_bar_style }}{% else %}black-translucent{% endif %}">
+  <meta name="apple-mobile-web-app-title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
+  
+  <!-- Microsoft Tiles -->
+  <meta name="msapplication-TileColor" content="{% if site.tile_color %}{{ site.tile_color }}{% else %}#2b5797{% endif %}">
+  {% if site.tile_image %}<meta name="msapplication-TileImage" content="{{ site.tile_image | absolute_url }}">{% endif %}
+  <meta name="msapplication-config" content="{{ '/browserconfig.xml' | relative_url }}">
+  <meta name="application-name" content="{{ site.title }}">
+  <meta name="msapplication-tooltip" content="{% if site.description %}{{ site.description }}{% endif %}">
+  <meta name="msapplication-starturl" content="{{ site.url }}">
+  
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/favicon-32x32.png' | relative_url }}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ '/assets/favicon-16x16.png' | relative_url }}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/apple-touch-icon.png' | relative_url }}">
+  <link rel="icon" type="image/svg+xml" href="{{ '/assets/favicon.svg' | relative_url }}">
+  <link rel="shortcut icon" href="{{ '/favicon.ico' | relative_url }}">
+  <link rel="mask-icon" href="{{ '/assets/safari-pinned-tab.svg' | relative_url }}" color="{% if site.safari_pinned_tab_color %}{{ site.safari_pinned_tab_color }}{% else %}#5bbad5{% endif %}">
+  <link rel="manifest" href="{{ '/site.webmanifest' | relative_url }}">
+  {% if site.theme_color %}<meta name="theme-color" content="{{ site.theme_color }}" media="(prefers-color-scheme: light)">{% endif %}
+  {% if site.theme_color_dark %}<meta name="theme-color" content="{{ site.theme_color_dark }}" media="(prefers-color-scheme: dark)">{% endif %}
+  
+  <!-- RSS Feed -->
+  {% feed_meta %}
+  <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | absolute_url }}">
+  {% if site.atom_feed %}<link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="{{ site.atom_feed | absolute_url }}">{% endif %}
+  {% if site.json_feed %}<link rel="alternate" type="application/json" title="{{ site.title }}" href="{{ site.json_feed | absolute_url }}">{% endif %}
+  
+  <!-- Sitemap -->
+  {% if site.url %}<link rel="sitemap" type="application/xml" title="Sitemap" href="{{ '/sitemap.xml' | absolute_url }}">{% endif %}
+  
+  <!-- Alternate Languages -->
+  {% if page.lang %}<html lang="{{ page.lang }}">{% elsif site.lang %}<html lang="{{ site.lang }}">{% endif %}
+  {% if page.lang %}
+  <link rel="alternate" hreflang="{{ page.lang }}" href="{{ page.url | absolute_url }}">
+  {% endif %}
+  {% if page.translations %}
+  {% for translation in page.translations %}
+  <link rel="alternate" hreflang="{{ translation.lang }}" href="{{ translation.url | absolute_url }}">
+  {% endfor %}
+  {% endif %}
+  {% if site.default_lang %}<link rel="alternate" hreflang="x-default" href="{{ page.url | absolute_url }}">{% endif %}
+  
+  <!-- Prev/Next for Paginated Content -->
+  {% if paginator.previous_page %}
+  <link rel="prev" href="{{ paginator.previous_page_path | absolute_url }}">
+  {% endif %}
+  {% if paginator.next_page %}
+  <link rel="next" href="{{ paginator.next_page_path | absolute_url }}">
+  {% endif %}
+  
+  <!-- Author & Copyright -->
+  {% if page.author_link %}<link rel="author" href="{{ page.author_link }}">{% elsif site.author_link %}<link rel="author" href="{{ site.author_link }}">{% endif %}
+  {% if site.license %}<link rel="license" href="{{ site.license }}">{% endif %}
+  {% if site.copyright %}<meta name="copyright" content="{{ site.copyright }}">{% endif %}
+  
+  <!-- DNS Prefetch & Preconnect -->
+  <link rel="dns-prefetch" href="//fonts.googleapis.com">
+  <link rel="dns-prefetch" href="//fonts.gstatic.com">
+  {% if site.google_analytics %}<link rel="dns-prefetch" href="//www.google-analytics.com">{% endif %}
+  {% if site.cdn_url %}<link rel="dns-prefetch" href="{{ site.cdn_url }}">{% endif %}
+  {% if site.dns_prefetch %}
+  {% for domain in site.dns_prefetch %}
+  <link rel="dns-prefetch" href="{{ domain }}">
+  {% endfor %}
+  {% endif %}
+  
+  <!-- Preconnect to external domains -->
+  {% if site.google_fonts %}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  {% endif %}
+  {% if site.preconnect %}
+  {% for domain in site.preconnect %}
+  <link rel="preconnect" href="{{ domain }}" crossorigin>
+  {% endfor %}
+  {% endif %}
+  
+  <!-- Preload Critical Resources -->
+  {% if site.preload_fonts %}
+  {% for font in site.preload_fonts %}
+  <link rel="preload" href="{{ font }}" as="font" type="font/woff2" crossorigin>
+  {% endfor %}
+  {% endif %}
+  {% if page.preload_images %}
+  {% for image in page.preload_images %}
+  <link rel="preload" href="{{ image }}" as="image">
+  {% endfor %}
+  {% endif %}
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  {% if page.custom_css %}
+  <link rel="stylesheet" href="{{ page.custom_css | relative_url }}">
+  {% endif %}
+  {% if site.google_fonts %}
+  <link rel="stylesheet" href="{{ site.google_fonts }}">
+  {% endif %}
+  
+  <!-- Google Fonts (example) -->
+  {% if site.google_fonts_family %}
+  <link href="https://fonts.googleapis.com/css2?family={{ site.google_fonts_family }}&display=swap" rel="stylesheet">
+  {% endif %}
+  
+  <!-- Security Headers -->
+  {% if site.csp %}<meta http-equiv="Content-Security-Policy" content="{{ site.csp }}">{% endif %}
+  {% if site.feature_policy %}<meta http-equiv="Feature-Policy" content="{{ site.feature_policy }}">{% endif %}
+  {% if site.permissions_policy %}<meta http-equiv="Permissions-Policy" content="{{ site.permissions_policy }}">{% endif %}
+  
+  <!-- Cache Control -->
+  {% if page.cache_control %}<meta http-equiv="Cache-Control" content="{{ page.cache_control }}">{% endif %}
+  {% if page.pragma %}<meta http-equiv="Pragma" content="{{ page.pragma }}">{% endif %}
+  {% if page.expires %}<meta http-equiv="Expires" content="{{ page.expires }}">{% endif %}
+  
+  <!-- Rating & Content Classification -->
+  {% if site.rating %}<meta name="rating" content="{{ site.rating }}">{% endif %}
+  {% if site.content_rating %}<meta name="content-rating" content="{{ site.content_rating }}">{% endif %}
+  
+  <!-- Web Monetization -->
+  {% if site.web_monetization %}<meta name="monetization" content="{{ site.web_monetization }}">{% endif %}
+  
+  <!-- SEO Plugin -->
+  {% seo %}
+  
+  <!-- Analytics -->
+  {% if site.google_analytics %}
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '{{ site.google_analytics }}');
+  </script>
+  {% endif %}
+  
+  {% if site.google_tag_manager %}
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','{{ site.google_tag_manager }}');</script>
+  {% endif %}
+  
+  <!-- Custom head content -->
+  {% if page.custom_head %}{{ page.custom_head }}{% endif %}
+  {% if site.custom_head %}{{ site.custom_head }}{% endif %}
+</head>
+
+
+
+
+Required _config.yml variables:
+title: "Your Site Title"
+description: "Your site description"
+url: "https://yoursite.com"  # Required for absolute URLs
+author: "Your Name"
+image: "/assets/images/og-image.jpg"  # Default OG image
+twitter_username: "yourusername"
+theme_color: "#ffffff"
+og_locale: "en_US"
+
+# Site Verification
+google_site_verification: "your-code"
+bing_site_verification: "your-code"
+yandex_site_verification: "your-code"
+pinterest_site_verification: "your-code"
+
+# Geo
+geo_position: "latitude;longitude"
+geo_placename: "City, State"
+geo_region: "US-CA"
+
+# Colors
+theme_color: "#ffffff"
+theme_color_dark: "#000000"
+tile_color: "#2b5797"
+safari_pinned_tab_color: "#5bbad5"
+
+# Analytics
+google_analytics: "G-XXXXXXXXXX"
+google_tag_manager: "GTM-XXXXXXX"
+
+# Social
+facebook_app_id: "123456789"
+twitter_app_id_iphone: "123456789"
+
+# Performance
+preload_fonts:
+  - "/assets/fonts/font.woff2"
+dns_prefetch:
+  - "//cdnjs.cloudflare.com"
+preconnect:
+  - "https://cdn.example.com"
+
+# Optional
+enable_dublin_core: true
+web_monetization: "$ilp.uphold.com/xxxxxx"
+
+
+
+Optional page front matter:
+---
+title: "Page Title"
+description: "Page description"
+image: "/assets/images/page-specific-image.jpg"
+keywords: "keyword1, keyword2, keyword3"
+author: "Page Author"
+twitter_creator: "authorusername"
+custom_css: "/assets/css/custom.css"
+lang: "en"
+---
+
+The template uses {% seo %} tag which requires the jekyll-seo-tag plugin
+RSS feed requires the jekyll-feed plugin
+Add your favicon files to /assets/ directory
+
+
+
+_data/picture.yml
+# Jekyll Picture Tag Configuration
+# Documentation: https://rbuchberger.github.io/jekyll_picture_tag/
+
+# Media queries for responsive breakpoints
+media_queries:
+  mobile: 'max-width: 576px'
+  tablet: 'max-width: 768px'
+  desktop: 'max-width: 1200px'
+  wide: 'min-width: 1201px'
+
+# Global settings
+markup: 'picture'
+cdn_url: false
+nomarkdown: false
+fast_build: development
+
+# Image output formats and quality
+formats: [webp, jpg]
+quality:
+  webp: 85
+  jpg: 85
+
+# ===========================
+# GENERAL RESPONSIVE PRESETS
+# ===========================
+
+presets:
+  # Default responsive preset
+  default:
+    formats: [webp, jpg]
+    widths: [400, 600, 800, 1000, 1200, 1600]
+    sizes:
+      mobile: 100vw
+      tablet: 100vw
+      desktop: 90vw
+    fallback_width: 800
+    fallback_format: jpg
+    attributes:
+      picture: 'class="responsive-image"'
+      img: 'loading="lazy"'
+
+  # Hero/Banner images - full width
+  hero:
+    formats: [webp, jpg]
+    widths: [600, 900, 1200, 1600, 2000, 2400]
+    sizes:
+      mobile: 100vw
+      tablet: 100vw
+      desktop: 100vw
+    quality:
+      webp: 90
+      jpg: 90
+    fallback_width: 1600
+    fallback_format: jpg
+    attributes:
+      picture: 'class="hero-image"'
+      img: 'loading="eager"'
+
+  # Content images - within text
+  content:
+    formats: [webp, jpg]
+    widths: [400, 600, 800, 1000]
+    sizes:
+      mobile: 100vw
+      tablet: 90vw
+      desktop: 70vw
+    fallback_width: 800
+    fallback_format: jpg
+    attributes:
+      picture: 'class="content-image"'
+      img: 'loading="lazy"'
+
+  # Thumbnail images - small
+  thumbnail:
+    formats: [webp, jpg]
+    widths: [150, 200, 300, 400]
+    sizes:
+      mobile: 150px
+      tablet: 200px
+      desktop: 300px
+    fallback_width: 300
+    fallback_format: jpg
+    attributes:
+      picture: 'class="thumbnail"'
+      img: 'loading="lazy"'
+
+  # Gallery images - grid layout
+  gallery:
+    formats: [webp, jpg]
+    widths: [300, 400, 600, 800, 1000]
+    sizes:
+      mobile: 50vw
+      tablet: 33vw
+      desktop: 25vw
+    fallback_width: 600
+    fallback_format: jpg
+    attributes:
+      picture: 'class="gallery-image"'
+      img: 'loading="lazy"'
+
+  # ===========================
+  # ASPECT RATIO PRESETS (3:2)
+  # ===========================
+
+  # 3:2 Responsive with crop
+  crop_3x2:
+    formats: [webp, jpg]
+    crop: '3:2'
+    widths: [400, 600, 800, 1000, 1200, 1600]
+    sizes:
+      mobile: 100vw
+      tablet: 90vw
+      desktop: 70vw
+    fallback_width: 800
+    fallback_format: jpg
+    attributes:
+      picture: 'class="aspect-3x2"'
+      img: 'loading="lazy"'
+
+  # 3:2 Hero/Featured image
+  hero_3x2:
+    formats: [webp, jpg]
+    crop: '3:2'
+    widths: [600, 900, 1200, 1600, 2000]
+    sizes:
+      mobile: 100vw
+      tablet: 100vw
+      desktop: 100vw
+    quality:
+      webp: 90
+      jpg: 90
+    fallback_width: 1600
+    fallback_format: jpg
+    attributes:
+      picture: 'class="hero-3x2"'
+      img: 'loading="eager"'
+
+  # 3:2 Card/Preview images
+  card_3x2:
+    formats: [webp, jpg]
+    crop: '3:2'
+    widths: [300, 400, 600, 800]
+    sizes:
+      mobile: 100vw
+      tablet: 50vw
+      desktop: 33vw
+    fallback_width: 600
+    fallback_format: jpg
+    attributes:
+      picture: 'class="card-image-3x2"'
+      img: 'loading="lazy"'
+
+  # 3:2 Thumbnail
+  thumb_3x2:
+    formats: [webp, jpg]
+    crop: '3:2'
+    widths: [200, 300, 400, 600]
+    sizes:
+      mobile: 200px
+      tablet: 250px
+      desktop: 300px
+    fallback_width: 400
+    fallback_format: jpg
+    attributes:
+      picture: 'class="thumbnail-3x2"'
+      img: 'loading="lazy"'
+
+  # ===========================
+  # OTHER ASPECT RATIOS
+  # ===========================
+
+  # Square images (1:1)
+  square:
+    formats: [webp, jpg]
+    crop: '1:1'
+    widths: [200, 300, 400, 600, 800, 1000]
+    sizes:
+      mobile: 50vw
+      tablet: 33vw
+      desktop: 25vw
+    fallback_width: 600
+    fallback_format: jpg
+    attributes:
+      picture: 'class="square-image"'
+      img: 'loading="lazy"'
+
+  # Portrait images (2:3)
+  portrait:
+    formats: [webp, jpg]
+    crop: '2:3'
+    widths: [300, 400, 600, 800, 1000]
+    sizes:
+      mobile: 100vw
+      tablet: 50vw
+      desktop: 33vw
+    fallback_width: 600
+    fallback_format: jpg
+    attributes:
+      picture: 'class="portrait-image"'
+      img: 'loading="lazy"'
+
+  # Wide images (16:9)
+  wide:
+    formats: [webp, jpg]
+    crop: '16:9'
+    widths: [600, 800, 1000, 1200, 1600, 1920]
+    sizes:
+      mobile: 100vw
+      tablet: 100vw
+      desktop: 90vw
+    fallback_width: 1200
+    fallback_format: jpg
+    attributes:
+      picture: 'class="wide-image"'
+      img: 'loading="lazy"'
+
+  # ===========================
+  # SPECIALIZED PRESETS
+  # ===========================
+
+  # Avatar/Profile pictures
+  avatar:
+    formats: [webp, jpg]
+    crop: '1:1'
+    widths: [80, 120, 160, 240]
+    sizes:
+      mobile: 80px
+      tablet: 120px
+      desktop: 160px
+    quality:
+      webp: 90
+      jpg: 90
+    fallback_width: 160
+    fallback_format: jpg
+    attributes:
+      picture: 'class="avatar"'
+      img: 'loading="lazy"'
+
+  # Blog post featured image
+  post_featured:
+    formats: [webp, jpg]
+    crop: '3:2'
+    widths: [600, 800, 1000, 1200, 1600]
+    sizes:
+      mobile: 100vw
+      tablet: 100vw
+      desktop: 800px
+    quality:
+      webp: 88
+      jpg: 88
+    fallback_width: 1200
+    fallback_format: jpg
+    attributes:
+      picture: 'class="post-featured-image"'
+      img: 'loading="eager"'
+
+  # High quality for photography
+  photography:
+    formats: [webp, jpg]
+    widths: [800, 1200, 1600, 2000, 2400]
+    sizes:
+      mobile: 100vw
+      tablet: 100vw
+      desktop: 100vw
+    quality:
+      webp: 95
+      jpg: 95
+    fallback_width: 1600
+    fallback_format: jpg
+    attributes:
+      picture: 'class="photography"'
+      img: 'loading="lazy"'
+
+
+
+Basic responsive image:
+liquid{% picture default path/to/image.jpg alt="Description" %}
+3:2 cropped responsive image:
+liquid{% picture crop_3x2 path/to/image.jpg alt="Description" %}
+Hero image with 3:2 aspect ratio:
+liquid{% picture hero_3x2 path/to/hero.jpg alt="Hero description" %}
+Card/thumbnail with 3:2 crop:
+liquid{% picture card_3x2 path/to/card-image.jpg alt="Card image" %}
+Gallery images:
+liquid{% picture gallery path/to/gallery-image.jpg alt="Gallery item" %}
+
+Key Features:
+3:2 Aspect Ratio Presets:
+
+crop_3x2 - General responsive 3:2 cropped images
+hero_3x2 - Large hero/banner images in 3:2
+card_3x2 - Card/preview images in 3:2
+thumb_3x2 - Small thumbnails in 3:2
+
+General Responsive Presets:
+
+default - Standard responsive images (no crop)
+hero - Full-width hero images
+content - Images within text content
+thumbnail - Small preview images
+gallery - Grid layout images
+
+Other Aspect Ratios:
+
+square (1:1), portrait (2:3), wide (16:9)
+
+Specialized:
+
+avatar - Profile pictures
+post_featured - Blog featured images
+photography - High-quality preservation
+
+All presets include WebP and JPG formats with lazy loading by default (except heroes which use eager loading).

@@ -1,0 +1,615 @@
+/*
+=================================================================
+CSS CUSTOM PROPERTIES (CSS Variables)
+=================================================================
+Centralized design system with color palette, timing functions,
+spacing, shadows, and layout measurements
+*/
+:root {
+  /* === TEXT COLORS === */
+  --color-text-primary: #2c2c2c;      /* Main text color */
+  --color-text-secondary: #555;       /* Secondary text */
+  --color-text-tertiary: #666;        /* Tertiary text */
+  --color-text-light: #444;           /* Light text */
+  --color-text-body: #333;            /* Body text */
+  --color-text-white: #fff;           /* White text */
+
+  /* === BRAND COLORS === */
+  --color-primary: #2d5016;           /* Primary brand color */
+  --color-primary-light: #3a6b1f;     /* Lighter primary */
+  --color-primary-dark: #1a3a10;      /* Darker primary */
+  --color-secondary: #8b4513;         /* Secondary brand color */
+  --color-secondary-light: #a0521a;   /* Lighter secondary */
+  --color-secondary-dark: #6d3510;    /* Darker secondary */
+
+  /* === BACKGROUND COLORS === */
+  --color-bg-primary: #f5f7f0;        /* Main background */
+  --color-bg-secondary: #f0f4e8;      /* Secondary background */
+  --color-bg-white: #fff;             /* White background */
+  --color-bg-navbar: rgba(255,255,255,.95); /* Navbar background */
+  --color-footer-start: #2c3e50;      /* Footer gradient start */
+  --color-footer-end: #34495e;        /* Footer gradient end */
+  --color-black: #000;                /* Pure black */
+
+  /* === BORDER COLORS === */
+  --color-border-light: rgba(0,0,0,.05);  /* Subtle borders */
+  --color-border-subtle: #f0f4e8;         /* Very subtle borders */
+
+  /* === INTERACTIVE STATES === */
+  --color-hover-primary: var(--color-primary);     /* Primary hover */
+  --color-hover-overlay: rgba(0,0,0,.5);           /* Overlay on hover */
+
+  /* === TIMING & ANIMATION === */
+  --ease-fast: .15s ease;      /* Quick transitions */
+  --ease-normal: .3s ease;     /* Standard transitions */
+  --ease-slow: .5s ease;       /* Slow transitions */
+  --ease-cubic: cubic-bezier(.25,.46,.45,.94); /* Custom easing */
+
+  /* === SPACING SCALE === */
+  --space-xs: .5rem;     /* 8px */
+  --space-sm: 1rem;      /* 16px */
+  --space-md: 1.5rem;    /* 24px */
+  --space-lg: 2rem;      /* 32px */
+
+  /* === SHADOW SYSTEM === */
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.05);           /* Small shadow */
+  --shadow-md: 0 4px 12px rgba(0,0,0,.1);           /* Medium shadow */
+  --shadow-lg: 0 8px 25px rgba(0,0,0,.08);          /* Large shadow */
+  --shadow-xl: 0 15px 35px rgba(45,80,22,.15);      /* Extra large shadow */
+}
+
+/*
+=================================================================
+FONT FACE DECLARATIONS
+=================================================================
+Custom web font loading with proper font-display settings
+*/
+/* Abel Regular - Latin character set */
+@font-face {
+  font-display: swap;              /* Prevents invisible text during font load */
+  font-family: 'Abel';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/abel-v18-latin-regular.woff2') format('woff2');
+}
+
+/*
+=================================================================
+GLOBAL RESET & BASE STYLES
+=================================================================
+Normalize browser defaults and establish base styling
+*/
+/* Reset box model and remove default margins/padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Smooth scrolling behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Body base styling */
+body {
+  font-family: 'Abel', sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background: #f8f9fa;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+}
+
+/*
+=================================================================
+NAVIGATION COMPONENT
+=================================================================
+Fixed header with responsive navigation menu
+*/
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: var(--color-bg-navbar);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 20px rgba(0,0,0,.1);
+  z-index: 1000;
+  transition: var(--ease-normal);
+  border-bottom: 1px solid var(--color-border-light);
+  
+  /* Performance optimization - contain layout changes */
+  contain: layout style paint;
+}
+
+/* Navigation container */
+.nav-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Brand logo styling */
+.nav-logo {
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: var(--color-text-primary);
+  text-decoration: none;
+  letter-spacing: 2px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 1001;
+  
+  /* Performance hint for animated transforms */
+  will-change: transform;
+}
+
+.nav-logo svg {
+  fill: var(--color-black);
+  width: 2.2em;
+  height: 2.2em;
+}
+
+/* Navigation menu */
+.nav-menu {
+  display: flex;
+  gap: 30px;
+  list-style: none;
+  align-items: center;
+}
+
+/* Navigation links */
+.nav-menu a {
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  transition: var(--ease-normal);
+  position: relative;
+  padding: 8px 12px;
+  border-radius: 8px;
+  
+  /* Performance hints for frequently animated properties */
+  will-change: transform, color, background;
+  
+  /* Optimization for layout containment */
+  contain: layout style paint;
+}
+
+/* Underline effect for navigation links */
+.nav-menu a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  transition: width var(--ease-normal);
+  border-radius: 2px;
+}
+
+/* Hover state for navigation links */
+.nav-menu a:hover {
+  color: var(--color-primary);
+  background: rgba(45, 80, 22, .05);
+  
+  /* Hardware acceleration for smooth animation */
+  transform: translate3d(0, 0, 0);
+}
+
+.nav-menu a:hover::after {
+  width: 80%;
+}
+
+/* Active state styling */
+.nav-menu a.active {
+  color: var(--color-primary);
+  background: rgba(45, 80, 22, .1);
+  font-weight: 600;
+}
+
+.nav-menu a.active::after {
+  width: 80%;
+}
+
+/* Mobile menu toggle button */
+.mobile-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  z-index: 1001;
+  
+  /* Performance optimization */
+  will-change: transform;
+}
+
+/* Hamburger menu lines */
+.mobile-toggle span {
+  width: 28px;
+  height: 3px;
+  background: var(--color-text-primary);
+  border-radius: 3px;
+  transition: var(--ease-normal);
+  
+  /* Performance hint for animation */
+  will-change: transform;
+}
+
+/*
+=================================================================
+MAIN SECTION & CONTENT LAYOUT
+=================================================================
+Primary content area with grid-based layout
+*/
+.main-section {
+  margin-top: 80px;
+  min-height: calc(100vh - 140px);
+  padding: 40px 20px;
+  background: #f8f9fa;
+}
+
+/* Content wrapper with max width */
+.content-wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/*
+=================================================================
+GRID LAYOUT SYSTEM
+=================================================================
+Responsive grid layouts for content sections
+*/
+
+/* === TOP ROW - 3 COLUMN LAYOUT === */
+/* Layout: 100px | 1fr | 2fr */
+.top-row {
+  display: grid;
+  grid-template-columns: 100px 1fr 2fr;
+  gap: 30px;
+  min-height: 600px;
+}
+
+/* === AREA A: ROTATED TITLE === */
+.title-box {
+  /* Note: Additional styling commented out in original */
+  /* background: linear-gradient(135deg, #6366f1, #8b5cf6); */
+  /* display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); */
+}
+
+.title-box h1 {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 2.5rem;
+  font-weight: 400;
+  letter-spacing: 3px;
+  color: rgb(14, 14, 14);
+  text-transform: uppercase;
+}
+
+/* === AREA B: IMAGE 9:16 RATIO === */
+.image-box-1 {
+  background: white;
+  /* Note: Additional styling commented out in original */
+  /* border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); */
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-box-1 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  aspect-ratio: 9/16;
+}
+
+/* === AREA C: TEXT CONTENT === */
+.text-box-1 {
+  /* Note: Additional styling commented out in original */
+  /* background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); */
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.text-box-1 h2 {
+  font-size: 2rem;
+  color: #1f2937;
+  margin-bottom: 20px;
+  font-weight: 400;
+  letter-spacing: 2px;
+}
+
+.text-box-1 p {
+  font-size: 1.1rem;
+  color: #6b7280;
+  line-height: 1.8;
+  letter-spacing: 0.5px;
+  margin-bottom: 15px;
+}
+
+/* === BOTTOM ROW - 2 COLUMN LAYOUT === */
+/* Layout: 1fr | 1fr */
+.bottom-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  min-height: 500px;
+}
+
+/* === AREA D: TEXT CONTENT (50% WIDTH) === */
+.text-box-2 {
+  /* Note: Additional styling commented out in original */
+  /* background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); */
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* === AREA E: CENTERED IMAGE 9:16 === */
+.image-box-2 {
+  /* Note: Additional styling commented out in original */
+  /* background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); */
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.image-box-2 img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  aspect-ratio: 9/16;
+  border-radius: 5px;
+}
+
+/*
+=================================================================
+FOOTER
+=================================================================
+Site footer with gradient background
+*/
+footer {
+  background: linear-gradient(135deg, #2c3e50, #34495e);
+  color: white;
+  padding: 30px 20px;
+  text-align: center;
+  font-family: 'Abel', sans-serif;
+  letter-spacing: 1px;
+}
+
+footer p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/*
+=================================================================
+RESPONSIVE DESIGN - TABLET (≤768px)
+=================================================================
+Mobile navigation and layout adjustments
+*/
+@media (max-width: 768px) {
+  /* Show mobile toggle button */
+  .mobile-toggle {
+    display: flex;
+  }
+
+  /* Full-screen slide menu */
+  .nav-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 80px 30px 30px;
+    gap: 0;
+    box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+    transition: right var(--ease-normal);
+    
+    /* Performance optimizations */
+    will-change: right;
+    contain: layout style;
+  }
+
+  /* Active state to show menu */
+  .nav-menu.active {
+    right: 0;
+  }
+
+  /* Menu item styling */
+  .nav-menu li {
+    width: 100%;
+    padding: 15px 0;
+    border-bottom: 1px solid #f3f4f6;
+  }
+
+  .nav-menu li:last-child {
+    border-bottom: none;
+  }
+
+  .nav-menu a {
+    display: block;
+    font-size: 1.3rem;
+    width: 100%;
+    padding: 15px 12px;
+  }
+
+  /* Adjust underline position for mobile */
+  .nav-menu a::after {
+    bottom: -15px;
+  }
+
+  /* Responsive logo sizing */
+  .nav-logo {
+    font-size: 1.4rem;
+  }
+
+  .nav-logo svg {
+    width: 1.5em;
+    height: 1.5em;
+  }
+
+  /* === RESPONSIVE LAYOUT - SINGLE COLUMN === */
+  /* Convert grid to single column stack */
+  .top-row {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    min-height: auto;
+  }
+
+  .bottom-row {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    min-height: auto;
+  }
+
+  /* Unrotate title and adjust styling for mobile */
+  .title-box {
+    min-height: 80px;
+  }
+
+  .title-box h1 {
+    writing-mode: horizontal-tb;
+    transform: none;
+    font-size: 2rem;
+  }
+
+  /* Responsive text padding */
+  .text-box-1,
+  .text-box-2 {
+    padding: 25px;
+  }
+
+  .text-box-1 h2 {
+    font-size: 1.5rem;
+  }
+
+  .text-box-1 p {
+    font-size: 1rem;
+  }
+
+  /* Image box minimum height for better mobile display */
+  .image-box-1,
+  .image-box-2 {
+    min-height: 400px;
+  }
+
+  /* Reorder elements for mobile layout */
+  /* Order: a-b-c-e-d (title-image-text-image-text) */
+  .title-box {
+    order: 1;
+  }
+
+  .image-box-1 {
+    order: 2;
+  }
+
+  .text-box-1 {
+    order: 3;
+  }
+
+  .image-box-2 {
+    order: 4;
+  }
+
+  .text-box-2 {
+    order: 5;
+  }
+
+  /* Ensure content wrapper maintains column layout */
+  .content-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .top-row,
+  .bottom-row {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+/*
+=================================================================
+RESPONSIVE DESIGN - SMALL MOBILE (≤480px)
+=================================================================
+Fine-tuned adjustments for small mobile devices
+*/
+@media (max-width: 480px) {
+  /* Container padding adjustments */
+  .nav-container {
+    padding: 12px 15px;
+  }
+
+  /* Smaller logo */
+  .nav-logo {
+    font-size: 1.2rem;
+  }
+
+  /* Smaller mobile menu */
+  .nav-menu {
+    width: 250px;
+    padding: 70px 25px 25px;
+  }
+
+  .nav-menu a {
+    font-size: 1.1rem;
+  }
+
+  /* Smaller title text */
+  .title-box h1 {
+    font-size: 1.5rem;
+  }
+}
+
+/*
+=================================================================
+ACCESSIBILITY - REDUCED MOTION
+=================================================================
+Respect user preferences for reduced motion
+*/
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

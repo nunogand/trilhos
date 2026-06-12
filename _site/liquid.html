@@ -1,0 +1,543 @@
+
+<p>images</p>
+{% for image in site.static_files %}
+<ul>
+<li>{{image.path}}</li>
+</ul>
+<br>
+
+<ul>
+<li>{{image.name}}</li>
+</ul>
+<br>
+
+{% endfor %}
+
+<br>=================================================================
+<br>JEKYL SITE STRUCTURE ANALYSIS
+<br>=================================================================
+<br>
+<br>This page demonstrates all available liquid objects and patterns
+<br>in the trilhos Jekyll site. The site contains:
+<br>- 4 posts
+<br>- 72 images
+<br>- Data files for picture presets
+<br>- Static files (CSS, JS, fonts)
+<br>- Various collections and taxonomies
+<br>
+<br>=================================================================
+<br>BASIC SITE INFORMATION
+<br>=================================================================
+
+
+# Site Configuration Objects<br>
+
+### Site Information<br>
+
+Site Title: {{ site.title }}<br>
+
+Site Name: {{ site.name }}<br>
+
+Site Email: {{ site.email }}<br>
+
+Site Description: {{ site.description }}<br>
+
+Base URL: {{ site.baseurl }}<br>
+
+URL: {{ site.url }}<br>
+
+Timezone: {{ site.timezone }}<br>
+
+Locale: {{ site.locale }}<br>
+
+
+### Site Settings<br>
+Twitter: {{ site.twitter }}<br>
+Instagram: {{ site.instagram }}<br>
+Twitter Username: {{ site.twitter_username }}<br>
+GitHub Username: {{ site.github_username }}<br>
+
+
+### Site Collections Count<br>
+Total Posts: {{ site.posts | size }}<br>
+Total Static Files: {{ site.static_files | size }}<br>
+Total Pages: {{ site.pages | size }}<br>
+Total Documents: {{ site.documents | size }}<br>
+Data Files Count: {{ site.data | size }}<br>
+
+
+=================================================================
+<h1>POSTS AND CONTENT</h1>
+=================================================================
+
+
+Posts Collection
+=================================================================
+
+
+### All Posts Information
+
+{% for post in site.posts %}
+
+<p>Post<br>
+<br>Title: {{ post.title }}
+<br>URL: {{ post.url }}
+<br>Date: {{ post.date }}
+<br>Date (formatted): {{ post.date | date: "%d %B %Y" }}
+<br>Author: {{ post.author }}
+<br>Description: {{ post.description | truncate: 120}}
+<br>Category: {{ post.categories | first }}
+<br>Folder: {{ post.folder }}
+<br>Tags: {{ post.places | join: ", " }}
+<br>Layout: {{ post.layout }}
+<br>Content Length: {{ post.content | size }}
+<br>Excerpt: {{ post.excerpt }}</p>
+{% endfor %}
+
+
+<p>### Post Statistics</p>
+<br>Total Posts: {{ site.posts | size }}
+
+
+
+<h1>### Recent Posts (Last 3)</h1>
+
+{% assign recent_posts = site.posts | sort: "date" | reverse | limit: 3 %}
+<ul>
+{% for post in recent_posts %}
+<li>{{ post.title }} ({{ post.date | date: "%d/%m/%Y" }})</li>
+{% endfor %}
+</ul>
+
+=================================================================
+<h1>TAGS AND CATEGORIES</h1>
+=================================================================<p>
+
+
+Tags Collection
+=================================================================
+
+
+### All Tags<br>
+
+{% assign all_tags = "" %}
+{% for post in site.posts %}
+  {% assign post_tags = post.places | join: "," %}
+  {% assign all_tags = all_tags | append: post_tags | append: "," %}
+{% endfor %}
+{% assign unique_tags = all_tags | split: "," | uniq %}
+Unique Tags: {{ unique_tags | join: " <br> " }}
+
+Tag Count: {{ unique_tags.size }}
+
+
+### Posts by Tag
+{% for tag in unique_tags %}
+  {% assign tag_posts = site.posts | where: "tags", tag %}
+  Posts with tag "{{ tag }}": {{ tag_posts | size }}<br>
+  {% for post in tag_posts %}
+    - {{ post.title }}<br>
+  {% endfor %}
+{% endfor %}
+
+<p>
+### Categories<br>
+{% assign all_categories = "" %}
+{% for post in site.posts %}
+  {% assign post_categories = post.categories | join: "," %}
+  {% assign all_categories = all_categories | append: post_categories | append: "," %}
+{% endfor %}
+{% assign unique_categories = all_categories | split: "," | uniq | compact %}
+Unique Categories: {{ unique_categories | join: " <br> " }}
+
+<p>
+==================================================
+IMAGES AND MEDIA
+=================================================================
+
+<br>
+Static Files and Images<br>
+=================================================================
+<br>
+
+### Image Files by Extension<br>
+{% assign image_extensions = ".jpg,.jpeg,.png,.gif,.webp" | split: "," %}
+{% for ext in image_extensions %}
+  {% assign images_ext = site.static_files | where_exp: "item", "item.extname == ext" %}
+  {{ ext | remove_first: "." }} files: {{ images_ext | size }}<br>
+{% endfor %}
+
+<br>
+### All Images Count<br>
+{% assign all_images = site.static_files | where_exp: "item", "item.extname == '.jpg' or item.extname == '.jpeg' or item.extname == '.png' or item.extname == '.gif' or item.extname == '.webp'" %}
+<br>Total Images: {{ all_images | size }}
+
+
+<br>### Images by Directory
+{% assign dirs = "" %}
+{% for file in site.static_files %}
+  {% assign dir = file.path | split: "/" | shift | join: "/" | split: "/" | first %}
+  {% assign dirs = dirs | append: dir | append: "," %}
+{% endfor %}
+{% assign unique_dirs = dirs | split: "," | uniq | compact %}
+
+{% for dir in unique_dirs %}
+  {% assign files_in_dir = site.static_files | where_exp: "item", "item.path contains dir" %}
+<br>  {{ dir | default: "root" }}: {{ files_in_dir | size }} files
+{% endfor %}
+
+<br>
+### Random Images from Directory<br>
+{% assign front_images = site.static_files | where_exp: "item", "item.path contains '/assets/front/'" %}
+<br>Front Directory Images: {{ front_images | size }}
+{% assign random_front = front_images | sample %}
+<br>Random Front Image: {{ random_front.path }}
+<br>
+
+### Hero Images
+<br>{% assign hero_images = site.static_files | where_exp: "item", "item.path contains '/assets/hero/'" %}
+<br>Hero Images: {{ hero_images.size }}
+{% for img in hero_images %}
+<br>- {{ img.path }}
+{% endfor %}
+
+
+<br>=================================================================
+<br>DATA FILES
+<br>=================================================================
+<br>
+
+Data Files Access<br>
+=================================================================
+<br>
+
+### Picture Configuration<br>
+Available Picture Presets: <br>
+{% for preset in site.data.picture.presets %}<br>
+- {{ preset[0] }}<br>
+  Formats: {{ preset[1].formats | join: ", " }}<br>
+  Widths: {{ preset[1].widths | join: ", " }}<br>
+  Fallback Width: {{ preset[1].fallback_width }}<br>
+  Markup: {{ preset[1].markup }}<br>
+{% endfor %}
+
+<br>
+### Data File Keys<br>
+Available Data Files:<br>
+{% for data_file in site.data %}<br>
+- {{ data_file[0] }}<br>
+{% endfor %}
+
+<br>
+=================================================================<br>
+STATIC FILES AND ASSETS<br>
+=================================================================<br>
+<br>
+
+Static Files Analysis
+<br>=================================================================
+<br>
+
+### CSS Files<br>
+{% assign css_files = site.static_files | where_exp: "item", "item.extname == '.css'" %}
+<br>CSS Files ({{ css_files | size }}):<br>
+{% for file in css_files %}
+- {{ file.path }} ({{ file.size }} bytes)<br>
+{% endfor %}
+
+<br>
+### JS Files<br>
+{% assign js_files = site.static_files | where_exp: "item", "item.extname == '.js'" %}
+<br>JavaScript Files ({{ js_files | size }}):
+{% for file in js_files %}
+<br>- {{ file.path }} ({{ file.size }} bytes)<br>
+{% endfor %}
+
+
+<br>### Font Files
+{% assign font_files = site.static_files | where_exp: "item", "item.path contains '/assets/fonts/'" %}
+<br>Font Files ({{ font_files.size }}):
+{% for file in font_files %}
+<br>- {{ file.path }} ({{ file.basename }}.{{ file.extname }})<br>
+{% endfor %}
+
+<br>
+=================================================================<br>
+PAGES AND DOCUMENTS<br>
+=================================================================<br>
+
+<br>
+Pages Collection<br>
+=================================================================<br>
+
+<br>
+### All Pages<br>
+Pages ({{ site.pages | size }}):<br>
+{% for page in site.pages %}
+- {{ page.title | default: page.name }}: {{ page.url }}<br>
+  Layout: {{ page.layout }}<br>
+{% endfor %}
+
+<br>
+### Documents Collection<br>
+Documents ({{ site.documents | size }}):<br>
+{% for doc in site.documents %}
+- {{ doc.title | default: doc.name }}: {{ doc.url }}<br>
+  Extension: {{ doc.extname }}<br>
+{% endfor %}
+
+<br>
+=================================================================<br>
+COMMON LIQUID PATTERNS<br>
+=================================================================<br>
+
+
+<br>Useful Liquid Patterns for Jekyll Development
+<br>=================================================================
+<br>
+
+### Sorting and Ordering<br>
+{% assign sorted_posts = site.posts | sort: "date" | reverse %}<br>
+Oldest Post: {{ sorted_posts | last | date: "%d %B %Y" }}<br>erro estranho <br>
+Newest Post: {{ sorted_posts | first | date: "%d %B %Y" }}
+<br>
+{% assign posts_by_title = site.posts | sort: "title" %}<br>
+Posts by Title:<br>
+{% for post in posts_by_title %}
+- {{ post.title }}<br>
+{% endfor %}
+
+<br>
+### Filtering Posts<br>
+{% assign posts_with_folder = site.posts | where_exp: "post", "post.folder" %}<br>
+Posts with folder assigned: {{ posts_with_folder.size }}
+<br>
+{% assign posts_without_description = site.posts | where_exp: "post", "post.description == nil" %}
+Posts without description: {{ posts_without_description.size }}<br>
+
+<br>
+### Grouping Posts<br>
+{% assign posts_grouped = site.posts | group_by: "folder" %}
+<br>Posts grouped by folder:
+{% for group in posts_grouped %}
+<br>- {{ group.name | default: "no-folder" }}: {{ group.items | size }} posts<br>
+{% endfor %}
+
+<br>
+### String Manipulation<br>
+{% assign site_title_lowercase = site.title | downcase %}
+<br>Site title lowercase: {{ site_title_lowercase }}
+
+{% assign uppercase_desc = site.description | upcase %}
+<br>Description uppercase: {{ uppercase_desc }}
+
+{% assign title_words = site.title | split: " " %}
+<br>Title words: {{ title_words | join: ", " }}
+
+
+<br>### URL Manipulation
+{% for post in site.posts %}
+<p>Full URL: {{ post.url | absolute_url }}
+<br>Relative URL: {{ post.url | relative_url }}
+<br>Remove index.html: {{ post.url | replace: "index.html", "" }}
+<br>Base URL: {{ site.baseurl }}
+<br>URL parts: {{ post.url | split: "/" | join: ", " }}
+{% endfor %}
+
+<br>
+### Date Formatting<br>
+<br>Current Date: {{ "now" | date: "%d/%m/%Y %H:%M" }}
+<br>Site Timezone: {{ site.timezone }}<p>
+
+{% for post in site.posts %}
+<p>Date variations for "{{ post.title }}":
+<br>- Default: {{ post.date }}
+<br>- DD/MM/YYYY: {{ post.date | date: "%d/%m/%Y" }}
+<br>- DD Month YYYY: {{ post.date | date: "%d %B %Y" }}
+<br>- Month DD, YYYY: {{ post.date | date: "%B %d, %Y" }}
+<br>- ISO Format: {{ post.date | date: "%Y-%m-%d" }}
+{% endfor %}
+
+<br>
+<br>### Conditional Logic Examples
+<br>Posts with tags: 
+{% for post in site.posts %}
+{% if post.places and post.places.size > 0 %}
+<br>- {{ post.title }} ({{ post.places | size }} tags)
+{% endif %}
+{% endfor %}
+
+<br>Posts with description:<br>
+{% for post in site.posts %}
+{% if post.description %}
+<br>- {{ post.title }}: {{ post.description | truncate: 50 }}<br>
+{% else %}
+<br>- {{ post.title }}: (no description)<br>
+{% endif %}
+{% endfor %}
+
+<br>
+### Array and Collection Operations<br>
+{% assign all_tags_array = "" %}
+{% for post in site.posts %}
+  {% if post.places %}
+    {% assign all_tags_array = all_tags_array | concat: post.places %}
+  {% endif %}
+{% endfor %}
+<br>All tags: {{ all_tags_array | sort | uniq | join: ", " }}<br>
+
+{% assign unique_folders = "" %}
+{% for post in site.posts %}
+  {% if post.folder %}
+    {% assign unique_folders = unique_folders | push: post.folder %}
+  {% endif %}
+{% endfor %}
+<br>Unique folders: {{ unique_folders | uniq | join: ", " }}<br>
+
+<br>
+### File Size and Extensions<br>
+{% assign css_files = site.static_files | where_exp: "file", "file.extname == '.css'" %}
+<br>CSS Files with sizes:<br>
+{% for file in css_files %}
+- {{ file.basename }}{{ file.extname }}: {{ file.size | divided_by: 1024 | floor }}KB<br>
+{% endfor %}
+
+<br>
+### Path Operations<br>
+{% assign all_paths = site.static_files | map: "path" | uniq %}
+<br>Unique paths: {{ all_paths | size }}
+{% for file in site.static_files limit: 5 %}
+<br>File: {{ file.path }}
+<br>Basename: {{ file.basename }}
+<br>Extension: {{ file.extname }}
+<br>Dirname: {{ file.dirname }}
+<br>Directory: {{ file.dir }}
+{% endfor %}
+
+
+<br>=================================================================
+<br>ADVANCED USAGE EXAMPLES
+<br>=================================================================
+
+
+<br>Advanced Pattern Examples
+<br>=================================================================
+
+
+<br>### Create Gallery from Post Folder
+{% assign gallery_post = site.posts | where: "folder", "trilho1" | first %}
+{% if gallery_post %}
+  {% assign post_images = site.static_files | where_exp: "file", "file.path contains gallery_post.folder" | where_exp: "file", "file.extname == '.jpg'" %}
+ <br> Gallery for "{{ gallery_post.title }}":
+  {% for image in post_images limit: 5 %}
+  <br>- {{ image.path }}
+  {% endfor %}
+{% endif %}
+
+
+<br>### Navigation Menu Generation
+<nav>
+  <ul>
+    <li><a href="/">Home</a></li>
+    {% for post in site.posts | sort: "date" | reverse %}
+      <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+    {% endfor %}
+  </ul>
+</nav>
+
+
+<br>### Content Statistics<br>
+Content Statistics:<br>
+<br>- Total content length: {{ site.posts | map: "content" | map: "size" | sum }} characters
+<br>- Average post length: {{ site.posts | map: "content" | map: "size" | sum | divided_by: site.posts.size }} characters
+<br>- Total images: {{ all_images | size }}
+<br>- Largest file: {{ site.static_files | map: "size" | max | divided_by: 1024 }}KB
+<br>
+<br>
+<br>### Random Content Selection
+<br>Random Post: 
+<br>{% assign random_post = site.posts | sample %}
+<br>Title: {{ random_post.title }}
+<br>URL: {{ random_post.url }}
+
+<br>Random Image:<br>
+{% assign random_image = all_images | sample %}
+<br>Path: {{ random_image.path }}
+<br>Size: {{ random_image.size }} bytes
+
+
+<br>=================================================================
+<br>JEKYLL ENVIRONMENT INFO
+<br>=================================================================
+
+
+<br>System Information<br>
+=================================================================
+
+<br>
+<br>### Jekyll Version and Environment
+<br>Jekyll Version: {{ jekyll.environment | default: "development" }}
+<br>jekyll.version: {{ jekyll.version | default: "N/A" }}
+<br>jekyll.plugins: {{ site.plugins | join: ", " }}
+<br>jekyll.sass.style: {{ site.sass.style }}
+<br>
+<br>
+<br>### Page-Specific Information (Current Page)
+<br>Current Page Title: {{ page.title }}
+<br>Current Page URL: {{ page.url }}
+<br>Current Page Layout: {{ page.layout }}
+<br>Current Page Content Length: {{ content | size }}
+<br>Page Has Custom CSS: {{ page.custom_css | size | default: 0 }} files
+<br>Page Has Description: {{ page.description | default: "None" }}
+<br>
+<br>
+<br>=================================================================
+<br>NOTES FOR DEVELOPERS
+<br>=================================================================
+
+<br>
+<br>This debug page showcases:
+<br>- Site configuration objects (site.*)
+<br>- Content collections (posts, pages, static_files)
+<br>- Data files access (site.data.*)
+<br>- Taxonomies (tags, categories)
+<br>- File system information
+<br>- Common liquid patterns
+<br>- Filtering, sorting, and grouping
+<br>- Date formatting and string manipulation
+<br>- Conditional logic and loops
+<br>- Random sampling and array operations
+<br>
+<br>To use these patterns in your own templates:
+<br>1. Copy the liquid code blocks
+<br>2. Adapt variable names to your site structure
+<br>3. Customize the HTML/Markdown output
+<br>4. Add appropriate CSS styling
+<br>5. Test with your specific content
+<br>
+<br>Common Collections Available:
+<br>- site.posts - All blog posts
+<br>- site.pages - All pages
+<br>- site.static_files - All static files
+<br>- site.data - Data from _data/ directory
+<br>- site.documents - Files in collections
+<br>- site.html_pages - HTML pages specifically
+<br>
+<br>Common Filters Used:
+<br>- size - Get collection size
+<br>- where - Filter collection by property
+<br>- where_exp - Filter with custom expression
+<br>- map - Extract property from collection
+<br>- sort - Sort collection
+<br>- group_by - Group by property
+<br>- sample - Get random item(s)
+<br>- join - Join array with separator
+<br>- uniq - Remove duplicates
+<br>- concat - Concatenate arrays
+<br>- default - Provide default value
+<br>- date - Format dates
+<br>- truncate - Truncate strings
+<br>- absolute_url - Make absolute URL
+<br>- relative_url - Make relative URL
+
+<br>
