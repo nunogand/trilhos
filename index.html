@@ -28,20 +28,43 @@ custom_css: entrada.css
     {%include nav_index.html%}
 
 
-    <!-- init the list with filtered images -->
-    {% assign headers = site.static_files | where_exp: "item", "item.path contains '/assets/front/'" | map: "path" %}
-    <!-- get 4 random headers -->
-    {% assign random-header = headers | sample: 4 %}
+{% assign headers = site.static_files
+  | where_exp: "item", "item.path contains '/assets/front/'"
+  | map: "path"
+%}
 
+{% assign random_headers = headers | sample: 4 %}
 
+<div class="slideshow" aria-hidden="true">
+  {% for header_path in random_headers %}
 
-    <!-- You can add more ".slideshow-image" elements, but remember to update the "$items" on kenburns.scss  -->
+    {% assign picture_path = header_path
+      | remove_first: "/assets/"
+    %}
+
+    <div class="slideshow-image">
+      {% if forloop.first %}
+        {% picture front_slideshow "{{ picture_path }}"
+          --img class="slideshow-media" alt="" decoding="async" fetchpriority="high"
+          --picture class="slideshow-picture"
+        %}
+      {% else %}
+        {% picture front_slideshow "{{ picture_path }}"
+          --img class="slideshow-media" alt="" decoding="async"
+          --picture class="slideshow-picture"
+        %}
+      {% endif %}
+    </div>
+
+  {% endfor %}
+</div>
+    <!-- You can add more ".slideshow-image" elements, but remember to update the "$items" on kenburns.scss  
     <div class="slideshow">
         <div class="slideshow-image" style="background-image: url('{{ random-header[0] }}')"></div>
         <div class="slideshow-image" style="background-image: url('{{ random-header[1] }}')"></div>
         <div class="slideshow-image" style="background-image: url('{{ random-header[2] }}')"></div>
         <div class="slideshow-image" style="background-image: url('{{ random-header[3] }}')"></div>
-    </div>
+    </div>-->
 
 
     </section>

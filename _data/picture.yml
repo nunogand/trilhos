@@ -1,0 +1,20 @@
+presets:
+  front_slideshow:
+    formats:
+#      - avif
+      - webp
+#      - original
+
+    widths:
+      - 960
+      - 1280
+      - 1920
+      - 2560
+
+    size: "100vw"
+
+    dimension_attributes: true
+
+    attributes:
+      picture: 'class="slideshow-picture"'
+      img: 'class="slideshow-media" alt="" decoding="async"'

@@ -8,18 +8,19 @@
 %}
 
 {% assign folder_images = folder_files
-| where_exp: "file", "file.extname == '.jpg' or file.extname == '.jpeg' or file.extname == '.png' or file.extname == '.webp' or file.extname == '.avif' or file.extname == '.JPG' or file.extname == '.JPEG' or file.extname == '.PNG' or file.extname == '.WEBP' or file.extname == '.AVIF'"
+| where_exp: "file", "file.extname == '.jpg' or file.extname == '.jpeg' or file.extname == '.png' or file.extname ==
+'.webp' or file.extname == '.avif' or file.extname == '.JPG' or file.extname == '.JPEG' or file.extname == '.PNG' or
+file.extname == '.WEBP' or file.extname == '.AVIF'"
 %}
 
 {% assign card_image = folder_images | sample %}
 
 <article class="post-card" aria-labelledby="home-card-1">
   <div class="card-content">
-    <div class="card-image"><img src="{{ card_image.path | relative_url }}"
-        alt="{{post.title}}" width="600" height="400" loading="lazy"><time
-        class="date-badge">15 set. 2023</time></div>
+    <div class="card-image"><img src="{{ card_image.path | relative_url }}" alt="{{post.title}}" width="600"
+        height="400" loading="lazy"><time class="date-badge">15 set. 2023</time></div>
     <div class="card-text">
-       <h3>
+      <h3>
         <a class="card-link" href="{{post.url | prepend: site.baseurl}}">
           {{post.title}}
         </a>
@@ -27,7 +28,14 @@
       <p>
         {{post.content | strip_html | truncatewords: 30}}
       </p>
-      <div class="tags"><span class="tag">Meteorologia</span><span class="tag">Montanha</span></div>
+      
+      <div class="tags">
+      {%for place in post.places %}
+        <span class="tag">{{ place }}</span>
+      {% endfor %}
+      </div>
+      
+      
       <div class="card-stats" aria-label="Dados do percurso"><span class="stat-item"><i class="fas fa-route"
             aria-hidden="true"></i>12,4 km</span><span class="stat-item"><i class="fas fa-mountain"
             aria-hidden="true"></i>680 m</span><span class="stat-item"><i class="fas fa-clock" aria-hidden="true"></i>4h

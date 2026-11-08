@@ -78,6 +78,15 @@ defaults:
 kramdown:  
   parse_block_html: false
 
+plugins:
+  - jekyll_picture_tag
+
+picture:
+  source: assets
+  output: assets/generated
+  suppress_warnings: false
+  fast_build: true
+
 
 # development
 #incremental: true # When working locally to avoid rebuilding everything on change 

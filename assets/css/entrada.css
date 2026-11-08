@@ -1,3 +1,7 @@
+/* =========================================================
+   RESET
+   ========================================================= */
+
 html,
 body,
 div,
@@ -7,7 +11,13 @@ li,
 label,
 aside,
 nav,
-section {
+section,
+header,
+main,
+footer,
+picture,
+figure,
+img {
     margin: 0;
     padding: 0;
     border: 0;
@@ -16,331 +26,626 @@ section {
     vertical-align: baseline;
 }
 
-aside,
-nav,
-section {
-    display: block;
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+html {
+    overflow-x: hidden;
 }
 
 body {
-    line-height: 1;
+    color: #000;
+    font-family: "Abel", sans-serif;
+    font-size: 100%;
+    font-weight: 600;
+    line-height: 1.5;
+    overflow-x: hidden;
+}
+
+aside,
+nav,
+section,
+header,
+main,
+footer,
+picture {
+    display: block;
 }
 
 ul {
     list-style: none;
 }
 
-.slideshow {
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
+img {
+    display: block;
+    max-width: 100%;
 }
 
-.slideshow-image {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: no-repeat 50% 50%;
-    background-size: cover;
-    animation-name: kenburns;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-duration: 16s;
-    opacity: 1;
-    transform: scale(1.2);
-    transform: translate3d(0, 0, 0);
-    will-change: transform, opacity;
-}
 
-.slideshow-image:nth-child(1) {
-    animation-name: kenburns-1;
-    z-index: 3;
-}
+/* =========================================================
+   VARIÁVEIS
+   ========================================================= */
 
-.slideshow-image:nth-child(2) {
-    animation-name: kenburns-2;
-    z-index: 2;
-}
-
-.slideshow-image:nth-child(3) {
-    animation-name: kenburns-3;
-    z-index: 1;
-}
-
-.slideshow-image:nth-child(4) {
-    animation-name: kenburns-4;
-    z-index: 0;
-}
-
-@keyframes kenburns-1 {
-    0% {
-        opacity: 1;
-        transform: scale(1.2);
-    }
-
-    1.5625% {
-        opacity: 1;
-    }
-
-    23.4375% {
-        opacity: 1;
-    }
-
-    26.5625% {
-        opacity: 0;
-        transform: scale(1);
-    }
-
-    100% {
-        opacity: 0;
-        transform: scale(1.2);
-    }
-
-    98.4375% {
-        opacity: 0;
-        transform: scale(1.2117647059);
-    }
-
-    100% {
-        opacity: 1;
-    }
-}
-
-@keyframes kenburns-2 {
-    23.4375% {
-        opacity: 1;
-        transform: scale(1.2);
-    }
-
-    26.5625% {
-        opacity: 1;
-    }
-
-    48.4375% {
-        opacity: 1;
-    }
-
-    51.5625% {
-        opacity: 0;
-        transform: scale(1);
-    }
-
-    100% {
-        opacity: 0;
-        transform: scale(1.2);
-    }
-}
-
-@keyframes kenburns-3 {
-    48.4375% {
-        opacity: 1;
-        transform: scale(1.2);
-    }
-
-    51.5625% {
-        opacity: 1;
-    }
-
-    73.4375% {
-        opacity: 1;
-    }
-
-    76.5625% {
-        opacity: 0;
-        transform: scale(1);
-    }
-
-    100% {
-        opacity: 0;
-        transform: scale(1.2);
-    }
-}
-
-@keyframes kenburns-4 {
-    73.4375% {
-        opacity: 1;
-        transform: scale(1.2);
-    }
-
-    76.5625% {
-        opacity: 1;
-    }
-
-    98.4375% {
-        opacity: 1;
-    }
-
-    100% {
-        opacity: 0;
-        transform: scale(1);
-    }
-}
-
-@media (max-width: 768px) {
-    .slideshow-image {
-        animation-duration: 32s;
-    }
-}
-
-/* Optimized CSS for better performance and maintainability */
-/* CSS Custom Properties for consistency */
 :root {
     --color-white: #fff;
     --color-gray: #898989;
     --color-text: #000;
+
     --sidebar-bg: rgba(255, 255, 255, 0.85);
     --menu-item-hover-bg: rgba(255, 255, 255, 0.95);
     --hamburger-bg: rgba(255, 255, 255, 0.75);
+
     --shadow: 0 0 20px 20px rgba(0, 0, 0, 0.03);
-    --transition: transform 0.4s ease-in-out;
-    --transition-delay: 0.4s ease-in-out;
-    --border-radius: 50%;
+
+    --sidebar-transition:
+        transform 0.4s ease-in-out;
+
     --close-button-size: 60px;
+
+    /*
+     * Quatro imagens, aproximadamente oito segundos por imagem.
+     */
+    --slideshow-duration: 32s;
+
+    /*
+     * O movimento dura ligeiramente mais do que o período
+     * durante o qual cada imagem está totalmente visível.
+     */
+    --slide-motion-duration: 9s;
 }
 
-/* Base banner styles */
+
+/* =========================================================
+   SLIDESHOW
+   ========================================================= */
+
+.slideshow {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+
+    width: 100%;
+    height: 100vh;
+    height: 100svh;
+
+    overflow: hidden;
+    background-color: #182118;
+
+    /*
+     * Cria um contexto de empilhamento próprio.
+     */
+    isolation: isolate;
+}
+
+
+/*
+ * O contentor de cada slide controla apenas:
+ *
+ * 1. a posição;
+ * 2. a opacidade;
+ * 3. a ordem de empilhamento.
+ *
+ * O zoom e a deslocação são aplicados à imagem.
+ */
+
+.slideshow-image {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+    opacity: 0;
+
+    animation-duration: var(--slideshow-duration);
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+
+    will-change: opacity;
+}
+
+
+/*
+ * O elemento picture gerado pelo HTML deve preencher
+ * completamente o slide.
+ */
+
+.slideshow-picture {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+}
+
+
+/*
+ * Equivalente a:
+ *
+ * background-size: cover;
+ * background-position: center;
+ */
+
+.slideshow-media {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+
+    backface-visibility: hidden;
+    transform: translate3d(0, 0, 0) scale(1.08);
+    will-change: transform;
+}
+
+
+/* =========================================================
+   ORDEM E TRANSIÇÃO DOS SLIDES
+   ========================================================= */
+
+.slideshow-image:nth-child(1) {
+    z-index: 4;
+    animation-name: kenburns-fade-1;
+}
+
+.slideshow-image:nth-child(2) {
+    z-index: 3;
+    animation-name: kenburns-fade-2;
+}
+
+.slideshow-image:nth-child(3) {
+    z-index: 2;
+    animation-name: kenburns-fade-3;
+}
+
+.slideshow-image:nth-child(4) {
+    z-index: 1;
+    animation-name: kenburns-fade-4;
+}
+
+
+/* =========================================================
+   MOVIMENTO ESPECÍFICO DE CADA IMAGEM
+   ========================================================= */
+
+/*
+ * Imagem 1:
+ * aproximação em direção à zona superior esquerda.
+ */
+
+.slideshow-image:nth-child(1) .slideshow-media {
+    object-position: 45% 45%;
+    transform-origin: 25% 30%;
+
+    animation:
+        kenburns-move-1
+        var(--slide-motion-duration)
+        ease-out
+        infinite;
+}
+
+
+/*
+ * Imagem 2:
+ * movimento horizontal, com aproximação à zona direita.
+ */
+
+.slideshow-image:nth-child(2) .slideshow-media {
+    object-position: 60% 50%;
+    transform-origin: 75% 25%;
+
+    animation:
+        kenburns-move-2
+        var(--slide-motion-duration)
+        ease-out
+        infinite;
+}
+
+
+/*
+ * Imagem 3:
+ * deslocamento vertical e diagonal.
+ */
+
+.slideshow-image:nth-child(3) .slideshow-media {
+    object-position: 40% 60%;
+    transform-origin: 30% 75%;
+
+    animation:
+        kenburns-move-3
+        var(--slide-motion-duration)
+        ease-out
+        infinite;
+}
+
+
+/*
+ * Imagem 4:
+ * aproximação em direção à zona inferior direita.
+ */
+
+.slideshow-image:nth-child(4) .slideshow-media {
+    object-position: 55% 55%;
+    transform-origin: 75% 70%;
+
+    animation:
+        kenburns-move-4
+        var(--slide-motion-duration)
+        ease-out
+        infinite;
+}
+
+
+/* =========================================================
+   TRAJETÓRIAS KEN BURNS
+   ========================================================= */
+
+@keyframes kenburns-move-1 {
+    from {
+        transform:
+            translate3d(2%, 2%, 0)
+            scale(1.08);
+    }
+
+    to {
+        transform:
+            translate3d(-4%, -3%, 0)
+            scale(1.22);
+    }
+}
+
+@keyframes kenburns-move-2 {
+    from {
+        transform:
+            translate3d(-3%, 1%, 0)
+            scale(1.10);
+    }
+
+    to {
+        transform:
+            translate3d(4%, -2%, 0)
+            scale(1.24);
+    }
+}
+
+@keyframes kenburns-move-3 {
+    from {
+        transform:
+            translate3d(2%, -4%, 0)
+            scale(1.09);
+    }
+
+    to {
+        transform:
+            translate3d(-3%, 3%, 0)
+            scale(1.21);
+    }
+}
+
+@keyframes kenburns-move-4 {
+    from {
+        transform:
+            translate3d(-2%, -3%, 0)
+            scale(1.08);
+    }
+
+    to {
+        transform:
+            translate3d(3%, 3%, 0)
+            scale(1.23);
+    }
+}
+
+
+/* =========================================================
+   TRANSIÇÕES DE OPACIDADE
+   ========================================================= */
+
+/*
+ * Cada imagem ocupa aproximadamente 25% do ciclo.
+ * Existe uma pequena sobreposição entre imagens para
+ * produzir a transição cruzada.
+ */
+
+@keyframes kenburns-fade-1 {
+    0%,
+    23.4375% {
+        opacity: 1;
+    }
+
+    26.5625%,
+    98.4375% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes kenburns-fade-2 {
+    0%,
+    23.4375% {
+        opacity: 0;
+    }
+
+    26.5625%,
+    48.4375% {
+        opacity: 1;
+    }
+
+    51.5625%,
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes kenburns-fade-3 {
+    0%,
+    48.4375% {
+        opacity: 0;
+    }
+
+    51.5625%,
+    73.4375% {
+        opacity: 1;
+    }
+
+    76.5625%,
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes kenburns-fade-4 {
+    0%,
+    73.4375% {
+        opacity: 0;
+    }
+
+    76.5625%,
+    98.4375% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+
+/* =========================================================
+   BANNER
+   ========================================================= */
+
 .banner {
-    background-size: cover;
-    display: flex;
-    align-items: center;
-    padding: 60px;
-    color: var(--color-text);
     position: absolute;
     z-index: 99;
+
+    display: flex;
+    align-items: center;
+
+    padding: 60px;
+
+    color: var(--color-text);
+
+    background-size: cover;
 }
 
-/* Hamburger menu */
+
+/* =========================================================
+   BOTÃO HAMBÚRGUER
+   ========================================================= */
+
 .caminheiro {
-    background-color: var(--hamburger-bg);
-    padding: 10px;
-    border-radius: 10px;
     position: absolute;
-    left: 30px;
     top: 30px;
+    left: 30px;
+    z-index: 101;
+
     display: flex;
-    height: 24px;
-    width: 32px;
     flex-direction: column;
     justify-content: space-between;
+
+    width: 32px;
+    height: 24px;
+    padding: 10px;
+
+    border-radius: 10px;
+
+    background-color: var(--hamburger-bg);
+
     cursor: pointer;
     user-select: none;
-    z-index: 1;
+
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
 }
 
-/* Sidebar container */
+
+/* =========================================================
+   MENU LATERAL
+   ========================================================= */
+
 .sidebar {
-    height: 100vh;
-    width: 45vw;
-    background-color: var(--sidebar-bg);
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
-    padding: 0 60px;
+    z-index: 100;
+
     display: flex;
     flex-direction: column;
-    transform: translateX(-100vw);
-    transition: var(--transition);
+
+    width: 45vw;
+    height: 100vh;
+    height: 100svh;
+
+    padding: 0 60px;
+
     overflow: hidden;
-    /* Add for better performance */
+
+    background-color: var(--sidebar-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    transform: translateX(-100%);
+    transition: var(--sidebar-transition);
+
+    will-change: transform;
 }
 
-/* Close button */
+
+/* =========================================================
+   BOTÃO DE FECHO
+   ========================================================= */
+
 .sidebar__close {
     position: absolute;
     top: 50%;
     right: -30px;
-    background: var(--menu-item-hover-bg);
-    height: var(--close-button-size);
-    width: var(--close-button-size);
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
+
     display: flex;
     justify-content: center;
     align-items: center;
-    transform: translateX(-100%);
+
+    width: var(--close-button-size);
+    height: var(--close-button-size);
+
+    border-radius: 50%;
+
+    background-color: var(--menu-item-hover-bg);
+    box-shadow: var(--shadow);
+
     cursor: pointer;
-    transition: var(--transition);
-    transition-delay: 0.2s;
+
+    transform:
+        translateX(-100%)
+        translateY(-50%);
+
+    transition:
+        transform 0.4s ease-in-out 0.2s;
 }
 
-/* Close button X icon */
 .sidebar__close::before,
 .sidebar__close::after {
     content: "";
-    height: 2px;
-    background: var(--color-gray);
-    width: 24px;
-    display: block;
+
     position: absolute;
+
+    display: block;
+
+    width: 24px;
+    height: 2px;
+
+    background-color: var(--color-gray);
 }
 
 .sidebar__close::after {
     transform: rotate(90deg);
 }
 
-/* Menu items */
+
+/* =========================================================
+   ITENS DO MENU
+   ========================================================= */
+
 .sidebar__menu {
     display: flex;
-    flex-direction: column;
-    align-items: center;
     flex: 1;
+    flex-direction: column;
     justify-content: space-evenly;
-    font-size: 36px;
+    align-items: center;
+
     margin: 80px 0;
+
     color: var(--color-gray);
+    font-size: 36px;
 }
 
 .sidebar__menu a {
+    position: relative;
+
     color: currentColor;
     text-decoration: none;
+
     transform: translateX(-80%);
-    transition: var(--transition);
-    position: relative;
+    transition:
+        color 0.3s ease,
+        transform 0.4s ease-in-out;
 }
 
-/* Menu item hover underline */
 .sidebar__menu a::before {
     content: "";
+
     position: absolute;
     bottom: -2px;
     left: 0;
+
     width: 100%;
     height: 2px;
-    background: var(--color-gray);
+
+    background-color: var(--color-gray);
+
+    opacity: 0;
     transform: translateX(-50%);
-    opacity: 0;
-    transition: transform var(--transition), opacity 0.4s linear;
+
+    transition:
+        transform 0.4s ease-in-out,
+        opacity 0.4s linear;
 }
 
-.sidebar__menu a:hover::before {
-    transform: translateX(0);
+.sidebar__menu a:hover::before,
+.sidebar__menu a:focus-visible::before {
     opacity: 1;
+    transform: translateX(0);
 }
 
-/* Staggered animation delays */
+
+/* Animação progressiva dos itens do menu */
+
 .sidebar__menu a:nth-child(1) {
     transition-delay: 0.05s;
 }
 
 .sidebar__menu a:nth-child(2) {
-    transition-delay: 0.1s;
+    transition-delay: 0.10s;
 }
 
 .sidebar__menu a:nth-child(3) {
     transition-delay: 0.15s;
 }
 
-/* Social links */
+.sidebar__menu a:nth-child(4) {
+    transition-delay: 0.20s;
+}
+
+
+/* =========================================================
+   REDES SOCIAIS
+   ========================================================= */
+
 .sidebar__social {
     display: flex;
     justify-content: center;
-    list-style: none;
-    padding-bottom: 20px;
+
     margin: 0;
+    padding: 0 0 20px;
+
+    list-style: none;
 }
 
 .sidebar__social li {
@@ -350,191 +655,241 @@ ul {
 .sidebar__social a,
 .sidebar__social svg {
     display: inline-block;
-    height: 28px;
+
     width: 28px;
+    height: 28px;
 }
 
-/* Menu control */
+
+/* =========================================================
+   CONTROLO DO MENU
+   ========================================================= */
+
 .menu-control {
-    display: none;
-}
-
-/* Active states */
-.menu-control:checked+.sidebar {
-    transform: translateX(0);
-}
-
-.menu-control:checked+.sidebar .sidebar__close {
-    transform: translateX(0) rotate(45deg);
-}
-
-.menu-control:checked+.sidebar .sidebar__menu a {
-    transform: translateX(0);
-}
-
-/*ORIGINAL*/
-.banner {
-    background-size: cover;
-    display: flex;
-    align-items: center;
-    padding: 60px;
-    color: #000;
     position: absolute;
-    z-index: 99;
-}
 
-.caminheiro {
-    background-color: rgba(255, 255, 255, 0.75);
-    padding: 10px;
-    border-radius: 10px;
-    position: absolute;
-    left: 30px;
-    top: 30px;
-    display: flex;
-    height: 24px;
-    width: 32px;
-    flex-direction: column;
-    justify-content: space-between;
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    z-index: 1;
-}
+    width: 1px;
+    height: 1px;
 
-.sidebar {
-    height: 100vh;
-    width: 45vw;
-    background-color: rgba(255, 255, 255, 0.85);
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding: 0 60px;
-    display: flex;
-    flex-direction: column;
-    transform: translatex(-100vw);
-    transition: transform 0.4s ease-in-out;
-}
+    overflow: hidden;
 
-.sidebar__close {
-    position: absolute;
-    top: 50%;
-    right: -30px;
-    background: rgba(255, 255, 255, 0.95);
-    height: 60px;
-    width: 60px;
-    border-radius: 50%;
-    box-shadow: 0 0 20px 20px rgba(0, 0, 0, 0.03);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transform: translatex(-100%);
-    cursor: pointer;
-    transition: transform 0.4s ease-in-out 0.2s;
-}
-
-.sidebar__close::before,
-.sidebar__close::after {
-    content: "";
-    height: 2px;
-    background: #898989;
-    width: 24px;
-    display: block;
-    position: absolute;
-}
-
-.sidebar__close::after {
-    transform: rotate(90deg);
-}
-
-.sidebar__menu {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex: 1;
-    justify-content: space-evenly;
-    font-size: 36px;
-    margin-top: 80px;
-    margin-bottom: 80px;
-    color: #898989;
-}
-
-.sidebar__menu a {
-    color: currentcolor;
-    text-decoration: none;
-    transform: translatex(-80%);
-    transition: transform 0.4s ease-in-out;
-}
-
-.sidebar__menu a::before {
-    content: "";
-    height: 2px;
-    background: #898989;
-    width: 100%;
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    transform: translatex(-50%);
     opacity: 0;
-    transition: transform 0.4s ease-in-out, opacity 0.4s linear;
+    pointer-events: none;
 }
 
-.sidebar__menu a:hover::before {
-    transform: translatex(0);
-    opacity: 1;
+
+/*
+ * Estas regras pressupõem esta estrutura HTML:
+ *
+ * <input class="menu-control">
+ * <aside class="sidebar">...</aside>
+ */
+
+.menu-control:checked + .sidebar {
+    transform: translateX(0);
 }
 
-.sidebar__menu a:nth-child(1) {
-    transition-delay: 0.05s;
+.menu-control:checked + .sidebar .sidebar__close {
+    transform:
+        translateX(0)
+        translateY(-50%)
+        rotate(45deg);
 }
 
-.sidebar__menu a:nth-child(2) {
-    transition-delay: 0.1s;
+.menu-control:checked + .sidebar .sidebar__menu a {
+    transform: translateX(0);
 }
 
-.sidebar__menu a:nth-child(3) {
-    transition-delay: 0.15s;
+
+/* =========================================================
+   ESTADOS DE FOCO
+   ========================================================= */
+
+.caminheiro:focus-visible,
+.sidebar__close:focus-visible,
+.sidebar__menu a:focus-visible,
+.sidebar__social a:focus-visible {
+    outline: 3px solid var(--color-text);
+    outline-offset: 4px;
 }
 
-.sidebar__social {
-    display: flex;
-    justify-content: center;
-    list-style: none;
-    padding: 0 0 20px 0;
+
+/* =========================================================
+   TABLETS E ECRÃS MÉDIOS
+   ========================================================= */
+
+@media (max-width: 1024px) {
+    .sidebar {
+        width: 60vw;
+    }
+
+    .sidebar__menu {
+        font-size: 32px;
+    }
 }
 
-.sidebar__social li {
-    margin: 4px;
-    list-style: none;
+
+/* =========================================================
+   DISPOSITIVOS MÓVEIS
+   ========================================================= */
+
+@media (max-width: 768px) {
+    :root {
+        /*
+         * Movimento mais contido para evitar que o assunto
+         * principal saia do enquadramento.
+         */
+        --slide-motion-duration: 9s;
+    }
+
+    .banner {
+        padding: 30px;
+    }
+
+    .caminheiro {
+        top: 20px;
+        left: 20px;
+    }
+
+    .sidebar {
+        width: calc(100vw - 40px);
+        max-width: 420px;
+
+        padding: 0 35px;
+    }
+
+    .sidebar__menu {
+        margin: 70px 0;
+        font-size: 28px;
+    }
+
+    .slideshow-image:nth-child(1) .slideshow-media {
+        animation-name: kenburns-mobile-1;
+    }
+
+    .slideshow-image:nth-child(2) .slideshow-media {
+        animation-name: kenburns-mobile-2;
+    }
+
+    .slideshow-image:nth-child(3) .slideshow-media {
+        animation-name: kenburns-mobile-3;
+    }
+
+    .slideshow-image:nth-child(4) .slideshow-media {
+        animation-name: kenburns-mobile-4;
+    }
 }
 
-.sidebar__social a,
-.sidebar__social svg {
-    display: inline-block;
-    height: 28px;
-    width: 28px;
+
+/* Movimento mais moderado em ecrãs estreitos */
+
+@keyframes kenburns-mobile-1 {
+    from {
+        transform:
+            translate3d(1%, 1%, 0)
+            scale(1.08);
+    }
+
+    to {
+        transform:
+            translate3d(-2%, -2%, 0)
+            scale(1.17);
+    }
 }
 
-.menu-control {
-    display: none;
+@keyframes kenburns-mobile-2 {
+    from {
+        transform:
+            translate3d(-1%, 0, 0)
+            scale(1.08);
+    }
+
+    to {
+        transform:
+            translate3d(2%, -1%, 0)
+            scale(1.18);
+    }
 }
 
-.menu-control:checked+.sidebar {
-    transform: translatex(0);
+@keyframes kenburns-mobile-3 {
+    from {
+        transform:
+            translate3d(1%, -2%, 0)
+            scale(1.08);
+    }
+
+    to {
+        transform:
+            translate3d(-2%, 2%, 0)
+            scale(1.17);
+    }
 }
 
-.menu-control:checked+.sidebar .sidebar__close {
-    transform: translatex(0) rotate(45deg);
+@keyframes kenburns-mobile-4 {
+    from {
+        transform:
+            translate3d(-1%, -1%, 0)
+            scale(1.08);
+    }
+
+    to {
+        transform:
+            translate3d(2%, 2%, 0)
+            scale(1.18);
+    }
 }
 
-.menu-control:checked+.sidebar .sidebar__menu a {
-    transform: translatex(0);
+
+/* =========================================================
+   ECRÃS MUITO PEQUENOS
+   ========================================================= */
+
+@media (max-width: 480px) {
+    .banner {
+        padding: 20px;
+    }
+
+    .sidebar {
+        width: calc(100vw - 25px);
+        padding: 0 25px;
+    }
+
+    .sidebar__menu {
+        font-size: 24px;
+    }
+
+    .sidebar__close {
+        right: -25px;
+
+        width: 50px;
+        height: 50px;
+    }
 }
 
-body {
-    font-family: "Abel", sans-serif;
-    font-size: 100%;
-    font-weight: 600;
-    line-height: 1.5;
+
+/* =========================================================
+   REDUÇÃO DE MOVIMENTO
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    .slideshow-image {
+        animation: none;
+        opacity: 0;
+    }
+
+    .slideshow-image:first-child {
+        opacity: 1;
+    }
+
+    .slideshow-media {
+        animation: none !important;
+        transform: none;
+    }
+
+    .sidebar,
+    .sidebar__close,
+    .sidebar__menu a,
+    .sidebar__menu a::before {
+        transition-duration: 0.01ms;
+    }
 }
