@@ -29,7 +29,7 @@ custom_css:
 
 <div class="post-cards">
     {% for post in site.posts %}
-      {%include card_post_new.html %}
+      {% include card_post_new.html post=post %}
       {% endfor %}
 </div>
 
