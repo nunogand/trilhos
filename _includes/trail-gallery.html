@@ -1,0 +1,133 @@
+{% assign gallery_path = '/fotos/' | append: include.folder | append: '/' %}
+
+{% assign gallery_images = site.static_files | sort: 'path' %}
+
+<section class="trail-section" id="gallery-section">
+  <div class="container">
+
+    <div class="section-header">
+      <h2>Galeria</h2>
+      <p>Fotografias registadas ao longo do percurso.</p>
+    </div>
+
+    <div class="gallery-card">
+      <div
+        class="gallery"
+        id="gallery-container"
+        data-gallery-title="{{ include.title | escape }}"
+      >
+
+        {% assign image_count = 0 %}
+
+        {% for image in gallery_images %}
+
+          {% assign extension = image.extname | downcase %}
+
+          {% if image.path contains gallery_path %}
+
+            {% if extension == '.jpg'
+              or extension == '.jpeg'
+              or extension == '.png'
+              or extension == '.webp'
+              or extension == '.avif'
+            %}
+
+              {% assign image_count = image_count | plus: 1 %}
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="{{ image_count | minus: 1 }}"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="{{ image.path | relative_url }}"
+                  data-gallery-alt="{{ include.title | escape }}: fotografia {{ image_count }}"
+                  data-gallery-caption="Fotografia {{ image_count }} de {{ include.title | escape }}"
+                  aria-label="Abrir fotografia {{ image_count }}"
+                >
+                  <img
+                    src="{{ image.path | relative_url }}"
+                    alt="{{ include.title | escape }}: fotografia {{ image_count }}"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia {{ image_count }} de {{ include.title }}
+                </figcaption>
+              </figure>
+
+            {% endif %}
+
+          {% endif %}
+
+        {% endfor %}
+
+      </div>
+
+      {% if image_count == 0 %}
+        <p class="gallery-empty">
+          Ainda não existem fotografias associadas a este percurso.
+        </p>
+      {% endif %}
+    </div>
+
+  </div>
+</section>
+
+<div
+  class="modal-overlay"
+  id="gallery-modal"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="gallery-modal-caption"
+  aria-hidden="true"
+>
+  <button
+    class="modal-close"
+    id="gallery-modal-close"
+    type="button"
+    aria-label="Fechar galeria"
+  >
+    ✕
+  </button>
+
+  <button
+    class="modal-nav modal-prev"
+    id="gallery-modal-prev"
+    type="button"
+    aria-label="Fotografia anterior"
+  >
+    ❮
+  </button>
+
+  <div class="modal-content">
+    <img id="gallery-modal-image" src="" alt="">
+
+    <div
+      class="modal-caption"
+      id="gallery-modal-caption"
+    ></div>
+
+    <div
+      class="modal-counter"
+      id="gallery-modal-counter"
+      aria-live="polite"
+    ></div>
+  </div>
+
+  <button
+    class="modal-nav modal-next"
+    id="gallery-modal-next"
+    type="button"
+    aria-label="Fotografia seguinte"
+  >
+    ❯
+  </button>
+</div>

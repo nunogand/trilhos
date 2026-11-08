@@ -44,9 +44,9 @@ twitter_image: "/images/default-twitter-image.jpg"
 
 
 # Build settings
-plugins:
+#plugins:
   #- jekyll-feed
-  - jekyll_picture_tag
+  #- jekyll_picture_tag
 
 # Exclude from processing.
 # The following items will not be processed, by default.
@@ -83,12 +83,12 @@ kramdown:
 #incremental: true # When working locally to avoid rebuilding everything on change 
 
 # Jekyll Picture Tag Configuration
-picture:
+#picture:
   # Source and output directories
   #source: "fotos"
   #output: "generated/fotos"
 # prevent errors on missing images
-  ignore_missing_images: true
+#  ignore_missing_images: true
 
 
 # Site Verification

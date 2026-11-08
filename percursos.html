@@ -1,0 +1,39 @@
+---
+layout: default
+custom_css:
+- trilhos.css
+---
+
+
+
+<body>
+{% assign media_path = '/fotos/' | append: page.folder | append: '/' %}
+
+{%include navigation.html %}
+    <header class="hero" style="--hero-image:url('https://picsum.photos/id/29/1920/1080.jpg')">
+      <div class="hero-content">
+        <h1>Fotografia de montanha</h1>
+        <p>Captar a imponência dos cumes e dos vales através da objetiva.</p>
+        <div class="hero-cta"><a class="button" href="#conteudo">Ver publicações</a></div>
+      </div>
+    </header>
+
+  <main id="conteudo" class="main-section">
+
+     <div class="container">
+        <div class="section-header">
+          <h2>Últimas publicações</h2>
+          <p>Histórias, percursos e imagens recolhidos na montanha.</p>
+        </div>
+
+
+<div class="post-cards">
+    {% for post in site.posts %}
+      {%include card_post_new.html %}
+      {% endfor %}
+</div>
+
+ </main>
+    <footer>
+      <p>&copy; 2026 Trilhos. Todos os direitos reservados.</p>
+    </footer><button class="scroll-to-top" type="button" aria-label="Voltar ao topo" title="Voltar ao topo"><i class="fas fa-chevron-up" aria-hidden="true"></i></button>

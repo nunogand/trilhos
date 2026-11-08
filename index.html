@@ -1,21 +1,39 @@
 ---
-layout: entrada
 title: Trilhos
-custom_css: index.css
+custom_css: entrada.css
 ---
+<!DOCTYPE html>
+<html lang="pt">
 
+
+<HEAD>
+    <!--minimum-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
+
+
+    <link rel="preload" href="{{ site.baseurl }}/assets/css/entrada.css" as="style"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/entrada.css">
+    </noscript>
+
+</HEAD>
 
 <body>
 
-    {%include nav_sidebar.html%}
+    {%include nav_index.html%}
 
 
-<!-- init the list with filtered images -->
-{% assign headers = site.static_files | where_exp: "item", "item.path contains '/assets/front/'" | map: "path" %}
-<!-- get 4 random headers -->
-{% assign random-header = headers | sample: 4 %}
+    <!-- init the list with filtered images -->
+    {% assign headers = site.static_files | where_exp: "item", "item.path contains '/assets/front/'" | map: "path" %}
+    <!-- get 4 random headers -->
+    {% assign random-header = headers | sample: 4 %}
 
-    
+
 
     <!-- You can add more ".slideshow-image" elements, but remember to update the "$items" on kenburns.scss  -->
     <div class="slideshow">
