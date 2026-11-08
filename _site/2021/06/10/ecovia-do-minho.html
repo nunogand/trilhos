@@ -1,0 +1,5590 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Curta descrição do trilho. Ponto final">
+  <title>Ecovia do Minho · Trilhos</title>
+
+ 
+  <!-- Primary Meta Tags -->
+  <title>Ecovia do Minho | Trilhos</title>
+  
+   <link rel="stylesheet" href="/assets/css/trilhos.css">
+
+   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  
+</head>
+
+<body>
+<a class="skip-link" href="#conteudo">Saltar para o conteúdo</a>
+<nav class="navbar" id="navbar" aria-label="Navegação principal">
+    <div class="container nav-container">
+        <a href="/index.html" class="nav-logo"><svg viewBox="0 0 384 512"
+                aria-hidden="true">
+                <path
+                    d="M80.95 472.23c-4.28 17.16 6.14 34.53 23.28 38.81 2.61.66 5.22.95 7.8.95 14.33 0 27.37-9.7 31.02-24.23l25.24-100.97-52.78-52.78-34.56 138.22zm14.89-196.12L137 117c2.19-8.42-3.14-16.95-11.92-19.06-43.88-10.52-88.35 15.07-99.32 57.17L.49 253.24c-2.19 8.42 3.14 16.95 11.92 19.06l63.56 15.25c8.79 2.1 17.68-3.02 19.87-11.44zM368 160h-16c-8.84 0-16 7.16-16 16v16h-34.75l-46.78-46.78C243.38 134.11 228.61 128 212.91 128c-27.02 0-50.47 18.3-57.03 44.52l-26.92 107.72a32.012 32.012 0 0 0 8.42 30.39L224 397.25V480c0 17.67 14.33 32 32 32s32-14.33 32-32v-82.75c0-17.09-6.66-33.16-18.75-45.25l-46.82-46.82c.15-.5.49-.89.62-1.41l19.89-79.57 22.43 22.43c6 6 14.14 9.38 22.62 9.38h48v240c0 8.84 7.16 16 16 16h16c8.84 0 16-7.16 16-16V176c.01-8.84-7.15-16-15.99-16zM240 96c26.51 0 48-21.49 48-48S266.51 0 240 0s-48 21.49-48 48 21.49 48 48 48z" />
+            </svg>
+            <span>Trilhos</span>
+        </a>
+        <button class="mobile-toggle" type="button" aria-label="Abrir menu"
+            aria-expanded="false" aria-controls="nav-menu"><span></span><span></span><span></span></button>
+ <ul class="nav-menu" id="nav-menu">
+      <li><a href="/">Início</a></li>
+      <li><a href="/percursos/">Percursos</a></li>
+      <li><a href="/sobre/">Sobre</a></li>
+      <li><a href="/arquivo/">Arquivo</a></li>
+    </ul>
+    </div>
+</nav>
+
+
+
+
+
+
+
+
+
+
+
+<header
+  class="hero trail-hero"
+  style="--hero-image: url('/fotos/ecovia_do_minho/DSC_0652.jpg')"
+>
+  <div class="hero-content">
+    <h1>Ecovia do Minho</h1>
+    <p>Curta descrição do trilho. Ponto final</p>
+
+    <div class="hero-cta">
+      
+        <a class="button" href="#map-section">Ver mapa</a>
+        <a class="button button--secondary" href="/fotos/ecovia_do_minho/2025-08-11%20090155__20250811_0901.gpx" download>
+          Descarregar GPX
+        </a>
+      
+    </div>
+  </div>
+</header>
+
+<main id="conteudo">
+  
+    <section class="trail-section trail-description">
+      <div class="container prose">
+</div>
+    </section>
+  
+
+  <section class="trail-section" id="map-section">
+    <div class="container">
+      
+        <div class="trail-grid">
+          <div class="map-card">
+            <div class="map-badge">Ecovia do Minho</div>
+            <div
+              id="map"
+              data-title="Ecovia do Minho"
+              data-folder="ecovia_do_minho"
+              data-gpx="/fotos/ecovia_do_minho/2025-08-11%20090155__20250811_0901.gpx"
+            ></div>
+
+            <div class="pip-chart" id="pip-chart-container">
+              <h2>Perfil de elevação</h2>
+              <div class="chart-wrap"><canvas id="elevationChart"></canvas></div>
+            </div>
+          </div>
+
+          <aside class="stats-card" aria-labelledby="stats-title">
+            <h2 id="stats-title">Estatísticas</h2>
+            <div class="trail-stat"><span>Distância total</span><strong id="distance">A calcular</strong></div>
+            <div class="trail-stat"><span>Desnível positivo</span><strong id="elevationGain">A calcular</strong></div>
+            <div class="trail-stat"><span>Desnível negativo</span><strong id="elevationLoss">A calcular</strong></div>
+            <div class="trail-stat"><span>Duração</span><strong id="duration">A calcular</strong></div>
+            <div class="trail-stat"><span>Altitude mínima</span><strong id="minElevation">A calcular</strong></div>
+            <div class="trail-stat"><span>Altitude máxima</span><strong id="maxElevation">A calcular</strong></div>
+            <div class="trail-stat"><span>Pontos GPX</span><strong id="points">A calcular</strong></div>
+            <p class="trail-status" id="status" role="status" aria-live="polite">A carregar dados do percurso...</p>
+          </aside>
+        </div>
+      
+    </div>
+  </section>
+
+  
+
+
+
+<section class="trail-section" id="gallery-section">
+  <div class="container">
+
+    <div class="section-header">
+      <h2>Galeria</h2>
+      <p>Fotografias registadas ao longo do percurso.</p>
+    </div>
+
+    <div class="gallery-card">
+      <div
+        class="gallery"
+        id="gallery-container"
+        data-gallery-title="Ecovia do Minho"
+      >
+
+        
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="0"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/ecovia_do_minho/DSC_0652.jpg"
+                  data-gallery-alt="Ecovia do Minho: fotografia 1"
+                  data-gallery-caption="Fotografia 1 de Ecovia do Minho"
+                  aria-label="Abrir fotografia 1"
+                >
+                  <img
+                    src="/fotos/ecovia_do_minho/DSC_0652.jpg"
+                    alt="Ecovia do Minho: fotografia 1"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 1 de Ecovia do Minho
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="1"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/ecovia_do_minho/DSC_0653.jpg"
+                  data-gallery-alt="Ecovia do Minho: fotografia 2"
+                  data-gallery-caption="Fotografia 2 de Ecovia do Minho"
+                  aria-label="Abrir fotografia 2"
+                >
+                  <img
+                    src="/fotos/ecovia_do_minho/DSC_0653.jpg"
+                    alt="Ecovia do Minho: fotografia 2"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 2 de Ecovia do Minho
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="2"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/ecovia_do_minho/DSC_0654.jpg"
+                  data-gallery-alt="Ecovia do Minho: fotografia 3"
+                  data-gallery-caption="Fotografia 3 de Ecovia do Minho"
+                  aria-label="Abrir fotografia 3"
+                >
+                  <img
+                    src="/fotos/ecovia_do_minho/DSC_0654.jpg"
+                    alt="Ecovia do Minho: fotografia 3"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 3 de Ecovia do Minho
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="3"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/ecovia_do_minho/DSC_0655.jpg"
+                  data-gallery-alt="Ecovia do Minho: fotografia 4"
+                  data-gallery-caption="Fotografia 4 de Ecovia do Minho"
+                  aria-label="Abrir fotografia 4"
+                >
+                  <img
+                    src="/fotos/ecovia_do_minho/DSC_0655.jpg"
+                    alt="Ecovia do Minho: fotografia 4"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 4 de Ecovia do Minho
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="4"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/ecovia_do_minho/DSC_0656.jpg"
+                  data-gallery-alt="Ecovia do Minho: fotografia 5"
+                  data-gallery-caption="Fotografia 5 de Ecovia do Minho"
+                  aria-label="Abrir fotografia 5"
+                >
+                  <img
+                    src="/fotos/ecovia_do_minho/DSC_0656.jpg"
+                    alt="Ecovia do Minho: fotografia 5"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 5 de Ecovia do Minho
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="5"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/ecovia_do_minho/DSC_0657.jpg"
+                  data-gallery-alt="Ecovia do Minho: fotografia 6"
+                  data-gallery-caption="Fotografia 6 de Ecovia do Minho"
+                  aria-label="Abrir fotografia 6"
+                >
+                  <img
+                    src="/fotos/ecovia_do_minho/DSC_0657.jpg"
+                    alt="Ecovia do Minho: fotografia 6"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 6 de Ecovia do Minho
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="6"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/ecovia_do_minho/DSC_0658.jpg"
+                  data-gallery-alt="Ecovia do Minho: fotografia 7"
+                  data-gallery-caption="Fotografia 7 de Ecovia do Minho"
+                  aria-label="Abrir fotografia 7"
+                >
+                  <img
+                    src="/fotos/ecovia_do_minho/DSC_0658.jpg"
+                    alt="Ecovia do Minho: fotografia 7"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 7 de Ecovia do Minho
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="7"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/ecovia_do_minho/DSC_0659.jpg"
+                  data-gallery-alt="Ecovia do Minho: fotografia 8"
+                  data-gallery-caption="Fotografia 8 de Ecovia do Minho"
+                  aria-label="Abrir fotografia 8"
+                >
+                  <img
+                    src="/fotos/ecovia_do_minho/DSC_0659.jpg"
+                    alt="Ecovia do Minho: fotografia 8"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 8 de Ecovia do Minho
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="8"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/ecovia_do_minho/DSC_0660.jpg"
+                  data-gallery-alt="Ecovia do Minho: fotografia 9"
+                  data-gallery-caption="Fotografia 9 de Ecovia do Minho"
+                  aria-label="Abrir fotografia 9"
+                >
+                  <img
+                    src="/fotos/ecovia_do_minho/DSC_0660.jpg"
+                    alt="Ecovia do Minho: fotografia 9"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 9 de Ecovia do Minho
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="9"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/ecovia_do_minho/DSC_0661.jpg"
+                  data-gallery-alt="Ecovia do Minho: fotografia 10"
+                  data-gallery-caption="Fotografia 10 de Ecovia do Minho"
+                  aria-label="Abrir fotografia 10"
+                >
+                  <img
+                    src="/fotos/ecovia_do_minho/DSC_0661.jpg"
+                    alt="Ecovia do Minho: fotografia 10"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 10 de Ecovia do Minho
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="10"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/ecovia_do_minho/DSC_0662.jpg"
+                  data-gallery-alt="Ecovia do Minho: fotografia 11"
+                  data-gallery-caption="Fotografia 11 de Ecovia do Minho"
+                  aria-label="Abrir fotografia 11"
+                >
+                  <img
+                    src="/fotos/ecovia_do_minho/DSC_0662.jpg"
+                    alt="Ecovia do Minho: fotografia 11"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 11 de Ecovia do Minho
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="11"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/ecovia_do_minho/DSC_0663.jpg"
+                  data-gallery-alt="Ecovia do Minho: fotografia 12"
+                  data-gallery-caption="Fotografia 12 de Ecovia do Minho"
+                  aria-label="Abrir fotografia 12"
+                >
+                  <img
+                    src="/fotos/ecovia_do_minho/DSC_0663.jpg"
+                    alt="Ecovia do Minho: fotografia 12"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 12 de Ecovia do Minho
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="12"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/ecovia_do_minho/DSC_0664.jpg"
+                  data-gallery-alt="Ecovia do Minho: fotografia 13"
+                  data-gallery-caption="Fotografia 13 de Ecovia do Minho"
+                  aria-label="Abrir fotografia 13"
+                >
+                  <img
+                    src="/fotos/ecovia_do_minho/DSC_0664.jpg"
+                    alt="Ecovia do Minho: fotografia 13"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 13 de Ecovia do Minho
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="13"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/ecovia_do_minho/DSC_0665.jpg"
+                  data-gallery-alt="Ecovia do Minho: fotografia 14"
+                  data-gallery-caption="Fotografia 14 de Ecovia do Minho"
+                  aria-label="Abrir fotografia 14"
+                >
+                  <img
+                    src="/fotos/ecovia_do_minho/DSC_0665.jpg"
+                    alt="Ecovia do Minho: fotografia 14"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 14 de Ecovia do Minho
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="14"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/ecovia_do_minho/DSC_0666.jpg"
+                  data-gallery-alt="Ecovia do Minho: fotografia 15"
+                  data-gallery-caption="Fotografia 15 de Ecovia do Minho"
+                  aria-label="Abrir fotografia 15"
+                >
+                  <img
+                    src="/fotos/ecovia_do_minho/DSC_0666.jpg"
+                    alt="Ecovia do Minho: fotografia 15"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 15 de Ecovia do Minho
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="15"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/ecovia_do_minho/DSC_0667.jpg"
+                  data-gallery-alt="Ecovia do Minho: fotografia 16"
+                  data-gallery-caption="Fotografia 16 de Ecovia do Minho"
+                  aria-label="Abrir fotografia 16"
+                >
+                  <img
+                    src="/fotos/ecovia_do_minho/DSC_0667.jpg"
+                    alt="Ecovia do Minho: fotografia 16"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 16 de Ecovia do Minho
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="16"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/ecovia_do_minho/DSC_0668.jpg"
+                  data-gallery-alt="Ecovia do Minho: fotografia 17"
+                  data-gallery-caption="Fotografia 17 de Ecovia do Minho"
+                  aria-label="Abrir fotografia 17"
+                >
+                  <img
+                    src="/fotos/ecovia_do_minho/DSC_0668.jpg"
+                    alt="Ecovia do Minho: fotografia 17"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 17 de Ecovia do Minho
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="17"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/ecovia_do_minho/DSC_0669.jpg"
+                  data-gallery-alt="Ecovia do Minho: fotografia 18"
+                  data-gallery-caption="Fotografia 18 de Ecovia do Minho"
+                  aria-label="Abrir fotografia 18"
+                >
+                  <img
+                    src="/fotos/ecovia_do_minho/DSC_0669.jpg"
+                    alt="Ecovia do Minho: fotografia 18"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 18 de Ecovia do Minho
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="18"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/ecovia_do_minho/DSC_0670.jpg"
+                  data-gallery-alt="Ecovia do Minho: fotografia 19"
+                  data-gallery-caption="Fotografia 19 de Ecovia do Minho"
+                  aria-label="Abrir fotografia 19"
+                >
+                  <img
+                    src="/fotos/ecovia_do_minho/DSC_0670.jpg"
+                    alt="Ecovia do Minho: fotografia 19"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 19 de Ecovia do Minho
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="19"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/ecovia_do_minho/DSC_0671.jpg"
+                  data-gallery-alt="Ecovia do Minho: fotografia 20"
+                  data-gallery-caption="Fotografia 20 de Ecovia do Minho"
+                  aria-label="Abrir fotografia 20"
+                >
+                  <img
+                    src="/fotos/ecovia_do_minho/DSC_0671.jpg"
+                    alt="Ecovia do Minho: fotografia 20"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 20 de Ecovia do Minho
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="20"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/ecovia_do_minho/DSC_0672.jpg"
+                  data-gallery-alt="Ecovia do Minho: fotografia 21"
+                  data-gallery-caption="Fotografia 21 de Ecovia do Minho"
+                  aria-label="Abrir fotografia 21"
+                >
+                  <img
+                    src="/fotos/ecovia_do_minho/DSC_0672.jpg"
+                    alt="Ecovia do Minho: fotografia 21"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 21 de Ecovia do Minho
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="21"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/ecovia_do_minho/DSC_0673.jpg"
+                  data-gallery-alt="Ecovia do Minho: fotografia 22"
+                  data-gallery-caption="Fotografia 22 de Ecovia do Minho"
+                  aria-label="Abrir fotografia 22"
+                >
+                  <img
+                    src="/fotos/ecovia_do_minho/DSC_0673.jpg"
+                    alt="Ecovia do Minho: fotografia 22"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 22 de Ecovia do Minho
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="22"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/ecovia_do_minho/DSC_0674.jpg"
+                  data-gallery-alt="Ecovia do Minho: fotografia 23"
+                  data-gallery-caption="Fotografia 23 de Ecovia do Minho"
+                  aria-label="Abrir fotografia 23"
+                >
+                  <img
+                    src="/fotos/ecovia_do_minho/DSC_0674.jpg"
+                    alt="Ecovia do Minho: fotografia 23"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 23 de Ecovia do Minho
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="23"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/ecovia_do_minho/DSC_0675.jpg"
+                  data-gallery-alt="Ecovia do Minho: fotografia 24"
+                  data-gallery-caption="Fotografia 24 de Ecovia do Minho"
+                  aria-label="Abrir fotografia 24"
+                >
+                  <img
+                    src="/fotos/ecovia_do_minho/DSC_0675.jpg"
+                    alt="Ecovia do Minho: fotografia 24"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 24 de Ecovia do Minho
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="24"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/ecovia_do_minho/DSC_0676.jpg"
+                  data-gallery-alt="Ecovia do Minho: fotografia 25"
+                  data-gallery-caption="Fotografia 25 de Ecovia do Minho"
+                  aria-label="Abrir fotografia 25"
+                >
+                  <img
+                    src="/fotos/ecovia_do_minho/DSC_0676.jpg"
+                    alt="Ecovia do Minho: fotografia 25"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 25 de Ecovia do Minho
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="25"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/ecovia_do_minho/DSC_0677.jpg"
+                  data-gallery-alt="Ecovia do Minho: fotografia 26"
+                  data-gallery-caption="Fotografia 26 de Ecovia do Minho"
+                  aria-label="Abrir fotografia 26"
+                >
+                  <img
+                    src="/fotos/ecovia_do_minho/DSC_0677.jpg"
+                    alt="Ecovia do Minho: fotografia 26"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 26 de Ecovia do Minho
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="26"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/ecovia_do_minho/DSC_0678.jpg"
+                  data-gallery-alt="Ecovia do Minho: fotografia 27"
+                  data-gallery-caption="Fotografia 27 de Ecovia do Minho"
+                  aria-label="Abrir fotografia 27"
+                >
+                  <img
+                    src="/fotos/ecovia_do_minho/DSC_0678.jpg"
+                    alt="Ecovia do Minho: fotografia 27"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 27 de Ecovia do Minho
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="27"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/ecovia_do_minho/DSC_0679.jpg"
+                  data-gallery-alt="Ecovia do Minho: fotografia 28"
+                  data-gallery-caption="Fotografia 28 de Ecovia do Minho"
+                  aria-label="Abrir fotografia 28"
+                >
+                  <img
+                    src="/fotos/ecovia_do_minho/DSC_0679.jpg"
+                    alt="Ecovia do Minho: fotografia 28"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 28 de Ecovia do Minho
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="28"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/ecovia_do_minho/DSC_0680.jpg"
+                  data-gallery-alt="Ecovia do Minho: fotografia 29"
+                  data-gallery-caption="Fotografia 29 de Ecovia do Minho"
+                  aria-label="Abrir fotografia 29"
+                >
+                  <img
+                    src="/fotos/ecovia_do_minho/DSC_0680.jpg"
+                    alt="Ecovia do Minho: fotografia 29"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 29 de Ecovia do Minho
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="29"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/ecovia_do_minho/DSC_0681.jpg"
+                  data-gallery-alt="Ecovia do Minho: fotografia 30"
+                  data-gallery-caption="Fotografia 30 de Ecovia do Minho"
+                  aria-label="Abrir fotografia 30"
+                >
+                  <img
+                    src="/fotos/ecovia_do_minho/DSC_0681.jpg"
+                    alt="Ecovia do Minho: fotografia 30"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 30 de Ecovia do Minho
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="30"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/ecovia_do_minho/DSC_0682.jpg"
+                  data-gallery-alt="Ecovia do Minho: fotografia 31"
+                  data-gallery-caption="Fotografia 31 de Ecovia do Minho"
+                  aria-label="Abrir fotografia 31"
+                >
+                  <img
+                    src="/fotos/ecovia_do_minho/DSC_0682.jpg"
+                    alt="Ecovia do Minho: fotografia 31"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 31 de Ecovia do Minho
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="31"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/ecovia_do_minho/DSC_0683.jpg"
+                  data-gallery-alt="Ecovia do Minho: fotografia 32"
+                  data-gallery-caption="Fotografia 32 de Ecovia do Minho"
+                  aria-label="Abrir fotografia 32"
+                >
+                  <img
+                    src="/fotos/ecovia_do_minho/DSC_0683.jpg"
+                    alt="Ecovia do Minho: fotografia 32"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 32 de Ecovia do Minho
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="32"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/ecovia_do_minho/DSC_0684.jpg"
+                  data-gallery-alt="Ecovia do Minho: fotografia 33"
+                  data-gallery-caption="Fotografia 33 de Ecovia do Minho"
+                  aria-label="Abrir fotografia 33"
+                >
+                  <img
+                    src="/fotos/ecovia_do_minho/DSC_0684.jpg"
+                    alt="Ecovia do Minho: fotografia 33"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 33 de Ecovia do Minho
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="33"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/ecovia_do_minho/DSC_0685.jpg"
+                  data-gallery-alt="Ecovia do Minho: fotografia 34"
+                  data-gallery-caption="Fotografia 34 de Ecovia do Minho"
+                  aria-label="Abrir fotografia 34"
+                >
+                  <img
+                    src="/fotos/ecovia_do_minho/DSC_0685.jpg"
+                    alt="Ecovia do Minho: fotografia 34"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 34 de Ecovia do Minho
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="34"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/ecovia_do_minho/DSC_0686.jpg"
+                  data-gallery-alt="Ecovia do Minho: fotografia 35"
+                  data-gallery-caption="Fotografia 35 de Ecovia do Minho"
+                  aria-label="Abrir fotografia 35"
+                >
+                  <img
+                    src="/fotos/ecovia_do_minho/DSC_0686.jpg"
+                    alt="Ecovia do Minho: fotografia 35"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 35 de Ecovia do Minho
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="35"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/ecovia_do_minho/DSC_0687.jpg"
+                  data-gallery-alt="Ecovia do Minho: fotografia 36"
+                  data-gallery-caption="Fotografia 36 de Ecovia do Minho"
+                  aria-label="Abrir fotografia 36"
+                >
+                  <img
+                    src="/fotos/ecovia_do_minho/DSC_0687.jpg"
+                    alt="Ecovia do Minho: fotografia 36"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 36 de Ecovia do Minho
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="36"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/ecovia_do_minho/DSC_0688.jpg"
+                  data-gallery-alt="Ecovia do Minho: fotografia 37"
+                  data-gallery-caption="Fotografia 37 de Ecovia do Minho"
+                  aria-label="Abrir fotografia 37"
+                >
+                  <img
+                    src="/fotos/ecovia_do_minho/DSC_0688.jpg"
+                    alt="Ecovia do Minho: fotografia 37"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 37 de Ecovia do Minho
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="37"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/ecovia_do_minho/DSC_0689.jpg"
+                  data-gallery-alt="Ecovia do Minho: fotografia 38"
+                  data-gallery-caption="Fotografia 38 de Ecovia do Minho"
+                  aria-label="Abrir fotografia 38"
+                >
+                  <img
+                    src="/fotos/ecovia_do_minho/DSC_0689.jpg"
+                    alt="Ecovia do Minho: fotografia 38"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 38 de Ecovia do Minho
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="38"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/ecovia_do_minho/DSC_0690.jpg"
+                  data-gallery-alt="Ecovia do Minho: fotografia 39"
+                  data-gallery-caption="Fotografia 39 de Ecovia do Minho"
+                  aria-label="Abrir fotografia 39"
+                >
+                  <img
+                    src="/fotos/ecovia_do_minho/DSC_0690.jpg"
+                    alt="Ecovia do Minho: fotografia 39"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 39 de Ecovia do Minho
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="39"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/ecovia_do_minho/DSC_0691.jpg"
+                  data-gallery-alt="Ecovia do Minho: fotografia 40"
+                  data-gallery-caption="Fotografia 40 de Ecovia do Minho"
+                  aria-label="Abrir fotografia 40"
+                >
+                  <img
+                    src="/fotos/ecovia_do_minho/DSC_0691.jpg"
+                    alt="Ecovia do Minho: fotografia 40"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 40 de Ecovia do Minho
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="40"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/ecovia_do_minho/DSC_0692.jpg"
+                  data-gallery-alt="Ecovia do Minho: fotografia 41"
+                  data-gallery-caption="Fotografia 41 de Ecovia do Minho"
+                  aria-label="Abrir fotografia 41"
+                >
+                  <img
+                    src="/fotos/ecovia_do_minho/DSC_0692.jpg"
+                    alt="Ecovia do Minho: fotografia 41"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 41 de Ecovia do Minho
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="41"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/ecovia_do_minho/DSC_0693.jpg"
+                  data-gallery-alt="Ecovia do Minho: fotografia 42"
+                  data-gallery-caption="Fotografia 42 de Ecovia do Minho"
+                  aria-label="Abrir fotografia 42"
+                >
+                  <img
+                    src="/fotos/ecovia_do_minho/DSC_0693.jpg"
+                    alt="Ecovia do Minho: fotografia 42"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 42 de Ecovia do Minho
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="42"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/ecovia_do_minho/DSC_0694.jpg"
+                  data-gallery-alt="Ecovia do Minho: fotografia 43"
+                  data-gallery-caption="Fotografia 43 de Ecovia do Minho"
+                  aria-label="Abrir fotografia 43"
+                >
+                  <img
+                    src="/fotos/ecovia_do_minho/DSC_0694.jpg"
+                    alt="Ecovia do Minho: fotografia 43"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 43 de Ecovia do Minho
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="43"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/ecovia_do_minho/DSC_0695.jpg"
+                  data-gallery-alt="Ecovia do Minho: fotografia 44"
+                  data-gallery-caption="Fotografia 44 de Ecovia do Minho"
+                  aria-label="Abrir fotografia 44"
+                >
+                  <img
+                    src="/fotos/ecovia_do_minho/DSC_0695.jpg"
+                    alt="Ecovia do Minho: fotografia 44"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 44 de Ecovia do Minho
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="44"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/ecovia_do_minho/DSC_0696.jpg"
+                  data-gallery-alt="Ecovia do Minho: fotografia 45"
+                  data-gallery-caption="Fotografia 45 de Ecovia do Minho"
+                  aria-label="Abrir fotografia 45"
+                >
+                  <img
+                    src="/fotos/ecovia_do_minho/DSC_0696.jpg"
+                    alt="Ecovia do Minho: fotografia 45"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 45 de Ecovia do Minho
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="45"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/ecovia_do_minho/DSC_0697.jpg"
+                  data-gallery-alt="Ecovia do Minho: fotografia 46"
+                  data-gallery-caption="Fotografia 46 de Ecovia do Minho"
+                  aria-label="Abrir fotografia 46"
+                >
+                  <img
+                    src="/fotos/ecovia_do_minho/DSC_0697.jpg"
+                    alt="Ecovia do Minho: fotografia 46"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 46 de Ecovia do Minho
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="46"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/ecovia_do_minho/DSC_0698.jpg"
+                  data-gallery-alt="Ecovia do Minho: fotografia 47"
+                  data-gallery-caption="Fotografia 47 de Ecovia do Minho"
+                  aria-label="Abrir fotografia 47"
+                >
+                  <img
+                    src="/fotos/ecovia_do_minho/DSC_0698.jpg"
+                    alt="Ecovia do Minho: fotografia 47"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 47 de Ecovia do Minho
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="47"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/ecovia_do_minho/DSC_0699.jpg"
+                  data-gallery-alt="Ecovia do Minho: fotografia 48"
+                  data-gallery-caption="Fotografia 48 de Ecovia do Minho"
+                  aria-label="Abrir fotografia 48"
+                >
+                  <img
+                    src="/fotos/ecovia_do_minho/DSC_0699.jpg"
+                    alt="Ecovia do Minho: fotografia 48"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 48 de Ecovia do Minho
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="48"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/ecovia_do_minho/DSC_0700.jpg"
+                  data-gallery-alt="Ecovia do Minho: fotografia 49"
+                  data-gallery-caption="Fotografia 49 de Ecovia do Minho"
+                  aria-label="Abrir fotografia 49"
+                >
+                  <img
+                    src="/fotos/ecovia_do_minho/DSC_0700.jpg"
+                    alt="Ecovia do Minho: fotografia 49"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 49 de Ecovia do Minho
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="49"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/ecovia_do_minho/DSC_0701.jpg"
+                  data-gallery-alt="Ecovia do Minho: fotografia 50"
+                  data-gallery-caption="Fotografia 50 de Ecovia do Minho"
+                  aria-label="Abrir fotografia 50"
+                >
+                  <img
+                    src="/fotos/ecovia_do_minho/DSC_0701.jpg"
+                    alt="Ecovia do Minho: fotografia 50"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 50 de Ecovia do Minho
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="50"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/ecovia_do_minho/DSC_0702.jpg"
+                  data-gallery-alt="Ecovia do Minho: fotografia 51"
+                  data-gallery-caption="Fotografia 51 de Ecovia do Minho"
+                  aria-label="Abrir fotografia 51"
+                >
+                  <img
+                    src="/fotos/ecovia_do_minho/DSC_0702.jpg"
+                    alt="Ecovia do Minho: fotografia 51"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 51 de Ecovia do Minho
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="51"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/ecovia_do_minho/DSC_0703.jpg"
+                  data-gallery-alt="Ecovia do Minho: fotografia 52"
+                  data-gallery-caption="Fotografia 52 de Ecovia do Minho"
+                  aria-label="Abrir fotografia 52"
+                >
+                  <img
+                    src="/fotos/ecovia_do_minho/DSC_0703.jpg"
+                    alt="Ecovia do Minho: fotografia 52"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 52 de Ecovia do Minho
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="52"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/ecovia_do_minho/DSC_0704.jpg"
+                  data-gallery-alt="Ecovia do Minho: fotografia 53"
+                  data-gallery-caption="Fotografia 53 de Ecovia do Minho"
+                  aria-label="Abrir fotografia 53"
+                >
+                  <img
+                    src="/fotos/ecovia_do_minho/DSC_0704.jpg"
+                    alt="Ecovia do Minho: fotografia 53"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 53 de Ecovia do Minho
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="53"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/ecovia_do_minho/DSC_0705.jpg"
+                  data-gallery-alt="Ecovia do Minho: fotografia 54"
+                  data-gallery-caption="Fotografia 54 de Ecovia do Minho"
+                  aria-label="Abrir fotografia 54"
+                >
+                  <img
+                    src="/fotos/ecovia_do_minho/DSC_0705.jpg"
+                    alt="Ecovia do Minho: fotografia 54"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 54 de Ecovia do Minho
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="54"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/ecovia_do_minho/DSC_0706.jpg"
+                  data-gallery-alt="Ecovia do Minho: fotografia 55"
+                  data-gallery-caption="Fotografia 55 de Ecovia do Minho"
+                  aria-label="Abrir fotografia 55"
+                >
+                  <img
+                    src="/fotos/ecovia_do_minho/DSC_0706.jpg"
+                    alt="Ecovia do Minho: fotografia 55"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 55 de Ecovia do Minho
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="55"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/ecovia_do_minho/DSC_0707.jpg"
+                  data-gallery-alt="Ecovia do Minho: fotografia 56"
+                  data-gallery-caption="Fotografia 56 de Ecovia do Minho"
+                  aria-label="Abrir fotografia 56"
+                >
+                  <img
+                    src="/fotos/ecovia_do_minho/DSC_0707.jpg"
+                    alt="Ecovia do Minho: fotografia 56"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 56 de Ecovia do Minho
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+      </div>
+
+      
+    </div>
+
+  </div>
+</section>
+
+<div
+  class="modal-overlay"
+  id="gallery-modal"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="gallery-modal-caption"
+  aria-hidden="true"
+>
+  <button
+    class="modal-close"
+    id="gallery-modal-close"
+    type="button"
+    aria-label="Fechar galeria"
+  >
+    ✕
+  </button>
+
+  <button
+    class="modal-nav modal-prev"
+    id="gallery-modal-prev"
+    type="button"
+    aria-label="Fotografia anterior"
+  >
+    ❮
+  </button>
+
+  <div class="modal-content">
+    <img id="gallery-modal-image" src="" alt="">
+
+    <div
+      class="modal-caption"
+      id="gallery-modal-caption"
+    ></div>
+
+    <div
+      class="modal-counter"
+      id="gallery-modal-counter"
+      aria-live="polite"
+    ></div>
+  </div>
+
+  <button
+    class="modal-nav modal-next"
+    id="gallery-modal-next"
+    type="button"
+    aria-label="Fotografia seguinte"
+  >
+    ❯
+  </button>
+</div>
+</main>
+
+
+<footer>
+  <p>&copy; 2026 Trilhos. Todos os direitos reservados.</p>
+</footer>
+<button class="scroll-to-top" type="button" aria-label="Voltar ao topo" title="Voltar ao topo">↑</button>
+
+
+  <script src="/assets/js/site.js" defer></script>
+
+  
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js" defer></script>
+    <script src="/assets/js/trail-map.js" defer></script>
+    <script src="/assets/js/trail-gallery.js" defer></script>
+    <script src="/assets/js/percurso.js" defer></script>
+  
+</body>
+</html>

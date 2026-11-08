@@ -1,0 +1,7773 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Curta descrição do trilho. Ponto final">
+  <title>Parque da Lameira · Trilhos</title>
+
+ 
+  <!-- Primary Meta Tags -->
+  <title>Parque da Lameira | Trilhos</title>
+  
+   <link rel="stylesheet" href="/assets/css/trilhos.css">
+
+   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  
+</head>
+
+<body>
+<a class="skip-link" href="#conteudo">Saltar para o conteúdo</a>
+<nav class="navbar" id="navbar" aria-label="Navegação principal">
+    <div class="container nav-container">
+        <a href="/index.html" class="nav-logo"><svg viewBox="0 0 384 512"
+                aria-hidden="true">
+                <path
+                    d="M80.95 472.23c-4.28 17.16 6.14 34.53 23.28 38.81 2.61.66 5.22.95 7.8.95 14.33 0 27.37-9.7 31.02-24.23l25.24-100.97-52.78-52.78-34.56 138.22zm14.89-196.12L137 117c2.19-8.42-3.14-16.95-11.92-19.06-43.88-10.52-88.35 15.07-99.32 57.17L.49 253.24c-2.19 8.42 3.14 16.95 11.92 19.06l63.56 15.25c8.79 2.1 17.68-3.02 19.87-11.44zM368 160h-16c-8.84 0-16 7.16-16 16v16h-34.75l-46.78-46.78C243.38 134.11 228.61 128 212.91 128c-27.02 0-50.47 18.3-57.03 44.52l-26.92 107.72a32.012 32.012 0 0 0 8.42 30.39L224 397.25V480c0 17.67 14.33 32 32 32s32-14.33 32-32v-82.75c0-17.09-6.66-33.16-18.75-45.25l-46.82-46.82c.15-.5.49-.89.62-1.41l19.89-79.57 22.43 22.43c6 6 14.14 9.38 22.62 9.38h48v240c0 8.84 7.16 16 16 16h16c8.84 0 16-7.16 16-16V176c.01-8.84-7.15-16-15.99-16zM240 96c26.51 0 48-21.49 48-48S266.51 0 240 0s-48 21.49-48 48 21.49 48 48 48z" />
+            </svg>
+            <span>Trilhos</span>
+        </a>
+        <button class="mobile-toggle" type="button" aria-label="Abrir menu"
+            aria-expanded="false" aria-controls="nav-menu"><span></span><span></span><span></span></button>
+ <ul class="nav-menu" id="nav-menu">
+      <li><a href="/">Início</a></li>
+      <li><a href="/percursos/">Percursos</a></li>
+      <li><a href="/sobre/">Sobre</a></li>
+      <li><a href="/arquivo/">Arquivo</a></li>
+    </ul>
+    </div>
+</nav>
+
+
+
+
+
+
+
+
+
+
+
+<header
+  class="hero trail-hero"
+  style="--hero-image: url('/fotos/parque_da_lameira/DSC_1277.jpg')"
+>
+  <div class="hero-content">
+    <h1>Parque da Lameira</h1>
+    <p>Curta descrição do trilho. Ponto final</p>
+
+    <div class="hero-cta">
+      
+        <a class="button" href="#map-section">Ver mapa</a>
+        <a class="button button--secondary" href="/fotos/parque_da_lameira/2026-03-29%20091905__20260329_0919.gpx" download>
+          Descarregar GPX
+        </a>
+      
+    </div>
+  </div>
+</header>
+
+<main id="conteudo">
+  
+    <section class="trail-section trail-description">
+      <div class="container prose">
+</div>
+    </section>
+  
+
+  <section class="trail-section" id="map-section">
+    <div class="container">
+      
+        <div class="trail-grid">
+          <div class="map-card">
+            <div class="map-badge">Parque da Lameira</div>
+            <div
+              id="map"
+              data-title="Parque da Lameira"
+              data-folder="parque_da_lameira"
+              data-gpx="/fotos/parque_da_lameira/2026-03-29%20091905__20260329_0919.gpx"
+            ></div>
+
+            <div class="pip-chart" id="pip-chart-container">
+              <h2>Perfil de elevação</h2>
+              <div class="chart-wrap"><canvas id="elevationChart"></canvas></div>
+            </div>
+          </div>
+
+          <aside class="stats-card" aria-labelledby="stats-title">
+            <h2 id="stats-title">Estatísticas</h2>
+            <div class="trail-stat"><span>Distância total</span><strong id="distance">A calcular</strong></div>
+            <div class="trail-stat"><span>Desnível positivo</span><strong id="elevationGain">A calcular</strong></div>
+            <div class="trail-stat"><span>Desnível negativo</span><strong id="elevationLoss">A calcular</strong></div>
+            <div class="trail-stat"><span>Duração</span><strong id="duration">A calcular</strong></div>
+            <div class="trail-stat"><span>Altitude mínima</span><strong id="minElevation">A calcular</strong></div>
+            <div class="trail-stat"><span>Altitude máxima</span><strong id="maxElevation">A calcular</strong></div>
+            <div class="trail-stat"><span>Pontos GPX</span><strong id="points">A calcular</strong></div>
+            <p class="trail-status" id="status" role="status" aria-live="polite">A carregar dados do percurso...</p>
+          </aside>
+        </div>
+      
+    </div>
+  </section>
+
+  
+
+
+
+<section class="trail-section" id="gallery-section">
+  <div class="container">
+
+    <div class="section-header">
+      <h2>Galeria</h2>
+      <p>Fotografias registadas ao longo do percurso.</p>
+    </div>
+
+    <div class="gallery-card">
+      <div
+        class="gallery"
+        id="gallery-container"
+        data-gallery-title="Parque da Lameira"
+      >
+
+        
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="0"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1277.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 1"
+                  data-gallery-caption="Fotografia 1 de Parque da Lameira"
+                  aria-label="Abrir fotografia 1"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1277.jpg"
+                    alt="Parque da Lameira: fotografia 1"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 1 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="1"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1278.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 2"
+                  data-gallery-caption="Fotografia 2 de Parque da Lameira"
+                  aria-label="Abrir fotografia 2"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1278.jpg"
+                    alt="Parque da Lameira: fotografia 2"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 2 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="2"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1279.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 3"
+                  data-gallery-caption="Fotografia 3 de Parque da Lameira"
+                  aria-label="Abrir fotografia 3"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1279.jpg"
+                    alt="Parque da Lameira: fotografia 3"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 3 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="3"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1280.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 4"
+                  data-gallery-caption="Fotografia 4 de Parque da Lameira"
+                  aria-label="Abrir fotografia 4"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1280.jpg"
+                    alt="Parque da Lameira: fotografia 4"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 4 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="4"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1281.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 5"
+                  data-gallery-caption="Fotografia 5 de Parque da Lameira"
+                  aria-label="Abrir fotografia 5"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1281.jpg"
+                    alt="Parque da Lameira: fotografia 5"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 5 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="5"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1282.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 6"
+                  data-gallery-caption="Fotografia 6 de Parque da Lameira"
+                  aria-label="Abrir fotografia 6"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1282.jpg"
+                    alt="Parque da Lameira: fotografia 6"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 6 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="6"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1283.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 7"
+                  data-gallery-caption="Fotografia 7 de Parque da Lameira"
+                  aria-label="Abrir fotografia 7"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1283.jpg"
+                    alt="Parque da Lameira: fotografia 7"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 7 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="7"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1284.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 8"
+                  data-gallery-caption="Fotografia 8 de Parque da Lameira"
+                  aria-label="Abrir fotografia 8"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1284.jpg"
+                    alt="Parque da Lameira: fotografia 8"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 8 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="8"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1285.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 9"
+                  data-gallery-caption="Fotografia 9 de Parque da Lameira"
+                  aria-label="Abrir fotografia 9"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1285.jpg"
+                    alt="Parque da Lameira: fotografia 9"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 9 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="9"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1286.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 10"
+                  data-gallery-caption="Fotografia 10 de Parque da Lameira"
+                  aria-label="Abrir fotografia 10"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1286.jpg"
+                    alt="Parque da Lameira: fotografia 10"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 10 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="10"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1287.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 11"
+                  data-gallery-caption="Fotografia 11 de Parque da Lameira"
+                  aria-label="Abrir fotografia 11"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1287.jpg"
+                    alt="Parque da Lameira: fotografia 11"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 11 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="11"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1288.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 12"
+                  data-gallery-caption="Fotografia 12 de Parque da Lameira"
+                  aria-label="Abrir fotografia 12"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1288.jpg"
+                    alt="Parque da Lameira: fotografia 12"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 12 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="12"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1289.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 13"
+                  data-gallery-caption="Fotografia 13 de Parque da Lameira"
+                  aria-label="Abrir fotografia 13"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1289.jpg"
+                    alt="Parque da Lameira: fotografia 13"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 13 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="13"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1290.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 14"
+                  data-gallery-caption="Fotografia 14 de Parque da Lameira"
+                  aria-label="Abrir fotografia 14"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1290.jpg"
+                    alt="Parque da Lameira: fotografia 14"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 14 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="14"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1291.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 15"
+                  data-gallery-caption="Fotografia 15 de Parque da Lameira"
+                  aria-label="Abrir fotografia 15"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1291.jpg"
+                    alt="Parque da Lameira: fotografia 15"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 15 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="15"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1292.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 16"
+                  data-gallery-caption="Fotografia 16 de Parque da Lameira"
+                  aria-label="Abrir fotografia 16"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1292.jpg"
+                    alt="Parque da Lameira: fotografia 16"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 16 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="16"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1293.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 17"
+                  data-gallery-caption="Fotografia 17 de Parque da Lameira"
+                  aria-label="Abrir fotografia 17"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1293.jpg"
+                    alt="Parque da Lameira: fotografia 17"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 17 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="17"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1294.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 18"
+                  data-gallery-caption="Fotografia 18 de Parque da Lameira"
+                  aria-label="Abrir fotografia 18"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1294.jpg"
+                    alt="Parque da Lameira: fotografia 18"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 18 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="18"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1296.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 19"
+                  data-gallery-caption="Fotografia 19 de Parque da Lameira"
+                  aria-label="Abrir fotografia 19"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1296.jpg"
+                    alt="Parque da Lameira: fotografia 19"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 19 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="19"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1297.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 20"
+                  data-gallery-caption="Fotografia 20 de Parque da Lameira"
+                  aria-label="Abrir fotografia 20"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1297.jpg"
+                    alt="Parque da Lameira: fotografia 20"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 20 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="20"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1298.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 21"
+                  data-gallery-caption="Fotografia 21 de Parque da Lameira"
+                  aria-label="Abrir fotografia 21"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1298.jpg"
+                    alt="Parque da Lameira: fotografia 21"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 21 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="21"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1299.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 22"
+                  data-gallery-caption="Fotografia 22 de Parque da Lameira"
+                  aria-label="Abrir fotografia 22"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1299.jpg"
+                    alt="Parque da Lameira: fotografia 22"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 22 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="22"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1301.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 23"
+                  data-gallery-caption="Fotografia 23 de Parque da Lameira"
+                  aria-label="Abrir fotografia 23"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1301.jpg"
+                    alt="Parque da Lameira: fotografia 23"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 23 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="23"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1302.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 24"
+                  data-gallery-caption="Fotografia 24 de Parque da Lameira"
+                  aria-label="Abrir fotografia 24"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1302.jpg"
+                    alt="Parque da Lameira: fotografia 24"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 24 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="24"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1303.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 25"
+                  data-gallery-caption="Fotografia 25 de Parque da Lameira"
+                  aria-label="Abrir fotografia 25"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1303.jpg"
+                    alt="Parque da Lameira: fotografia 25"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 25 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="25"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1304.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 26"
+                  data-gallery-caption="Fotografia 26 de Parque da Lameira"
+                  aria-label="Abrir fotografia 26"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1304.jpg"
+                    alt="Parque da Lameira: fotografia 26"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 26 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="26"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1305.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 27"
+                  data-gallery-caption="Fotografia 27 de Parque da Lameira"
+                  aria-label="Abrir fotografia 27"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1305.jpg"
+                    alt="Parque da Lameira: fotografia 27"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 27 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="27"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1306.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 28"
+                  data-gallery-caption="Fotografia 28 de Parque da Lameira"
+                  aria-label="Abrir fotografia 28"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1306.jpg"
+                    alt="Parque da Lameira: fotografia 28"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 28 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="28"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1307.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 29"
+                  data-gallery-caption="Fotografia 29 de Parque da Lameira"
+                  aria-label="Abrir fotografia 29"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1307.jpg"
+                    alt="Parque da Lameira: fotografia 29"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 29 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="29"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1308.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 30"
+                  data-gallery-caption="Fotografia 30 de Parque da Lameira"
+                  aria-label="Abrir fotografia 30"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1308.jpg"
+                    alt="Parque da Lameira: fotografia 30"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 30 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="30"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1309.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 31"
+                  data-gallery-caption="Fotografia 31 de Parque da Lameira"
+                  aria-label="Abrir fotografia 31"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1309.jpg"
+                    alt="Parque da Lameira: fotografia 31"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 31 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="31"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1310.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 32"
+                  data-gallery-caption="Fotografia 32 de Parque da Lameira"
+                  aria-label="Abrir fotografia 32"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1310.jpg"
+                    alt="Parque da Lameira: fotografia 32"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 32 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="32"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1311.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 33"
+                  data-gallery-caption="Fotografia 33 de Parque da Lameira"
+                  aria-label="Abrir fotografia 33"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1311.jpg"
+                    alt="Parque da Lameira: fotografia 33"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 33 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="33"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1312.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 34"
+                  data-gallery-caption="Fotografia 34 de Parque da Lameira"
+                  aria-label="Abrir fotografia 34"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1312.jpg"
+                    alt="Parque da Lameira: fotografia 34"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 34 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="34"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1313.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 35"
+                  data-gallery-caption="Fotografia 35 de Parque da Lameira"
+                  aria-label="Abrir fotografia 35"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1313.jpg"
+                    alt="Parque da Lameira: fotografia 35"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 35 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="35"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1314.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 36"
+                  data-gallery-caption="Fotografia 36 de Parque da Lameira"
+                  aria-label="Abrir fotografia 36"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1314.jpg"
+                    alt="Parque da Lameira: fotografia 36"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 36 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="36"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1315.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 37"
+                  data-gallery-caption="Fotografia 37 de Parque da Lameira"
+                  aria-label="Abrir fotografia 37"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1315.jpg"
+                    alt="Parque da Lameira: fotografia 37"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 37 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="37"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1316.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 38"
+                  data-gallery-caption="Fotografia 38 de Parque da Lameira"
+                  aria-label="Abrir fotografia 38"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1316.jpg"
+                    alt="Parque da Lameira: fotografia 38"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 38 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="38"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1317.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 39"
+                  data-gallery-caption="Fotografia 39 de Parque da Lameira"
+                  aria-label="Abrir fotografia 39"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1317.jpg"
+                    alt="Parque da Lameira: fotografia 39"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 39 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="39"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1318.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 40"
+                  data-gallery-caption="Fotografia 40 de Parque da Lameira"
+                  aria-label="Abrir fotografia 40"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1318.jpg"
+                    alt="Parque da Lameira: fotografia 40"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 40 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="40"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1319.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 41"
+                  data-gallery-caption="Fotografia 41 de Parque da Lameira"
+                  aria-label="Abrir fotografia 41"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1319.jpg"
+                    alt="Parque da Lameira: fotografia 41"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 41 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="41"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1320.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 42"
+                  data-gallery-caption="Fotografia 42 de Parque da Lameira"
+                  aria-label="Abrir fotografia 42"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1320.jpg"
+                    alt="Parque da Lameira: fotografia 42"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 42 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="42"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1321.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 43"
+                  data-gallery-caption="Fotografia 43 de Parque da Lameira"
+                  aria-label="Abrir fotografia 43"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1321.jpg"
+                    alt="Parque da Lameira: fotografia 43"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 43 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="43"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1322.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 44"
+                  data-gallery-caption="Fotografia 44 de Parque da Lameira"
+                  aria-label="Abrir fotografia 44"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1322.jpg"
+                    alt="Parque da Lameira: fotografia 44"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 44 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="44"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1323.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 45"
+                  data-gallery-caption="Fotografia 45 de Parque da Lameira"
+                  aria-label="Abrir fotografia 45"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1323.jpg"
+                    alt="Parque da Lameira: fotografia 45"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 45 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="45"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1324.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 46"
+                  data-gallery-caption="Fotografia 46 de Parque da Lameira"
+                  aria-label="Abrir fotografia 46"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1324.jpg"
+                    alt="Parque da Lameira: fotografia 46"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 46 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="46"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1325.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 47"
+                  data-gallery-caption="Fotografia 47 de Parque da Lameira"
+                  aria-label="Abrir fotografia 47"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1325.jpg"
+                    alt="Parque da Lameira: fotografia 47"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 47 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="47"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1326.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 48"
+                  data-gallery-caption="Fotografia 48 de Parque da Lameira"
+                  aria-label="Abrir fotografia 48"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1326.jpg"
+                    alt="Parque da Lameira: fotografia 48"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 48 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="48"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1327.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 49"
+                  data-gallery-caption="Fotografia 49 de Parque da Lameira"
+                  aria-label="Abrir fotografia 49"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1327.jpg"
+                    alt="Parque da Lameira: fotografia 49"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 49 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="49"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1328.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 50"
+                  data-gallery-caption="Fotografia 50 de Parque da Lameira"
+                  aria-label="Abrir fotografia 50"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1328.jpg"
+                    alt="Parque da Lameira: fotografia 50"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 50 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="50"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1329.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 51"
+                  data-gallery-caption="Fotografia 51 de Parque da Lameira"
+                  aria-label="Abrir fotografia 51"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1329.jpg"
+                    alt="Parque da Lameira: fotografia 51"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 51 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="51"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1330.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 52"
+                  data-gallery-caption="Fotografia 52 de Parque da Lameira"
+                  aria-label="Abrir fotografia 52"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1330.jpg"
+                    alt="Parque da Lameira: fotografia 52"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 52 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="52"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1331.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 53"
+                  data-gallery-caption="Fotografia 53 de Parque da Lameira"
+                  aria-label="Abrir fotografia 53"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1331.jpg"
+                    alt="Parque da Lameira: fotografia 53"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 53 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="53"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1332.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 54"
+                  data-gallery-caption="Fotografia 54 de Parque da Lameira"
+                  aria-label="Abrir fotografia 54"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1332.jpg"
+                    alt="Parque da Lameira: fotografia 54"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 54 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="54"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1334.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 55"
+                  data-gallery-caption="Fotografia 55 de Parque da Lameira"
+                  aria-label="Abrir fotografia 55"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1334.jpg"
+                    alt="Parque da Lameira: fotografia 55"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 55 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="55"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1335.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 56"
+                  data-gallery-caption="Fotografia 56 de Parque da Lameira"
+                  aria-label="Abrir fotografia 56"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1335.jpg"
+                    alt="Parque da Lameira: fotografia 56"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 56 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="56"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1336.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 57"
+                  data-gallery-caption="Fotografia 57 de Parque da Lameira"
+                  aria-label="Abrir fotografia 57"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1336.jpg"
+                    alt="Parque da Lameira: fotografia 57"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 57 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="57"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1337.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 58"
+                  data-gallery-caption="Fotografia 58 de Parque da Lameira"
+                  aria-label="Abrir fotografia 58"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1337.jpg"
+                    alt="Parque da Lameira: fotografia 58"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 58 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="58"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1338.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 59"
+                  data-gallery-caption="Fotografia 59 de Parque da Lameira"
+                  aria-label="Abrir fotografia 59"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1338.jpg"
+                    alt="Parque da Lameira: fotografia 59"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 59 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="59"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1339.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 60"
+                  data-gallery-caption="Fotografia 60 de Parque da Lameira"
+                  aria-label="Abrir fotografia 60"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1339.jpg"
+                    alt="Parque da Lameira: fotografia 60"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 60 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="60"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1340.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 61"
+                  data-gallery-caption="Fotografia 61 de Parque da Lameira"
+                  aria-label="Abrir fotografia 61"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1340.jpg"
+                    alt="Parque da Lameira: fotografia 61"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 61 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="61"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1341.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 62"
+                  data-gallery-caption="Fotografia 62 de Parque da Lameira"
+                  aria-label="Abrir fotografia 62"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1341.jpg"
+                    alt="Parque da Lameira: fotografia 62"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 62 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="62"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1342.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 63"
+                  data-gallery-caption="Fotografia 63 de Parque da Lameira"
+                  aria-label="Abrir fotografia 63"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1342.jpg"
+                    alt="Parque da Lameira: fotografia 63"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 63 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="63"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1343.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 64"
+                  data-gallery-caption="Fotografia 64 de Parque da Lameira"
+                  aria-label="Abrir fotografia 64"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1343.jpg"
+                    alt="Parque da Lameira: fotografia 64"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 64 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="64"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1345.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 65"
+                  data-gallery-caption="Fotografia 65 de Parque da Lameira"
+                  aria-label="Abrir fotografia 65"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1345.jpg"
+                    alt="Parque da Lameira: fotografia 65"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 65 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="65"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1346.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 66"
+                  data-gallery-caption="Fotografia 66 de Parque da Lameira"
+                  aria-label="Abrir fotografia 66"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1346.jpg"
+                    alt="Parque da Lameira: fotografia 66"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 66 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="66"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1347.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 67"
+                  data-gallery-caption="Fotografia 67 de Parque da Lameira"
+                  aria-label="Abrir fotografia 67"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1347.jpg"
+                    alt="Parque da Lameira: fotografia 67"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 67 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="67"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1348.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 68"
+                  data-gallery-caption="Fotografia 68 de Parque da Lameira"
+                  aria-label="Abrir fotografia 68"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1348.jpg"
+                    alt="Parque da Lameira: fotografia 68"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 68 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="68"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1349.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 69"
+                  data-gallery-caption="Fotografia 69 de Parque da Lameira"
+                  aria-label="Abrir fotografia 69"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1349.jpg"
+                    alt="Parque da Lameira: fotografia 69"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 69 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="69"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1350.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 70"
+                  data-gallery-caption="Fotografia 70 de Parque da Lameira"
+                  aria-label="Abrir fotografia 70"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1350.jpg"
+                    alt="Parque da Lameira: fotografia 70"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 70 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="70"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1351.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 71"
+                  data-gallery-caption="Fotografia 71 de Parque da Lameira"
+                  aria-label="Abrir fotografia 71"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1351.jpg"
+                    alt="Parque da Lameira: fotografia 71"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 71 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="71"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1352.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 72"
+                  data-gallery-caption="Fotografia 72 de Parque da Lameira"
+                  aria-label="Abrir fotografia 72"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1352.jpg"
+                    alt="Parque da Lameira: fotografia 72"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 72 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="72"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1353.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 73"
+                  data-gallery-caption="Fotografia 73 de Parque da Lameira"
+                  aria-label="Abrir fotografia 73"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1353.jpg"
+                    alt="Parque da Lameira: fotografia 73"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 73 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="73"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1354.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 74"
+                  data-gallery-caption="Fotografia 74 de Parque da Lameira"
+                  aria-label="Abrir fotografia 74"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1354.jpg"
+                    alt="Parque da Lameira: fotografia 74"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 74 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="74"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1355.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 75"
+                  data-gallery-caption="Fotografia 75 de Parque da Lameira"
+                  aria-label="Abrir fotografia 75"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1355.jpg"
+                    alt="Parque da Lameira: fotografia 75"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 75 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="75"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1356.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 76"
+                  data-gallery-caption="Fotografia 76 de Parque da Lameira"
+                  aria-label="Abrir fotografia 76"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1356.jpg"
+                    alt="Parque da Lameira: fotografia 76"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 76 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="76"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1357.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 77"
+                  data-gallery-caption="Fotografia 77 de Parque da Lameira"
+                  aria-label="Abrir fotografia 77"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1357.jpg"
+                    alt="Parque da Lameira: fotografia 77"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 77 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="77"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1358.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 78"
+                  data-gallery-caption="Fotografia 78 de Parque da Lameira"
+                  aria-label="Abrir fotografia 78"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1358.jpg"
+                    alt="Parque da Lameira: fotografia 78"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 78 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="78"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1359.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 79"
+                  data-gallery-caption="Fotografia 79 de Parque da Lameira"
+                  aria-label="Abrir fotografia 79"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1359.jpg"
+                    alt="Parque da Lameira: fotografia 79"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 79 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="79"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1360.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 80"
+                  data-gallery-caption="Fotografia 80 de Parque da Lameira"
+                  aria-label="Abrir fotografia 80"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1360.jpg"
+                    alt="Parque da Lameira: fotografia 80"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 80 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="80"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1361.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 81"
+                  data-gallery-caption="Fotografia 81 de Parque da Lameira"
+                  aria-label="Abrir fotografia 81"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1361.jpg"
+                    alt="Parque da Lameira: fotografia 81"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 81 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="81"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1362.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 82"
+                  data-gallery-caption="Fotografia 82 de Parque da Lameira"
+                  aria-label="Abrir fotografia 82"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1362.jpg"
+                    alt="Parque da Lameira: fotografia 82"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 82 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="82"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1363.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 83"
+                  data-gallery-caption="Fotografia 83 de Parque da Lameira"
+                  aria-label="Abrir fotografia 83"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1363.jpg"
+                    alt="Parque da Lameira: fotografia 83"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 83 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="83"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1364.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 84"
+                  data-gallery-caption="Fotografia 84 de Parque da Lameira"
+                  aria-label="Abrir fotografia 84"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1364.jpg"
+                    alt="Parque da Lameira: fotografia 84"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 84 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="84"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1365.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 85"
+                  data-gallery-caption="Fotografia 85 de Parque da Lameira"
+                  aria-label="Abrir fotografia 85"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1365.jpg"
+                    alt="Parque da Lameira: fotografia 85"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 85 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="85"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1366.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 86"
+                  data-gallery-caption="Fotografia 86 de Parque da Lameira"
+                  aria-label="Abrir fotografia 86"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1366.jpg"
+                    alt="Parque da Lameira: fotografia 86"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 86 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="86"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1367.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 87"
+                  data-gallery-caption="Fotografia 87 de Parque da Lameira"
+                  aria-label="Abrir fotografia 87"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1367.jpg"
+                    alt="Parque da Lameira: fotografia 87"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 87 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="87"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1368.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 88"
+                  data-gallery-caption="Fotografia 88 de Parque da Lameira"
+                  aria-label="Abrir fotografia 88"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1368.jpg"
+                    alt="Parque da Lameira: fotografia 88"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 88 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="88"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1369.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 89"
+                  data-gallery-caption="Fotografia 89 de Parque da Lameira"
+                  aria-label="Abrir fotografia 89"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1369.jpg"
+                    alt="Parque da Lameira: fotografia 89"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 89 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="89"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1370.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 90"
+                  data-gallery-caption="Fotografia 90 de Parque da Lameira"
+                  aria-label="Abrir fotografia 90"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1370.jpg"
+                    alt="Parque da Lameira: fotografia 90"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 90 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="90"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1371.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 91"
+                  data-gallery-caption="Fotografia 91 de Parque da Lameira"
+                  aria-label="Abrir fotografia 91"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1371.jpg"
+                    alt="Parque da Lameira: fotografia 91"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 91 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="91"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1372.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 92"
+                  data-gallery-caption="Fotografia 92 de Parque da Lameira"
+                  aria-label="Abrir fotografia 92"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1372.jpg"
+                    alt="Parque da Lameira: fotografia 92"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 92 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="92"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1373.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 93"
+                  data-gallery-caption="Fotografia 93 de Parque da Lameira"
+                  aria-label="Abrir fotografia 93"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1373.jpg"
+                    alt="Parque da Lameira: fotografia 93"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 93 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="93"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1374.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 94"
+                  data-gallery-caption="Fotografia 94 de Parque da Lameira"
+                  aria-label="Abrir fotografia 94"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1374.jpg"
+                    alt="Parque da Lameira: fotografia 94"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 94 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="94"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1375.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 95"
+                  data-gallery-caption="Fotografia 95 de Parque da Lameira"
+                  aria-label="Abrir fotografia 95"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1375.jpg"
+                    alt="Parque da Lameira: fotografia 95"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 95 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="95"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1376.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 96"
+                  data-gallery-caption="Fotografia 96 de Parque da Lameira"
+                  aria-label="Abrir fotografia 96"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1376.jpg"
+                    alt="Parque da Lameira: fotografia 96"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 96 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="96"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1377.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 97"
+                  data-gallery-caption="Fotografia 97 de Parque da Lameira"
+                  aria-label="Abrir fotografia 97"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1377.jpg"
+                    alt="Parque da Lameira: fotografia 97"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 97 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="97"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1378.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 98"
+                  data-gallery-caption="Fotografia 98 de Parque da Lameira"
+                  aria-label="Abrir fotografia 98"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1378.jpg"
+                    alt="Parque da Lameira: fotografia 98"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 98 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="98"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1379.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 99"
+                  data-gallery-caption="Fotografia 99 de Parque da Lameira"
+                  aria-label="Abrir fotografia 99"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1379.jpg"
+                    alt="Parque da Lameira: fotografia 99"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 99 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="99"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1380.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 100"
+                  data-gallery-caption="Fotografia 100 de Parque da Lameira"
+                  aria-label="Abrir fotografia 100"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1380.jpg"
+                    alt="Parque da Lameira: fotografia 100"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 100 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="100"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1381.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 101"
+                  data-gallery-caption="Fotografia 101 de Parque da Lameira"
+                  aria-label="Abrir fotografia 101"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1381.jpg"
+                    alt="Parque da Lameira: fotografia 101"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 101 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="101"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1382.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 102"
+                  data-gallery-caption="Fotografia 102 de Parque da Lameira"
+                  aria-label="Abrir fotografia 102"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1382.jpg"
+                    alt="Parque da Lameira: fotografia 102"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 102 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="102"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1383.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 103"
+                  data-gallery-caption="Fotografia 103 de Parque da Lameira"
+                  aria-label="Abrir fotografia 103"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1383.jpg"
+                    alt="Parque da Lameira: fotografia 103"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 103 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="103"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1384.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 104"
+                  data-gallery-caption="Fotografia 104 de Parque da Lameira"
+                  aria-label="Abrir fotografia 104"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1384.jpg"
+                    alt="Parque da Lameira: fotografia 104"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 104 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="104"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1385.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 105"
+                  data-gallery-caption="Fotografia 105 de Parque da Lameira"
+                  aria-label="Abrir fotografia 105"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1385.jpg"
+                    alt="Parque da Lameira: fotografia 105"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 105 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="105"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1386.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 106"
+                  data-gallery-caption="Fotografia 106 de Parque da Lameira"
+                  aria-label="Abrir fotografia 106"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1386.jpg"
+                    alt="Parque da Lameira: fotografia 106"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 106 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="106"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1388.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 107"
+                  data-gallery-caption="Fotografia 107 de Parque da Lameira"
+                  aria-label="Abrir fotografia 107"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1388.jpg"
+                    alt="Parque da Lameira: fotografia 107"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 107 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="107"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1389.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 108"
+                  data-gallery-caption="Fotografia 108 de Parque da Lameira"
+                  aria-label="Abrir fotografia 108"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1389.jpg"
+                    alt="Parque da Lameira: fotografia 108"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 108 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="108"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1390.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 109"
+                  data-gallery-caption="Fotografia 109 de Parque da Lameira"
+                  aria-label="Abrir fotografia 109"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1390.jpg"
+                    alt="Parque da Lameira: fotografia 109"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 109 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="109"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1391.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 110"
+                  data-gallery-caption="Fotografia 110 de Parque da Lameira"
+                  aria-label="Abrir fotografia 110"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1391.jpg"
+                    alt="Parque da Lameira: fotografia 110"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 110 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="110"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1392.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 111"
+                  data-gallery-caption="Fotografia 111 de Parque da Lameira"
+                  aria-label="Abrir fotografia 111"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1392.jpg"
+                    alt="Parque da Lameira: fotografia 111"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 111 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="111"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1393.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 112"
+                  data-gallery-caption="Fotografia 112 de Parque da Lameira"
+                  aria-label="Abrir fotografia 112"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1393.jpg"
+                    alt="Parque da Lameira: fotografia 112"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 112 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="112"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1394.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 113"
+                  data-gallery-caption="Fotografia 113 de Parque da Lameira"
+                  aria-label="Abrir fotografia 113"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1394.jpg"
+                    alt="Parque da Lameira: fotografia 113"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 113 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="113"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1395.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 114"
+                  data-gallery-caption="Fotografia 114 de Parque da Lameira"
+                  aria-label="Abrir fotografia 114"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1395.jpg"
+                    alt="Parque da Lameira: fotografia 114"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 114 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+            
+
+              
+
+              <figure
+                class="gallery-item"
+                data-gallery-index="114"
+              >
+                <button
+                  class="gallery-button"
+                  type="button"
+                  data-gallery-src="/fotos/parque_da_lameira/DSC_1396.jpg"
+                  data-gallery-alt="Parque da Lameira: fotografia 115"
+                  data-gallery-caption="Fotografia 115 de Parque da Lameira"
+                  aria-label="Abrir fotografia 115"
+                >
+                  <img
+                    src="/fotos/parque_da_lameira/DSC_1396.jpg"
+                    alt="Parque da Lameira: fotografia 115"
+                    loading="lazy"
+                    decoding="async"
+                  >
+
+                  <span class="gallery-overlay" aria-hidden="true">
+                    <span class="gallery-icon">+</span>
+                  </span>
+                </button>
+
+                <figcaption class="visually-hidden">
+                  Fotografia 115 de Parque da Lameira
+                </figcaption>
+              </figure>
+
+            
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+          
+
+          
+
+        
+
+      </div>
+
+      
+    </div>
+
+  </div>
+</section>
+
+<div
+  class="modal-overlay"
+  id="gallery-modal"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="gallery-modal-caption"
+  aria-hidden="true"
+>
+  <button
+    class="modal-close"
+    id="gallery-modal-close"
+    type="button"
+    aria-label="Fechar galeria"
+  >
+    ✕
+  </button>
+
+  <button
+    class="modal-nav modal-prev"
+    id="gallery-modal-prev"
+    type="button"
+    aria-label="Fotografia anterior"
+  >
+    ❮
+  </button>
+
+  <div class="modal-content">
+    <img id="gallery-modal-image" src="" alt="">
+
+    <div
+      class="modal-caption"
+      id="gallery-modal-caption"
+    ></div>
+
+    <div
+      class="modal-counter"
+      id="gallery-modal-counter"
+      aria-live="polite"
+    ></div>
+  </div>
+
+  <button
+    class="modal-nav modal-next"
+    id="gallery-modal-next"
+    type="button"
+    aria-label="Fotografia seguinte"
+  >
+    ❯
+  </button>
+</div>
+</main>
+
+
+<footer>
+  <p>&copy; 2026 Trilhos. Todos os direitos reservados.</p>
+</footer>
+<button class="scroll-to-top" type="button" aria-label="Voltar ao topo" title="Voltar ao topo">↑</button>
+
+
+  <script src="/assets/js/site.js" defer></script>
+
+  
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js" defer></script>
+    <script src="/assets/js/trail-map.js" defer></script>
+    <script src="/assets/js/trail-gallery.js" defer></script>
+    <script src="/assets/js/percurso.js" defer></script>
+  
+</body>
+</html>
