@@ -78,12 +78,12 @@
         <div class="trail-grid">
           <div class="map-card">
             <div class="map-badge">{{ page.title }}</div>
-            <div
-              id="map"
-              data-title="{{ page.title | escape }}"
-              data-folder="{{ page.folder | escape }}"
-              data-gpx="{{ gpx_path | relative_url }}"
-            ></div>
+            <<div
+  id="map"
+  data-title="{{ page.title | escape }}"
+  data-folder="{{ page.folder | escape }}"
+  data-gpx="{{ gpx_path | relative_url }}"
+></div>
 
             <div class="pip-chart" id="pip-chart-container">
               <h2>Perfil de elevação</h2>
@@ -120,11 +120,26 @@
   <script src="{{ '/assets/js/site.js' | relative_url }}" defer></script>
 
   
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js" defer></script>
-    <script src="{{ '/assets/js/trail-map.js' | relative_url }}" defer></script>
+<script
+  src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"
+  defer
+></script>
+
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"
+  defer
+></script>
+
+<script
+  src="{{ '/assets/js/trail-map.js' | relative_url }}"
+  defer
+></script>
+<script
+  src="{{ '/assets/js/percurso.js' | relative_url }}"
+  defer
+></script>
     <script src="{{ '/assets/js/trail-gallery.js' | relative_url }}" defer></script>
-    <script src="{{ '/assets/js/percurso.js' | relative_url }}" defer></script>
+    
   
 </body>
 </html>
