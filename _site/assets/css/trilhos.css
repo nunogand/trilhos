@@ -72,6 +72,7 @@ a { color: inherit; }
 /* Cartão base partilhado */
 .post-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 34px; }
 .post-card { position: relative; overflow: hidden; border: 1px solid var(--border); border-radius: var(--radius); color: inherit; background: var(--surface); box-shadow: 0 8px 25px rgba(0,0,0,.08); text-decoration: none; transition: transform var(--ease), box-shadow var(--ease); }
+.card-link {text-decoration: none; color: inherit; display: block; height: 100%; }
 .post-card::before { content: ""; position: absolute; z-index: 3; inset: 0 0 auto; height: 5px; background: linear-gradient(90deg, var(--green), var(--brown)); transform: scaleX(0); transform-origin: left; transition: transform var(--ease); }
 .post-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
 .post-card:hover::before { transform: scaleX(1); }

@@ -36,10 +36,10 @@ file.extname == '.WEBP' or file.extname == '.AVIF'"
       </div>
       
       
-      <div class="card-stats" aria-label="Dados do percurso"><span class="stat-item"><i class="fas fa-route"
-            aria-hidden="true"></i>12,4 km</span><span class="stat-item"><i class="fas fa-mountain"
-            aria-hidden="true"></i>680 m</span><span class="stat-item"><i class="fas fa-clock" aria-hidden="true"></i>4h
-          10m</span></div>
+      <div class="card-stats" aria-label="Dados do percurso">
+        <span class="stat-item"><i class="fas fa-route" aria-hidden="true"></i>{{ post.gpx_stats.distance_km }} km</span>
+        <span class="stat-item"><i class="fas fa-mountain" aria-hidden="true"></i>{{ post.gpx_stats.elevation_max_m }} m</span>
+        <span class="stat-item"><i class="fas fa-clock" aria-hidden="true"></i>{{ post.gpx_stats.duration_formatted }}</span></div>
     </div>
   </div>
 </article>

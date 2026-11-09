@@ -80,6 +80,7 @@ kramdown:
 
 plugins:
   - jekyll_picture_tag
+  
 
 picture:
   source: assets
