@@ -17,8 +17,8 @@
   
 </head>
 
-<body>
-{% include navigation.html %}
+<body class="has-transparent-navbar">
+  {% include navigation.html %}
 
 
 {% assign media_path = '/fotos/' | append: page.folder | append: '/' %}
@@ -78,7 +78,7 @@
         <div class="trail-grid">
           <div class="map-card">
             <div class="map-badge">{{ page.title }}</div>
-            <<div
+            <div
   id="map"
   data-title="{{ page.title | escape }}"
   data-folder="{{ page.folder | escape }}"
@@ -134,12 +134,171 @@
   src="{{ '/assets/js/trail-map.js' | relative_url }}"
   defer
 ></script>
-<script
-  src="{{ '/assets/js/percurso.js' | relative_url }}"
-  defer
-></script>
-    <script src="{{ '/assets/js/trail-gallery.js' | relative_url }}" defer></script>
-    
+
+<script src="{{ '/assets/js/trail-gallery.js' | relative_url }}" defer></script>
+<script>
+  document.addEventListener(
+  "DOMContentLoaded",
+  () => {
+    const navbar =
+      document.querySelector("#navbar");
+
+    const mobileToggle =
+      document.querySelector(
+        ".mobile-toggle"
+      );
+
+    const navMenu =
+      document.querySelector("#nav-menu");
+
+    const topButton =
+      document.querySelector(
+        ".scroll-to-top"
+      );
+
+    /*
+     * Atualiza a apresentação da navbar e do botão
+     * de regresso ao topo.
+     */
+    const updateScrollState = () => {
+      const hasScrolled =
+        window.scrollY > 50;
+
+      navbar?.classList.toggle(
+        "scrolled",
+        hasScrolled
+      );
+
+      topButton?.classList.toggle(
+        "visible",
+        window.scrollY > 300
+      );
+    };
+
+    /*
+     * Fecha o menu móvel e repõe todos os estados.
+     */
+    const closeMenu = () => {
+      mobileToggle?.classList.remove(
+        "active"
+      );
+
+      navMenu?.classList.remove(
+        "active"
+      );
+
+      navbar?.classList.remove(
+        "menu-open"
+      );
+
+      mobileToggle?.setAttribute(
+        "aria-expanded",
+        "false"
+      );
+
+      document.body.classList.remove(
+        "menu-open"
+      );
+
+      /*
+       * Repõe imediatamente o estado correto.
+       * Se a página estiver no topo, a navbar volta
+       * a ser transparente.
+       */
+      updateScrollState();
+    };
+
+    /*
+     * Abrir ou fechar o menu móvel.
+     */
+    mobileToggle?.addEventListener(
+      "click",
+      () => {
+        const menuIsOpen =
+          !navMenu?.classList.contains(
+            "active"
+          );
+
+        mobileToggle.classList.toggle(
+          "active",
+          menuIsOpen
+        );
+
+        navMenu?.classList.toggle(
+          "active",
+          menuIsOpen
+        );
+
+        navbar?.classList.toggle(
+          "menu-open",
+          menuIsOpen
+        );
+
+        mobileToggle.setAttribute(
+          "aria-expanded",
+          String(menuIsOpen)
+        );
+
+        document.body.classList.toggle(
+          "menu-open",
+          menuIsOpen
+        );
+      }
+    );
+
+    /*
+     * Fecha o menu depois de selecionar uma ligação.
+     */
+    navMenu
+      ?.querySelectorAll("a")
+      .forEach(link => {
+        link.addEventListener(
+          "click",
+          closeMenu
+        );
+      });
+
+    /*
+     * Fecha o menu com Escape.
+     */
+    document.addEventListener(
+      "keydown",
+      event => {
+        if (event.key === "Escape") {
+          closeMenu();
+        }
+      }
+    );
+
+    /*
+     * Atualizar imediatamente, incluindo quando a página
+     * é recarregada já numa posição inferior.
+     */
+    updateScrollState();
+
+    window.addEventListener(
+      "scroll",
+      updateScrollState,
+      {
+        passive: true
+      }
+    );
+
+    /*
+     * Regressar ao topo.
+     */
+    topButton?.addEventListener(
+      "click",
+      () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+      }
+    );
+  }
+);
+</script>    
   
 </body>
 </html>
