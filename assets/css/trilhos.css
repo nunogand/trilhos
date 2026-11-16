@@ -37,7 +37,10 @@ a { color: inherit; }
 :focus-visible { outline: 3px solid var(--brown); outline-offset: 3px; }
 
 /* Navegação comum */
-.navbar { position: fixed; inset: 0 0 auto; z-index: 1000; min-height: var(--nav-height); background: rgba(255,255,255,.95); border-bottom: 1px solid rgba(0,0,0,.05); box-shadow: 0 2px 20px rgba(0,0,0,.08); backdrop-filter: blur(10px); transition: box-shadow var(--ease), background var(--ease); }
+.navbar {
+  position: fixed; top: 0; left: 0; width: 100%; height: var(--nav-height);
+  z-index: 5000; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); background: transparent;
+}
 .navbar.scrolled { background: rgba(255,255,255,.98); box-shadow: 0 3px 26px rgba(0,0,0,.14); }
 .nav-container { min-height: var(--nav-height); display: flex; justify-content: space-between; align-items: center; }
 .nav-logo { display: flex; align-items: center; gap: 10px; color: var(--ink); font: 400 1.8rem var(--font-display); letter-spacing: 2px; text-decoration: none; }

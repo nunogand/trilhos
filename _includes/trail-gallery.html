@@ -17,22 +17,22 @@
         data-gallery-title="{{ include.title | escape }}"
       >
 
-        {% assign image_count = 0 %}
+        {%- assign image_count = 0 -%}
 
-        {% for image in gallery_images %}
+        {%- for image in gallery_images -%}
 
-          {% assign extension = image.extname | downcase %}
+          {%- assign extension = image.extname | downcase -%}
 
-          {% if image.path contains gallery_path %}
+          {%- if image.path contains gallery_path -%}
 
-            {% if extension == '.jpg'
+            {%- if extension == '.jpg'
               or extension == '.jpeg'
               or extension == '.png'
               or extension == '.webp'
               or extension == '.avif'
-            %}
+            -%}
 
-              {% assign image_count = image_count | plus: 1 %}
+              {%- assign image_count = image_count | plus: 1 -%}
 
               <figure
                 class="gallery-item"
@@ -63,11 +63,11 @@
                 </figcaption>
               </figure>
 
-            {% endif %}
+            {%- endif -%}
 
-          {% endif %}
+          {%- endif -%}
 
-        {% endfor %}
+        {%- endfor -%}
 
       </div>
 
