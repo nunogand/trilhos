@@ -103,7 +103,8 @@ post.data["gpx_date_formatted"] =
             "#{post.data['title']}: " \
             "#{stats['distance_km']} km, " \
             "#{stats['duration_formatted']}, " \
-            "máx. #{stats['elevation_max_m'] || 'N/D'} m"
+            "máx. #{stats['elevation_max_m'] || 'N/D'} m, " \
+            "#{stats['date_formatted']}"
           )
         rescue StandardError => error
           Jekyll.logger.error(
