@@ -18,15 +18,14 @@ document.addEventListener("DOMContentLoaded", () => {
     toggle.setAttribute("aria-expanded", String(open));
     document.body.classList.toggle("menu-open", open);
   });
-
   menu?.querySelectorAll("a").forEach(link => link.addEventListener("click", closeMenu));
   document.addEventListener("keydown", event => { if (event.key === "Escape") closeMenu(); });
 
-  const updateScrollState = () => {
+  const onScroll = () => {
     navbar?.classList.toggle("scrolled", window.scrollY > 40);
     topButton?.classList.toggle("visible", window.scrollY > 300);
   };
-  updateScrollState();
-  window.addEventListener("scroll", updateScrollState, { passive: true });
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
   topButton?.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
 });

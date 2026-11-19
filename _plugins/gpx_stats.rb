@@ -60,27 +60,43 @@ module Trilhos
           post.data["gpx_path"] =
             "/fotos/#{folder}/#{File.basename(gpx_file)}"
 
-          post.data["gpx_stats"] = stats
+post.data["gpx_stats"] = stats
 
-          # Valores diretos, mais simples de usar nos cartões.
-          post.data["distance"] = stats["distance_km"]
-          post.data["duration"] = stats["duration_formatted"]
-          post.data["duration_minutes"] = stats["duration_minutes"]
+post.data["distance"] =
+  stats["distance_km"]
 
-          post.data["elevation_min"] =
-            stats["elevation_min_m"]
+post.data["duration"] =
+  stats["duration_formatted"]
 
-          post.data["elevation_max"] =
-            stats["elevation_max_m"]
+post.data["duration_minutes"] =
+  stats["duration_minutes"]
 
-          post.data["elevation_gain"] =
-            stats["elevation_gain_m"]
+post.data["elevation_min"] =
+  stats["elevation_min_m"]
 
-          post.data["elevation_loss"] =
-            stats["elevation_loss_m"]
+post.data["elevation_max"] =
+  stats["elevation_max_m"]
 
-          post.data["gpx_points"] =
-            stats["point_count"]
+post.data["elevation_gain"] =
+  stats["elevation_gain_m"]
+
+post.data["elevation_loss"] =
+  stats["elevation_loss_m"]
+
+post.data["gpx_points"] =
+  stats["point_count"]
+
+post.data["gpx_started_at"] =
+  stats["started_at"]
+
+post.data["gpx_finished_at"] =
+  stats["finished_at"]
+
+post.data["gpx_date"] =
+  stats["date"]
+
+post.data["gpx_date_formatted"] =
+  stats["date_formatted"]
 
           Jekyll.logger.info(
             "Trilhos:",
@@ -99,6 +115,29 @@ module Trilhos
     end
 
     private
+    MONTH_NAMES_PT = %w[
+  janeiro
+  fevereiro
+  março
+  abril
+  maio
+  junho
+  julho
+  agosto
+  setembro
+  outubro
+  novembro
+  dezembro
+].freeze
+
+def format_gpx_date(time)
+  return nil if time.nil?
+
+  month_name = MONTH_NAMES_PT[time.month - 1]
+
+  "#{time.day} de #{month_name} de #{time.year}"
+end
+
 
     def media_folder(post)
       explicit_folder = post.data["folder"].to_s.strip
@@ -137,51 +176,66 @@ module Trilhos
       elevation_gain, elevation_loss =
         calculate_elevation_changes(segments)
 
-      timestamps = segments
-        .flatten
-        .filter_map { |point| point[:time] }
-        .sort
+timestamps = segments
+  .flatten
+  .filter_map { |point| point[:time] }
+  .sort
 
-      duration_seconds =
-        calculate_duration_seconds(timestamps)
+started_at = timestamps.first
+finished_at = timestamps.last
+
+duration_seconds =
+  calculate_duration_seconds(timestamps)
 
       duration_minutes =
         duration_seconds.nil? ? nil : (duration_seconds / 60.0).round
 
-      {
-        "distance_km" =>
-          (total_distance / 1000.0).round(2),
+{
+  "distance_km" =>
+    (total_distance / 1000.0).round(2),
 
-        "distance_m" =>
-          total_distance.round,
+  "distance_m" =>
+    total_distance.round,
 
-        "duration_seconds" =>
-          duration_seconds&.round,
+  "duration_seconds" =>
+    duration_seconds&.round,
 
-        "duration_minutes" =>
-          duration_minutes,
+  "duration_minutes" =>
+    duration_minutes,
 
-        "duration_formatted" =>
-          format_duration(duration_seconds),
+  "duration_formatted" =>
+    format_duration(duration_seconds),
 
-        "elevation_min_m" =>
-          elevations.empty? ? nil : elevations.min.round,
+  "started_at" =>
+    started_at&.iso8601,
 
-        "elevation_max_m" =>
-          elevations.empty? ? nil : elevations.max.round,
+  "finished_at" =>
+    finished_at&.iso8601,
 
-        "elevation_gain_m" =>
-          elevation_gain.round,
+  "date" =>
+    started_at&.strftime("%Y-%m-%d"),
 
-        "elevation_loss_m" =>
-          elevation_loss.round,
+  "date_formatted" =>
+    format_gpx_date(started_at),
 
-        "point_count" =>
-          point_count,
+  "elevation_min_m" =>
+    elevations.empty? ? nil : elevations.min.round,
 
-        "segment_count" =>
-          segments.length
-      }
+  "elevation_max_m" =>
+    elevations.empty? ? nil : elevations.max.round,
+
+  "elevation_gain_m" =>
+    elevation_gain.round,
+
+  "elevation_loss_m" =>
+    elevation_loss.round,
+
+  "point_count" =>
+    point_count,
+
+  "segment_count" =>
+    segments.length
+}
     end
 
     def extract_segments(document)

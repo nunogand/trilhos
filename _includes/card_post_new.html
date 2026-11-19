@@ -14,11 +14,10 @@ file.extname == '.WEBP' or file.extname == '.AVIF'"
 %}
 
 {% assign card_image = folder_images | sample %}
-
 <article class="post-card" aria-labelledby="home-card-1">
-  <div class="card-content">
+            <div class="card-content">
     <div class="card-image"><img src="{{ card_image.path | relative_url }}" alt="{{post.title}}" width="600"
-        height="400" loading="lazy"><time class="date-badge">15 set. 2023</time></div>
+        height="400" loading="lazy"><time class="date-badge">{{ post.gpx_date }}</time></div>
     <div class="card-text">
       <h3>
         <a class="card-link" href="{{post.url | prepend: site.baseurl}}">
@@ -34,7 +33,6 @@ file.extname == '.WEBP' or file.extname == '.AVIF'"
         <span class="tag">{{ place }}</span>
       {% endfor %}
       </div>
-      
       
       <div class="card-stats" aria-label="Dados do percurso">
         <span class="stat-item"><i class="fas fa-route" aria-hidden="true"></i>{{ post.gpx_stats.distance_km }} km</span>

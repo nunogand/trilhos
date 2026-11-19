@@ -6,10 +6,10 @@ custom_css:
 
 
 
-<body>
+
 {% assign media_path = '/fotos/' | append: page.folder | append: '/' %}
 
-{%include navigation.html %}
+
     <header class="hero" style="--hero-image:url('https://picsum.photos/id/29/1920/1080.jpg')">
       <div class="hero-content">
         <h1>Fotografia de montanha</h1>
@@ -18,16 +18,13 @@ custom_css:
       </div>
     </header>
 
-  <main id="conteudo" class="main-section">
-
-     <div class="container">
+    <main id="conteudo" class="section section--photo" style="--section-image:url('https://picsum.photos/id/17/1600/800')">
+      <div class="container">
         <div class="section-header">
           <h2>Últimas publicações</h2>
           <p>Histórias, percursos e imagens recolhidos na montanha.</p>
         </div>
-
-
-<div class="post-cards">
+        <div class="post-cards">
     {% for post in site.posts %}
       {% include card_post_new.html post=post %}
       {% endfor %}
