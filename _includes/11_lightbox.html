@@ -1,0 +1,10 @@
+{%- comment -%} Lightbox da galeria (usado por trilho.js). Só é incluído quando há fotografias. {%- endcomment -%}
+<div class="modal-overlay" id="modal" role="dialog" aria-modal="true" aria-label="Galeria de fotografias">
+  <button class="modal-close" id="modalClose" type="button" aria-label="Fechar">✕</button>
+  <button class="modal-nav modal-prev" id="modalPrev" type="button" aria-label="Fotografia anterior">❮</button>
+  <div class="modal-content">
+    <img id="modalImg" src="" alt="">
+    <div class="modal-caption" id="modalCaption"></div>
+  </div>
+  <button class="modal-nav modal-next" id="modalNext" type="button" aria-label="Fotografia seguinte">❯</button>
+</div>
