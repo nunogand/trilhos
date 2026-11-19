@@ -1,0 +1,137 @@
+{%- comment -%}
+  Layout de um trilho. Front matter esperado no post:
+
+    layout: trilho
+    title: Ecovia do Minho
+    description: Texto curto para o hero e para <meta description>.
+    folder: /fotos/post_x            # pasta com 1 ficheiro .gpx + fotografias
+    hero_image: capa.jpg             # opcional; relativo a "folder" (ou URL absoluto)
+    captions:                        # opcional; legenda por nome de ficheiro
+      IMG_0012.jpg: Ponte sobre o rio
+
+  Se não houver hero_image usa-se a 1.ª fotografia; se não houver fotografias, uma imagem por omissão.
+{%- endcomment -%}
+
+{%- include trail-files.html folder=page.folder -%}
+
+{%- comment -%} Imagem do hero {%- endcomment -%}
+{%- if page.hero_image contains "://" -%}
+  {%- assign hero_url = page.hero_image -%}
+{%- elsif page.hero_image -%}
+  {%- assign hero_path = trail_prefix | append: page.hero_image | replace: "//", "/" -%}
+  {%- assign hero_url = hero_path | uri_escape | relative_url -%}
+{%- elsif trail_photos.size > 0 -%}
+  {%- assign hero_url = trail_photos.first.path | uri_escape | relative_url -%}
+{%- else -%}
+  {%- assign hero_url = site.trilho_default_hero | default: "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1800&q=80" -%}
+{%- endif -%}
+{%- assign hero_url = hero_url | replace: "'", "%27" -%}
+
+{%- assign post_text = content | strip -%}
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: 'pt-PT' }}">
+<head>
+  {% include head.html leaflet=true %}
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Saltar para o conteúdo</a>
+
+  {% include navbar.html active="percursos" %}
+
+  <!-- LOADER INICIAL (escondido por trilho.js) -->
+  <div class="page-loader" id="page-loader" role="status">
+    <div class="spinner"></div>
+    <p>A carregar trilho...</p>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero" style="--hero-image:url('{{ hero_url }}')">
+    <div class="hero-content">
+      <h1>{{ page.title | escape }}</h1>
+      {% if page.description %}<p>{{ page.description | escape }}</p>{% endif %}
+      <div class="hero-cta"><a class="button" href="#map-section">Ver mapa</a></div>
+    </div>
+  </header>
+
+  <!-- Dados para o JavaScript: caminho do GPX e pasta (usada em mensagens de erro) -->
+  <main id="conteudo"
+        data-gpx="{% if trail_gpx_path != '' %}{{ trail_gpx_path | uri_escape | relative_url }}{% endif %}"
+        data-folder="{{ trail_prefix }}">
+
+    {%- if post_text != "" %}
+    <!-- TEXTO DO POST -->
+    <section class="section" id="text-section" aria-label="Sobre o percurso">
+      <div class="container container--narrow">
+        <div class="panel trail-text">
+          {{ content }}
+        </div>
+      </div>
+    </section>
+    {%- endif %}
+
+    <!-- MAPA + ESTATÍSTICAS -->
+    <section class="section" id="map-section" aria-label="Mapa e estatísticas">
+      <div class="container container--narrow">
+        <div class="trail-grid">
+          <div class="panel map-card">
+            <div class="map-badge" id="map-title">{{ page.title | escape }}</div>
+            <div class="map-canvas" id="map"></div>
+            <div class="pip-chart" id="pip-chart-container">
+              <h3 class="panel-title">Perfil de elevação</h3>
+              <div class="chart-wrap">
+                <canvas id="elevationChart" aria-label="Perfil de elevação do trilho" role="img"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <aside class="panel stats-card" aria-label="Estatísticas do trilho">
+            <h3 class="panel-title">Estatísticas</h3>
+            <div class="trail-stat"><span class="trail-stat-label">Distância total</span><strong class="trail-stat-value" id="distance">—</strong></div>
+            <div class="trail-stat"><span class="trail-stat-label">Desnível positivo</span><strong class="trail-stat-value" id="elevationGain">—</strong></div>
+            <div class="trail-stat"><span class="trail-stat-label">Desnível negativo</span><strong class="trail-stat-value" id="elevationLoss">—</strong></div>
+            <div class="trail-stat"><span class="trail-stat-label">Duração</span><strong class="trail-stat-value" id="duration">—</strong></div>
+            <div class="trail-stat"><span class="trail-stat-label">Pontos GPX</span><strong class="trail-stat-value" id="points">—</strong></div>
+            <div class="trail-status" id="status" role="status"><span class="spinner spinner--small"></span> A carregar dados...</div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    {%- if trail_photos.size > 0 %}
+    <!-- GALERIA (gerada pelo Jekyll a partir da pasta) -->
+    <section class="section" id="gallery-section" aria-labelledby="gallery-title">
+      <div class="container container--narrow">
+        <div class="section-header">
+          <h2 id="gallery-title">Galeria</h2>
+          <p>Fotografias registadas ao longo do percurso.</p>
+        </div>
+        <div class="panel gallery-card">
+          <div class="gallery" id="gallery-container">
+            {%- for f in trail_photos %}
+            {%- assign caption = page.captions[f.name] %}
+            {%- unless caption %}{% capture caption %}Foto {{ forloop.index }}{% endcapture %}{% endunless %}
+            <button type="button" class="gallery-item" aria-label="Ampliar: {{ caption | escape }}"
+                    data-full="{{ f.path | uri_escape | relative_url }}" data-caption="{{ caption | escape }}">
+              <img src="{{ f.path | uri_escape | relative_url }}" alt="{{ caption | escape }}" loading="lazy">
+              <div class="gallery-overlay"><div class="gallery-icon" aria-hidden="true">+</div></div>
+            </button>
+            {%- endfor %}
+          </div>
+        </div>
+      </div>
+    </section>
+    {%- endif %}
+  </main>
+
+  {% include footer.html %}
+  {% include scroll-top.html %}
+  {%- if trail_photos.size > 0 %}
+  {% include lightbox.html %}
+  {%- endif %}
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+  <script src="{{ '/assets/js/script.js' | relative_url }}"></script>  <!-- partilhado: navegação e "voltar ao topo" -->
+  <script src="{{ '/assets/js/trilho.js' | relative_url }}"></script>  <!-- específico dos trilhos -->
+</body>
+</html>
