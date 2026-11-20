@@ -80,7 +80,7 @@ kramdown:
 
 plugins:
   - jekyll_picture_tag
-  
+  - jekyll-paginate-v2
 
 picture:
   source: assets
@@ -88,6 +88,13 @@ picture:
   suppress_warnings: false
   fast_build: true
 
+pagination:
+  enabled: true
+  per_page: 6
+  permalink: '/page/:num/'
+  title: ':title – página :num'
+  sort_field: 'date'        # ver nota abaixo
+  sort_reverse: true
 
 # development
 #incremental: true # When working locally to avoid rebuilding everything on change 

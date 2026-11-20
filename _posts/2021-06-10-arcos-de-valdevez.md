@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: trilho
 title:  "Arcos de Valdevez"
 date:   2021-06-10 19:35:06 +0100
 categories:

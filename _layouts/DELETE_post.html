@@ -1,0 +1,100 @@
+---
+layout: default
+---
+
+
+
+{% assign media_path = '/fotos/' | append: page.folder | append: '/' %}
+{% assign media_files = site.static_files | sort: 'path' %}
+{% assign gpx_path = nil %}
+{% assign first_image_path = nil %}
+
+{% for media_file in media_files %}
+  {% assign extension = media_file.extname | downcase %}
+  {% if media_file.path contains media_path %}
+    {% if gpx_path == nil and extension == '.gpx' %}
+      {% assign gpx_path = media_file.path %}
+    {% endif %}
+    {% if first_image_path == nil %}
+      {% if extension == '.jpg' or extension == '.jpeg' or extension == '.png' or extension == '.webp' or extension == '.avif' %}
+        {% assign first_image_path = media_file.path %}
+      {% endif %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+
+{% if page.cover_image %}
+  {% assign cover_path = media_path | append: page.cover_image %}
+{% else %}
+  {% assign cover_path = first_image_path %}
+{% endif %}
+
+<header
+  class="hero trail-hero"
+  {% if cover_path %}style="--hero-image: url('{{ cover_path | relative_url }}')"{% endif %}
+>
+  <div class="hero-content">
+    <h1>{{ page.title }}</h1>
+    {% if page.description %}<p>{{ page.description }}</p>{% endif %}
+
+    <div class="hero-cta">
+      {% if gpx_path %}
+        <a class="button" href="#map-section">Ver mapa</a>
+        <a class="button button--secondary" href="{{ gpx_path | relative_url }}" download>
+          Descarregar GPX
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</header>
+
+<main id="conteudo">
+  {% if content != empty %}
+    <section class="trail-section trail-description">
+      <div class="container prose">{{ content }}</div>
+    </section>
+  {% endif %}
+
+  <section class="trail-section" id="map-section">
+    <div class="container">
+      {% if gpx_path %}
+        <div class="trail-grid">
+          <div class="map-card">
+            <div class="map-badge">{{ page.title }}</div>
+            <div
+  id="map"
+  data-title="{{ page.title | escape }}"
+  data-folder="{{ page.folder | escape }}"
+  data-gpx="{{ gpx_path | relative_url }}"
+></div>
+
+            <div class="pip-chart" id="pip-chart-container">
+              <h2>Perfil de elevação</h2>
+              <div class="chart-wrap"><canvas id="elevationChart"></canvas></div>
+            </div>
+          </div>
+
+          <aside class="stats-card" aria-labelledby="stats-title">
+            <h2 id="stats-title">Estatísticas</h2>
+            <div class="trail-stat"><span>Distância total</span><strong id="distance">A calcular</strong></div>
+            <div class="trail-stat"><span>Desnível positivo</span><strong id="elevationGain">A calcular</strong></div>
+            <div class="trail-stat"><span>Desnível negativo</span><strong id="elevationLoss">A calcular</strong></div>
+            <div class="trail-stat"><span>Duração</span><strong id="duration">A calcular</strong></div>
+            <div class="trail-stat"><span>Altitude mínima</span><strong id="minElevation">A calcular</strong></div>
+            <div class="trail-stat"><span>Altitude máxima</span><strong id="maxElevation">A calcular</strong></div>
+            <div class="trail-stat"><span>Pontos GPX</span><strong id="points">A calcular</strong></div>
+            <p class="trail-status" id="status" role="status" aria-live="polite">A carregar dados do percurso...</p>
+          </aside>
+        </div>
+      {% else %}
+        <div class="notice notice--error" role="alert">
+          Não foi encontrado um ficheiro GPX em <code>{{ media_path }}</code>.
+        </div>
+      {% endif %}
+    </div>
+  </section>
+
+  {% include trail-gallery.html folder=page.folder title=page.title %}
+</main>
+
+    

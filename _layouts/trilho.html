@@ -4,15 +4,16 @@
     layout: trilho
     title: Ecovia do Minho
     description: Texto curto para o hero e para <meta description>.
-    folder: /fotos/post_x            # pasta com 1 ficheiro .gpx + fotografias
-    hero_image: capa.jpg             # opcional; relativo a "folder" (ou URL absoluto)
+    folder: post_x                   # nome da pasta dentro de /fotos (1 ficheiro .gpx + fotografias)
+    cover: capa.jpg                  # opcional; relativo à pasta. Usada no cartão e, por omissão, no hero
+    hero_image: outra.jpg            # opcional; só para o hero (relativo à pasta, ou URL absoluto)
     captions:                        # opcional; legenda por nome de ficheiro
       IMG_0012.jpg: Ponte sobre o rio
 
-  Se não houver hero_image usa-se a 1.ª fotografia; se não houver fotografias, uma imagem por omissão.
+  Hero: hero_image → cover → 1.ª fotografia → imagem por omissão.
 {%- endcomment -%}
 
-{%- include trail-files.html folder=page.folder -%}
+{%- include trail-files.html folder=page.folder cover=page.cover -%}
 
 {%- comment -%} Imagem do hero {%- endcomment -%}
 {%- if page.hero_image contains "://" -%}
@@ -20,8 +21,8 @@
 {%- elsif page.hero_image -%}
   {%- assign hero_path = trail_prefix | append: page.hero_image | replace: "//", "/" -%}
   {%- assign hero_url = hero_path | uri_escape | relative_url -%}
-{%- elsif trail_photos.size > 0 -%}
-  {%- assign hero_url = trail_photos.first.path | uri_escape | relative_url -%}
+{%- elsif trail_cover_path != "" -%}
+  {%- assign hero_url = trail_cover_path | uri_escape | relative_url -%}
 {%- else -%}
   {%- assign hero_url = site.trilho_default_hero | default: "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1800&q=80" -%}
 {%- endif -%}
@@ -31,12 +32,14 @@
 <!DOCTYPE html>
 <html lang="{{ site.lang | default: 'pt-PT' }}">
 <head>
-  {% include head.html leaflet=true %}
+  {% include head.html %}
+  <!-- Leaflet CSS: obrigatório para o mapa. Fica aqui (e não no head.html) para não depender dele. -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css">
 </head>
 <body>
   <a class="skip-link" href="#conteudo">Saltar para o conteúdo</a>
 
-  {% include navbar.html active="percursos" %}
+  {% include navigation.html active="percursos" %}
 
   <!-- LOADER INICIAL (escondido por trilho.js) -->
   <div class="page-loader" id="page-loader" role="status">
@@ -124,14 +127,14 @@
   </main>
 
   {% include footer.html %}
-  {% include scroll-top.html %}
+  
   {%- if trail_photos.size > 0 %}
   {% include lightbox.html %}
   {%- endif %}
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
-  <script src="{{ '/assets/js/script.js' | relative_url }}"></script>  <!-- partilhado: navegação e "voltar ao topo" -->
+  <script src="{{ '/assets/js/site.js' | relative_url }}"></script>  <!-- partilhado: navegação e "voltar ao topo" -->
   <script src="{{ '/assets/js/trilho.js' | relative_url }}"></script>  <!-- específico dos trilhos -->
 </body>
 </html>

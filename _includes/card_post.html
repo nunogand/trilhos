@@ -1,0 +1,56 @@
+{%- comment -%}
+  Cartão de um post (página inicial / arquivo).
+  Uso:  {% include card_post.html post=post %}
+        {% include card_post.html post=post variant="vertical" chips="tags" filterable=true %}   (arquivo com filtros)
+
+  Parâmetros opcionais:
+    variant="vertical"   cartão vertical (grelha do arquivo)
+    chips="tags"         campo do front matter apresentado como etiquetas (por omissão: places)
+    filterable=true      acrescenta data-tags="slug1 slug2" (usado por assets/js/filter.js)
+
+  Front matter usado:  title · description · folder · cover · gpx_date · places · gpx_stats
+{%- endcomment -%}
+{%- assign card_post = include.post -%}
+{%- assign card_variant = include.variant -%}
+{%- include trail-files.html folder=card_post.folder cover=card_post.cover -%}
+
+{%- assign card_id = "card-" | append: card_post.slug -%}
+{%- assign card_date = card_post.gpx_date | default: card_post.date -%}
+{%- assign card_summary = card_post.description | default: card_post.excerpt | strip_html | normalize_whitespace | truncatewords: 30 -%}
+{%- assign stats = card_post.gpx_stats -%}
+
+{%- comment -%} Etiquetas: aceita lista ou texto simples; slugs em ASCII (Família → familia) para data-tags {%- endcomment -%}
+{%- assign chips_field = include.chips | default: "places" -%}
+{%- assign card_chips = card_post[chips_field] | join: "|" | split: "|" -%}
+{%- capture card_slugs -%}{%- for chip in card_chips -%}{{ chip | strip | slugify: "latin" }}{%- unless forloop.last %} {% endunless -%}{%- endfor -%}{%- endcapture -%}
+
+<article class="post-card{% if card_variant == 'vertical' %} post-card--vertical{% endif %}" aria-labelledby="{{ card_id }}"{% if include.filterable %} data-tags="{{ card_slugs }}"{% endif %}>
+  <div class="card-content">
+    <div class="card-image">
+      {%- if trail_cover_path != "" %}
+      <img src="{{ trail_cover_path | uri_escape | relative_url }}" alt="" width="600" height="400" loading="lazy" decoding="async">
+      {%- endif %}
+      {%- if card_date %}
+      <time class="date-badge" datetime="{{ card_date | date_to_xmlschema }}">{{ card_date | date: "%d/%m/%Y" }}</time>
+      {%- endif %}
+    </div>
+    <div class="card-text">
+      <h3 id="{{ card_id }}"><a class="card-link" href="{{ card_post.url | relative_url }}">{{ card_post.title | escape }}</a></h3>
+      <p>{{ card_summary }}</p>
+      {%- if card_chips.size > 0 %}
+      <div class="tags">
+        {%- for chip in card_chips %}
+        <span class="tag">{{ chip | escape }}</span>
+        {%- endfor %}
+      </div>
+      {%- endif %}
+      {%- if stats %}
+      <div class="card-stats">
+        <span class="stat-item"><i class="fas fa-route" aria-hidden="true"></i><span class="visually-hidden">Distância: </span>{{ stats.distance_km | replace: ".", "," }} km</span>
+        <span class="stat-item"><i class="fas fa-mountain" aria-hidden="true"></i><span class="visually-hidden">Altitude máxima: </span>{{ stats.elevation_max_m }} m</span>
+        <span class="stat-item"><i class="fas fa-clock" aria-hidden="true"></i><span class="visually-hidden">Duração: </span>{{ stats.duration_formatted }}</span>
+      </div>
+      {%- endif %}
+    </div>
+  </div>
+</article>

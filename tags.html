@@ -1,0 +1,73 @@
+---
+layout: default
+title: Arquivo de percursos
+nav: arquivo
+permalink: /tags/
+filter_field: places              # campo do front matter dos posts usado nos filtros (tags, places, ...)
+hero_image: https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1800&q=80
+hero_title: Arquivo de percursos
+hero_text: Combine etiquetas para encontrar percursos adequados à paisagem, dificuldade e experiência que procura.
+section_image: https://picsum.photos/id/17/1600/800
+---
+{%- comment -%}
+  Arquivo com filtros combináveis (lógica E: um percurso tem de ter TODAS as etiquetas selecionadas).
+  - Lista TODOS os posts (sem paginação), porque o filtro corre no browser (assets/js/filter.js).
+  - As etiquetas vêm do campo indicado em "filter_field" (por omissão, "tags").
+  - Cada cartão leva data-tags="slug1 slug2" (ver _includes/card_post.html).
+{%- endcomment -%}
+{%- assign facet = page.filter_field | default: "tags" -%}
+{%- assign all_posts = site.posts -%}
+{%- assign labels = all_posts | map: facet | join: "|" | split: "|" | uniq | sort_natural -%}
+
+<header class="hero" style="--hero-image:url('{{ page.hero_image }}')">
+  <div class="hero-content">
+    <h1>{{ page.hero_title }}</h1>
+    <p>{{ page.hero_text }}</p>
+    <div class="hero-cta"><a class="button" href="#conteudo">Explorar arquivo</a></div>
+  </div>
+</header>
+
+<main id="conteudo" class="section section--photo" style="--section-image:url('{{ page.section_image }}')">
+  <div class="container">
+    <div class="section-header">
+      <h2>Percursos disponíveis</h2>
+      <p>Os filtros são combináveis. Ao selecionar várias etiquetas, são apresentados apenas os percursos que incluem todas elas.</p>
+    </div>
+
+    <div class="archive-layout">
+      <aside class="filter-panel" aria-labelledby="filter-title">
+        <div class="filter-heading">
+          <h2 id="filter-title">Filtrar</h2>
+          <button class="filter-toggle" type="button" aria-expanded="false" aria-controls="filter-body">Mostrar</button>
+        </div>
+        <div class="filter-body" id="filter-body">
+          <ul class="filter-list">
+            {%- for label in labels %}
+              {%- assign name = label | strip -%}
+              {%- if name == "" %}{% continue %}{% endif -%}
+              {%- assign total = 0 -%}
+              {%- for p in all_posts -%}
+                {%- assign plabels = p[facet] | join: "|" | split: "|" -%}
+                {%- if plabels contains name %}{% assign total = total | plus: 1 %}{% endif -%}
+              {%- endfor %}
+            <li><button type="button" class="filter-button" data-filter="{{ name | slugify: 'latin' }}" aria-pressed="false"><span>{{ name | escape }}</span><span class="filter-count">{{ total }}</span></button></li>
+            {%- endfor %}
+          </ul>
+          <button type="button" class="clear-filters" hidden>Limpar filtros</button>
+        </div>
+      </aside>
+
+      <section aria-label="Resultados">
+        <p class="results-summary" aria-live="polite">{{ all_posts.size }} percurso{% if all_posts.size != 1 %}s{% endif %}</p>
+        <div class="post-cards archive-grid" id="archive-grid">
+          {%- for post in all_posts %}
+            {% include card_post.html post=post variant="vertical" chips=facet filterable=true %}
+          {%- endfor %}
+        </div>
+        <p class="no-results" hidden>Não foram encontrados percursos com todas as etiquetas selecionadas.</p>
+      </section>
+    </div>
+  </div>
+</main>
+
+<script src="{{ '/assets/js/filter.js' | relative_url }}" defer></script>
