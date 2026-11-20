@@ -1,7 +1,6 @@
-
 /* ==========================================================================
    TRILHOS — folha de estilos única (partilhada por todas as páginas)
- 
+
    Índice
     1. Tokens (variáveis)
     2. Base e acessibilidade
@@ -19,19 +18,19 @@
    14. Rodapé e botão "voltar ao topo"
    15. Responsivo
    16. Movimento reduzido
- 
+
    Fontes (Abel, Inter) e Font Awesome são carregadas com <link> no <head>
    de cada página — não com @import — para não bloquear a renderização.
    ========================================================================== */
- 
- 
+
+
 /* 1. TOKENS
    ========================================================================== */
 :root {
   /* Tipografia */
   --font-display: "Abel", sans-serif;
   --font-body: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
- 
+
   /* Cores */
   --ink: #2c2c2c;
   --text: #555;
@@ -43,35 +42,35 @@
   --green-soft: #eef3e8;
   --brown: #8b4513;
   --danger: #b3261e;
- 
+
   /* Superfícies */
   --background: #f5f7f0;
   --surface: #fff;
   --surface-glass: rgba(255, 255, 255, .92);
   --border: rgba(45, 80, 22, .12);
- 
+
   /* Sombras */
   --shadow-sm: 0 4px 12px rgba(0, 0, 0, .10);
   --shadow-md: 0 8px 25px rgba(0, 0, 0, .08);
   --shadow-lg: 0 12px 32px rgba(45, 80, 22, .14);
- 
+
   /* Medidas e movimento */
   --radius: 20px;
   --nav-height: 74px;
   --container: 1400px;
   --ease: .3s ease;
 }
- 
- 
+
+
 /* 2. BASE E ACESSIBILIDADE
    ========================================================================== */
 *, *::before, *::after { box-sizing: border-box; }
- 
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: var(--nav-height); /* âncoras não ficam tapadas pela navbar fixa */
 }
- 
+
 body {
   margin: 0;
   color: var(--ink);
@@ -81,30 +80,30 @@ body {
   font-family: var(--font-body);
   line-height: 1.65;
 }
- 
+
 body.menu-open,
 body.modal-open { overflow: hidden; }
- 
+
 img { display: block; max-width: 100%; }
 button, input { font: inherit; }
 a { color: inherit; }
- 
+
 :focus-visible { outline: 3px solid var(--brown); outline-offset: 3px; }
- 
+
 .skip-link {
   position: fixed; top: -60px; left: 12px; z-index: 9999;
   padding: 10px 14px; border-radius: 6px; color: #fff; background: var(--green);
 }
 .skip-link:focus { top: 12px; }
- 
+
 .visually-hidden {
   position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden;
   clip-path: inset(50%); white-space: nowrap; border: 0;
 }
- 
+
 .is-hidden { opacity: 0; visibility: hidden; pointer-events: none; }
- 
- 
+
+
 /* 3. LAYOUT
    ========================================================================== */
 .container {
@@ -112,10 +111,10 @@ a { color: inherit; }
   margin-inline: auto;
 }
 .container--narrow { --container: 1180px; }
- 
+
 .section { padding: 76px 0; }
 .section + .section { padding-top: 0; }
- 
+
 /* Secção com fotografia de fundo (definida por página em --section-image) */
 .section--photo {
   min-height: 60vh;
@@ -126,17 +125,17 @@ a { color: inherit; }
   background-position: center;
   background-attachment: fixed;
 }
- 
+
 .section-header { margin-bottom: 42px; text-align: center; }
 .section-header h2 {
   margin: 0 0 8px; color: var(--ink);
   font: 400 clamp(2rem, 4vw, 2.8rem) var(--font-display); letter-spacing: 2px;
 }
 .section-header p { max-width: 700px; margin: auto; color: var(--text); font-size: 1.05rem; }
- 
+
 .results-summary { margin: 0 0 18px; color: var(--muted); }
- 
- 
+
+
 /* 4. NAVEGAÇÃO
    ========================================================================== */
 .navbar {
@@ -148,16 +147,16 @@ a { color: inherit; }
   transition: box-shadow var(--ease), background var(--ease), border-color var(--ease);
 }
 .navbar.scrolled { background: rgba(255, 255, 255, .98); box-shadow: 0 3px 26px rgba(0, 0, 0, .14); }
- 
+
 .nav-container { min-height: var(--nav-height); display: flex; justify-content: space-between; align-items: center; }
- 
+
 .nav-logo {
   display: flex; align-items: center; gap: 10px; color: var(--ink);
   font: 400 1.8rem var(--font-display); letter-spacing: 2px; text-decoration: none;
   transition: color var(--ease);
 }
 .nav-logo svg { width: 2em; height: 2em; fill: currentColor; }
- 
+
 .nav-menu { display: flex; align-items: center; gap: 22px; margin: 0; padding: 0; list-style: none; }
 .nav-menu a {
   position: relative; display: block; padding: 8px 10px; border-radius: 8px;
@@ -173,14 +172,14 @@ a { color: inherit; }
 .nav-menu a.active { color: var(--green); background: rgba(45, 80, 22, .07); }
 .nav-menu a:hover::after,
 .nav-menu a.active::after { right: 10%; left: 10%; }
- 
+
 .mobile-toggle { position: relative; z-index: 2; /* fica acima do menu lateral */ display: none; flex-direction: column; gap: 5px; padding: 8px; border: 0; background: none; cursor: pointer; }
 .mobile-toggle span { width: 28px; height: 3px; border-radius: 3px; background: var(--ink); transition: transform var(--ease), opacity var(--ease), background var(--ease); }
 .mobile-toggle.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
 .mobile-toggle.active span:nth-child(2) { opacity: 0; }
 .mobile-toggle.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
- 
- 
+
+
 /* 4b. NAVBAR TRANSPARENTE (variante .navbar--overlay)
    Transparente sobre o hero; torna-se sólida quando o JS acrescenta .scrolled.
    ========================================================================== */
@@ -191,15 +190,15 @@ a { color: inherit; }
 .navbar--overlay:not(.scrolled) .mobile-toggle span { background: #fff; }
 /* Com o menu lateral aberto (fundo branco) as barras voltam a ser escuras */
 body.menu-open .navbar--overlay .mobile-toggle span { background: var(--ink); }
- 
+
 @media (min-width: 769px) {
   .navbar--overlay:not(.scrolled) .nav-menu a { color: rgba(255, 255, 255, .92); text-shadow: 0 1px 6px rgba(0, 0, 0, .45); }
   .navbar--overlay:not(.scrolled) .nav-menu a:hover,
   .navbar--overlay:not(.scrolled) .nav-menu a.active { color: #fff; background: rgba(255, 255, 255, .18); }
   .navbar--overlay:not(.scrolled) .nav-menu a::after { background: #fff; }
 }
- 
- 
+
+
 /* 5. HERO
    A imagem é definida por página: <header class="hero" style="--hero-image:url(...)">
    ========================================================================== */
@@ -223,8 +222,8 @@ body.menu-open .navbar--overlay .mobile-toggle span { background: var(--ink); }
   font-size: clamp(1.05rem, 2.5vw, 1.4rem); text-shadow: 1px 1px 3px rgba(0, 0, 0, .5);
 }
 .hero-cta { margin-top: 28px; }
- 
- 
+
+
 /* 6. BOTÕES
    ========================================================================== */
 .button {
@@ -234,8 +233,8 @@ body.menu-open .navbar--overlay .mobile-toggle span { background: var(--ink); }
   transition: transform var(--ease), box-shadow var(--ease), background var(--ease);
 }
 .button:hover { transform: translateY(-2px); background: var(--green-light); box-shadow: 0 10px 25px rgba(45, 80, 22, .3); }
- 
- 
+
+
 /* 7. PAINÉIS (superfície partilhada)
    Usado por: mapa, estatísticas, galeria e painel de filtros.
    ========================================================================== */
@@ -248,14 +247,14 @@ body.menu-open .navbar--overlay .mobile-toggle span { background: var(--ink); }
   backdrop-filter: blur(12px);
 }
 .panel { overflow: hidden; }
- 
+
 .panel-title { margin: 0; color: var(--ink); font: 400 1.5rem/1.2 var(--font-display); letter-spacing: 1px; }
- 
- 
+
+
 /* 8. CARTÕES DE PUBLICAÇÃO
    ========================================================================== */
 .post-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 34px; }
- 
+
 .post-card {
   position: relative; overflow: hidden;
   border: 1px solid var(--border); border-radius: var(--radius);
@@ -270,60 +269,60 @@ body.menu-open .navbar--overlay .mobile-toggle span { background: var(--ink); }
 .post-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
 .post-card:hover::before { transform: scaleX(1); }
 .post-card[hidden] { display: none; }
- 
+
 .card-content { display: flex; height: 100%; }
 .card-image { position: relative; flex: 1.2; min-height: 280px; overflow: hidden; background: var(--green-soft); }
 .card-image img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
 .post-card:hover .card-image img { transform: scale(1.05); }
- 
+
 .date-badge {
   position: absolute; top: 18px; right: 18px; padding: 7px 14px; border-radius: 999px;
   color: var(--text); background: rgba(255, 255, 255, .92); box-shadow: var(--shadow-sm); font-size: .82rem;
 }
- 
+
 .card-text { flex: 1; display: flex; flex-direction: column; padding: 28px; }
 .card-text h3 { margin: 0 0 12px; color: var(--ink); font: 400 1.75rem/1.25 var(--font-display); letter-spacing: 1px; transition: color var(--ease); }
 .post-card:hover h3 { color: var(--green); }
 .card-text p { flex: 1; margin: 0 0 20px; color: var(--muted); }
- 
+
 /* Ligação "esticada": o título é a única <a>, mas o cartão inteiro é clicável */
 .card-link { color: inherit; text-decoration: none; }
 .card-link::after { content: ""; position: absolute; z-index: 2; inset: 0; }
 .card-link:focus-visible { outline: none; }
 .card-link:focus-visible::after { outline: 3px solid var(--brown); outline-offset: -4px; border-radius: var(--radius); }
- 
+
 .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
 .tag { padding: 5px 12px; border-radius: 999px; color: var(--text); background: var(--green-soft); font-size: .82rem; }
- 
+
 .card-stats { display: flex; flex-wrap: wrap; gap: 16px; padding-top: 14px; border-top: 1px solid var(--border); }
 .stat-item { display: inline-flex; align-items: center; gap: 7px; color: var(--muted); font-size: .88rem; white-space: nowrap; }
-.stat-item i { color: var(--green); }
- 
+.stat-item .icon { width: 1.1em; height: 1.1em; flex: none; color: var(--green); }
+
 /* Variante vertical (usada no arquivo) */
 .post-card--vertical .card-content { flex-direction: column; }
 .post-card--vertical .card-image { flex: none; min-height: 0; aspect-ratio: 16 / 10; }
 .post-card--vertical .card-text { padding: 24px; }
 .post-card--vertical .card-text h3 { font-size: 1.55rem; }
- 
- 
+
+
 /* Scroll infinito: botão/sentinela e entrada dos cartões novos */
 .load-more { margin-top: 42px; text-align: center; }
 .load-more[aria-busy="true"] .button { opacity: .6; pointer-events: none; }
 .post-card.is-new { animation: card-in .5s ease both; }
 @keyframes card-in { from { opacity: 0; transform: translateY(16px); } }
- 
+
 /* 9. ARQUIVO E FILTROS
    ========================================================================== */
 .archive-layout { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 32px; align-items: start; }
 .archive-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
- 
+
 .filter-panel { position: sticky; top: calc(var(--nav-height) + 22px); padding: 22px; }
 .filter-heading { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
 .filter-heading h2 { margin: 0; font: 400 1.55rem var(--font-display); }
 .filter-toggle { display: none; border: 0; color: var(--green); background: transparent; cursor: pointer; }
 .filter-body { margin-top: 16px; }
 .filter-list { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
- 
+
 .filter-button {
   width: 100%; display: flex; justify-content: space-between; gap: 10px; padding: 11px 13px;
   border: 1px solid var(--border); border-radius: 11px; color: var(--ink); background: #fff; cursor: pointer;
@@ -334,21 +333,21 @@ body.menu-open .navbar--overlay .mobile-toggle span { background: var(--ink); }
 .filter-button[aria-pressed="true"] { color: #fff; border-color: var(--green); background: var(--green); }
 .filter-count { padding: 1px 8px; border-radius: 999px; background: rgba(0, 0, 0, .06); font-size: .78rem; }
 .filter-button[aria-pressed="true"] .filter-count { background: rgba(255, 255, 255, .18); }
- 
+
 .clear-filters { width: 100%; margin-top: 14px; padding: 9px; border: 0; color: var(--green); background: transparent; cursor: pointer; text-decoration: underline; }
 .no-results { padding: 30px; border-radius: var(--radius); text-align: center; color: var(--muted); background: #fff; }
- 
- 
+
+
 /* 10. PÁGINA DE TRILHO
    ========================================================================== */
 .trail-grid { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 1fr); gap: 24px; }
- 
+
 /* Mapa */
 /* O mapa é posicionado de forma absoluta dentro do cartão: ocupa sempre o cartão
    (altura mínima 560px, ou a da coluna de estatísticas) e nunca estica a página. */
 .map-card { position: relative; min-height: 560px; }
 .map-canvas { position: absolute; inset: 0; z-index: 1; background: #eef2ee; }
- 
+
 .map-badge {
   position: absolute; z-index: 500; top: 16px; left: 45px; right: 16px;
   display: flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 12px;
@@ -356,7 +355,7 @@ body.menu-open .navbar--overlay .mobile-toggle span { background: var(--ink); }
   font-size: .85rem; font-weight: 700;
 }
 .map-badge::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--green); }
- 
+
 /* Perfil de elevação sobreposto ao mapa */
 .pip-chart {
   position: absolute; z-index: 500; right: 16px; bottom: 16px;
@@ -369,16 +368,16 @@ body.menu-open .navbar--overlay .mobile-toggle span { background: var(--ink); }
 .pip-chart:active { transform: scale(1.01); box-shadow: 0 16px 40px rgba(31, 61, 43, .25); }
 .pip-chart .panel-title { margin-bottom: 8px; font-size: 1.2rem; }
 .chart-wrap { position: relative; width: 100%; height: 120px; }
- 
+
 /* Texto do post (conteúdo markdown do Jekyll) */
 .trail-text { padding: 28px; }
 .trail-text > :first-child { margin-top: 0; }
 .trail-text > :last-child { margin-bottom: 0; }
- 
+
 /* Estatísticas */
 .stats-card { display: flex; flex-direction: column; gap: 16px; padding: 24px; }
 .stats-card .panel-title { padding-bottom: 12px; border-bottom: 2px solid var(--border); }
- 
+
 .trail-stat {
   padding: 16px; border: 1px solid var(--border); border-radius: 16px;
   background: linear-gradient(135deg, #fff, var(--green-soft));
@@ -387,11 +386,11 @@ body.menu-open .navbar--overlay .mobile-toggle span { background: var(--ink); }
 .trail-stat:hover { transform: translateY(-2px); border-color: rgba(45, 80, 22, .28); }
 .trail-stat-label { display: block; margin-bottom: 6px; color: var(--muted); font-size: .75rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
 .trail-stat-value { display: block; color: var(--green-dark); font: 400 1.9rem/1.1 var(--font-display); letter-spacing: 1px; }
- 
+
 .trail-status { display: flex; align-items: center; gap: 8px; margin-top: auto; padding-top: 12px; font-size: .85rem; }
 .trail-status.is-ok { color: var(--green); font-weight: 700; }
 .trail-status.is-error { color: var(--danger); font-weight: 600; }
- 
+
 /* Galeria (masonry em colunas) */
 .gallery-card { padding: 24px; }
 .gallery { column-count: 3; column-gap: 20px; }
@@ -409,8 +408,8 @@ body.menu-open .navbar--overlay .mobile-toggle span { background: var(--ink); }
 .gallery-item:hover .gallery-overlay,
 .gallery-item:focus-visible .gallery-overlay { opacity: 1; }
 .gallery-icon { display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 50%; color: #fff; background: rgba(0, 0, 0, .5); font-size: 1.2rem; }
- 
- 
+
+
 /* 11. LIGHTBOX
    ========================================================================== */
 .modal-overlay {
@@ -418,11 +417,11 @@ body.menu-open .navbar--overlay .mobile-toggle span { background: var(--ink); }
   background: rgba(15, 23, 18, .94); backdrop-filter: blur(8px);
 }
 .modal-overlay.open { display: flex; }
- 
+
 .modal-content { position: relative; max-width: 90vw; max-height: 90vh; overflow: hidden; border-radius: 8px; box-shadow: 0 30px 90px rgba(0, 0, 0, .6); }
 .modal-content img { display: block; max-width: 90vw; max-height: 85vh; object-fit: contain; }
 .modal-caption { position: absolute; right: 0; bottom: 0; left: 0; padding: 20px; color: #fff; text-align: center; background: linear-gradient(to top, rgba(0, 0, 0, .8), transparent); }
- 
+
 .modal-close,
 .modal-nav {
   position: absolute; z-index: 6010; display: flex; align-items: center; justify-content: center;
@@ -435,8 +434,8 @@ body.menu-open .navbar--overlay .mobile-toggle span { background: var(--ink); }
 .modal-nav { top: 50%; width: 48px; height: 48px; transform: translateY(-50%); }
 .modal-prev { left: 20px; }
 .modal-next { right: 20px; }
- 
- 
+
+
 /* 12. LOADER E SPINNER
    ========================================================================== */
 .page-loader {
@@ -444,23 +443,23 @@ body.menu-open .navbar--overlay .mobile-toggle span { background: var(--ink); }
   background: var(--background); transition: opacity .5s ease, visibility .5s ease;
 }
 .page-loader p { margin: 16px 0 0; color: var(--muted); font-weight: 500; }
- 
+
 .spinner {
   width: 50px; height: 50px; border: 4px solid rgba(45, 80, 22, .1); border-left-color: var(--green);
   border-radius: 50%; animation: spin 1s linear infinite;
 }
 .spinner--small { width: 16px; height: 16px; border-width: 2px; }
 @keyframes spin { to { transform: rotate(360deg); } }
- 
- 
+
+
 /* 13. LEAFLET (ajustes)
    Requer leaflet.css no <head> (ver _layouts/trilho.html). Os seletores abaixo têm
    especificidade suficiente para funcionar qualquer que seja a ordem de carregamento.
    ========================================================================== */
 .map-canvas.leaflet-container .leaflet-control-layers { overflow: hidden; border: 0; border-radius: 12px; box-shadow: var(--shadow-sm); }
 .map-canvas.leaflet-container .leaflet-control-layers-toggle { width: 36px; height: 36px; }
- 
- 
+
+
 /* 14. RODAPÉ E "VOLTAR AO TOPO"
    ========================================================================== */
 footer {
@@ -469,7 +468,7 @@ footer {
   font-family: var(--font-display); letter-spacing: 1px;
 }
 footer p { margin: 0; }
- 
+
 .scroll-to-top {
   position: fixed; right: 28px; bottom: 28px; z-index: 900; display: grid; place-items: center;
   width: 50px; height: 50px; border: 0; border-radius: 50%; color: #fff; background: var(--green);
@@ -479,8 +478,8 @@ footer p { margin: 0; }
 .scroll-to-top svg { width: 20px; height: 20px; }
 .scroll-to-top.visible { opacity: 1; visibility: visible; }
 .scroll-to-top:hover { transform: translateY(-4px); background: var(--green-light); }
- 
- 
+
+
 /* 15. RESPONSIVO
    Breakpoints: 1180 · 960 · 768 · 640 · 480
    ========================================================================== */
@@ -488,13 +487,13 @@ footer p { margin: 0; }
   .post-cards { grid-template-columns: 1fr; max-width: 820px; margin-inline: auto; }
   .archive-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: none; }
 }
- 
+
 @media (max-width: 960px) {
   /* Arquivo */
   .archive-layout { grid-template-columns: 1fr; }
   .filter-panel { position: static; }
   .filter-list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
- 
+
   /* Trilho */
   .trail-grid { grid-template-columns: 1fr; }
   .map-card { height: 500px; min-height: 500px; }
@@ -503,10 +502,10 @@ footer p { margin: 0; }
   .trail-status { grid-column: 1 / -1; }
   .gallery { column-count: 2; }
 }
- 
+
 @media (max-width: 768px) {
   .container { width: min(100% - 30px, var(--container)); }
- 
+
   /* Menu lateral */
   .mobile-toggle { display: flex; }
   .nav-menu {
@@ -519,17 +518,17 @@ footer p { margin: 0; }
   .nav-menu li { border-bottom: 1px solid var(--green-soft); }
   .nav-menu a { padding: 15px 10px; font-size: 1.25rem; }
   body.menu-open::before { content: ""; position: fixed; inset: 0; z-index: 999; background: rgba(0, 0, 0, .48); }
- 
+
   /* Hero e secções (background-attachment: fixed não funciona bem em mobile) */
   .hero { min-height: 55vh; background-attachment: scroll; }
   .section { padding: 56px 0; }
   .section--photo { background-attachment: scroll; }
- 
+
   /* Cartões */
   .card-content { flex-direction: column; }
   .card-image { flex: none; min-height: 230px; }
   .archive-grid { grid-template-columns: 1fr; }
- 
+
   /* Filtros recolhíveis */
   .filter-heading { cursor: pointer; }
   .filter-toggle { display: inline-flex; }
@@ -537,7 +536,7 @@ footer p { margin: 0; }
   .filter-panel.open .filter-body { display: block; }
   .filter-list { grid-template-columns: 1fr 1fr; }
 }
- 
+
 @media (max-width: 640px) {
   .stats-card { grid-template-columns: 1fr; }
   .map-card { height: 400px; min-height: 400px; }
@@ -546,7 +545,7 @@ footer p { margin: 0; }
   .gallery { column-count: 1; }
   .modal-nav { display: none; }
 }
- 
+
 @media (max-width: 480px) {
   .nav-logo { font-size: 1.4rem; }
   .nav-logo svg { width: 1.55em; height: 1.55em; }
@@ -555,8 +554,8 @@ footer p { margin: 0; }
   .card-stats { gap: 10px; }
   .scroll-to-top { right: 16px; bottom: 16px; width: 46px; height: 46px; }
 }
- 
- 
+
+
 /* 16. MOVIMENTO REDUZIDO
    ========================================================================== */
 @media (prefers-reduced-motion: reduce) {
