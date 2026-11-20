@@ -22,7 +22,13 @@
 {%- comment -%} Etiquetas: aceita lista ou texto simples; slugs em ASCII (Família → familia) para data-tags {%- endcomment -%}
 {%- assign chips_field = include.chips | default: "places" -%}
 {%- assign card_chips = card_post[chips_field] | join: "|" | split: "|" -%}
-{%- capture card_slugs -%}{%- for chip in card_chips -%}{{ chip | strip | slugify: "latin" }}{%- unless forloop.last %} {% endunless -%}{%- endfor -%}{%- endcapture -%}
+{%- comment -%} Os slugs são acumulados numa lista e unidos com join (não depende do controlo de espaços do Liquid) {%- endcomment -%}
+{%- assign card_slug_list = "" | split: "" -%}
+{%- for chip in card_chips -%}
+  {%- assign chip_slug = chip | strip | slugify: "latin" -%}
+  {%- assign card_slug_list = card_slug_list | push: chip_slug -%}
+{%- endfor -%}
+{%- assign card_slugs = card_slug_list | join: " " -%}
 
 <article class="post-card{% if card_variant == 'vertical' %} post-card--vertical{% endif %}" aria-labelledby="{{ card_id }}"{% if include.filterable %} data-tags="{{ card_slugs }}"{% endif %}>
   <div class="card-content">
