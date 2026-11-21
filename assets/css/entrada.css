@@ -1,4 +1,19 @@
 /* =========================================================
+   FONTE
+   Abel só existe no peso 400; declará-la aqui evita que a
+   página dependa de uma fonte que nunca chegava a carregar.
+   ========================================================= */
+
+@font-face {
+    font-display: swap;
+    font-family: "Abel";
+    font-style: normal;
+    font-weight: 400;
+    src: url("../fonts/abel-v18-latin-regular.woff2") format("woff2");
+}
+
+
+/* =========================================================
    RESET
    ========================================================= */
 
@@ -46,7 +61,7 @@ body {
     color: #000;
     font-family: "Abel", sans-serif;
     font-size: 100%;
-    font-weight: 600;
+    font-weight: 400;
     line-height: 1.5;
     overflow-x: hidden;
 }
@@ -78,6 +93,7 @@ img {
 :root {
     --color-white: #fff;
     --color-gray: #898989;
+    --color-icon: #333;
     --color-text: #000;
 
     --sidebar-bg: rgba(255, 255, 255, 0.85);
@@ -86,21 +102,26 @@ img {
 
     --shadow: 0 0 20px 20px rgba(0, 0, 0, 0.03);
 
+    /* visibility atrasada: o menu fechado deixa de ser focável por teclado */
     --sidebar-transition:
-        transform 0.4s ease-in-out;
+        transform 0.4s ease-in-out,
+        visibility 0s linear 0.4s;
 
     --close-button-size: 60px;
 
     /*
-     * Quatro imagens, aproximadamente oito segundos por imagem.
+     * Temporização do slideshow (o nº de imagens vem do HTML: --slide-count).
+     *
+     *   --slide-time  tempo que cada imagem fica em cena
+     *   --fade-time   duração da transição cruzada
+     *   ciclo         = nº de imagens × --slide-time
+     *
+     * Tudo (opacidade e movimento) corre na MESMA linha temporal do ciclo,
+     * com um desfasamento por imagem (--i). Antes, o movimento repetia-se a
+     * cada 9 s e o ciclo durava 32 s, pelo que as imagens "saltavam" a meio.
      */
-    --slideshow-duration: 32s;
-
-    /*
-     * O movimento dura ligeiramente mais do que o período
-     * durante o qual cada imagem está totalmente visível.
-     */
-    --slide-motion-duration: 9s;
+    --slide-time: 8s;
+    --fade-time: 1s;
 }
 
 
@@ -109,6 +130,9 @@ img {
    ========================================================= */
 
 .slideshow {
+    --slide-count: 4;
+    --slideshow-duration: calc(var(--slide-count) * var(--slide-time));
+
     position: fixed;
     inset: 0;
     z-index: 0;
@@ -120,26 +144,26 @@ img {
     overflow: hidden;
     background-color: #182118;
 
-    /*
-     * Cria um contexto de empilhamento próprio.
-     */
+    /* Cria um contexto de empilhamento próprio. */
     isolation: isolate;
 }
 
 
 /*
- * O contentor de cada slide controla apenas:
+ * O contentor de cada slide controla apenas a posição, a opacidade e a
+ * ordem de empilhamento. O zoom e a deslocação são aplicados à imagem.
  *
- * 1. a posição;
- * 2. a opacidade;
- * 3. a ordem de empilhamento.
- *
- * O zoom e a deslocação são aplicados à imagem.
+ * --i é o índice do slide (definido no HTML). O desfasamento faz com que
+ * o slide i comece a aparecer em  i × --slide-time − --fade-time, de modo
+ * que o primeiro já esteja totalmente visível no instante 0.
  */
 
 .slideshow-image {
+    --delay: calc(var(--i, 0) * var(--slide-time) - var(--fade-time));
+
     position: absolute;
     inset: 0;
+    z-index: 1;
 
     width: 100%;
     height: 100%;
@@ -147,18 +171,13 @@ img {
     overflow: hidden;
     opacity: 0;
 
-    animation-duration: var(--slideshow-duration);
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
+    animation: kenburns-fade var(--slideshow-duration) linear var(--delay) infinite;
 
     will-change: opacity;
 }
 
 
-/*
- * O elemento picture gerado pelo HTML deve preencher
- * completamente o slide.
- */
+/* O elemento picture gerado pelo HTML deve preencher o slide. */
 
 .slideshow-picture {
     display: block;
@@ -170,12 +189,7 @@ img {
 }
 
 
-/*
- * Equivalente a:
- *
- * background-size: cover;
- * background-position: center;
- */
+/* Equivalente a background-size: cover; background-position: center; */
 
 .slideshow-media {
     display: block;
@@ -187,243 +201,106 @@ img {
     object-position: center;
 
     backface-visibility: hidden;
-    transform: translate3d(0, 0, 0) scale(1.08);
+    transform: translate3d(var(--kb-x0), var(--kb-y0), 0) scale(var(--kb-s0));
     will-change: transform;
-}
 
-
-/* =========================================================
-   ORDEM E TRANSIÇÃO DOS SLIDES
-   ========================================================= */
-
-.slideshow-image:nth-child(1) {
-    z-index: 4;
-    animation-name: kenburns-fade-1;
-}
-
-.slideshow-image:nth-child(2) {
-    z-index: 3;
-    animation-name: kenburns-fade-2;
-}
-
-.slideshow-image:nth-child(3) {
-    z-index: 2;
-    animation-name: kenburns-fade-3;
-}
-
-.slideshow-image:nth-child(4) {
-    z-index: 1;
-    animation-name: kenburns-fade-4;
-}
-
-
-/* =========================================================
-   MOVIMENTO ESPECÍFICO DE CADA IMAGEM
-   ========================================================= */
-
-/*
- * Imagem 1:
- * aproximação em direção à zona superior esquerda.
- */
-
-.slideshow-image:nth-child(1) .slideshow-media {
-    object-position: 45% 45%;
-    transform-origin: 25% 30%;
-
-    animation:
-        kenburns-move-1
-        var(--slide-motion-duration)
-        ease-out
-        infinite;
-}
-
-
-/*
- * Imagem 2:
- * movimento horizontal, com aproximação à zona direita.
- */
-
-.slideshow-image:nth-child(2) .slideshow-media {
-    object-position: 60% 50%;
-    transform-origin: 75% 25%;
-
-    animation:
-        kenburns-move-2
-        var(--slide-motion-duration)
-        ease-out
-        infinite;
-}
-
-
-/*
- * Imagem 3:
- * deslocamento vertical e diagonal.
- */
-
-.slideshow-image:nth-child(3) .slideshow-media {
-    object-position: 40% 60%;
-    transform-origin: 30% 75%;
-
-    animation:
-        kenburns-move-3
-        var(--slide-motion-duration)
-        ease-out
-        infinite;
-}
-
-
-/*
- * Imagem 4:
- * aproximação em direção à zona inferior direita.
- */
-
-.slideshow-image:nth-child(4) .slideshow-media {
-    object-position: 55% 55%;
-    transform-origin: 75% 70%;
-
-    animation:
-        kenburns-move-4
-        var(--slide-motion-duration)
-        ease-out
-        infinite;
+    animation: kenburns-move var(--slideshow-duration) ease-out var(--delay) infinite;
 }
 
 
 /* =========================================================
    TRAJETÓRIAS KEN BURNS
+   Quatro variações que se repetem (1, 2, 3, 4, 1, 2, ...).
+   x0/y0/s0 = início; x1/y1/s1 = fim.
    ========================================================= */
 
-@keyframes kenburns-move-1 {
-    from {
-        transform:
-            translate3d(2%, 2%, 0)
-            scale(1.08);
-    }
-
-    to {
-        transform:
-            translate3d(-4%, -3%, 0)
-            scale(1.22);
-    }
+.slideshow-image:nth-child(4n + 1) {
+    --kb-x0: 2%;  --kb-y0: 2%;   --kb-s0: 1.08;
+    --kb-x1: -4%; --kb-y1: -3%;  --kb-s1: 1.22;
+}
+.slideshow-image:nth-child(4n + 1) .slideshow-media {
+    object-position: 45% 45%;
+    transform-origin: 25% 30%;      /* aproximação à zona superior esquerda */
 }
 
-@keyframes kenburns-move-2 {
-    from {
-        transform:
-            translate3d(-3%, 1%, 0)
-            scale(1.10);
-    }
-
-    to {
-        transform:
-            translate3d(4%, -2%, 0)
-            scale(1.24);
-    }
+.slideshow-image:nth-child(4n + 2) {
+    --kb-x0: -3%; --kb-y0: 1%;   --kb-s0: 1.10;
+    --kb-x1: 4%;  --kb-y1: -2%;  --kb-s1: 1.24;
+}
+.slideshow-image:nth-child(4n + 2) .slideshow-media {
+    object-position: 60% 50%;
+    transform-origin: 75% 25%;      /* movimento horizontal, zona direita */
 }
 
-@keyframes kenburns-move-3 {
-    from {
-        transform:
-            translate3d(2%, -4%, 0)
-            scale(1.09);
-    }
-
-    to {
-        transform:
-            translate3d(-3%, 3%, 0)
-            scale(1.21);
-    }
+.slideshow-image:nth-child(4n + 3) {
+    --kb-x0: 2%;  --kb-y0: -4%;  --kb-s0: 1.09;
+    --kb-x1: -3%; --kb-y1: 3%;   --kb-s1: 1.21;
+}
+.slideshow-image:nth-child(4n + 3) .slideshow-media {
+    object-position: 40% 60%;
+    transform-origin: 30% 75%;      /* deslocamento vertical/diagonal */
 }
 
-@keyframes kenburns-move-4 {
-    from {
-        transform:
-            translate3d(-2%, -3%, 0)
-            scale(1.08);
-    }
+.slideshow-image:nth-child(4n + 4) {
+    --kb-x0: -2%; --kb-y0: -3%;  --kb-s0: 1.08;
+    --kb-x1: 3%;  --kb-y1: 3%;   --kb-s1: 1.23;
+}
+.slideshow-image:nth-child(4n + 4) .slideshow-media {
+    object-position: 55% 55%;
+    transform-origin: 75% 70%;      /* aproximação à zona inferior direita */
+}
 
-    to {
-        transform:
-            translate3d(3%, 3%, 0)
-            scale(1.23);
+
+/* =========================================================
+   KEYFRAMES (valores por omissão: 4 imagens, 8 s, fade 1 s)
+
+   As percentagens dependem do nº de imagens, por isso o index.html
+   volta a declarar estas duas animações num <style> no <head>, já
+   calculadas para o nº real de imagens. Estas servem de recurso.
+
+   Princípios:
+   - a imagem que entra fica POR CIMA (z-index 3) enquanto surge;
+   - a que sai mantém opacidade 1 até a nova estar totalmente visível
+     e só então desaparece (sem "mergulho" de brilho a meio da transição).
+   ========================================================= */
+
+@keyframes kenburns-fade {
+    0%       { opacity: 0; z-index: 3; }
+    3.125%   { opacity: 1; z-index: 3; }
+    3.126%   { opacity: 1; z-index: 2; }
+    28.125%  { opacity: 1; z-index: 2; }
+    28.126%  { opacity: 0; z-index: 1; }
+    100%     { opacity: 0; z-index: 1; }
+}
+
+@keyframes kenburns-move {
+    0% {
+        transform: translate3d(var(--kb-x0), var(--kb-y0), 0) scale(var(--kb-s0));
+    }
+    28.125%,
+    100% {
+        transform: translate3d(var(--kb-x1), var(--kb-y1), 0) scale(var(--kb-s1));
     }
 }
 
 
 /* =========================================================
-   TRANSIÇÕES DE OPACIDADE
+   UMA SÓ IMAGEM
+   Sem transições: apenas o movimento, em vaivém.
    ========================================================= */
 
-/*
- * Cada imagem ocupa aproximadamente 25% do ciclo.
- * Existe uma pequena sobreposição entre imagens para
- * produzir a transição cruzada.
- */
-
-@keyframes kenburns-fade-1 {
-    0%,
-    23.4375% {
-        opacity: 1;
-    }
-
-    26.5625%,
-    98.4375% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
-    }
+.slideshow--single .slideshow-image {
+    animation: none;
+    opacity: 1;
 }
 
-@keyframes kenburns-fade-2 {
-    0%,
-    23.4375% {
-        opacity: 0;
-    }
-
-    26.5625%,
-    48.4375% {
-        opacity: 1;
-    }
-
-    51.5625%,
-    100% {
-        opacity: 0;
-    }
+.slideshow--single .slideshow-media {
+    animation: kenburns-single calc(var(--slide-time) * 2) ease-in-out infinite alternate;
 }
 
-@keyframes kenburns-fade-3 {
-    0%,
-    48.4375% {
-        opacity: 0;
-    }
-
-    51.5625%,
-    73.4375% {
-        opacity: 1;
-    }
-
-    76.5625%,
-    100% {
-        opacity: 0;
-    }
-}
-
-@keyframes kenburns-fade-4 {
-    0%,
-    73.4375% {
-        opacity: 0;
-    }
-
-    76.5625%,
-    98.4375% {
-        opacity: 1;
-    }
-
-    100% {
-        opacity: 0;
-    }
+@keyframes kenburns-single {
+    from { transform: translate3d(var(--kb-x0), var(--kb-y0), 0) scale(var(--kb-s0)); }
+    to   { transform: translate3d(var(--kb-x1), var(--kb-y1), 0) scale(var(--kb-s1)); }
 }
 
 
@@ -447,7 +324,10 @@ img {
 
 
 /* =========================================================
-   BOTÃO HAMBÚRGUER
+   BOTÃO DO MENU (ícone do caminheiro)
+
+   Antes: 32×24 px com 10 px de padding e box-sizing: border-box
+   deixava 12×4 px para o ícone, que ficava reduzido a um ponto.
    ========================================================= */
 
 .caminheiro {
@@ -456,16 +336,16 @@ img {
     left: 30px;
     z-index: 101;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    display: grid;
+    place-items: center;
 
-    width: 32px;
-    height: 24px;
-    padding: 10px;
+    width: 52px;
+    height: 52px;
+    padding: 12px;
 
-    border-radius: 10px;
+    border-radius: 12px;
 
+    color: var(--color-icon);
     background-color: var(--hamburger-bg);
 
     cursor: pointer;
@@ -474,6 +354,33 @@ img {
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
+}
+
+.caminheiro svg {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    fill: currentColor;
+}
+
+
+/* Texto só para leitores de ecrã */
+
+.visually-hidden {
+    position: absolute;
+
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+
+    border: 0;
 }
 
 
@@ -496,7 +403,9 @@ img {
 
     padding: 0 60px;
 
-    overflow: hidden;
+    /* Sem overflow: hidden — o botão de fechar sobressai 30 px para fora do
+       painel e era cortado ao meio. */
+    visibility: hidden;
 
     background-color: var(--sidebar-bg);
     backdrop-filter: blur(10px);
@@ -679,24 +588,27 @@ img {
 
 
 /*
- * Estas regras pressupõem esta estrutura HTML:
+ * Estas regras pressupõem esta estrutura HTML (a ordem importa):
  *
  * <input class="menu-control">
+ * <label class="caminheiro">...</label>
  * <aside class="sidebar">...</aside>
  */
 
-.menu-control:checked + .sidebar {
+.menu-control:checked ~ .sidebar {
     transform: translateX(0);
+    visibility: visible;
+    transition-delay: 0s;
 }
 
-.menu-control:checked + .sidebar .sidebar__close {
+.menu-control:checked ~ .sidebar .sidebar__close {
     transform:
         translateX(0)
         translateY(-50%)
         rotate(45deg);
 }
 
-.menu-control:checked + .sidebar .sidebar__menu a {
+.menu-control:checked ~ .sidebar .sidebar__menu a {
     transform: translateX(0);
 }
 
@@ -705,6 +617,7 @@ img {
    ESTADOS DE FOCO
    ========================================================= */
 
+.menu-control:focus-visible + .caminheiro,
 .caminheiro:focus-visible,
 .sidebar__close:focus-visible,
 .sidebar__menu a:focus-visible,
@@ -734,14 +647,6 @@ img {
    ========================================================= */
 
 @media (max-width: 768px) {
-    :root {
-        /*
-         * Movimento mais contido para evitar que o assunto
-         * principal saia do enquadramento.
-         */
-        --slide-motion-duration: 9s;
-    }
-
     .banner {
         padding: 30px;
     }
@@ -763,80 +668,11 @@ img {
         font-size: 28px;
     }
 
-    .slideshow-image:nth-child(1) .slideshow-media {
-        animation-name: kenburns-mobile-1;
-    }
-
-    .slideshow-image:nth-child(2) .slideshow-media {
-        animation-name: kenburns-mobile-2;
-    }
-
-    .slideshow-image:nth-child(3) .slideshow-media {
-        animation-name: kenburns-mobile-3;
-    }
-
-    .slideshow-image:nth-child(4) .slideshow-media {
-        animation-name: kenburns-mobile-4;
-    }
-}
-
-
-/* Movimento mais moderado em ecrãs estreitos */
-
-@keyframes kenburns-mobile-1 {
-    from {
-        transform:
-            translate3d(1%, 1%, 0)
-            scale(1.08);
-    }
-
-    to {
-        transform:
-            translate3d(-2%, -2%, 0)
-            scale(1.17);
-    }
-}
-
-@keyframes kenburns-mobile-2 {
-    from {
-        transform:
-            translate3d(-1%, 0, 0)
-            scale(1.08);
-    }
-
-    to {
-        transform:
-            translate3d(2%, -1%, 0)
-            scale(1.18);
-    }
-}
-
-@keyframes kenburns-mobile-3 {
-    from {
-        transform:
-            translate3d(1%, -2%, 0)
-            scale(1.08);
-    }
-
-    to {
-        transform:
-            translate3d(-2%, 2%, 0)
-            scale(1.17);
-    }
-}
-
-@keyframes kenburns-mobile-4 {
-    from {
-        transform:
-            translate3d(-1%, -1%, 0)
-            scale(1.08);
-    }
-
-    to {
-        transform:
-            translate3d(2%, 2%, 0)
-            scale(1.18);
-    }
+    /* Movimento mais contido para o assunto principal não sair do enquadramento */
+    .slideshow-image:nth-child(4n + 1) { --kb-x0: 1%;  --kb-y0: 1%;  --kb-s0: 1.08; --kb-x1: -2%; --kb-y1: -2%; --kb-s1: 1.17; }
+    .slideshow-image:nth-child(4n + 2) { --kb-x0: -1%; --kb-y0: 0%;  --kb-s0: 1.08; --kb-x1: 2%;  --kb-y1: -1%; --kb-s1: 1.18; }
+    .slideshow-image:nth-child(4n + 3) { --kb-x0: 1%;  --kb-y0: -2%; --kb-s0: 1.08; --kb-x1: -2%; --kb-y1: 2%;  --kb-s1: 1.17; }
+    .slideshow-image:nth-child(4n + 4) { --kb-x0: -1%; --kb-y0: -1%; --kb-s0: 1.08; --kb-x1: 2%;  --kb-y1: 2%;  --kb-s1: 1.18; }
 }
 
 
@@ -879,10 +715,12 @@ img {
 
     .slideshow-image:first-child {
         opacity: 1;
+        z-index: 2;
     }
 
-    .slideshow-media {
-        animation: none !important;
+    .slideshow-media,
+    .slideshow--single .slideshow-media {
+        animation: none;
         transform: none;
     }
 
