@@ -82,6 +82,21 @@ plugins:
   - jekyll_picture_tag
   - jekyll-paginate-v2
 
+# Imagens sorteadas em cada build (ver _plugins/random_media.rb).
+# Tudo o que for definido aqui, no front matter do post (cover) ou no de index.html
+# (slideshow) tem prioridade sobre o sorteio.
+trilhos:
+  photos_root: fotos          # pasta com uma sub-pasta por post (fotografias + GPX)
+  random_seed:                # opcional: um nº inteiro torna os sorteios reproduzíveis
+                              # (útil em `jekyll serve`, onde cada rebuild voltaria a sortear)
+  front:                      # slideshow Ken Burns da página de entrada
+    folder: assets/front      # pasta de onde se sorteiam as imagens
+    count: 4                  # nº de imagens sorteadas
+    slide_seconds: 8          # tempo de cada imagem em cena
+    fade_seconds: 1           # duração da transição entre imagens
+    images: []                # opcional: lista fixa → desativa o sorteio. Ex.: [DSC_1547.JPG, DSC_1868.jpg]
+  covers: {}                  # opcional: capa por pasta de post. Ex.: { arcos_de_valdevez: DSC_0453.jpg }
+
 picture:
   source: assets
   output: assets/generated
