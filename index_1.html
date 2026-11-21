@@ -1,0 +1,69 @@
+---
+title: Trilhos
+description: Um diário fotográfico de trilhos e percursos pedestres.
+# Opcional — fixa as imagens do slideshow (nomes de ficheiros dentro de trilhos.front.folder).
+# Se estiver comentado, as imagens são sorteadas em cada build (ver _config.yml › trilhos).
+# slideshow:
+#   - DSC_1547.JPG
+#   - DSC_1868.jpg
+---
+{%- include front-images.html -%}
+{%- assign slide_s = site.trilhos.front.slide_seconds | default: 8 -%}
+{%- assign fade_s = site.trilhos.front.fade_seconds | default: 1 -%}
+<!DOCTYPE html>
+<html lang="pt-PT">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{{ page.title | default: site.title | escape }}</title>
+    <meta name="description" content="{{ page.description | default: site.description | strip_html | normalize_whitespace | escape }}">
+
+    <link rel="icon" href="{{ '/favicon.svg' | relative_url }}" type="image/svg+xml">
+    <link rel="icon" href="{{ '/favicon.ico' | relative_url }}" sizes="32x32">
+    <link rel="apple-touch-icon" href="{{ '/apple-touch-icon.png' | relative_url }}">
+
+    <link rel="preload" href="{{ '/assets/fonts/abel-v18-latin-regular.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="{{ '/assets/css/entrada.css' | relative_url }}">
+
+    {%- comment -%}
+      Temporização do slideshow calculada para o nº real de imagens (as percentagens dos
+      keyframes dependem dele). Vem DEPOIS de entrada.css para redefinir as animações.
+      Esta página é uma folha de rosto de um só ecrã, por isso o CSS bloqueante é pequeno e
+      evita o "flash" sem estilos que o carregamento assíncrono causava.
+    {%- endcomment %}
+    <style>
+        :root { --slide-time: {{ slide_s }}s; --fade-time: {{ fade_s }}s; }
+        {%- if front_count > 1 %}
+        {%- assign cycle_s = front_count | times: slide_s %}
+        {%- assign p_fade  = fade_s | times: 100.0 | divided_by: cycle_s | round: 4 %}
+        {%- assign p_fade2 = p_fade | plus: 0.001 | round: 4 %}
+        {%- assign p_end   = slide_s | plus: fade_s | times: 100.0 | divided_by: cycle_s | round: 4 %}
+        {%- assign p_end2  = p_end | plus: 0.001 | round: 4 %}
+        @keyframes kenburns-fade {
+            0%             { opacity: 0; z-index: 3; }
+            {{ p_fade }}%  { opacity: 1; z-index: 3; }
+            {{ p_fade2 }}% { opacity: 1; z-index: 2; }
+            {{ p_end }}%   { opacity: 1; z-index: 2; }
+            {{ p_end2 }}%  { opacity: 0; z-index: 1; }
+            100%           { opacity: 0; z-index: 1; }
+        }
+        @keyframes kenburns-move {
+            0%             { transform: translate3d(var(--kb-x0), var(--kb-y0), 0) scale(var(--kb-s0)); }
+            {{ p_end }}%, 100% { transform: translate3d(var(--kb-x1), var(--kb-y1), 0) scale(var(--kb-s1)); }
+        }
+        {%- endif %}
+    </style>
+</head>
+
+<body>
+    {% include nav_index.html %}
+
+    <main>
+        <h1 class="visually-hidden">{{ site.name | default: site.title | escape }}</h1>
+        {% include front-slideshow.html %}
+    </main>
+</body>
+
+</html>
