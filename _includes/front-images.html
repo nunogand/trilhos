@@ -1,0 +1,33 @@
+{%- comment -%}
+  Escolhe as imagens do slideshow da página de entrada.
+
+  Precedência (a primeira que existir):
+    1. front matter da página:  slideshow: [DSC_1547.JPG, DSC_1868.jpg]
+    2. _config.yml:             trilhos.front.images
+    3. sorteio, feito UMA VEZ POR BUILD em _plugins/random_media.rb:
+       trilhos.front.count imagens sorteadas de trilhos.front.folder
+
+  Uma entrada sem "/" é um nome de ficheiro dentro de trilhos.front.folder;
+  com "/" é um caminho desde a raiz do site (ex.: assets/outra/foto.jpg).
+
+  Define:
+    front_images   caminhos desde a raiz do site (ex.: /assets/front/DSC_1547.JPG)
+    front_count    nº de imagens
+{%- endcomment -%}
+{%- assign front_folder = site.trilhos.front.folder | default: "assets/front" -%}
+{%- assign front_images = "" | split: "" -%}
+
+{%- if page.slideshow and page.slideshow.size > 0 -%}
+  {%- for entry in page.slideshow -%}
+    {%- if entry contains "/" -%}
+      {%- assign entry_path = "/" | append: entry | replace: "//", "/" -%}
+    {%- else -%}
+      {%- assign entry_path = "/" | append: front_folder | append: "/" | append: entry | replace: "//", "/" -%}
+    {%- endif -%}
+    {%- assign front_images = front_images | push: entry_path -%}
+  {%- endfor -%}
+{%- else -%}
+  {%- assign front_images = site.data.front_images -%}
+{%- endif -%}
+
+{%- assign front_count = front_images.size | default: 0 -%}
