@@ -45,7 +45,7 @@ module Trilhos
         if gpx_files.empty?
           Jekyll.logger.warn(
             "Trilhos:",
-            "Sem GPX em assets/media/#{folder}/"
+            "Sem GPX em fotos/#{folder}/"
           )
 
           next
