@@ -459,6 +459,28 @@ body.menu-open .navbar--overlay .mobile-toggle span { background: var(--ink); }
 .map-canvas.leaflet-container .leaflet-control-layers { overflow: hidden; border: 0; border-radius: 12px; box-shadow: var(--shadow-sm); }
 .map-canvas.leaflet-container .leaflet-control-layers-toggle { width: 36px; height: 36px; }
 
+/* PÁGINA "SOBRE"
+   Fotografia + texto lado a lado e uma citação. Usa as superfícies .panel do site.
+   ========================================================================== */
+.about-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 32px; }
+
+.about-photo { position: relative; min-height: 440px; margin: 0; }
+.about-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+.about-text { padding: 40px 44px; align-self: center; }
+.about-text > :first-child { margin-top: 0; }
+.about-text > :last-child { margin-bottom: 0; }
+.about-text h2 { margin: 0 0 .6em; color: var(--ink); font: 400 clamp(1.8rem, 3vw, 2.4rem)/1.15 var(--font-display); letter-spacing: 1px; }
+.about-text p { margin: 0 0 1.1em; color: var(--text); font-size: 1.05rem; }
+.about-text a { color: var(--green); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.about-text a:hover { color: var(--green-light); }
+
+.about-quote { margin: 32px 0 0; padding: 40px 44px; text-align: center; }
+.about-quote blockquote { margin: 0; }
+.about-quote p { margin: 0; color: var(--green-dark); font: 400 clamp(1.5rem, 3.2vw, 2.2rem)/1.35 var(--font-display); letter-spacing: .5px; }
+.about-quote figcaption { margin-top: 14px; color: var(--muted); font-size: .95rem; }
+.about-quote figcaption::before { content: "— "; }
+
 
 /* 14. RODAPÉ E "VOLTAR AO TOPO"
    ========================================================================== */
