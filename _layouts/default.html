@@ -6,7 +6,7 @@
 </head>
 
 <body><a class="skip-link" href="#conteudo">Saltar para o conteúdo</a>
-  {% include navigation.html active="index" %}
+  {% include navigation.html active=page.nav %}
 
 {{content}}
 
@@ -14,7 +14,7 @@
 
   <script src="{{ '/assets/js/site.js' | relative_url }}" defer></script>
 
-  {% if page.layout == 'trilho' %}
+  {% if page.layout == 'post' %}
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js" defer></script>
     <script src="{{ '/assets/js/trail-map.js' | relative_url }}" defer></script>
