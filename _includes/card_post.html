@@ -8,11 +8,15 @@
     chips="tags"         campo do front matter apresentado como etiquetas (por omissão: places)
     filterable=true      acrescenta data-tags="slug1 slug2" (usado por assets/js/filter.js)
 
-  Front matter usado:  title · description · folder · cover · gpx_date · places · gpx_stats
+  Imagem do cartão: post.cover_path, definido pelo plugin _plugins/random_media.rb
+    - cover no front matter (ou trilhos.covers no _config.yml) → essa imagem
+    - caso contrário → fotografia sorteada UMA VEZ por build (igual em todas as páginas)
+
+  Front matter usado:  title · description · cover · gpx_date · places · gpx_stats
 {%- endcomment -%}
 {%- assign card_post = include.post -%}
 {%- assign card_variant = include.variant -%}
-{%- include trail-files.html folder=card_post.folder cover=card_post.cover -%}
+{%- assign card_cover = card_post.cover_path -%}
 
 {%- assign card_id = "card-" | append: card_post.slug -%}
 {%- assign card_date = card_post.gpx_date | default: card_post.date -%}
@@ -33,8 +37,10 @@
 <article class="post-card{% if card_variant == 'vertical' %} post-card--vertical{% endif %}" aria-labelledby="{{ card_id }}"{% if include.filterable %} data-tags="{{ card_slugs }}"{% endif %}>
   <div class="card-content">
     <div class="card-image">
-      {%- if trail_cover_path != "" %}
-      <img src="{{ trail_cover_path | uri_escape | relative_url }}" alt="" width="600" height="400" loading="lazy" decoding="async">
+      {%- if card_cover contains "://" %}
+      <img src="{{ card_cover }}" alt="" width="600" height="400" loading="lazy" decoding="async">
+      {%- elsif card_cover %}
+      <img src="{{ card_cover | uri_escape | relative_url }}" alt="" width="600" height="400" loading="lazy" decoding="async">
       {%- endif %}
       {%- if card_date %}
       <time class="date-badge" datetime="{{ card_date | date_to_xmlschema }}">{{ card_date | date: "%d/%m/%Y" }}</time>
