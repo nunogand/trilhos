@@ -1,0 +1,28 @@
+{%- comment -%}
+  Marcação do slideshow Ken Burns. Requer que front-images.html tenha sido incluído antes.
+
+  - --slide-count e --i alimentam a temporização em assets/css/entrada.css.
+  - A 1.ª imagem tem prioridade de carregamento; as restantes ficam com prioridade baixa.
+  - 1 só imagem  → classe slideshow--single (sem transições, apenas movimento).
+  - 0 imagens    → não mostra nada (fica o fundo escuro).
+{%- endcomment -%}
+{%- if front_count > 0 %}
+<div class="slideshow{% if front_count == 1 %} slideshow--single{% endif %}" style="--slide-count: {{ front_count }}" aria-hidden="true">
+  {%- for header_path in front_images %}
+    {%- assign picture_path = header_path | remove_first: "/assets/" %}
+  <div class="slideshow-image" style="--i: {{ forloop.index0 }}">
+    {%- if forloop.first %}
+    {% picture front_slideshow "{{ picture_path }}"
+      --img class="slideshow-media" alt="" decoding="async" fetchpriority="high"
+      --picture class="slideshow-picture"
+    %}
+    {%- else %}
+    {% picture front_slideshow "{{ picture_path }}"
+      --img class="slideshow-media" alt="" decoding="async" fetchpriority="low"
+      --picture class="slideshow-picture"
+    %}
+    {%- endif %}
+  </div>
+  {%- endfor %}
+</div>
+{%- endif %}
