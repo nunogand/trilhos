@@ -1,0 +1,99 @@
+---
+layout: default
+title: Sobre
+nav: sobre
+description: Sobre este diário fotográfico de trilhos e percursos pedestres.
+hero_title: Sobre
+hero_text: Um diário de caminhos, paisagens e fotografias.
+
+# Imagens (todas opcionais). Sem estas chaves, usam-se imagens sorteadas em cada build
+# a partir das imagens da página de entrada (ver _config.yml › trilhos).
+# Aceitam um nome de ficheiro dentro de trilhos.front.folder, um caminho desde a raiz ou um URL.
+# hero_image: DSC_1547.JPG
+# portrait: DSC_1868.jpg
+# portrait_alt: Descrição da fotografia
+# section_image: DSC_1884.jpg
+
+quote: I took a walk in the woods and came out taller than the trees.
+quote_author: Henry David Thoreau
+quote_lang: en
+---
+{%- capture about_markdown -%}
+## Sobre este diário
+
+**Trilhos** é um diário fotográfico de percursos a pé. Cada publicação reúne o traçado no mapa, o perfil de elevação, as estatísticas do percurso — distância, altitude máxima e duração, calculadas a partir do ficheiro GPX — e uma galeria com as fotografias do dia.
+
+O objetivo é simples: guardar memória dos caminhos percorridos e partilhá-los com quem gosta de caminhar. As imagens da página de entrada e as capas dos percursos são escolhidas ao acaso a cada atualização do site, por isso a cara do diário vai mudando.
+
+Pode explorar os [percursos]({{ '/percursos/' | relative_url }}) um a um ou procurar por etiquetas no [arquivo]({{ '/tags/' | relative_url }}).
+
+E porque não mais uma caminhada?
+Numa época em que o mundo parece enlouquecer sob o peso de estímulos infinitos, a natureza chama-nos de volta ao essencial. Cada passo na terra é um retorno a nós mesmos, uma oportunidade de nos reconectarmos com o silêncio que habitamos na natureza. Lá, longe do ruído da civilização, encontramos não apenas paz, mas a clareza necessária para navegar pela complexidade da vida moderna. A caminhada torna-se então não apenas um ato físico, mas um ritual de cura - um momento onde mente e corpo se recordam do seu ritmo natural de regeneração.
+
+{%- endcapture -%}
+{%- assign pool = site.data.front_images -%}
+
+{%- comment -%} Hero {%- endcomment -%}
+{%- if page.hero_image -%}
+  {%- include resolve-image.html src=page.hero_image -%}
+  {%- assign hero_url = resolved_image -%}
+{%- elsif pool[0] -%}
+  {%- assign hero_url = pool[0] | uri_escape | relative_url -%}
+{%- endif -%}
+
+{%- comment -%} Retrato: portrait → 2.ª imagem sorteada → 1.ª {%- endcomment -%}
+{%- if page.portrait -%}
+  {%- include resolve-image.html src=page.portrait -%}
+  {%- assign portrait_url = resolved_image -%}
+{%- elsif pool[1] -%}
+  {%- assign portrait_url = pool[1] | uri_escape | relative_url -%}
+{%- elsif pool[0] -%}
+  {%- assign portrait_url = pool[0] | uri_escape | relative_url -%}
+{%- endif -%}
+
+{%- comment -%} Fundo da secção: section_image → 3.ª imagem sorteada → 1.ª {%- endcomment -%}
+{%- if page.section_image -%}
+  {%- include resolve-image.html src=page.section_image -%}
+  {%- assign section_url = resolved_image -%}
+{%- elsif pool[2] -%}
+  {%- assign section_url = pool[2] | uri_escape | relative_url -%}
+{%- elsif pool[0] -%}
+  {%- assign section_url = pool[0] | uri_escape | relative_url -%}
+{%- endif -%}
+
+<header class="hero"{% if hero_url %} style="--hero-image:url('{{ hero_url | replace: "'", "%27" }}')"{% endif %}>
+  <div class="hero-content">
+    <h1>{{ page.hero_title | default: page.title | escape }}</h1>
+    {% if page.hero_text %}<p>{{ page.hero_text | escape }}</p>{% endif %}
+    <div class="hero-cta"><a class="button" href="#conteudo">Conhecer o projeto</a></div>
+  </div>
+</header>
+
+<main id="conteudo" class="section section--photo"{% if section_url %} style="--section-image:url('{{ section_url | replace: "'", "%27" }}')"{% endif %}>
+  <div class="container container--narrow">
+
+    <div class="about-grid">
+      {%- if portrait_url %}
+      <figure class="panel about-photo">
+        <img src="{{ portrait_url }}" alt="{{ page.portrait_alt | escape }}" loading="lazy" decoding="async">
+      </figure>
+      {%- endif %}
+
+      <div class="panel about-text">
+        {{ about_markdown | markdownify }}
+      </div>
+    </div>
+
+    {%- if page.quote %}
+    <figure class="panel about-quote">
+      <blockquote>
+        <p{% if page.quote_lang %} lang="{{ page.quote_lang }}"{% endif %}>{{ page.quote | escape }}</p>
+      </blockquote>
+      {%- if page.quote_author %}
+      <figcaption>{{ page.quote_author | escape }}</figcaption>
+      {%- endif %}
+    </figure>
+    {%- endif %}
+
+  </div>
+</main>
