@@ -1,7 +1,6 @@
 ---
 layout: trilho
 title:  "Ecovia do Lima"
-date:   2021-06-10 19:35:06 +0100
 categories:
 folder: ecovia_do_lima
 description: Curta descrição do trilho. Ponto final
