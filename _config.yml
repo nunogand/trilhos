@@ -98,10 +98,11 @@ trilhos:
   covers: {}                  # opcional: capa por pasta de post. Ex.: { arcos_de_valdevez: DSC_0453.jpg }
 
 picture:
-  source: assets
+  #source: assets
   output: assets/generated
   suppress_warnings: false
   fast_build: true
+  ignore_missing_images: true
 
 pagination:
   enabled: true

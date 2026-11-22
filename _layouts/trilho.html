@@ -121,9 +121,11 @@
             {%- assign photo_path = photos_dir | append: "/" | append: name %}
             {%- assign caption = page.captions[name] %}
             {%- unless caption %}{% capture caption %}Foto {{ forloop.index }}{% endcapture %}{% endunless %}
+            {%- assign photo_src = photo_path | remove_first: "/" %}
+            {%- capture modal_srcset %}{% picture modal_srcset "{{ photo_src }}" %}{% endcapture %}
             <button type="button" class="gallery-item" aria-label="Ampliar: {{ caption | escape }}"
-                    data-full="{{ photo_path | uri_escape | relative_url }}" data-caption="{{ caption | escape }}">
-              <img src="{{ photo_path | uri_escape | relative_url }}" alt="{{ caption | escape }}" loading="lazy">
+                    data-srcset="{{ modal_srcset | normalize_whitespace | escape }}" data-caption="{{ caption | escape }}">
+              {% picture gallery_thumb "{{ photo_src }}" --img alt="{{ caption | escape }}" %}
               <div class="gallery-overlay"><div class="gallery-icon" aria-hidden="true">+</div></div>
             </button>
             {%- endfor %}

@@ -146,13 +146,34 @@ async function loadGPX() {
 
 /**
  * GALERIA / LIGHTBOX
- * As miniaturas já vêm no HTML; aqui só se liga o lightbox.
+ * As miniaturas (<picture>) já vêm no HTML, geradas pelo Jekyll Picture Tag. Cada botão leva
+ * data-srcset com as várias larguras da fotografia ampliada; aqui só se liga o lightbox e se
+ * diz ao browser que tamanho a imagem terá no ecrã (atributo sizes), para ele descarregar
+ * apenas a versão necessária (ecrã pequeno → ficheiro pequeno).
  */
 function initLightbox() {
+  const MAX_W = 0.9;   // iguais ao CSS de .modal-content img (max-width: 90vw; max-height: 85vh)
+  const MAX_H = 0.85;
+
+  // Quanto se aceita esticar a melhor versão disponível (1 = nunca além dos píxeis reais do ecrã).
+  // O Jekyll Picture Tag não amplia imagens: se a fonte for pequena, a maior versão gerada também é
+  // pequena, e esticá-la até ao tamanho do ecrã só a deixa desfocada. Sobe para 1.25–1.5 se preferires
+  // uma imagem maior e ligeiramente mais suave em vez de uma mais pequena e nítida.
+  const MAX_UPSCALE = 1;
+
   const items = Array.from(document.querySelectorAll(".gallery-item"));
   const images = items.map(btn => {
     const img = btn.querySelector("img");
-    return { src: btn.dataset.full || img.src, alt: img.alt, caption: btn.dataset.caption || img.alt };
+    const srcset = (btn.dataset.srcset || "").trim();
+    const w = Number(img.getAttribute("width")), h = Number(img.getAttribute("height"));
+    return {
+      srcset,
+      maxW: Math.max(0, ...Array.from(srcset.matchAll(/\s(\d+)w/g), m => Number(m[1]))),  // maior versão gerada (px)
+      src: srcset.split(",")[0].trim().split(/\s+/)[0] || img.currentSrc || img.src, // recurso: 1.ª versão
+      ratio: w && h ? w / h : 1.5,                                                // proporção da fotografia
+      alt: img.alt,
+      caption: btn.dataset.caption || img.alt
+    };
   });
   if (!images.length) return;
 
@@ -161,7 +182,37 @@ function initLightbox() {
   const mCap = document.getElementById("modalCaption");
   let current = 0, lastFocus = null;
 
-  function update() { const d = images[current]; mImg.src = d.src; mImg.alt = d.alt; mCap.textContent = d.caption; }
+  // Largura (px CSS) a que a imagem fica no ecrã. O atributo sizes define também o tamanho com que o
+  // browser a desenha, por isso é limitado por três coisas:
+  //   1. a largura disponível (90vw)
+  //   2. a altura disponível (85vh), dada a proporção da fotografia
+  //   3. a resolução real da maior versão gerada (maxW px físicos ÷ densidade de píxeis do ecrã)
+  const displayWidth = d => {
+    const fit = Math.min(window.innerWidth * MAX_W, window.innerHeight * MAX_H * d.ratio);
+    const sharp = d.maxW ? (d.maxW / (window.devicePixelRatio || 1)) * MAX_UPSCALE : Infinity;
+    return Math.round(Math.min(fit, sharp));
+  };
+
+  function apply(target, d) {
+    target.sizes = `${displayWidth(d)}px`;   // antes de srcset e src
+    if (d.srcset) target.srcset = d.srcset;
+    target.src = d.src;
+  }
+
+  function update() {
+    const d = images[current];
+    apply(mImg, d);
+    const wanted = Math.round(Math.min(window.innerWidth * MAX_W, window.innerHeight * MAX_H * d.ratio) * (window.devicePixelRatio || 1));
+    if (d.maxW && d.maxW < wanted && !d.warned) {
+      d.warned = true;
+      console.info(`Lightbox: esta fotografia só tem versões até ${d.maxW}px de largura e este ecrã pedia ~${wanted}px. ` +
+                   `A imagem-fonte é pequena (o Jekyll Picture Tag não amplia), por isso é mostrada sem a esticar.`);
+    }
+    mImg.alt = d.alt;
+    mCap.textContent = d.caption;
+    if (images.length > 1) apply(new Image(), images[(current + 1) % images.length]); // pré-carrega a seguinte
+  }
+
   function open(i) {
     lastFocus = document.activeElement;
     current = i; update();
@@ -170,7 +221,7 @@ function initLightbox() {
   }
   function close() {
     modal.classList.remove("open"); document.body.classList.remove("modal-open");
-    setTimeout(() => { mImg.src = ""; }, 300);
+    setTimeout(() => { mImg.removeAttribute("srcset"); mImg.removeAttribute("sizes"); mImg.removeAttribute("src"); }, 300);
     lastFocus?.focus();
   }
   function next(e) { if (e) e.stopPropagation(); current = (current + 1) % images.length; update(); }
@@ -186,6 +237,10 @@ function initLightbox() {
     if (e.key === "Escape") close();
     if (e.key === "ArrowRight") next();
     if (e.key === "ArrowLeft") prev();
+  });
+  // Rodar o telemóvel ou redimensionar a janela com o modal aberto: recalcula o tamanho
+  window.addEventListener("resize", () => {
+    if (modal.classList.contains("open")) mImg.sizes = `${displayWidth(images[current])}px`;
   });
 }
 

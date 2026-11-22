@@ -1,0 +1,21 @@
+{%- comment -%}
+  Converte um valor de front matter num URL de imagem.
+
+  Uso:   {% include resolve-image.html src=page.hero_image %}
+  Define: resolved_image   (vazio se src não existir)
+
+    "https://…/foto.jpg"     → igual
+    "pasta/ficheiro.jpg"     → /pasta/ficheiro.jpg       (caminho desde a raiz do site)
+    "ficheiro.jpg"           → /<trilhos.front.folder>/ficheiro.jpg   (por omissão assets/front)
+{%- endcomment -%}
+{%- assign front_folder = site.trilhos.front.folder | default: "assets/front" -%}
+{%- assign resolved_image = "" -%}
+{%- if include.src -%}
+  {%- if include.src contains "://" -%}
+    {%- assign resolved_image = include.src -%}
+  {%- elsif include.src contains "/" -%}
+    {%- assign resolved_image = "/" | append: include.src | replace: "//", "/" | uri_escape | relative_url -%}
+  {%- else -%}
+    {%- assign resolved_image = "/" | append: front_folder | append: "/" | append: include.src | replace: "//", "/" | uri_escape | relative_url -%}
+  {%- endif -%}
+{%- endif -%}

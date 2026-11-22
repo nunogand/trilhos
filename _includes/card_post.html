@@ -38,9 +38,15 @@
   <div class="card-content">
     <div class="card-image">
       {%- if card_cover contains "://" %}
+      {%- comment -%} URL externo: o Jekyll Picture Tag só redimensiona ficheiros locais {%- endcomment %}
       <img src="{{ card_cover }}" alt="" width="600" height="400" loading="lazy" decoding="async">
       {%- elsif card_cover %}
-      <img src="{{ card_cover | uri_escape | relative_url }}" alt="" width="600" height="400" loading="lazy" decoding="async">
+      {%- assign card_src = card_cover | remove_first: "/" %}
+      {%- if card_variant == 'vertical' %}
+      {% picture card_vertical "{{ card_src }}" %}
+      {%- else %}
+      {% picture card "{{ card_src }}" %}
+      {%- endif %}
       {%- endif %}
       {%- if card_date %}
       <time class="date-badge" datetime="{{ card_date | date_to_xmlschema }}">{{ card_date | date: "%d/%m/%Y" }}</time>

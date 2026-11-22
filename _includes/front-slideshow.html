@@ -9,7 +9,7 @@
 {%- if front_count > 0 %}
 <div class="slideshow{% if front_count == 1 %} slideshow--single{% endif %}" style="--slide-count: {{ front_count }}" aria-hidden="true">
   {%- for header_path in front_images %}
-    {%- assign picture_path = header_path | remove_first: "/assets/" %}
+    {%- assign picture_path = header_path | remove_first: "/" %}
   <div class="slideshow-image" style="--i: {{ forloop.index0 }}">
     {%- if forloop.first %}
     {% picture front_slideshow "{{ picture_path }}"

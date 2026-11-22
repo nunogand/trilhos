@@ -1,20 +1,92 @@
+# Presets do Jekyll Picture Tag (https://rbuchberger.github.io/jekyll_picture_tag/)
+#
+# Cada preset gera várias larguras (widths) e formatos de cada imagem-fonte, e o atributo
+# "sizes" diz ao browser que largura a imagem vai ter no ecrã, para ele escolher a mais
+# pequena que chegue. Os valores de "sizes" foram medidos com o CSS de trilhos.css
+# (se mudares colunas ou breakpoints, volta a medir).
+#
+# Ordem das media queries em "sizes": da mais restritiva para a menos restritiva.
+
+media_queries:
+  w640:  'max-width: 640px'
+  w768:  'max-width: 768px'
+  w960:  'max-width: 960px'
+  w1180: 'max-width: 1180px'
+  w1220: 'max-width: 1220px'
+
 presets:
+
+  # ---------------------------------------------------------------------------
+  # Slideshow da página de entrada (ecrã inteiro)
+  # ---------------------------------------------------------------------------
   front_slideshow:
     formats:
-#      - avif
+#      - avif          # mais pequeno, mas exige suporte no ambiente de build (libvips)
       - webp
 #      - original
-
-    widths:
-      - 960
-      - 1280
-      - 1920
-      - 2560
-
+    widths: [960, 1280, 1920, 2560]
     size: "100vw"
-
     dimension_attributes: true
-
     attributes:
       picture: 'class="slideshow-picture"'
       img: 'class="slideshow-media" alt="" decoding="async"'
+
+  # ---------------------------------------------------------------------------
+  # Cartões de percursos (página inicial de percursos)
+  #   ≤768 px  → coluna única, imagem em largura total   (100vw − 32 px)
+  #   ≤1180 px → coluna única, cartão com 820 px máx.    (≈ 416 px)
+  #   >1180 px → duas colunas                            (≈ 341 px)
+  # ---------------------------------------------------------------------------
+  card:
+    formats: [webp, original]
+    widths: [360, 480, 720, 960, 1280, 1500]
+    sizes:
+      w768: 'calc(100vw - 32px)'
+      w1180: '416px'
+    size: '345px'
+    dimension_attributes: true
+    attributes:
+      img: 'alt="" loading="lazy" decoding="async"'
+
+  # Cartões verticais (arquivo, com painel de filtros)
+  #   ≤768  → 1 coluna (100vw − 32 px)
+  #   ≤960  → 2 colunas, sem painel lateral
+  #   ≤1180 → 2 colunas, com painel lateral de 250 px
+  #   >1180 → 3 colunas (≈ 357 px)
+  card_vertical:
+    formats: [webp, original]
+    widths: [360, 480, 720, 960, 1280, 1500]
+    sizes:
+      w768: 'calc(100vw - 32px)'
+      w960: 'calc(50vw - 34px)'
+      w1180: 'calc(50vw - 173px)'
+    size: '357px'
+    dimension_attributes: true
+    attributes:
+      img: 'alt="" loading="lazy" decoding="async"'
+
+  # ---------------------------------------------------------------------------
+  # Galeria da página do trilho (miniaturas)
+  #   ≤640 → 1 coluna · ≤960 → 2 colunas · >960 → 3 colunas (máx. ≈ 364 px)
+  # ---------------------------------------------------------------------------
+  gallery_thumb:
+    formats: [webp, original]
+    widths: [320, 480, 640, 800, 1100]
+    sizes:
+      w640: 'calc(100vw - 80px)'
+      w960: 'calc(50vw - 54px)'
+      w1220: 'calc((100vw - 128px) / 3)'
+    size: '364px'
+    dimension_attributes: true
+    attributes:
+      img: 'loading="lazy" decoding="async"'
+
+  # ---------------------------------------------------------------------------
+  # Lightbox: só o valor do atributo srcset (sem HTML à volta).
+  # O trilho.js define o atributo "sizes" em função do ecrã e da proporção da foto.
+  # ---------------------------------------------------------------------------
+  modal_srcset:
+    markup: naked_srcset
+    formats: webp
+    widths: [800, 1280, 1920, 2560]
+    nomarkdown: false
