@@ -38,7 +38,7 @@ presets:
   #   >1180 px → duas colunas                            (≈ 341 px)
   # ---------------------------------------------------------------------------
   card:
-    formats: [webp, original]
+    formats: [webp, original, avif]
     widths: [360, 480, 720, 960, 1280, 1500]
     sizes:
       w768: 'calc(100vw - 32px)'
@@ -54,7 +54,7 @@ presets:
   #   ≤1180 → 2 colunas, com painel lateral de 250 px
   #   >1180 → 3 colunas (≈ 357 px)
   card_vertical:
-    formats: [webp, original]
+    formats: [webp, original, avif]
     widths: [360, 480, 720, 960, 1280, 1500]
     sizes:
       w768: 'calc(100vw - 32px)'
@@ -70,7 +70,7 @@ presets:
   #   ≤640 → 1 coluna · ≤960 → 2 colunas · >960 → 3 colunas (máx. ≈ 364 px)
   # ---------------------------------------------------------------------------
   gallery_thumb:
-    formats: [webp, original]
+    formats: [webp, original, avif]
     widths: [320, 480, 640, 800, 1100]
     sizes:
       w640: 'calc(100vw - 80px)'
@@ -87,6 +87,6 @@ presets:
   # ---------------------------------------------------------------------------
   modal_srcset:
     markup: naked_srcset
-    formats: webp
+    formats: [webp, avif]
     widths: [800, 1280, 1920, 2560]
     nomarkdown: false
